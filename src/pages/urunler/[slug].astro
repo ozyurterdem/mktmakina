@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+import { products } from '../../data/products';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+const { product } = Astro.props;
+const otherProducts = products.filter((p) => p.slug !== product.slug);
+---
+
+<BaseLayout
+  title={`${product.name.tr} — MKT Makina Kalıp Takım`}
+  description={product.description.tr}
+  lang="tr"
+>
+  <PageHero title={product.name.tr} subtitle="Ürünlerimiz" image={product.image} />
+
+  <section class="section-padding bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <!-- Image -->
+        <div class="reveal">
+          <div class="rounded-2xl overflow-hidden shadow-2xl">
+            <img
+              src={product.image}
+              alt={product.name.tr}
+              class="w-full aspect-[4/3] object-cover"
+            />
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="reveal-right">
+          <span class="inline-block text-accent-600 text-sm font-semibold uppercase tracking-[0.2em] mb-3">Ürün Detayı</span>
+          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-navy-800 mb-4">{product.name.tr}</h2>
+          <div class="accent-bar mb-8"></div>
+          <p class="text-steel-600 text-lg leading-relaxed mb-10">{product.description.tr}</p>
+
+          <h3 class="font-heading text-lg font-semibold text-navy-800 mb-5">Kapsam</h3>
+          <ul class="space-y-3 mb-10">
+            {product.details.tr.map((item) => (
+              <li class="flex items-start gap-3">
+                <div class="w-6 h-6 rounded-full bg-accent-500/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span class="text-steel-700">{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="/talep-formu"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-semibold uppercase tracking-wider rounded-lg hover:from-accent-600 hover:to-accent-700 transition-all shadow-lg text-sm"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Teklif Alın
+          </a>
+        </div>
+      </div>
+
+      <!-- Other Products -->
+      <div class="mt-24">
+        <h3 class="font-heading text-2xl font-bold text-navy-800 mb-8 reveal">Diğer Ürünlerimiz</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          {otherProducts.map((p) => (
+            <a href={`/urunler/${p.slug}`} class="group block rounded-xl overflow-hidden card-premium reveal">
+              <div class="relative aspect-[4/3] overflow-hidden">
+                <img src={p.image} alt={p.name.tr} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-navy-950/80 to-transparent"></div>
+              </div>
+              <div class="p-3">
+                <h4 class="font-heading text-xs sm:text-sm font-semibold text-navy-800 group-hover:text-accent-600 transition-colors">{p.name.tr}</h4>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA lang="tr" />
+</BaseLayout>

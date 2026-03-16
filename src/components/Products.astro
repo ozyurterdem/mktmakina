@@ -35,7 +35,7 @@ const products = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
       {products.map((product, i) => (
         <a
-          href={getLocalePath(lang, `/urunler/${product.slug}`)}
+          href={lang === 'tr' ? `/urunler/${product.slug}` : `/en/products/${product.slug}`}
           class={`reveal delay-${i + 1} group relative block overflow-hidden rounded-2xl card-premium`}
         >
           <!-- Image -->

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import FormHandler from '../components/FormHandler.astro';
 ---
 
 <BaseLayout title="İletişim — MKT Makina Kalıp Takım" description="MKT Makina iletişim bilgileri. Adres: Hanlıköy Mah. Akgün Cad. No:1 Arifiye / Sakarya. Tel: +90 264 276 18 80" lang="tr">
@@ -122,4 +123,5 @@ import PageHero from '../components/PageHero.astro';
       </div>
     </div>
   </section>
+  <FormHandler formId="contact-form" successMessage="Mesajınız gönderildi!" />
 </BaseLayout>

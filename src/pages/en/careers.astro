@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import FormHandler from '../../components/FormHandler.astro';
 ---
 
 <BaseLayout title="Careers — MKT Makina" description="MKT Makina career opportunities. Join our team." lang="en">
@@ -63,4 +64,5 @@ import PageHero from '../../components/PageHero.astro';
       </div>
     </div>
   </section>
+  <FormHandler formId="hr-form" successMessage="Application sent!" />
 </BaseLayout>

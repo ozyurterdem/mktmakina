@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
+import FormHandler from '../../components/FormHandler.astro';
 ---
 
 <BaseLayout title="Contact — MKT Makina" description="MKT Makina contact information. Address: Hanlıköy Mah. Akgün Cad. No:1 Arifiye / Sakarya, Turkey." lang="en">
@@ -53,7 +54,7 @@ import PageHero from '../../components/PageHero.astro';
         <div class="reveal">
           <div class="bg-navy-800 rounded-xl p-8">
             <h2 class="font-heading text-xl font-bold text-white mb-6">Contact Form</h2>
-            <form class="space-y-4">
+            <form class="space-y-4" id="contact-form">
               <div class="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label for="en-name" class="block text-steel-400 text-sm mb-1">Full Name</label>
@@ -90,4 +91,5 @@ import PageHero from '../../components/PageHero.astro';
       </div>
     </div>
   </section>
+  <FormHandler formId="contact-form" successMessage="Message sent!" />
 </BaseLayout>

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
+import FormHandler from '../components/FormHandler.astro';
 ---
 
 <BaseLayout title="Teklif Talep Formu — MKT Makina Kalıp Takım" description="MKT Makina teklif talep formu. Projeniz için fiyat teklifi alın." lang="tr">
@@ -85,4 +86,5 @@ import PageHero from '../components/PageHero.astro';
       </div>
     </div>
   </section>
+  <FormHandler formId="quote-form" successMessage="Teklif talebiniz gönderildi!" />
 </BaseLayout>

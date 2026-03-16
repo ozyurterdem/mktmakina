@@ -2,45 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import CTA from '../components/CTA.astro';
-
-const products = [
-  {
-    name: 'Aparatlar',
-    slug: 'aparatlar',
-    image: '/images/categories/aparatlar_7.jpg',
-    description: 'Üretim süreçlerinde kullanılan özel tasarım aparatlar. Her müşterinin ihtiyacına göre hassas mühendislik ile üretilir.',
-  },
-  {
-    name: 'Fikstür',
-    slug: 'fikstur',
-    image: '/images/categories/fikstur_8.jpg',
-    description: 'CNC tezgahları ve montaj hatları için yüksek hassasiyetli fikstür sistemleri. Tekrarlanabilir doğruluk sağlar.',
-  },
-  {
-    name: 'Kalıplar',
-    slug: 'kaliplar',
-    image: '/images/categories/kaliplar_12.jpg',
-    description: 'Plastik enjeksiyon kalıpları ve özel üretim kalıp çözümleri. Havacılık ve otomotiv sektörü standartlarında.',
-  },
-  {
-    name: 'Uygulamalar',
-    slug: 'uygulamalar',
-    image: '/images/categories/parcalar_13.jpg',
-    description: 'Talaşlı imalat parçaları ve montaj grupları. 5 eksen CNC işleme merkezlerinde hassas üretim.',
-  },
-  {
-    name: 'Kalite Kontrol Mastarları',
-    slug: 'kalite-kontrol-mastarlari',
-    image: '/images/categories/mastarlar_14.jpg',
-    description: 'Üretim kalitesini doğrulayan hassas ölçüm mastarları. AS9100 standartlarına uygun tasarım ve üretim.',
-  },
-  {
-    name: 'Plastik Enjeksiyon Uygulamaları',
-    slug: 'plastik-enjeksiyon',
-    image: '/images/categories/parcalar_13.jpg',
-    description: 'LS LST 280 plastik enjeksiyon makinası ile seri üretim. Otomotiv ve havacılık parçaları.',
-  },
-];
+import { products } from '../data/products';
 ---
 
 <BaseLayout title="Ürünlerimiz — MKT Makina Kalıp Takım" description="MKT Makina ürünleri: Aparatlar, fikstürler, kalıplar, kalite kontrol mastarları, plastik enjeksiyon ve talaşlı imalat parçaları." lang="tr">
@@ -50,28 +12,28 @@ const products = [
     <div class="max-w-7xl mx-auto px-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
-          <div class="group bg-white rounded-xl border border-steel-200 overflow-hidden hover:shadow-xl transition-all duration-500 reveal">
+          <a href={`/urunler/${product.slug}`} class="group bg-white rounded-xl border border-steel-200 overflow-hidden hover:shadow-xl transition-all duration-500 reveal">
             <div class="relative aspect-[4/3] overflow-hidden">
               <img
                 src={product.image}
-                alt={product.name}
+                alt={product.name.tr}
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div class="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-500">
                   <svg class="w-6 h-6 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
               </div>
             </div>
             <div class="p-6">
-              <h3 class="font-heading text-lg font-semibold text-navy-800 mb-2">{product.name}</h3>
-              <p class="text-steel-500 text-sm leading-relaxed mb-4">{product.description}</p>
+              <h3 class="font-heading text-lg font-semibold text-navy-800 mb-2 group-hover:text-accent-600 transition-colors">{product.name.tr}</h3>
+              <p class="text-steel-500 text-sm leading-relaxed mb-4">{product.description.tr}</p>
               <div class="w-8 h-0.5 bg-accent-500 transition-all duration-500 group-hover:w-16"></div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>

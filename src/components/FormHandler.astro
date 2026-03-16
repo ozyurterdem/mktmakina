@@ -1,0 +1,50 @@
+---
+interface Props {
+  formId: string;
+  successMessage?: string;
+  email?: string;
+}
+
+const { formId, successMessage = 'Mesajınız gönderildi. En kısa sürede dönüş yapacağız.', email = 'info@mktmakina.com' } = Astro.props;
+---
+
+<script define:vars={{ formId, successMessage, email }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById(formId);
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const data = Object.fromEntries(fd.entries());
+
+      // Build mailto body
+      let subject = data.subject || data.product || 'Web Sitesi Formu';
+      let body = '';
+      for (const [key, val] of Object.entries(data)) {
+        if (val && typeof val === 'string' && val.trim()) {
+          body += `${key}: ${val}\n`;
+        }
+      }
+
+      const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Try opening mailto
+      window.location.href = mailto;
+
+      // Show success feedback
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        const origText = btn.textContent;
+        btn.textContent = '✓ ' + successMessage;
+        btn.disabled = true;
+        btn.classList.add('opacity-70');
+        setTimeout(() => {
+          btn.textContent = origText;
+          btn.disabled = false;
+          btn.classList.remove('opacity-70');
+        }, 4000);
+      }
+    });
+  });
+</script>

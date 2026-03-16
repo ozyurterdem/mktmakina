@@ -2,15 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import CTA from '../../components/CTA.astro';
-
-const products = [
-  { name: 'Apparatus', image: '/images/categories/aparatlar_7.jpg', description: 'Custom designed apparatus for production processes. Precision engineered for each customer\'s needs.' },
-  { name: 'Fixtures', image: '/images/categories/fikstur_8.jpg', description: 'High precision fixture systems for CNC machines and assembly lines. Ensures repeatable accuracy.' },
-  { name: 'Molds', image: '/images/categories/kaliplar_12.jpg', description: 'Plastic injection molds and custom mold solutions. Aviation and automotive industry standards.' },
-  { name: 'Applications', image: '/images/categories/parcalar_13.jpg', description: 'Machined parts and sub-assemblies. Precision manufacturing on 5-axis CNC machining centers.' },
-  { name: 'Quality Control Gauges', image: '/images/categories/mastarlar_14.jpg', description: 'Precision measurement gauges that verify production quality. Designed to AS9100 standards.' },
-  { name: 'Plastic Injection', image: '/images/categories/parcalar_13.jpg', description: 'Serial production with LS LST 280 plastic injection machine. Automotive and aviation parts.' },
-];
+import { products } from '../../data/products';
 ---
 
 <BaseLayout title="Products — MKT Makina" description="MKT Makina products: Apparatus, fixtures, molds, quality control gauges, plastic injection and precision machined parts." lang="en">
@@ -20,17 +12,23 @@ const products = [
     <div class="max-w-7xl mx-auto px-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.map((product) => (
-          <div class="group bg-white rounded-xl border border-steel-200 overflow-hidden hover:shadow-xl transition-all duration-500 reveal">
+          <a href={`/en/products/${product.slug}`} class="group bg-white rounded-xl border border-steel-200 overflow-hidden hover:shadow-xl transition-all duration-500 reveal">
             <div class="relative aspect-[4/3] overflow-hidden">
-              <img src={product.image} alt={product.name} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <img src={product.image} alt={product.name.en} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div class="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center scale-0 group-hover:scale-100 transition-transform duration-500">
+                  <svg class="w-6 h-6 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
             </div>
             <div class="p-6">
-              <h3 class="font-heading text-lg font-semibold text-navy-800 mb-2">{product.name}</h3>
-              <p class="text-steel-500 text-sm leading-relaxed mb-4">{product.description}</p>
+              <h3 class="font-heading text-lg font-semibold text-navy-800 mb-2 group-hover:text-accent-600 transition-colors">{product.name.en}</h3>
+              <p class="text-steel-500 text-sm leading-relaxed mb-4">{product.description.en}</p>
               <div class="w-8 h-0.5 bg-accent-500 transition-all duration-500 group-hover:w-16"></div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
