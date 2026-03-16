@@ -1,47 +1,46 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/PageHero.astro';
-import CTA from '../components/CTA.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
 
 const certGroups = [
   {
-    title: 'Kalite Belgeleri',
-    subtitle: 'Havacılık ve otomotiv sanayi standartlarına uygunluk',
+    title: 'Quality Certificates',
+    subtitle: 'Compliance with aviation and automotive industry standards',
     items: [
-      { name: 'AS9100D Sertifikası', desc: 'Havacılık ve Uzay Kalite Yönetim Sistemi', image: '/images/belgeler/AS9100D.jpg' },
-      { name: 'KIWA Sertifikası', desc: 'Uluslararası Kalite Belgelendirme', image: '/images/belgeler/KIWA.jpg' },
-      { name: 'Kalite Belgesi', desc: 'ISO 9001:2015 Kalite Yönetim Sistemi', image: '/images/belgeler/Belge1.jpg' },
-      { name: 'Kalite Belgesi', desc: 'Sertifika Eki', image: '/images/belgeler/Belge2.jpg' },
+      { name: 'AS9100D Certificate', desc: 'Aerospace Quality Management System', image: '/images/belgeler/AS9100D.jpg' },
+      { name: 'KIWA Certificate', desc: 'International Quality Certification', image: '/images/belgeler/KIWA.jpg' },
+      { name: 'Quality Certificate', desc: 'ISO 9001:2015 Quality Management System', image: '/images/belgeler/Belge1.jpg' },
+      { name: 'Quality Certificate', desc: 'Certificate Supplement', image: '/images/belgeler/Belge2.jpg' },
     ],
   },
   {
-    title: 'ERP Sistemi',
-    subtitle: 'Kurumsal kaynak planlama ve üretim takip sistemi',
+    title: 'ERP System',
+    subtitle: 'Enterprise resource planning and production tracking',
     items: [
-      { name: 'ERP System', desc: 'Üretim, stok, kalite ve müşteri takibi — Entegre yönetim sistemi', image: '/images/belgeler/5.jpg' },
-      { name: 'ERP Dashboard', desc: 'Gerçek zamanlı üretim ve performans izleme', image: '/images/belgeler/6.jpg' },
+      { name: 'ERP System', desc: 'Production, inventory, quality and customer tracking — Integrated management', image: '/images/belgeler/5.jpg' },
+      { name: 'ERP Dashboard', desc: 'Real-time production and performance monitoring', image: '/images/belgeler/6.jpg' },
     ],
   },
   {
     title: 'CAD / CAM',
-    subtitle: 'Bilgisayar destekli tasarım ve üretim yazılımları',
+    subtitle: 'Computer-aided design and manufacturing software',
     items: [
-      { name: 'CAD - CAM Yazılımları', desc: 'SolidWorks, Mastercam — 3D modelleme ve CNC programlama', image: '/images/belgeler/7.jpg' },
-      { name: 'CAD - CAM Uygulamaları', desc: 'Hassas işleme için bilgisayar destekli üretim', image: '/images/belgeler/8.jpg' },
+      { name: 'CAD - CAM Software', desc: 'SolidWorks, Mastercam — 3D modeling and CNC programming', image: '/images/belgeler/7.jpg' },
+      { name: 'CAD - CAM Applications', desc: 'Computer-aided manufacturing for precision machining', image: '/images/belgeler/8.jpg' },
     ],
   },
 ];
 ---
 
-<BaseLayout title="Belgeler — MKT Makina Kalıp Takım" description="MKT Makina kalite belgeleri, AS9100D sertifikası, ISO 9001:2015, ERP sistemi ve CAD/CAM altyapısı." lang="tr">
-  <PageHero title="Belgelerimiz" subtitle="Kalite belgeleri, ERP sistemi ve CAD/CAM altyapımız" />
+<BaseLayout title="Certificates — MKT Makina" description="MKT Makina quality certificates, AS9100D certification, ISO 9001:2015, ERP system and CAD/CAM infrastructure." lang="en">
+  <PageHero title="Certificates" subtitle="Quality certificates, ERP system and CAD/CAM infrastructure" />
 
   <section class="section-padding bg-white">
     <div class="max-w-7xl mx-auto px-4">
       <div class="space-y-20">
-        {certGroups.map((group, gi) => (
+        {certGroups.map((group) => (
           <div class="reveal">
-            <!-- Group Header -->
             <div class="flex items-center gap-4 mb-8">
               <div class="accent-bar"></div>
               <div>
@@ -50,7 +49,6 @@ const certGroups = [
               </div>
             </div>
 
-            <!-- Items Grid -->
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {group.items.map((item, i) => (
                 <a
@@ -87,5 +85,5 @@ const certGroups = [
     </div>
   </section>
 
-  <CTA lang="tr" />
+  <CTA lang="en" />
 </BaseLayout>

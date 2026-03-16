@@ -8,14 +8,25 @@ interface Props {
 const { title, subtitle, image = '/images/slide2.jpg' } = Astro.props;
 ---
 
-<section class="relative h-64 sm:h-80 flex items-center overflow-hidden">
+<section class="relative h-72 sm:h-96 flex items-end overflow-hidden">
   <div class="absolute inset-0">
     <img src={image} alt={title} class="w-full h-full object-cover" loading="eager" />
-    <div class="absolute inset-0 bg-navy-900/85"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-900/70 to-navy-800/40"></div>
   </div>
-  <div class="relative z-10 max-w-7xl mx-auto px-4 w-full">
-    <div class="accent-bar mb-4"></div>
-    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2">{title}</h1>
-    {subtitle && <p class="text-steel-300 text-lg max-w-2xl">{subtitle}</p>}
+
+  <!-- Decorative -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-0 right-[15%] w-px h-full bg-gradient-to-b from-transparent via-accent-500/15 to-transparent"></div>
+    <div class="absolute top-12 right-12 grid grid-cols-4 gap-2 opacity-15 hidden lg:grid">
+      {Array.from({ length: 16 }).map(() => (
+        <div class="w-1 h-1 rounded-full bg-accent-500"></div>
+      ))}
+    </div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12 sm:pb-16">
+    <div class="accent-bar mb-5"></div>
+    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-3 tracking-tight">{title}</h1>
+    {subtitle && <p class="text-steel-300/80 text-lg sm:text-xl max-w-2xl font-light">{subtitle}</p>}
   </div>
 </section>

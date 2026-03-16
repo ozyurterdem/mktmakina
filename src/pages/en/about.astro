@@ -2,6 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import CTA from '../../components/CTA.astro';
+
+const tabs = [
+  { id: 'about', label: 'About Us' },
+  { id: 'mission', label: 'Mission & Vision' },
+  { id: 'quality', label: 'Quality Policy' },
+];
 ---
 
 <BaseLayout title="About — MKT Makina" description="About MKT Makina: high quality precision machined parts and plastic injection solutions for aviation and automotive industry since 2007." lang="en">
@@ -9,57 +15,158 @@ import CTA from '../../components/CTA.astro';
 
   <section class="section-padding bg-white">
     <div class="max-w-5xl mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-12 items-start reveal">
-        <div>
-          <h2 class="font-heading text-2xl font-bold text-navy-800 mb-6">About Us</h2>
-          <div class="space-y-4 text-steel-600 leading-relaxed">
-            <p>MKT Makina manufactures high quality precision machined parts and plastic injection parts for the aviation and automotive industry. Founded in 2007, the company has produced molds, fixtures, apparatus and quality control gauges for many sectors since early years of business.</p>
-            <p>It expanded the machine park and has supplied its products to TSI Aviation Seats since 2012.</p>
-            <p>MKT Makina has been certified to AS9100, the quality management system has been structured according to the requirements of aviation and automotive industry.</p>
-          </div>
+      <!-- Tab Navigation -->
+      <div class="flex flex-wrap gap-3 mb-14 border-b border-steel-200 pb-5" id="corp-tabs">
+        {tabs.map((tab, i) => (
+          <button
+            data-tab={tab.id}
+            class:list={[
+              'px-6 py-3 font-heading text-sm uppercase tracking-widest rounded-lg transition-all duration-300 border',
+              i === 0
+                ? 'bg-navy-800 text-white border-navy-800 shadow-lg'
+                : 'text-navy-700 border-steel-200 hover:border-accent-500 hover:text-accent-600 hover:bg-accent-50',
+            ]}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
 
-          <h3 class="font-heading text-lg font-semibold text-navy-800 mt-8 mb-4">Product Range</h3>
-          <ul class="space-y-3">
-            {[
-              'Machining parts and sub-assemblies',
-              'Fixtures',
-              'Apparatuses',
-              'Quality control gauges',
-              'Plastic injection molds',
-              'Plastic injection parts',
-            ].map((item) => (
-              <li class="flex items-start gap-3">
-                <div class="w-5 h-5 rounded-full bg-accent-500 flex items-center justify-center shrink-0 mt-0.5">
-                  <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <span class="text-steel-700">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div class="relative">
-          <img src="/images/slide1.jpg" alt="MKT Makina Production" class="rounded-xl shadow-2xl w-full aspect-[4/3] object-cover" />
-          <div class="absolute -bottom-4 -left-4 bg-navy-800 text-white px-6 py-4 rounded-lg shadow-xl">
-            <div class="font-heading text-3xl font-bold text-accent-500">2007</div>
-            <div class="text-xs text-steel-400 uppercase tracking-wider">Since</div>
+      <!-- About Us -->
+      <div id="tab-about" class="tab-content">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 class="font-heading text-2xl font-bold text-navy-800 mb-6">About Us</h2>
+            <div class="space-y-4 text-steel-600 leading-relaxed">
+              <p>MKT Makina manufactures high quality precision machined parts and plastic injection parts for the aviation and automotive industry. Founded in 2007, the company has produced molds, fixtures, apparatus and quality control gauges for many sectors since early years of business.</p>
+              <p>It expanded the machine park and has supplied its products to TSI Aviation Seats since 2012.</p>
+              <p>MKT Makina has been certified to AS9100, the quality management system has been structured according to the requirements of aviation and automotive industry.</p>
+            </div>
+
+            <h3 class="font-heading text-lg font-semibold text-navy-800 mt-8 mb-4">Product Range</h3>
+            <ul class="space-y-3">
+              {[
+                'Machining parts and sub-assemblies',
+                'Fixtures',
+                'Apparatuses',
+                'Quality control gauges',
+                'Plastic injection molds',
+                'Plastic injection parts',
+              ].map((item) => (
+                <li class="flex items-start gap-3">
+                  <div class="w-5 h-5 rounded-full bg-accent-500 flex items-center justify-center shrink-0 mt-0.5">
+                    <svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span class="text-steel-700">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
+          <div class="relative">
+            <img src="/images/slide1.jpg" alt="MKT Makina Production" class="rounded-xl shadow-2xl w-full aspect-[4/3] object-cover" />
+            <div class="absolute -bottom-4 -left-4 bg-navy-800 text-white px-6 py-4 rounded-lg shadow-xl">
+              <div class="font-heading text-3xl font-bold text-accent-500">2007</div>
+              <div class="text-xs text-steel-400 uppercase tracking-wider">Since</div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="font-heading text-lg font-semibold text-navy-800 mt-12 mb-4">Main Principles</h3>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            'Manufacturing high quality products that meet the requirements of customers',
+            'Using the latest technology equipment, tools and software',
+            'Offering specific solutions to customers',
+            'Maintaining a quality management system fully complying with advanced industrial standards',
+          ].map((item) => (
+            <div class="flex items-start gap-3 p-4 bg-steel-50 rounded-lg">
+              <svg class="w-5 h-5 text-accent-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span class="text-steel-700 text-sm">{item}</span>
+            </div>
+          ))}
         </div>
       </div>
 
       <!-- Mission & Vision -->
-      <div class="grid lg:grid-cols-2 gap-12 mt-16 reveal">
-        <div class="p-8 bg-navy-800 rounded-xl text-white">
-          <h2 class="font-heading text-2xl font-bold mb-4">Our Mission</h2>
-          <div class="space-y-4 text-steel-300 leading-relaxed">
-            <p>To manage the customers' expectations with consistent quality approach, to focus on creating value with our customer oriented working strategy, and to provide customer satisfaction by engineering and management science with the latest technological facilities.</p>
+      <div id="tab-mission" class="tab-content hidden">
+        <div class="grid lg:grid-cols-2 gap-12">
+          <div class="p-8 bg-navy-800 rounded-xl text-white">
+            <div class="w-12 h-12 bg-accent-500/20 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h2 class="font-heading text-2xl font-bold mb-4">Our Mission</h2>
+            <div class="space-y-4 text-steel-300 leading-relaxed">
+              <p>To manage the customers' expectations with consistent quality approach, to focus on creating value with our customer oriented working strategy, and to manage the potential of our competitive growing in best way.</p>
+              <p>To provide customer satisfaction by engineering and management science with the latest technological facilities, to produce perfect products for human, nature, environment and society respectfully.</p>
+              <p>To position the social responsibilities as part of company culture for the present and future generations. MKT plans its works according to the continuity principle and sustainable projects.</p>
+            </div>
+          </div>
+          <div class="p-8 bg-accent-500 rounded-xl text-white">
+            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mb-6">
+              <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </div>
+            <h2 class="font-heading text-2xl font-bold mb-4">Our Vision</h2>
+            <ul class="space-y-3 text-white/90 leading-relaxed">
+              {[
+                'To provide easy, reliable, economic and high quality service',
+                'Customer satisfaction is the first priority',
+                '100% quality performance',
+                'Fast, correct and reliable solutions',
+                'Continuous progress',
+                'Total Quality System Management',
+              ].map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-white/60 mt-1">—</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-        <div class="p-8 bg-accent-500 rounded-xl text-white">
-          <h2 class="font-heading text-2xl font-bold mb-4">Our Vision</h2>
-          <div class="space-y-4 text-white/90 leading-relaxed">
-            <p>To provide easy, reliable, economic and high quality service. The customer satisfaction is the first priority. To have 100% quality performance and find fast, correct and reliable solutions with continuous progress.</p>
+      </div>
+
+      <!-- Quality Policy -->
+      <div id="tab-quality" class="tab-content hidden">
+        <div class="max-w-3xl">
+          <div class="flex items-center gap-4 mb-8">
+            <div class="w-16 h-16 bg-accent-50 rounded-xl flex items-center justify-center">
+              <svg class="w-8 h-8 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="font-heading text-2xl font-bold text-navy-800">Quality Policy</h2>
+              <p class="text-steel-500">AS9100 Certified Quality Management System</p>
+            </div>
+          </div>
+
+          <p class="text-steel-600 leading-relaxed mb-8">Our company, which manufactures metallic and nonmetallic parts and components for aerospace and automotive industry, describes its quality policy in compliance with the content of organization and its strategic plan as follows:</p>
+
+          <div class="space-y-4">
+            {[
+              'Establishing a quality management system in accordance with the requirements of related parties and AS9100 standard and manufacturing complying products in this scope',
+              'Improving Quality Management System continuously, creating and monitoring the quality objectives for this purpose',
+              'Ensuring customer satisfaction and getting ahead of customer expectations with a reliable and innovative approach',
+              'Ensuring that all employees are aware of quality policy and carry out their tasks compatibly',
+              'Undertaking the responsibility of all delivered products and giving the information and technical support needed to customer',
+              'Combining the demanded quality raw material, high technology machine park and expert labour',
+              'Increasing the expert level of employees with trainings, ensuring their motivation at work',
+              'Using the advantage of young and dynamic structure of company for creating added value for customers',
+            ].map((item, i) => (
+              <div class="flex items-start gap-4 p-4 bg-steel-50 rounded-lg">
+                <span class="w-8 h-8 bg-accent-500 text-white rounded-full flex items-center justify-center shrink-0 font-heading font-bold text-sm">{i + 1}</span>
+                <span class="text-steel-700 leading-relaxed">{item}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -68,3 +175,22 @@ import CTA from '../../components/CTA.astro';
 
   <CTA lang="en" />
 </BaseLayout>
+
+<script>
+  const tabs = document.querySelectorAll('#corp-tabs button');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab');
+      tabs.forEach((t) => {
+        t.classList.remove('bg-navy-800', 'text-white', 'border-navy-800', 'shadow-lg');
+        t.classList.add('text-navy-700', 'border-steel-200');
+      });
+      tab.classList.add('bg-navy-800', 'text-white', 'border-navy-800', 'shadow-lg');
+      tab.classList.remove('text-navy-700', 'border-steel-200');
+      contents.forEach((c) => c.classList.add('hidden'));
+      document.getElementById(`tab-${target}`)?.classList.remove('hidden');
+    });
+  });
+</script>

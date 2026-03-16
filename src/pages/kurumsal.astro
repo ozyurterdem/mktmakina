@@ -16,13 +16,15 @@ const tabs = [
   <section class="section-padding bg-white">
     <div class="max-w-5xl mx-auto px-4">
       <!-- Tab Navigation -->
-      <div class="flex flex-wrap gap-2 mb-12 border-b border-steel-200 pb-4" id="corp-tabs">
+      <div class="flex flex-wrap gap-3 mb-14 border-b border-steel-200 pb-5" id="corp-tabs">
         {tabs.map((tab, i) => (
           <button
             data-tab={tab.id}
             class:list={[
-              'px-5 py-2.5 font-heading text-sm uppercase tracking-wide rounded-md transition-all',
-              i === 0 ? 'bg-accent-500 text-white' : 'text-navy-800 hover:bg-steel-50',
+              'px-6 py-3 font-heading text-sm uppercase tracking-widest rounded-lg transition-all duration-300 border',
+              i === 0
+                ? 'bg-navy-800 text-white border-navy-800 shadow-lg'
+                : 'text-navy-700 border-steel-200 hover:border-accent-500 hover:text-accent-600 hover:bg-accent-50',
             ]}
           >
             {tab.label}
@@ -166,8 +168,12 @@ const tabs = [
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       const target = tab.getAttribute('data-tab');
-      tabs.forEach((t) => { t.classList.remove('bg-accent-500', 'text-white'); t.classList.add('text-navy-800'); });
-      tab.classList.add('bg-accent-500', 'text-white'); tab.classList.remove('text-navy-800');
+      tabs.forEach((t) => {
+        t.classList.remove('bg-navy-800', 'text-white', 'border-navy-800', 'shadow-lg');
+        t.classList.add('text-navy-700', 'border-steel-200');
+      });
+      tab.classList.add('bg-navy-800', 'text-white', 'border-navy-800', 'shadow-lg');
+      tab.classList.remove('text-navy-700', 'border-steel-200');
       contents.forEach((c) => c.classList.add('hidden'));
       document.getElementById(`tab-${target}`)?.classList.remove('hidden');
     });
