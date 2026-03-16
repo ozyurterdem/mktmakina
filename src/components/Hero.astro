@@ -69,7 +69,7 @@ const { lang = 'tr' } = Astro.props;
       <!-- CTAs -->
       <div class="flex flex-col sm:flex-row gap-4">
         <a
-          href={getLocalePath(lang, '/talep-formu')}
+          href={lang === 'tr' ? '/iletisim' : '/en/contact'}
           class="group inline-flex items-center justify-center gap-3 px-8 py-4.5 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-semibold uppercase tracking-wider rounded-lg hover:from-accent-600 hover:to-accent-700 transition-all shadow-xl shadow-accent-500/20 hover:shadow-accent-500/40 text-sm"
         >
           {t(lang, 'hero.cta')}

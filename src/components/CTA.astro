@@ -44,7 +44,7 @@ const { lang = 'tr' } = Astro.props;
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a
-        href={getLocalePath(lang, '/talep-formu')}
+        href={lang === 'tr' ? '/iletisim' : '/en/contact'}
         class="group inline-flex items-center justify-center gap-3 px-9 py-5 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-semibold uppercase tracking-wider rounded-lg hover:from-accent-600 hover:to-accent-700 transition-all shadow-2xl shadow-accent-500/25 hover:shadow-accent-500/40 text-sm"
       >
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
