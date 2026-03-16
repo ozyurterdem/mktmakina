@@ -8,82 +8,77 @@ interface Props {
 const { lang = 'tr' } = Astro.props;
 
 const products = [
-  {
-    key: 'products.apparatus',
-    image: '/images/categories/aparatlar_7.jpg',
-    slug: 'aparatlar',
-  },
-  {
-    key: 'products.fixtures',
-    image: '/images/categories/fikstur_8.jpg',
-    slug: 'fikstur',
-  },
-  {
-    key: 'products.molds',
-    image: '/images/categories/kaliplar_12.jpg',
-    slug: 'kaliplar',
-  },
-  {
-    key: 'products.applications',
-    image: '/images/categories/parcalar_13.jpg',
-    slug: 'uygulamalar',
-  },
-  {
-    key: 'products.gauges',
-    image: '/images/categories/mastarlar_14.jpg',
-    slug: 'kalite-kontrol-mastarlari',
-  },
-  {
-    key: 'products.injection',
-    image: '/images/categories/parcalar_13.jpg',
-    slug: 'plastik-enjeksiyon',
-  },
+  { key: 'products.apparatus', image: '/images/categories/aparatlar_7.jpg', slug: 'aparatlar' },
+  { key: 'products.fixtures', image: '/images/categories/fikstur_8.jpg', slug: 'fikstur' },
+  { key: 'products.molds', image: '/images/categories/kaliplar_12.jpg', slug: 'kaliplar' },
+  { key: 'products.applications', image: '/images/categories/parcalar_13.jpg', slug: 'uygulamalar' },
+  { key: 'products.gauges', image: '/images/categories/mastarlar_14.jpg', slug: 'kalite-kontrol-mastarlari' },
+  { key: 'products.injection', image: '/images/categories/parcalar_13.jpg', slug: 'plastik-enjeksiyon' },
 ];
 ---
 
-<section class="section-padding bg-white" id="products">
-  <div class="max-w-7xl mx-auto px-4">
+<section class="section-padding bg-white geo-pattern" id="products">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
-    <div class="text-center mb-14 reveal">
-      <div class="accent-bar mx-auto mb-4"></div>
-      <h2 class="font-heading text-3xl sm:text-4xl font-bold text-navy-800 mb-3">
+    <div class="text-center mb-16 reveal">
+      <span class="inline-block text-accent-600 text-sm font-semibold uppercase tracking-[0.2em] mb-3">{lang === 'tr' ? 'Çözümlerimiz' : 'Our Solutions'}</span>
+      <h2 class="font-heading text-4xl sm:text-5xl font-bold text-navy-800 mb-4">
         {t(lang, 'products.title')}
       </h2>
-      <p class="text-steel-500 text-lg max-w-2xl mx-auto">
+      <div class="accent-bar mx-auto mb-5"></div>
+      <p class="text-steel-500 text-lg max-w-2xl mx-auto font-light">
         {t(lang, 'products.subtitle')}
       </p>
     </div>
 
-    <!-- Product Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {products.map((product) => (
+    <!-- Product Grid — Premium Layout -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
+      {products.map((product, i) => (
         <a
           href={getLocalePath(lang, `/urunler/${product.slug}`)}
-          class="group relative block aspect-[4/3] overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-500 reveal"
+          class={`reveal delay-${i + 1} group relative block overflow-hidden rounded-2xl card-premium`}
         >
-          <img
-            src={product.image}
-            alt={t(lang, product.key)}
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-          />
-          <!-- Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-t from-navy-900/90 via-navy-900/30 to-transparent transition-opacity duration-300"></div>
-          <!-- Hover overlay -->
-          <div class="absolute inset-0 bg-accent-500/0 group-hover:bg-accent-500/20 transition-colors duration-500 flex items-center justify-center">
-            <div class="w-14 h-14 rounded-full bg-white/0 group-hover:bg-white/90 flex items-center justify-center transition-all duration-500 scale-0 group-hover:scale-100">
-              <svg class="w-6 h-6 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+          <!-- Image -->
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img
+              src={product.image}
+              alt={t(lang, product.key)}
+              class="w-full h-full object-cover transition-all duration-[800ms] group-hover:scale-110 group-hover:brightness-110"
+              loading="lazy"
+            />
+            <!-- Multi-layer overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-900/20 to-transparent"></div>
+            <div class="absolute inset-0 bg-accent-500/0 group-hover:bg-accent-500/15 transition-colors duration-500"></div>
+
+            <!-- Hover icon -->
+            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+              <div class="w-16 h-16 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center scale-50 group-hover:scale-100 transition-transform duration-500 shadow-xl">
+                <svg class="w-6 h-6 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
             </div>
           </div>
-          <!-- Title -->
-          <div class="absolute bottom-0 left-0 right-0 p-5">
-            <h3 class="font-heading text-lg font-semibold text-white tracking-wide">
-              {t(lang, product.key)}
-            </h3>
-            <div class="w-8 h-0.5 bg-accent-500 mt-2 transition-all duration-500 group-hover:w-16"></div>
+
+          <!-- Title bar -->
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <div class="flex items-end justify-between">
+              <div>
+                <h3 class="font-heading text-lg sm:text-xl font-semibold text-white tracking-wide mb-1">
+                  {t(lang, product.key)}
+                </h3>
+                <div class="h-0.5 bg-gradient-to-r from-accent-500 to-transparent w-10 group-hover:w-20 transition-all duration-500"></div>
+              </div>
+              <div class="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+                <svg class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
           </div>
+
+          <!-- Corner accent -->
+          <div class="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-accent-500/0 group-hover:border-accent-500/60 rounded-tr-lg transition-all duration-500"></div>
         </a>
       ))}
     </div>

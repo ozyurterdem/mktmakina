@@ -20,27 +20,28 @@ const references = [
 ];
 ---
 
-<section class="section-padding bg-white" id="references">
-  <div class="max-w-7xl mx-auto px-4">
-    <!-- Section Header -->
-    <div class="text-center mb-14 reveal">
-      <div class="accent-bar mx-auto mb-4"></div>
-      <h2 class="font-heading text-3xl sm:text-4xl font-bold text-navy-800 mb-3">
+<section class="section-padding bg-white relative" id="references">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16 reveal">
+      <span class="inline-block text-accent-600 text-sm font-semibold uppercase tracking-[0.2em] mb-3">{lang === 'tr' ? 'İş Ortaklarımız' : 'Our Partners'}</span>
+      <h2 class="font-heading text-4xl sm:text-5xl font-bold text-navy-800 mb-4">
         {t(lang, 'references.title')}
       </h2>
-      <p class="text-steel-500 text-lg max-w-2xl mx-auto">
+      <div class="accent-bar mx-auto mb-5"></div>
+      <p class="text-steel-500 text-lg max-w-2xl mx-auto font-light">
         {t(lang, 'references.subtitle')}
       </p>
     </div>
 
-    <!-- Reference Logos -->
-    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-6 items-center reveal">
-      {references.map((ref) => (
-        <div class="flex items-center justify-center p-4 h-24 bg-steel-50 rounded-lg hover:bg-white hover:shadow-lg transition-all duration-300">
+    <!-- Logo Grid — Premium -->
+    <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 reveal">
+      {references.map((ref, i) => (
+        <div class={`delay-${(i % 5) + 1} group flex items-center justify-center p-6 sm:p-8 h-28 sm:h-32 bg-steel-50/80 rounded-2xl border border-steel-200/50 hover:border-accent-500/20 hover:bg-white hover:shadow-xl transition-all duration-500`}>
           <img
             src={ref.image}
             alt={ref.name}
-            class="max-h-16 max-w-full object-contain ref-logo"
+            class="max-h-14 sm:max-h-16 max-w-full object-contain ref-logo"
             loading="lazy"
           />
         </div>
@@ -48,12 +49,15 @@ const references = [
     </div>
 
     <!-- CTA -->
-    <div class="text-center mt-10 reveal">
+    <div class="text-center mt-12 reveal">
       <a
         href={getLocalePath(lang, '/referanslar')}
-        class="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-white font-semibold uppercase tracking-wide rounded-md hover:bg-accent-600 transition-colors text-sm"
+        class="group inline-flex items-center gap-3 px-7 py-3.5 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-semibold uppercase tracking-wider rounded-lg hover:from-accent-600 hover:to-accent-700 transition-all shadow-lg hover:shadow-xl text-sm"
       >
         {t(lang, 'references.all')}
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
       </a>
     </div>
   </div>
