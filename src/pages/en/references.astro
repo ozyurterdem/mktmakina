@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+
+const references = [
+  { name: 'Toyota Boshoku', image: '/images/references/toyota-boshoku_197.jpg', sector: 'Automotive' },
+  { name: 'TSI', image: '/images/references/tsi_198.jpg', sector: 'Aviation' },
+  { name: 'Doğuş', image: '/images/references/dogus_187.jpg', sector: 'Automotive' },
+  { name: 'Elimsan', image: '/images/references/elimsan_188.jpg', sector: 'Industry' },
+  { name: 'Mikrosan', image: '/images/references/mikrosan_192.jpg', sector: 'Industry' },
+  { name: 'Demka Forged Steel', image: '/images/references/demka-dovme-celik-sanayi_186.jpg', sector: 'Steel' },
+  { name: 'Neutec Pharma', image: '/images/references/neutec-ilac-sanayi_193.jpg', sector: 'Pharma' },
+  { name: 'Rad-Tek Radiator', image: '/images/references/rad-tek-radyator-metal_195.jpg', sector: 'Metal' },
+  { name: 'Arma Filter', image: '/images/references/arma-filtre-sistemleri_185.jpg', sector: 'Filter Systems' },
+];
+---
+
+<BaseLayout title="References — MKT Makina" description="MKT Makina references: Toyota Boshoku, TSI Aviation, Doğuş, Elimsan and more." lang="en">
+  <PageHero title="References" subtitle="Our trusted partners" />
+
+  <section class="section-padding bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+        {references.map((ref) => (
+          <div class="group flex flex-col items-center justify-center p-8 bg-steel-50 rounded-xl border border-steel-200 hover:border-accent-500/30 hover:shadow-xl hover:bg-white transition-all duration-300 reveal">
+            <div class="h-20 flex items-center justify-center mb-4">
+              <img src={ref.image} alt={ref.name} class="max-h-16 max-w-[160px] object-contain ref-logo" loading="lazy" />
+            </div>
+            <h3 class="font-heading text-sm font-semibold text-navy-800 text-center">{ref.name}</h3>
+            <span class="text-xs text-accent-600 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">{ref.sector}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA lang="en" />
+</BaseLayout>

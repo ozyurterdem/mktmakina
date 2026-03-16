@@ -1,0 +1,21 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  image?: string;
+}
+
+const { title, subtitle, image = '/images/slide2.jpg' } = Astro.props;
+---
+
+<section class="relative h-64 sm:h-80 flex items-center overflow-hidden">
+  <div class="absolute inset-0">
+    <img src={image} alt={title} class="w-full h-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-navy-900/85"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 w-full">
+    <div class="accent-bar mb-4"></div>
+    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2">{title}</h1>
+    {subtitle && <p class="text-steel-300 text-lg max-w-2xl">{subtitle}</p>}
+  </div>
+</section>

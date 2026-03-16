@@ -8,7 +8,7 @@ interface Props {
 const { lang = 'tr' } = Astro.props;
 const currentPath = Astro.url.pathname;
 
-const navItems = [
+const navItemsTr = [
   { key: 'nav.home', href: '/' },
   { key: 'nav.about', href: '/kurumsal' },
   { key: 'nav.products', href: '/urunler' },
@@ -17,6 +17,17 @@ const navItems = [
   { key: 'nav.certificates', href: '/belgeler' },
   { key: 'nav.contact', href: '/iletisim' },
 ];
+
+const navItemsEn = [
+  { key: 'nav.home', href: '/en' },
+  { key: 'nav.about', href: '/en/about' },
+  { key: 'nav.products', href: '/en/products' },
+  { key: 'nav.machines', href: '/en/machines' },
+  { key: 'nav.references', href: '/en/references' },
+  { key: 'nav.contact', href: '/en/contact' },
+];
+
+const navItems = lang === 'en' ? navItemsEn : navItemsTr;
 ---
 
 <!-- Top Bar -->
@@ -75,7 +86,7 @@ const navItems = [
         </a>
       ))}
       <a
-        href={getLocalePath(lang, '/talep-formu')}
+        href={lang === 'en' ? '/en/contact' : '/talep-formu'}
         class="ml-3 px-5 py-2.5 bg-accent-500 text-white text-sm font-semibold uppercase tracking-wide rounded-md hover:bg-accent-600 transition-colors shadow-sm"
       >
         {t(lang, 'nav.quote')}
@@ -106,7 +117,7 @@ const navItems = [
         </a>
       ))}
       <a
-        href={getLocalePath(lang, '/talep-formu')}
+        href={lang === 'en' ? '/en/contact' : '/talep-formu'}
         class="block mt-3 px-4 py-3 bg-accent-500 text-white text-sm font-semibold uppercase tracking-wide rounded-md text-center hover:bg-accent-600 transition-colors"
       >
         {t(lang, 'nav.quote')}
