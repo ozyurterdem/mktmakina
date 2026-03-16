@@ -24,7 +24,7 @@ export const translations = {
     // Hero
     'hero.title': 'Havacılık Hassasiyetinde Üretim',
     'hero.subtitle': 'Havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ve plastik enjeksiyon çözümleri.',
-    'hero.cta': 'Teklif Alın',
+    'hero.cta': 'İletişime Geçin',
     'hero.explore': 'Ürünlerimiz',
 
     // Stats
@@ -59,9 +59,9 @@ export const translations = {
     'references.all': 'Tümünü Görüntüle',
 
     // CTA
-    'cta.title': 'Projeniz İçin Teklif Alın',
+    'cta.title': 'Projeniz İçin Bize Ulaşın',
     'cta.subtitle': 'Havacılık ve otomotiv sektöründe hassas çözümler için bizimle iletişime geçin.',
-    'cta.button': 'Teklif Formu',
+    'cta.button': 'İletişim Formu',
     'cta.call': 'Bizi Arayın',
 
     // Footer
@@ -97,7 +97,7 @@ export const translations = {
     // Hero
     'hero.title': 'Aviation-Grade Precision Manufacturing',
     'hero.subtitle': 'High quality precision machined parts and plastic injection solutions for aviation and automotive industry.',
-    'hero.cta': 'Get a Quote',
+    'hero.cta': 'Contact Us',
     'hero.explore': 'Our Products',
 
     // Stats
@@ -132,9 +132,9 @@ export const translations = {
     'references.all': 'View All',
 
     // CTA
-    'cta.title': 'Get a Quote for Your Project',
+    'cta.title': 'Get in Touch for Your Project',
     'cta.subtitle': 'Contact us for precision solutions in aviation and automotive industry.',
-    'cta.button': 'Quote Form',
+    'cta.button': 'Contact Form',
     'cta.call': 'Call Us',
 
     // Footer
