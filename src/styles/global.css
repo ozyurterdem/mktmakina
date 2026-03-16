@@ -1,0 +1,119 @@
+@import 'tailwindcss';
+
+/* ══════════════════════════════════════
+   MKT Makina — Design Tokens
+   ══════════════════════════════════════ */
+
+@theme {
+  /* Primary - Endüstriyel Lacivert */
+  --color-navy-50: #f0f3f8;
+  --color-navy-100: #d9e0ed;
+  --color-navy-200: #b3c1db;
+  --color-navy-300: #8da2c9;
+  --color-navy-400: #5c7aaf;
+  --color-navy-500: #3a5a8f;
+  --color-navy-600: #2a4470;
+  --color-navy-700: #1e3358;
+  --color-navy-800: #1B2A4A;
+  --color-navy-900: #111c33;
+  --color-navy-950: #0a1120;
+
+  /* Accent - Turuncu (Ateş/Enerji) */
+  --color-accent-50: #fef7eb;
+  --color-accent-100: #fdeacc;
+  --color-accent-200: #fbd59a;
+  --color-accent-300: #f9bf67;
+  --color-accent-400: #f5a535;
+  --color-accent-500: #E8870E;
+  --color-accent-600: #c4720b;
+  --color-accent-700: #9e5b09;
+  --color-accent-800: #794607;
+  --color-accent-900: #533005;
+
+  /* Steel - Çelik Grisi */
+  --color-steel-50: #f8f9fa;
+  --color-steel-100: #f1f3f5;
+  --color-steel-200: #e9ecef;
+  --color-steel-300: #dee2e6;
+  --color-steel-400: #ced4da;
+  --color-steel-500: #adb5bd;
+  --color-steel-600: #868e96;
+  --color-steel-700: #495057;
+  --color-steel-800: #343a40;
+  --color-steel-900: #212529;
+  --color-steel-950: #111215;
+
+  /* Typography */
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Oswald', ui-sans-serif, system-ui, sans-serif;
+
+  /* Spacing */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+}
+
+/* ══════════════════════════════════════
+   Base Styles
+   ══════════════════════════════════════ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-steel-900);
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+/* ══════════════════════════════════════
+   Utility Classes
+   ══════════════════════════════════════ */
+
+.section-padding {
+  padding-block: var(--spacing-section);
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-block: var(--spacing-section-sm);
+  }
+}
+
+/* Gradient overlay for hero */
+.hero-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(27, 42, 74, 0.92) 0%,
+    rgba(27, 42, 74, 0.7) 50%,
+    rgba(232, 135, 14, 0.15) 100%
+  );
+}
+
+/* Accent bar */
+.accent-bar {
+  width: 60px;
+  height: 4px;
+  background: var(--color-accent-500);
+}
+
+/* Reference logo grayscale effect */
+.ref-logo {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: all 0.4s ease;
+}
+.ref-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}

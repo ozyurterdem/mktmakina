@@ -1,0 +1,124 @@
+---
+import { t, getLocalePath, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'tr' } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { key: 'nav.home', href: '/' },
+  { key: 'nav.about', href: '/kurumsal' },
+  { key: 'nav.products', href: '/urunler' },
+  { key: 'nav.machines', href: '/makina-parkimiz' },
+  { key: 'nav.references', href: '/referanslar' },
+  { key: 'nav.certificates', href: '/belgeler' },
+  { key: 'nav.contact', href: '/iletisim' },
+];
+---
+
+<!-- Top Bar -->
+<div class="bg-navy-800 text-white text-sm">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-10">
+    <div class="flex items-center gap-6">
+      <a href="tel:+902642761880" class="flex items-center gap-2 hover:text-accent-400 transition-colors">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        <span class="hidden sm:inline">0 264 276 18 80</span>
+      </a>
+      <a href="mailto:info@mktmakina.com" class="flex items-center gap-2 hover:text-accent-400 transition-colors">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <span class="hidden sm:inline">info@mktmakina.com</span>
+      </a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href={lang === 'tr' ? `/en${currentPath}` : currentPath.replace(/^\/en/, '') || '/'}
+         class="flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium border border-white/20 hover:bg-white/10 transition-colors">
+        {lang === 'tr' ? 'EN' : 'TR'}
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Navigation -->
+<header class="bg-white sticky top-0 z-50 border-b border-steel-200 shadow-sm" id="main-header">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
+    <!-- Logo -->
+    <a href={getLocalePath(lang, '/')} class="flex items-center gap-3 group">
+      <div class="w-12 h-12 bg-navy-800 rounded-lg flex items-center justify-center">
+        <span class="text-accent-500 font-heading font-bold text-lg">MKT</span>
+      </div>
+      <div class="hidden sm:block">
+        <span class="block font-heading text-navy-800 text-lg font-semibold tracking-wide leading-tight">MAKİNA KALIP</span>
+        <span class="block text-steel-500 text-xs tracking-widest uppercase">Takım</span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-1">
+      {navItems.map((item) => (
+        <a
+          href={getLocalePath(lang, item.href)}
+          class:list={[
+            'px-3 py-2 text-sm font-medium tracking-wide uppercase transition-colors rounded-md',
+            currentPath === getLocalePath(lang, item.href)
+              ? 'text-accent-600 bg-accent-50'
+              : 'text-navy-800 hover:text-accent-600 hover:bg-steel-50',
+          ]}
+        >
+          {t(lang, item.key)}
+        </a>
+      ))}
+      <a
+        href={getLocalePath(lang, '/talep-formu')}
+        class="ml-3 px-5 py-2.5 bg-accent-500 text-white text-sm font-semibold uppercase tracking-wide rounded-md hover:bg-accent-600 transition-colors shadow-sm"
+      >
+        {t(lang, 'nav.quote')}
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button
+      class="lg:hidden p-2 text-navy-800 hover:text-accent-600 transition-colors"
+      id="mobile-menu-btn"
+      aria-label="Menü"
+    >
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" id="menu-icon-open" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="lg:hidden hidden bg-white border-t border-steel-200 shadow-lg" id="mobile-menu">
+    <nav class="px-4 py-4 space-y-1">
+      {navItems.map((item) => (
+        <a
+          href={getLocalePath(lang, item.href)}
+          class="block px-4 py-3 text-sm font-medium uppercase tracking-wide text-navy-800 hover:text-accent-600 hover:bg-steel-50 rounded-md transition-colors"
+        >
+          {t(lang, item.key)}
+        </a>
+      ))}
+      <a
+        href={getLocalePath(lang, '/talep-formu')}
+        class="block mt-3 px-4 py-3 bg-accent-500 text-white text-sm font-semibold uppercase tracking-wide rounded-md text-center hover:bg-accent-600 transition-colors"
+      >
+        {t(lang, 'nav.quote')}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+</script>

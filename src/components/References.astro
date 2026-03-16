@@ -1,0 +1,60 @@
+---
+import { t, getLocalePath, type Lang } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'tr' } = Astro.props;
+
+const references = [
+  { name: 'Toyota Boshoku', image: 'https://mktmakina.com/Dosyalar/Referanslar/toyota-boshoku_197.jpg' },
+  { name: 'TSI', image: 'https://mktmakina.com/Dosyalar/Referanslar/tsi_198.jpg' },
+  { name: 'Doğuş', image: 'https://mktmakina.com/Dosyalar/Referanslar/dogus_187.jpg' },
+  { name: 'Elimsan', image: 'https://mktmakina.com/Dosyalar/Referanslar/elimsan_188.jpg' },
+  { name: 'Mikrosan', image: 'https://mktmakina.com/Dosyalar/Referanslar/mikrosan_192.jpg' },
+  { name: 'Demka Dövme Çelik', image: 'https://mktmakina.com/Dosyalar/Referanslar/demka-dovme-celik-sanayi_186.jpg' },
+  { name: 'Neutec İlaç', image: 'https://mktmakina.com/Dosyalar/Referanslar/neutec-ilac-sanayi_193.jpg' },
+  { name: 'Rad-Tek Radyatör', image: 'https://mktmakina.com/Dosyalar/Referanslar/rad-tek-radyator-metal_195.jpg' },
+  { name: 'Arma Filtre', image: 'https://mktmakina.com/Dosyalar/Referanslar/arma-filtre-sistemleri_185.jpg' },
+];
+---
+
+<section class="section-padding bg-white" id="references">
+  <div class="max-w-7xl mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center mb-14 reveal">
+      <div class="accent-bar mx-auto mb-4"></div>
+      <h2 class="font-heading text-3xl sm:text-4xl font-bold text-navy-800 mb-3">
+        {t(lang, 'references.title')}
+      </h2>
+      <p class="text-steel-500 text-lg max-w-2xl mx-auto">
+        {t(lang, 'references.subtitle')}
+      </p>
+    </div>
+
+    <!-- Reference Logos -->
+    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-6 items-center reveal">
+      {references.map((ref) => (
+        <div class="flex items-center justify-center p-4 h-24 bg-steel-50 rounded-lg hover:bg-white hover:shadow-lg transition-all duration-300">
+          <img
+            src={ref.image}
+            alt={ref.name}
+            class="max-h-16 max-w-full object-contain ref-logo"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-10 reveal">
+      <a
+        href={getLocalePath(lang, '/referanslar')}
+        class="inline-flex items-center gap-2 px-6 py-3 bg-accent-500 text-white font-semibold uppercase tracking-wide rounded-md hover:bg-accent-600 transition-colors text-sm"
+      >
+        {t(lang, 'references.all')}
+      </a>
+    </div>
+  </div>
+</section>
