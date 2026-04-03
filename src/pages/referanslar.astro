@@ -20,24 +20,19 @@ const references = [
   <PageHero title="Referanslar" subtitle="Güvenilir iş ortaklarımız" />
 
   <section class="section-padding bg-white">
-    <div class="max-w-6xl mx-auto px-4">
-      <p class="text-center text-steel-500 text-lg mb-14 max-w-2xl mx-auto reveal">
+    <div class="max-w-[1200px] mx-auto px-6">
+      <p class="text-center text-steel-500 text-base mb-12 max-w-2xl mx-auto reveal">
         Havacılık, otomotiv, ilaç ve ağır sanayi sektörlerinden güçlü referanslarımızla uzun vadeli iş birlikleri sürdürüyoruz.
       </p>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-[1px] bg-steel-200">
         {references.map((ref) => (
-          <div class="group flex flex-col items-center justify-center p-8 bg-steel-50 rounded-xl border border-steel-200 hover:border-accent-500/30 hover:shadow-xl hover:bg-white transition-all duration-300 reveal">
-            <div class="h-20 flex items-center justify-center mb-4">
-              <img
-                src={ref.image}
-                alt={ref.name}
-                class="max-h-16 max-w-[160px] object-contain ref-logo"
-                loading="lazy"
-              />
+          <div class="group flex flex-col items-center justify-center p-8 bg-white hover:bg-steel-50 transition-colors reveal">
+            <div class="h-16 flex items-center justify-center mb-3">
+              <img src={ref.image} alt={ref.name} class="max-h-14 max-w-[140px] object-contain ref-logo" loading="lazy" />
             </div>
-            <h3 class="font-heading text-sm font-semibold text-navy-800 text-center">{ref.name}</h3>
-            <span class="text-xs text-accent-600 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">{ref.sector}</span>
+            <h3 class="font-heading text-xs font-semibold text-navy-800 text-center tracking-wide">{ref.name}</h3>
+            <span class="text-accent-500 text-[10px] mt-1 uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">{ref.sector}</span>
           </div>
         ))}
       </div>

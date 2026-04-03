@@ -8,56 +8,43 @@ import FormHandler from '../components/FormHandler.astro';
   <PageHero title="İnsan Kaynakları" subtitle="Ekibimize katılın" />
 
   <section class="section-padding bg-white">
-    <div class="max-w-3xl mx-auto px-4">
-      <div class="bg-steel-50 rounded-xl p-8 sm:p-10 border border-steel-200 reveal">
-        <div class="flex items-center gap-4 mb-8 pb-6 border-b border-steel-200">
-          <div class="w-14 h-14 bg-navy-800 rounded-xl flex items-center justify-center">
-            <svg class="w-7 h-7 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
+    <div class="max-w-2xl mx-auto px-6">
+      <div class="border border-steel-200 p-8 sm:p-10 reveal">
+        <div class="flex items-center gap-4 mb-8 pb-6 border-b border-steel-100">
+          <div class="w-12 h-12 bg-navy-800 flex items-center justify-center">
+            <svg class="w-6 h-6 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
           </div>
           <div>
-            <h2 class="font-heading text-xl font-bold text-navy-800">Başvuru Formu</h2>
+            <h2 class="font-heading text-lg font-bold text-navy-800">Başvuru Formu</h2>
             <p class="text-steel-500 text-sm">Ekibimize katılmak için aşağıdaki formu doldurun</p>
           </div>
         </div>
 
-        <form class="space-y-5" id="hr-form">
-          <div class="grid sm:grid-cols-2 gap-5">
+        <form class="space-y-4" id="hr-form">
+          <div class="grid sm:grid-cols-2 gap-4">
             <div>
-              <label for="hr-name" class="block text-navy-800 text-sm font-medium mb-1.5">Ad Soyad *</label>
-              <input type="text" id="hr-name" name="name" required
-                class="w-full px-4 py-3 border border-steel-300 rounded-md focus:border-accent-500 focus:ring-1 focus:ring-accent-500 focus:outline-none transition-colors" />
+              <label for="hr-name" class="block text-navy-800 text-xs font-medium mb-1.5">Ad Soyad *</label>
+              <input type="text" id="hr-name" name="name" required class="w-full px-4 py-3 border border-steel-200 text-sm focus:border-accent-500 focus:outline-none transition-colors" />
             </div>
             <div>
-              <label for="hr-email" class="block text-navy-800 text-sm font-medium mb-1.5">E-posta *</label>
-              <input type="email" id="hr-email" name="email" required
-                class="w-full px-4 py-3 border border-steel-300 rounded-md focus:border-accent-500 focus:ring-1 focus:ring-accent-500 focus:outline-none transition-colors" />
+              <label for="hr-email" class="block text-navy-800 text-xs font-medium mb-1.5">E-posta *</label>
+              <input type="email" id="hr-email" name="email" required class="w-full px-4 py-3 border border-steel-200 text-sm focus:border-accent-500 focus:outline-none transition-colors" />
             </div>
           </div>
-
           <div>
-            <label for="hr-phone" class="block text-navy-800 text-sm font-medium mb-1.5">Telefon *</label>
-            <input type="tel" id="hr-phone" name="phone" required
-              class="w-full px-4 py-3 border border-steel-300 rounded-md focus:border-accent-500 focus:ring-1 focus:ring-accent-500 focus:outline-none transition-colors" />
+            <label for="hr-phone" class="block text-navy-800 text-xs font-medium mb-1.5">Telefon *</label>
+            <input type="tel" id="hr-phone" name="phone" required class="w-full px-4 py-3 border border-steel-200 text-sm focus:border-accent-500 focus:outline-none transition-colors" />
           </div>
-
           <div>
-            <label for="hr-message" class="block text-navy-800 text-sm font-medium mb-1.5">Mesaj</label>
-            <textarea id="hr-message" name="message" rows="4"
-              class="w-full px-4 py-3 border border-steel-300 rounded-md focus:border-accent-500 focus:ring-1 focus:ring-accent-500 focus:outline-none transition-colors resize-none"
-              placeholder="Kendinizden ve deneyimlerinizden kısaca bahsedin..."></textarea>
+            <label for="hr-message" class="block text-navy-800 text-xs font-medium mb-1.5">Mesaj</label>
+            <textarea id="hr-message" name="message" rows="4" class="w-full px-4 py-3 border border-steel-200 text-sm focus:border-accent-500 focus:outline-none transition-colors resize-none" placeholder="Kendinizden kısaca bahsedin..."></textarea>
           </div>
-
           <div>
-            <label for="hr-cv" class="block text-navy-800 text-sm font-medium mb-1.5">CV Dosyanız *</label>
-            <input type="file" id="hr-cv" name="cv" required accept=".pdf,.doc,.docx"
-              class="w-full px-4 py-3 border border-steel-300 rounded-md text-steel-600 file:mr-4 file:py-1 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-navy-800 file:text-white hover:file:bg-navy-700" />
-            <p class="text-steel-400 text-xs mt-1">Sadece PDF veya Word dosyası — Maks. 5MB</p>
+            <label for="hr-cv" class="block text-navy-800 text-xs font-medium mb-1.5">CV Dosyanız *</label>
+            <input type="file" id="hr-cv" name="cv" required accept=".pdf,.doc,.docx" class="w-full px-4 py-3 border border-steel-200 text-steel-600 text-sm file:mr-4 file:py-1 file:px-4 file:border-0 file:text-xs file:bg-navy-800 file:text-white hover:file:bg-navy-700" />
+            <p class="text-steel-400 text-xs mt-1">PDF veya Word — Maks. 5MB</p>
           </div>
-
-          <button type="submit"
-            class="w-full px-6 py-4 bg-navy-800 text-white font-semibold uppercase tracking-wide rounded-md hover:bg-navy-700 transition-colors text-sm shadow-lg">
+          <button type="submit" class="w-full px-6 py-3.5 bg-navy-800 text-white text-sm font-semibold uppercase tracking-wider hover:bg-navy-700 transition-colors">
             Başvuruyu Gönder
           </button>
         </form>

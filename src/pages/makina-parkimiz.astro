@@ -6,7 +6,6 @@ import CTA from '../components/CTA.astro';
 const machineGroups = [
   {
     category: '5 Eksen CNC İşleme Merkezleri',
-    icon: '⚙️',
     machines: [
       { name: 'DMU 85', specs: 'DMG MORI — 5 Eksen Simultane İşleme' },
       { name: 'DMU 75', specs: 'DMG MORI — 5 Eksen Simultane İşleme' },
@@ -16,7 +15,6 @@ const machineGroups = [
   },
   {
     category: '3 Eksen CNC İşleme Merkezleri',
-    icon: '🔧',
     machines: [
       { name: 'DMC 1035 V', specs: 'DMG MORI — 3 Eksen İşleme Merkezi' },
       { name: 'DMC 1035 V', specs: 'DMG MORI — 3 Eksen İşleme Merkezi (2. ünite)' },
@@ -25,7 +23,6 @@ const machineGroups = [
   },
   {
     category: 'Tel Erozyon Tezgahları',
-    icon: '⚡',
     machines: [
       { name: 'CUT 30P', specs: 'GF Machining — Tel Erozyon (1. ünite)' },
       { name: 'CUT 30P', specs: 'GF Machining — Tel Erozyon (2. ünite)' },
@@ -34,7 +31,6 @@ const machineGroups = [
   },
   {
     category: 'Torna & Erozyon',
-    icon: '🔩',
     machines: [
       { name: 'CNC Torna', specs: 'CNC Torna Tezgahı' },
       { name: 'Dalma Erozyon', specs: 'Dalma Erozyon Tezgahı' },
@@ -42,7 +38,6 @@ const machineGroups = [
   },
   {
     category: 'Taşlama & Bileme',
-    icon: '💎',
     machines: [
       { name: 'Yüzey Taşlama', specs: 'Yüzey Taşlama Makinası' },
       { name: 'Silindirik & Delik Taşlama', specs: 'Silindirik ve Delik Taşlama Makinası' },
@@ -51,7 +46,6 @@ const machineGroups = [
   },
   {
     category: 'Konvansiyonel Tezgahlar',
-    icon: '🔧',
     machines: [
       { name: 'Universal Freze', specs: 'Universal Freze Tezgahı' },
       { name: 'Universal Torna', specs: 'Universal Torna Tezgahı' },
@@ -59,7 +53,6 @@ const machineGroups = [
   },
   {
     category: 'Plastik Enjeksiyon & Markalama',
-    icon: '🏭',
     machines: [
       { name: 'LS LST 280', specs: 'LS — Plastik Enjeksiyon Makinası' },
       { name: 'Laser Markalama', specs: 'Laser Markalama Sistemi' },
@@ -72,35 +65,35 @@ const machineGroups = [
   <PageHero title="Makina Parkımız" subtitle="İleri teknoloji üretim altyapımız" image="/images/slide3.jpg" />
 
   <section class="section-padding bg-white">
-    <div class="max-w-7xl mx-auto px-4">
+    <div class="max-w-[1400px] mx-auto px-6">
       <!-- Summary Stats -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16 reveal">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-steel-200 mb-14 reveal">
         {[
           { value: '4', label: '5 Eksen CNC' },
           { value: '3', label: '3 Eksen CNC' },
           { value: '3', label: 'Tel Erozyon' },
           { value: '20+', label: 'Toplam Tezgah' },
         ].map((stat) => (
-          <div class="text-center p-5 bg-navy-800 rounded-lg">
-            <div class="font-heading text-3xl font-bold text-accent-500">{stat.value}</div>
-            <div class="text-steel-400 text-sm mt-1">{stat.label}</div>
+          <div class="text-center p-5 bg-navy-800">
+            <div class="font-heading text-2xl sm:text-3xl font-bold text-accent-500">{stat.value}</div>
+            <div class="text-white/40 text-xs mt-1 uppercase tracking-wider">{stat.label}</div>
           </div>
         ))}
       </div>
 
       <!-- Machine Groups -->
-      <div class="space-y-12">
+      <div class="space-y-10">
         {machineGroups.map((group) => (
           <div class="reveal">
-            <h2 class="font-heading text-xl font-bold text-navy-800 mb-6 flex items-center gap-3">
-              <span class="text-2xl">{group.icon}</span>
-              {group.category}
-            </h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-8 h-[2px] bg-accent-500"></div>
+              <h2 class="font-heading text-lg font-bold text-navy-800 tracking-wide">{group.category}</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1px] bg-steel-200">
               {group.machines.map((machine) => (
-                <div class="p-5 bg-steel-50 rounded-lg border border-steel-200 hover:border-accent-500/30 hover:shadow-md transition-all">
-                  <h3 class="font-heading text-base font-semibold text-navy-800 mb-1">{machine.name}</h3>
-                  <p class="text-steel-500 text-sm">{machine.specs}</p>
+                <div class="p-5 bg-white hover:bg-steel-50 transition-colors">
+                  <h3 class="font-heading text-sm font-semibold text-navy-800 mb-1 tracking-wide">{machine.name}</h3>
+                  <p class="text-steel-500 text-xs">{machine.specs}</p>
                 </div>
               ))}
             </div>

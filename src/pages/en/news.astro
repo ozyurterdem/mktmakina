@@ -5,29 +5,29 @@ import CTA from '../../components/CTA.astro';
 
 const news = [
   {
-    title: 'Strong Partners Add More Value to Our Products',
+    title: 'Strong Partners Add Even More Value to Our Products',
     image: '/images/news/guclu-partnerler.jpg',
-    summary: 'As MKT Makina Kalıp, we not only manufacture with the latest technological facilities at the highest quality standards, but also provide long-term cooperation with our after-sales consultancy and support services.',
+    summary: 'At MKT Makina, we not only produce high quality manufacturing technologies using the latest technological opportunities in engineering, but also provide long-term partnerships through our after-sales consultancy and support services.',
     date: '2024',
   },
 ];
 ---
 
 <BaseLayout title="News — MKT Makina" description="MKT Makina news and announcements." lang="en">
-  <PageHero title="News" subtitle="Latest developments and announcements" />
+  <PageHero title="News" subtitle="Latest updates and announcements" />
 
   <section class="section-padding bg-white">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="space-y-8">
+    <div class="max-w-[1000px] mx-auto px-6">
+      <div class="space-y-6">
         {news.map((item) => (
-          <article class="grid md:grid-cols-[240px_1fr] gap-8 p-6 bg-steel-50 rounded-xl border border-steel-200 hover:shadow-lg transition-all reveal">
-            <div class="aspect-square rounded-xl overflow-hidden">
+          <article class="grid md:grid-cols-[200px_1fr] gap-6 p-5 border border-steel-200 hover:border-accent-500/30 transition-colors reveal">
+            <div class="aspect-square overflow-hidden bg-steel-100">
               <img src={item.image} alt={item.title} class="w-full h-full object-cover" loading="lazy" />
             </div>
             <div class="flex flex-col justify-center">
-              <span class="text-accent-600 text-sm font-medium mb-2">{item.date}</span>
-              <h2 class="font-heading text-xl font-bold text-navy-800 mb-3">{item.title}</h2>
-              <p class="text-steel-600 leading-relaxed">{item.summary}</p>
+              <span class="text-accent-500 text-xs font-semibold uppercase tracking-wider mb-2">{item.date}</span>
+              <h2 class="font-heading text-lg font-bold text-navy-800 mb-2">{item.title}</h2>
+              <p class="text-steel-600 text-sm leading-relaxed">{item.summary}</p>
             </div>
           </article>
         ))}

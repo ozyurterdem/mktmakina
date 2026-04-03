@@ -8,30 +8,24 @@ interface Props {
 const { lang = 'tr' } = Astro.props;
 
 const stats = [
-  { value: '2007', label: t(lang, 'stats.since'), suffix: '', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' },
-  { value: 'AS9100', label: t(lang, 'stats.certification'), suffix: '', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
-  { value: '5', label: t(lang, 'stats.axis'), suffix: '', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z' },
-  { value: '9+', label: t(lang, 'stats.references'), suffix: '', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
+  { value: '2007', label: lang === 'tr' ? 'Yılından Beri' : 'Since', suffix: '' },
+  { value: 'AS9100', label: lang === 'tr' ? 'Sertifikalı' : 'Certified', suffix: '' },
+  { value: '20', label: lang === 'tr' ? 'Tezgah' : 'Machines', suffix: '+' },
+  { value: '5', label: lang === 'tr' ? 'Eksen CNC' : 'Axis CNC', suffix: '' },
+  { value: '9', label: lang === 'tr' ? 'Referans' : 'References', suffix: '+' },
 ];
 ---
 
-<section class="relative -mt-28 z-20 pb-8">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+<section class="relative bg-navy-900 py-0 overflow-hidden">
+  <!-- Subtle diagonal stripe -->
+  <div class="absolute inset-0 opacity-[0.04]" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, white 40px, white 41px);"></div>
+
+  <div class="max-w-[1400px] mx-auto px-6">
+    <div class="flex flex-wrap justify-center lg:justify-between items-center gap-6 lg:gap-0 py-10 lg:py-12">
       {stats.map((stat, i) => (
-        <div class={`reveal delay-${i + 1} group relative bg-white rounded-2xl p-6 sm:p-8 text-center card-premium gradient-border overflow-hidden`}>
-          <!-- Subtle accent glow on hover -->
-          <div class="absolute -top-12 -right-12 w-24 h-24 bg-accent-500/0 group-hover:bg-accent-500/5 rounded-full transition-all duration-700 blur-2xl"></div>
-          
-          <div class="relative">
-            <div class="w-12 h-12 mx-auto mb-5 bg-gradient-to-br from-accent-50 to-accent-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-              <svg class="w-6 h-6 text-accent-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d={stat.icon} />
-              </svg>
-            </div>
-            <div class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-navy-800 mb-2 tracking-tight">{stat.value}</div>
-            <div class="text-steel-500 text-sm font-medium">{stat.label}</div>
-          </div>
+        <div class={`reveal delay-${i + 1} flex items-center gap-3 lg:gap-4 px-6 lg:px-8 ${i < stats.length - 1 ? 'lg:border-r lg:border-white/10' : ''}`}>
+          <span class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-accent-500 tracking-tight">{stat.value}{stat.suffix}</span>
+          <span class="text-white/50 text-xs sm:text-sm uppercase tracking-wider font-medium">{stat.label}</span>
         </div>
       ))}
     </div>
