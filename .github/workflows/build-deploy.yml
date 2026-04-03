@@ -1,0 +1,71 @@
+name: Build & Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v5
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=sha-
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Istanbul
+        if: vars.COOLIFY_IST_UUID != ''
+        run: |
+          curl -sf -X POST "http://coolify2.siberkale.com:8000/api/v1/deploy" \
+            -H "Authorization: Bearer ${{ secrets.COOLIFY_IST_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"uuid":"${{ vars.COOLIFY_IST_UUID }}"}'
+
+      - name: Deploy to Sakarya
+        if: vars.COOLIFY_SAK_UUID != ''
+        run: |
+          curl -sf -X POST "https://coolify.siberkale.com/api/v1/deploy" \
+            -H "Authorization: Bearer ${{ secrets.COOLIFY_SAK_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"uuid":"${{ vars.COOLIFY_SAK_UUID }}"}' || echo "Sakarya skipped"
+
+  verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for deploy
+        run: sleep 30
+
+      - name: Health Check
+        run: |
+          STATUS=$(curl -so /dev/null -w "%{http_code}" "${{ vars.SITE_URL }}" || echo "000")
+          echo "Health check: $STATUS"
+          [ "$STATUS" = "200" ] || [ "$STATUS" = "301" ] || [ "$STATUS" = "308" ] || exit 1
