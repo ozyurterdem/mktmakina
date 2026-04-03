@@ -8,24 +8,38 @@ interface Props {
 const { lang = 'tr' } = Astro.props;
 
 const stats = [
-  { value: '2007', label: lang === 'tr' ? 'Yılından Beri' : 'Since', suffix: '' },
-  { value: 'AS9100', label: lang === 'tr' ? 'Sertifikalı' : 'Certified', suffix: '' },
-  { value: '20', label: lang === 'tr' ? 'Tezgah' : 'Machines', suffix: '+' },
-  { value: '5', label: lang === 'tr' ? 'Eksen CNC' : 'Axis CNC', suffix: '' },
-  { value: '9', label: lang === 'tr' ? 'Referans' : 'References', suffix: '+' },
+  { value: 2007, label: lang === 'tr' ? 'Yılından Beri' : 'Since', suffix: '', display: '2007' },
+  { value: 0, label: 'AS9100', suffix: '', display: 'AS9100' },
+  { value: 20, label: lang === 'tr' ? 'Tezgah' : 'Machines', suffix: '+' },
+  { value: 5, label: lang === 'tr' ? 'Eksen CNC' : 'Axis CNC', suffix: '' },
+  { value: 9, label: lang === 'tr' ? 'Referans' : 'References', suffix: '+' },
 ];
 ---
 
-<section class="relative bg-navy-900 py-0 overflow-hidden">
-  <!-- Subtle diagonal stripe -->
-  <div class="absolute inset-0 opacity-[0.04]" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, white 40px, white 41px);"></div>
+<!-- Parallax Stats Band (Gage-style dark band between sections) -->
+<section
+  class="parallax-section relative py-16 lg:py-20"
+  style="background-image: url('/images/slide2.jpg');"
+>
+  <div class="parallax-overlay"></div>
 
-  <div class="max-w-[1400px] mx-auto px-6">
-    <div class="flex flex-wrap justify-center lg:justify-between items-center gap-6 lg:gap-0 py-10 lg:py-12">
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-4">
       {stats.map((stat, i) => (
-        <div class={`reveal delay-${i + 1} flex items-center gap-3 lg:gap-4 px-6 lg:px-8 ${i < stats.length - 1 ? 'lg:border-r lg:border-white/10' : ''}`}>
-          <span class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-accent-500 tracking-tight">{stat.value}{stat.suffix}</span>
-          <span class="text-white/50 text-xs sm:text-sm uppercase tracking-wider font-medium">{stat.label}</span>
+        <div
+          class="text-center lg:text-left group"
+          data-animate="fade-up"
+          data-delay={String((i + 1) * 100)}
+        >
+          <div class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-accent-500 mb-2">
+            {stat.value > 0 ? (
+              <span class="counter-value" data-counter data-target={String(stat.value)} data-suffix={stat.suffix}>0</span>
+            ) : (
+              <span>{stat.display}</span>
+            )}
+          </div>
+          <div class="text-white/40 text-xs sm:text-sm uppercase tracking-[0.15em] font-medium">{stat.label}</div>
+          <div class="w-8 h-[2px] bg-accent-500/30 mt-3 mx-auto lg:mx-0 group-hover:w-12 group-hover:bg-accent-500 transition-all duration-500"></div>
         </div>
       ))}
     </div>

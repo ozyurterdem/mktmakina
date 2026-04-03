@@ -8,18 +8,23 @@ interface Props {
 const { title, subtitle, image = '/images/slide2.jpg' } = Astro.props;
 ---
 
-<section class="relative h-64 sm:h-80 flex items-end overflow-hidden" id="page-hero">
+<section class="relative h-72 sm:h-80 lg:h-96 flex items-center justify-center overflow-hidden" id="page-hero">
+  <!-- Parallax bg -->
   <div class="absolute inset-0">
     <img src={image} alt={title} class="w-full h-full object-cover" loading="eager" />
-    <div class="absolute inset-0 bg-navy-950/85"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-950/70 to-navy-950/90"></div>
   </div>
 
-  <!-- Vertical accent -->
-  <div class="absolute top-0 left-[8%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent hidden lg:block"></div>
+  <!-- Decorative lines -->
+  <div class="absolute inset-0 max-w-7xl mx-auto px-10 hidden lg:block pointer-events-none">
+    <div class="absolute top-0 left-[20%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.06] to-transparent"></div>
+    <div class="absolute top-0 right-[20%] w-px h-full bg-gradient-to-b from-transparent via-white/[0.06] to-transparent"></div>
+  </div>
 
-  <div class="relative z-10 max-w-[1400px] mx-auto px-6 w-full pb-10 sm:pb-14">
-    <div class="w-10 h-[2px] bg-accent-500 mb-4"></div>
-    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 tracking-tight">{title}</h1>
-    {subtitle && <p class="text-white/40 text-sm sm:text-base max-w-xl">{subtitle}</p>}
+  <!-- Centered content -->
+  <div class="relative z-10 text-center px-6">
+    <div class="w-10 h-[2px] bg-accent-500 mx-auto mb-5" data-animate="zoom-in"></div>
+    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 tracking-tight" data-animate="fade-up">{title}</h1>
+    {subtitle && <p class="text-white/40 text-sm sm:text-base max-w-xl mx-auto" data-animate="fade-up" data-delay="200">{subtitle}</p>}
   </div>
 </section>

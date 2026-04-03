@@ -18,47 +18,52 @@ const references = [
   { name: 'Rad-Tek Radyatör', image: '/images/references/rad-tek-radyator-metal_195.jpg' },
   { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg' },
 ];
-
-// Duplicate for seamless marquee
-const allRefs = [...references, ...references];
 ---
 
-<section class="section-padding bg-white" id="references">
-  <div class="max-w-[1400px] mx-auto px-6">
+<!-- Parallax Band with References -->
+<section
+  class="parallax-section relative py-20 lg:py-28"
+  style="background-image: url('/images/slide1.jpg');"
+  id="references"
+>
+  <div class="parallax-overlay" style="background: linear-gradient(180deg, rgba(5,11,20,0.92) 0%, rgba(15,29,54,0.88) 100%);"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
     <!-- Header -->
-    <div class="text-center mb-12 reveal">
-      <span class="text-accent-500 text-xs font-semibold uppercase tracking-[0.2em] mb-2 block">{lang === 'tr' ? 'İş Ortaklarımız' : 'Our Partners'}</span>
-      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-navy-800 mb-3">
+    <div class="text-center max-w-2xl mx-auto mb-16" data-animate="fade-up">
+      <div class="section-label justify-center">{lang === 'tr' ? 'İş Ortaklarımız' : 'Our Partners'}</div>
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
         {t(lang, 'references.title')}
       </h2>
-      <p class="text-steel-500 text-base max-w-lg mx-auto">
+      <p class="text-white/40 text-base leading-relaxed">
         {t(lang, 'references.subtitle')}
       </p>
     </div>
-  </div>
 
-  <!-- Marquee (full width) -->
-  <div class="overflow-hidden reveal">
-    <div class="flex marquee-track" style="width: max-content;">
-      {allRefs.map((ref) => (
-        <div class="flex items-center justify-center px-8 sm:px-12 h-24 sm:h-28 shrink-0">
+    <!-- Logo Grid (grayscale → color hover, Volo style) -->
+    <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
+      {references.map((ref, i) => (
+        <div
+          class="flex items-center justify-center p-6 lg:p-8 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm hover:bg-white/[0.08] hover:border-accent-500/20 transition-all duration-500"
+          data-animate="zoom-in"
+          data-delay={String(((i % 5) + 1) * 80)}
+        >
           <img
             src={ref.image}
             alt={ref.name}
-            class="max-h-12 sm:max-h-14 max-w-[140px] object-contain ref-logo"
+            class="max-h-10 sm:max-h-12 lg:max-h-14 max-w-full object-contain ref-logo"
             loading="lazy"
+            title={ref.name}
           />
         </div>
       ))}
     </div>
-  </div>
 
-  <!-- CTA below marquee -->
-  <div class="max-w-[1400px] mx-auto px-6">
-    <div class="text-center mt-10 reveal">
+    <!-- CTA -->
+    <div class="text-center mt-14" data-animate="fade-up">
       <a
         href={getLocalePath(lang, '/referanslar')}
-        class="inline-flex items-center gap-2 text-navy-800 text-sm font-semibold uppercase tracking-wider hover:text-accent-500 transition-colors"
+        class="inline-flex items-center gap-2 text-white/50 text-sm font-semibold uppercase tracking-wider hover:text-accent-400 transition-colors"
       >
         {t(lang, 'references.all')}
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>

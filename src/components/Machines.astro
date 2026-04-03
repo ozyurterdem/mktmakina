@@ -7,15 +7,31 @@ interface Props {
 
 const { lang = 'tr' } = Astro.props;
 
-const featured = [
-  { name: 'DMU 85', type: '5 Eksen CNC', brand: 'DMG MORI' },
-  { name: 'DMU 75', type: '5 Eksen CNC', brand: 'DMG MORI' },
-  { name: 'HAAS UMC VF3', type: '5 Eksen CNC', brand: 'HAAS' },
-  { name: 'HAAS UMC 750', type: '5 Eksen CNC', brand: 'HAAS' },
-  { name: 'DMC 1035 V', type: '3 Eksen CNC', brand: 'DMG MORI' },
-  { name: 'CUT 30P', type: 'Tel Erozyon', brand: 'GF Machining' },
-  { name: 'LS LST 280', type: 'Plastik Enjeksiyon', brand: 'LS' },
-  { name: 'Laser Markalama', type: 'Markalama', brand: 'MKT' },
+const categories = [
+  {
+    title: lang === 'tr' ? '5 Eksen CNC' : '5-Axis CNC',
+    count: 4,
+    machines: ['DMU 85 monoBLOCK', 'DMU 75 monoBLOCK', 'HAAS UMC VF3', 'HAAS UMC 750'],
+    brand: 'DMG MORI / HAAS',
+  },
+  {
+    title: lang === 'tr' ? '3 Eksen CNC' : '3-Axis CNC',
+    count: 3,
+    machines: ['DMC 1035 V', 'DMC 635 V', 'HAAS VF2'],
+    brand: 'DMG MORI / HAAS',
+  },
+  {
+    title: lang === 'tr' ? 'Tel Erozyon' : 'Wire EDM',
+    count: 3,
+    machines: ['CUT 30P', 'CUT 20P', 'FANUC α-C400iA'],
+    brand: 'GF / FANUC',
+  },
+  {
+    title: lang === 'tr' ? 'Plastik Enjeksiyon' : 'Plastic Injection',
+    count: 2,
+    machines: ['LS LST 280', 'LS LST 150'],
+    brand: 'LS Mtron',
+  },
 ];
 
 const summaryStats = [
@@ -26,51 +42,75 @@ const summaryStats = [
 ];
 ---
 
-<section class="relative bg-navy-950 py-20 lg:py-28 overflow-hidden" id="machines">
+<section class="section-padding bg-navy-950 relative overflow-hidden" id="machines">
   <!-- Background pattern -->
-  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 32px 32px;"></div>
-  <!-- Accent glow -->
-  <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent-500/5 rounded-full blur-[150px]"></div>
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 40px 40px;"></div>
 
-  <div class="relative max-w-[1400px] mx-auto px-6">
-    <!-- Header row -->
-    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14">
-      <div class="reveal">
-        <span class="text-accent-500 text-xs font-semibold uppercase tracking-[0.2em] mb-2 block">{lang === 'tr' ? 'Üretim Altyapısı' : 'Production Infrastructure'}</span>
-        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
-          {t(lang, 'machines.title')}
-        </h2>
-      </div>
-
-      <!-- Summary counts -->
-      <div class="flex gap-8 reveal">
-        {summaryStats.map((s) => (
-          <div class="text-center">
-            <div class="font-heading text-2xl sm:text-3xl font-bold text-accent-500">{s.val}</div>
-            <div class="text-white/30 text-xs uppercase tracking-wider mt-0.5">{s.label}</div>
-          </div>
-        ))}
-      </div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-16" data-animate="fade-up">
+      <div class="section-label justify-center">{lang === 'tr' ? 'Üretim Altyapısı' : 'Production Infrastructure'}</div>
+      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+        {t(lang, 'machines.title')}
+      </h2>
+      <p class="text-white/40 text-base leading-relaxed">
+        {lang === 'tr'
+          ? 'İleri teknoloji tezgahlarımız ile hassas üretim kapasitemiz.'
+          : 'Our precision manufacturing capacity with advanced technology machines.'}
+      </p>
     </div>
 
-    <!-- Machine Grid -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1px] bg-white/5">
-      {featured.map((machine, i) => (
-        <div class={`reveal delay-${(i % 4) + 1} group relative p-5 lg:p-6 bg-navy-900 hover:bg-navy-800 transition-all duration-300`}>
-          <!-- Top accent -->
-          <div class="absolute top-0 left-0 w-0 h-[2px] bg-accent-500 group-hover:w-full transition-all duration-500"></div>
-          <div class="text-white/20 text-[10px] font-medium uppercase tracking-widest mb-3">{machine.brand}</div>
-          <h3 class="font-heading text-sm sm:text-base font-semibold text-white mb-1 tracking-wide group-hover:text-accent-400 transition-colors">{machine.name}</h3>
-          <p class="text-white/40 text-xs sm:text-sm">{machine.type}</p>
+    <!-- Summary Stats Row -->
+    <div class="flex justify-center gap-10 lg:gap-16 mb-14" data-animate="fade-up" data-delay="200">
+      {summaryStats.map((s) => (
+        <div class="text-center">
+          <div class="font-heading text-3xl sm:text-4xl font-bold text-accent-500">{s.val}</div>
+          <div class="text-white/30 text-xs uppercase tracking-[0.15em] mt-1">{s.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Machine Categories (Accordion-style cards) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {categories.map((cat, i) => (
+        <div
+          class="group bg-navy-900/60 border border-white/[0.06] p-6 lg:p-8 hover:border-accent-500/30 hover:bg-navy-900 transition-all duration-500"
+          data-animate="fade-up"
+          data-delay={String((i + 1) * 150)}
+        >
+          <!-- Category header -->
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="font-heading text-xl lg:text-2xl font-bold text-white group-hover:text-accent-400 transition-colors">
+              {cat.title}
+            </h3>
+            <span class="font-heading text-3xl font-bold text-accent-500/30 group-hover:text-accent-500 transition-colors">
+              {String(cat.count).padStart(2, '0')}
+            </span>
+          </div>
+
+          <!-- Machine list -->
+          <ul class="space-y-2.5 mb-5">
+            {cat.machines.map((m) => (
+              <li class="flex items-center gap-3 text-white/50 text-sm">
+                <span class="w-1.5 h-1.5 bg-accent-500/50 shrink-0"></span>
+                {m}
+              </li>
+            ))}
+          </ul>
+
+          <!-- Brand tag -->
+          <div class="text-white/20 text-[10px] uppercase tracking-[0.2em] pt-4 border-t border-white/[0.06]">
+            {cat.brand}
+          </div>
         </div>
       ))}
     </div>
 
     <!-- CTA -->
-    <div class="text-center mt-12 reveal">
+    <div class="text-center mt-14" data-animate="fade-up">
       <a
         href={getLocalePath(lang, '/makina-parkimiz')}
-        class="inline-flex items-center gap-2 px-6 py-3 border border-accent-500/50 text-accent-400 text-sm font-semibold uppercase tracking-wider hover:bg-accent-500 hover:text-white hover:border-accent-500 transition-all"
+        class="inline-flex items-center gap-2 px-7 py-3.5 border border-accent-500/50 text-accent-400 text-sm font-semibold uppercase tracking-wider hover:bg-accent-500 hover:text-white hover:border-accent-500 transition-all duration-300"
       >
         {t(lang, 'about.more')}
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
