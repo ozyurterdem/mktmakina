@@ -146,21 +146,26 @@ const navItems = lang === 'en' ? navItemsEn : navItemsTr;
   const openIcon = btn?.querySelector('.menu-icon-open');
   const closeIcon = btn?.querySelector('.menu-icon-close');
 
-  // Shrink header on scroll
+  // Shrink header on scroll — rAF throttled
   if (!hero) {
     header?.classList.remove('is-top');
     header?.classList.add('no-hero');
   } else {
+    let scrolled = false;
+    let hdrTick = false;
     const onScroll = () => {
-      if (window.scrollY > 80) {
-        header?.classList.remove('is-top');
-        header?.classList.add('is-scrolled');
-        headerInner && (headerInner.style.height = '64px');
-      } else {
-        header?.classList.add('is-top');
-        header?.classList.remove('is-scrolled');
-        headerInner && (headerInner.style.height = '');
-      }
+      if (hdrTick) return;
+      hdrTick = true;
+      requestAnimationFrame(() => {
+        const isDown = window.scrollY > 80;
+        if (isDown !== scrolled) {
+          scrolled = isDown;
+          header?.classList.toggle('is-top', !isDown);
+          header?.classList.toggle('is-scrolled', isDown);
+          if (headerInner) headerInner.style.height = isDown ? '64px' : '';
+        }
+        hdrTick = false;
+      });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();

@@ -86,15 +86,17 @@ h1, h2, h3, h4, h5, h6 {
    ══════════════════════════════════════ */
 
 .parallax-section {
-  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+}
+.parallax-section > .parallax-bg {
+  position: absolute;
+  inset: -20% 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
-}
-@supports (-webkit-touch-callout: none) {
-  /* iOS doesn't support bg-attachment:fixed */
-  .parallax-section { background-attachment: scroll; }
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .parallax-overlay {
@@ -156,19 +158,20 @@ h1, h2, h3, h4, h5, h6 {
   background: white;
   border: 1px solid var(--color-steel-200);
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 0.35s ease-out, box-shadow 0.35s ease-out, border-color 0.35s ease-out;
+  will-change: transform;
 }
 .card-v2:hover {
   border-color: var(--color-accent-500);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
-  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+  transform: translate3d(0, -4px, 0);
 }
 
 /* Reference logo */
 .ref-logo {
   filter: grayscale(100%) brightness(0.6);
   opacity: 0.5;
-  transition: all 0.5s ease;
+  transition: filter 0.4s ease-out, opacity 0.4s ease-out;
 }
 .ref-logo:hover {
   filter: grayscale(0%) brightness(1);
@@ -179,44 +182,44 @@ h1, h2, h3, h4, h5, h6 {
    Waypoint Animations (Volo/Divi style)
    ══════════════════════════════════════ */
 
-/* Base: hidden before viewport entry */
+/* Base: hidden before viewport entry — GPU-only transforms */
 [data-animate] {
   opacity: 0;
-  transition-property: opacity, transform;
-  transition-duration: 0.8s;
-  transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: opacity, transform;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* Variants */
-[data-animate="fade-up"]     { transform: translateY(40px); }
-[data-animate="fade-down"]   { transform: translateY(-40px); }
-[data-animate="fade-left"]   { transform: translateX(-50px); }
-[data-animate="fade-right"]  { transform: translateX(50px); }
-[data-animate="fade-in"]     { transform: none; }
-[data-animate="zoom-in"]     { transform: scale(0.92); }
-[data-animate="zoom-out"]    { transform: scale(1.08); }
-[data-animate="flip-up"]     { transform: perspective(800px) rotateX(12deg) translateY(30px); }
-[data-animate="slide-up"]    { transform: translateY(60px); }
+/* Each variant has its own clean reset via .is-visible */
+[data-animate="fade-up"]     { transform: translate3d(0, 30px, 0); }
+[data-animate="fade-down"]   { transform: translate3d(0, -30px, 0); }
+[data-animate="fade-left"]   { transform: translate3d(-40px, 0, 0); }
+[data-animate="fade-right"]  { transform: translate3d(40px, 0, 0); }
+[data-animate="fade-in"]     { transform: translate3d(0, 0, 0); }
+[data-animate="zoom-in"]     { transform: scale3d(0.94, 0.94, 1); }
+[data-animate="zoom-out"]    { transform: scale3d(1.06, 1.06, 1); }
+[data-animate="flip-up"]     { transform: translate3d(0, 20px, 0); }
+[data-animate="slide-up"]    { transform: translate3d(0, 50px, 0); }
 
-/* Revealed state */
+/* Revealed — single clean identity transform */
 [data-animate].is-visible {
   opacity: 1;
-  transform: translateY(0) translateX(0) scale(1) perspective(800px) rotateX(0deg);
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  will-change: auto;
 }
 
-/* Stagger delays */
-[data-delay="100"] { transition-delay: 0.1s; }
-[data-delay="200"] { transition-delay: 0.2s; }
-[data-delay="300"] { transition-delay: 0.3s; }
-[data-delay="400"] { transition-delay: 0.4s; }
-[data-delay="500"] { transition-delay: 0.5s; }
-[data-delay="600"] { transition-delay: 0.6s; }
-[data-delay="700"] { transition-delay: 0.7s; }
-[data-delay="800"] { transition-delay: 0.8s; }
+/* Stagger delays (shorter for snappier feel) */
+[data-delay="100"] { transition-delay: 80ms; }
+[data-delay="200"] { transition-delay: 160ms; }
+[data-delay="300"] { transition-delay: 240ms; }
+[data-delay="400"] { transition-delay: 320ms; }
+[data-delay="500"] { transition-delay: 400ms; }
+[data-delay="600"] { transition-delay: 480ms; }
+[data-delay="700"] { transition-delay: 560ms; }
+[data-delay="800"] { transition-delay: 640ms; }
 
-/* Longer durations for hero elements */
-[data-duration="1200"] { transition-duration: 1.2s; }
-[data-duration="1000"] { transition-duration: 1s; }
+/* Hero elements slightly slower */
+[data-duration="1200"] { transition-duration: 0.9s; }
+[data-duration="1000"] { transition-duration: 0.75s; }
 
 /* ══════════════════════════════════════
    Counter Animation
@@ -285,13 +288,13 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s ease;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out, background 0.2s ease-out;
   pointer-events: none;
 }
 .scroll-to-top.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
   pointer-events: auto;
 }
 .scroll-to-top:hover {
@@ -303,7 +306,7 @@ h1, h2, h3, h4, h5, h6 {
    ══════════════════════════════════════ */
 
 .header-v2 {
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out, backdrop-filter 0.3s ease-out;
 }
 .header-v2.is-top {
   background: transparent;
@@ -315,6 +318,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .header-v2.is-scrolled .header-logo {
   height: 2rem;
+  transition: height 0.3s ease-out;
 }
 .header-v2.is-top .nav-link { color: rgba(255, 255, 255, 0.85); }
 .header-v2.is-top .nav-link:hover { color: var(--color-accent-400); }
@@ -343,7 +347,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-arrow {
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: padding 0.3s ease-out;
 }
 .btn-arrow .btn-arrow-icon {
   transition: transform 0.3s ease, opacity 0.3s ease;
@@ -374,7 +378,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .btn-primary:hover {
   background: var(--color-accent-600);
-  transform: translateY(-2px);
+  transform: translate3d(0, -2px, 0);
   box-shadow: 0 8px 25px rgba(232, 135, 14, 0.3);
 }
 

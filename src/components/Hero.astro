@@ -89,14 +89,19 @@ const { lang = 'tr' } = Astro.props;
 </section>
 
 <script>
-  // Parallax on hero image
   const heroImg = document.getElementById('hero-img');
-  if (heroImg && window.innerWidth > 768) {
+  if (heroImg && window.innerWidth > 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let hTick = false;
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y < window.innerHeight * 1.5) {
-        heroImg.style.transform = `translateY(${y * 0.25}px)`;
-      }
+      if (hTick) return;
+      hTick = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (y < window.innerHeight) {
+          heroImg.style.transform = `translate3d(0,${y * 0.2}px,0)`;
+        }
+        hTick = false;
+      });
     }, { passive: true });
   }
 </script>
