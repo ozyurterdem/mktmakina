@@ -18,7 +18,7 @@ const alternatePath = lang === 'tr' ? `/en${Astro.url.pathname}` : Astro.url.pat
 ---
 
 <!doctype html>
-<html lang={lang} class="scroll-smooth">
+<html lang={lang} class="scroll-smooth js-ready">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -55,6 +55,11 @@ const alternatePath = lang === 'tr' ? `/en${Astro.url.pathname}` : Astro.url.pat
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
       </svg>
     </button>
+
+    <!-- Mark JS as ready for animation -->
+    <script is:inline>
+      document.documentElement.classList.add('js-ready');
+    </script>
 
     <!-- Waypoint Animation Observer + Performance-optimized scroll -->
     <script>

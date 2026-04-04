@@ -183,10 +183,19 @@ h1, h2, h3, h4, h5, h6 {
    ══════════════════════════════════════ */
 
 /* Base: hidden before viewport entry — GPU-only transforms */
+/* Fallback: if JS fails, content is visible (opacity:0 only when JS confirms) */
 [data-animate] {
   opacity: 0;
   will-change: opacity, transform;
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+html.js-ready [data-animate] {
+  opacity: 0;
+}
+/* No-JS fallback: everything visible */
+html:not(.js-ready) [data-animate] {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 /* Each variant has its own clean reset via .is-visible */
