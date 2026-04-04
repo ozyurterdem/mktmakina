@@ -230,45 +230,7 @@ h1, h2, h3, h4, h5, h6 {
   font-variant-numeric: tabular-nums;
 }
 
-/* ══════════════════════════════════════
-   Fullscreen Mobile Menu
-   ══════════════════════════════════════ */
-
-.mobile-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(5, 11, 20, 0.97);
-  backdrop-filter: blur(20px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-}
-.mobile-overlay.is-open {
-  opacity: 1;
-  visibility: visible;
-}
-.mobile-overlay a {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease;
-}
-.mobile-overlay.is-open a {
-  opacity: 1;
-  transform: translateY(0);
-}
-.mobile-overlay.is-open a:nth-child(1) { transition-delay: 0.1s; }
-.mobile-overlay.is-open a:nth-child(2) { transition-delay: 0.15s; }
-.mobile-overlay.is-open a:nth-child(3) { transition-delay: 0.2s; }
-.mobile-overlay.is-open a:nth-child(4) { transition-delay: 0.25s; }
-.mobile-overlay.is-open a:nth-child(5) { transition-delay: 0.3s; }
-.mobile-overlay.is-open a:nth-child(6) { transition-delay: 0.35s; }
-.mobile-overlay.is-open a:nth-child(7) { transition-delay: 0.4s; }
-.mobile-overlay.is-open a:nth-child(8) { transition-delay: 0.45s; }
+/* Mobile overlay — replaced by .fullscreen-overlay (see below) */
 
 /* ══════════════════════════════════════
    Scroll-to-Top (Volo style)
@@ -422,4 +384,185 @@ h1, h2, h3, h4, h5, h6 {
 ::selection {
   background: var(--color-accent-500);
   color: white;
+}
+
+/* ════════════════════════════════════════
+   Hero Slider (Volo Premium)
+   ════════════════════════════════════════ */
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  pointer-events: none;
+}
+.hero-slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.hero-slide-content {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s;
+}
+.hero-slide.is-active .hero-slide-content {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.slide-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--color-accent-500);
+  width: 0;
+  z-index: 20;
+}
+.slide-progress.is-animating {
+  animation: slideProgress 6s linear forwards;
+}
+@keyframes slideProgress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.slide-indicator {
+  width: 32px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: background 0.3s ease, width 0.3s ease;
+}
+.slide-indicator.is-active {
+  background: var(--color-accent-500);
+  width: 48px;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50% { transform: translateY(8px); opacity: 1; }
+}
+.scroll-bounce {
+  animation: bounceDown 2s ease-in-out infinite;
+}
+
+/* ════════════════════════════════════════
+   Hamburger & Fullscreen Overlay
+   ════════════════════════════════════════ */
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.is-active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.is-active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.fullscreen-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(5, 11, 20, 0.97);
+  backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.5s;
+}
+.fullscreen-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.fullscreen-overlay .overlay-link {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
+}
+.fullscreen-overlay.is-open .overlay-link {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.fullscreen-overlay.is-open .overlay-link:nth-child(1) { transition-delay: 0.1s; }
+.fullscreen-overlay.is-open .overlay-link:nth-child(2) { transition-delay: 0.15s; }
+.fullscreen-overlay.is-open .overlay-link:nth-child(3) { transition-delay: 0.2s; }
+.fullscreen-overlay.is-open .overlay-link:nth-child(4) { transition-delay: 0.25s; }
+.fullscreen-overlay.is-open .overlay-link:nth-child(5) { transition-delay: 0.3s; }
+.fullscreen-overlay.is-open .overlay-link:nth-child(6) { transition-delay: 0.35s; }
+.fullscreen-overlay.is-open .overlay-link:nth-child(7) { transition-delay: 0.4s; }
+.fullscreen-overlay.is-open .overlay-link:nth-child(8) { transition-delay: 0.45s; }
+
+.overlay-footer {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
+}
+.fullscreen-overlay.is-open .overlay-footer {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ════════════════════════════════════════
+   Gallery Masonry
+   ════════════════════════════════════════ */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 200px;
+  gap: 8px;
+}
+@media (min-width: 1024px) {
+  .gallery-grid {
+    grid-auto-rows: 250px;
+  }
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.gallery-item.span-2 {
+  grid-row: span 2;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease-out;
+}
+.gallery-item:hover img {
+  transform: scale3d(1.08, 1.08, 1);
+}
+.gallery-item .gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(232, 135, 14, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
+  }
 }

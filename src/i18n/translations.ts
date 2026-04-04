@@ -26,12 +26,21 @@ export const translations = {
     'hero.subtitle': 'Havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ve plastik enjeksiyon çözümleri.',
     'hero.cta': 'İletişime Geçin',
     'hero.explore': 'Ürünlerimiz',
+    'hero.slide1.subtitle': 'AS9100 SERTİFİKALI',
+    'hero.slide2.subtitle': 'İLERİ TEKNOLOJİ',
+    'hero.slide3.subtitle': 'ÇÖZÜM ORTAĞINIZ',
+    'hero.slide2.desc': 'DMG MORI ve HAAS teknolojisi ile micron seviyesinde hassasiyet.',
+    'hero.slide3.desc': 'Plastik enjeksiyon ve özel kalıp tasarımında güvenilir çözüm ortağınız.',
 
     // Stats
     'stats.since': 'Yılından Beri',
     'stats.certification': 'AS9100 Sertifikalı',
     'stats.axis': '5 Eksen CNC',
     'stats.references': 'Güçlü Referanslar',
+
+    // Gallery
+    'gallery.title': 'Üretim Galerisi',
+    'gallery.subtitle': 'Tesisimizden üretim kareleri',
 
     // Products
     'products.title': 'Ürünlerimiz',
@@ -99,12 +108,21 @@ export const translations = {
     'hero.subtitle': 'High quality precision machined parts and plastic injection solutions for aviation and automotive industry.',
     'hero.cta': 'Contact Us',
     'hero.explore': 'Our Products',
+    'hero.slide1.subtitle': 'AS9100 CERTIFIED',
+    'hero.slide2.subtitle': 'ADVANCED TECHNOLOGY',
+    'hero.slide3.subtitle': 'YOUR PARTNER',
+    'hero.slide2.desc': 'Micron-level precision with DMG MORI and HAAS technology.',
+    'hero.slide3.desc': 'Your reliable partner in plastic injection and custom mold design.',
 
     // Stats
     'stats.since': 'Since',
     'stats.certification': 'AS9100 Certified',
     'stats.axis': '5-Axis CNC',
     'stats.references': 'Strong References',
+
+    // Gallery
+    'gallery.title': 'Production Gallery',
+    'gallery.subtitle': 'Production shots from our facility',
 
     // Products
     'products.title': 'Our Products',
