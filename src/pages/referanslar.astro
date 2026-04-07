@@ -4,31 +4,31 @@ import PageHero from '../components/PageHero.astro';
 import CTA from '../components/CTA.astro';
 
 const references = [
-  { name: 'Toyota Boshoku', image: '/images/references/toyota-boshoku_197.jpg', sector: 'Otomotiv' },
-  { name: 'TSI', image: '/images/references/tsi_198.jpg', sector: 'Havacilik' },
-  { name: 'Dogus', image: '/images/references/dogus_187.jpg', sector: 'Otomotiv' },
-  { name: 'Elimsan', image: '/images/references/elimsan_188.jpg', sector: 'Sanayi' },
-  { name: 'Mikrosan', image: '/images/references/mikrosan_192.jpg', sector: 'Sanayi' },
-  { name: 'Demka Dovme Celik', image: '/images/references/demka-dovme-celik-sanayi_186.jpg', sector: 'Celik' },
-  { name: 'Neutec Ilac', image: '/images/references/neutec-ilac-sanayi_193.jpg', sector: 'Ilac' },
-  { name: 'Rad-Tek Radyator', image: '/images/references/rad-tek-radyator-metal_195.jpg', sector: 'Metal' },
-  { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg', sector: 'Filtre Sistemleri' },
+  { name: 'Toyota Boshoku', image: '/images/references/toyota-boshoku_197.jpg' },
+  { name: 'TSI', image: '/images/references/tsi_198.jpg' },
+  { name: 'Dogus', image: '/images/references/dogus_187.jpg' },
+  { name: 'Elimsan', image: '/images/references/elimsan_188.jpg' },
+  { name: 'Mikrosan', image: '/images/references/mikrosan_192.jpg' },
+  { name: 'Demka Dovme Celik', image: '/images/references/demka-dovme-celik-sanayi_186.jpg' },
+  { name: 'Neutec Ilac', image: '/images/references/neutec-ilac-sanayi_193.jpg' },
+  { name: 'Rad-Tek Radyator', image: '/images/references/rad-tek-radyator-metal_195.jpg' },
+  { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg' },
 ];
 ---
 
 <BaseLayout title="Referanslar — MKT Makina Kalip Takim" description="MKT Makina referanslari: Toyota Boshoku, TSI Havacilik, Dogus, Elimsan ve daha fazlasi." lang="tr" hasHero={false}>
   <PageHero title="Referanslar" subtitle="Guvenilir is ortaklarimiz" />
 
-  <section class="section-padding bg-white">
-    <div class="container-custom max-w-[1200px]">
-      <p class="text-center text-text-light text-base mb-12 max-w-2xl mx-auto" data-animate="fade-up">
-        Havacilik, otomotiv, ilac ve agir sanayi sektorlerinden guclu referanslarimizla uzun vadeli is birlikleri surduruyo ruz.
+  <section class="ref-page-section">
+    <div class="container-custom max-w-[1000px]">
+      <p class="text-center text-white/50 text-base mb-14 max-w-2xl mx-auto" data-animate="fade-up">
+        Havacilik, otomotiv, ilac ve agir sanayi sektorlerinden guclu referanslarimizla uzun vadeli is birlikleri surduruyoruz.
       </p>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-[1px] bg-border">
-        {references.map((ref) => (
-          <div class="flex items-center justify-center p-8 bg-white hover:bg-surface transition-colors" data-animate="fade-up">
-            <img src={ref.image} alt={ref.name} class="max-h-14 max-w-[140px] object-contain ref-logo" loading="lazy" />
+      <div class="ref-page-grid">
+        {references.map((ref, i) => (
+          <div class="ref-page-card" data-animate="fade-up" data-delay={String(i * 80)}>
+            <img src={ref.image} alt={ref.name} class="ref-page-logo" loading="lazy" />
           </div>
         ))}
       </div>
@@ -37,3 +37,70 @@ const references = [
 
   <CTA lang="tr" />
 </BaseLayout>
+
+<style>
+  .ref-page-section {
+    padding-block: 4rem 6rem;
+    background: linear-gradient(180deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    position: relative;
+  }
+
+  .ref-page-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .ref-page-section > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ref-page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .ref-page-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  .ref-page-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 2rem;
+    backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .ref-page-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.16);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+  }
+
+  .ref-page-logo {
+    max-height: 56px;
+    max-width: 80%;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    opacity: 0.5;
+    transition: all 0.4s ease;
+  }
+
+  .ref-page-card:hover .ref-page-logo {
+    opacity: 0.85;
+  }
+</style>
