@@ -8,15 +8,15 @@ interface Props {
 const { lang = 'tr' } = Astro.props;
 
 const references = [
-  { name: 'Toyota Boshoku', image: '/images/references/toyota-boshoku_197.jpg', sector: lang === 'tr' ? 'Otomotiv' : 'Automotive' },
-  { name: 'TSI', image: '/images/references/tsi_198.jpg', sector: lang === 'tr' ? 'Havacilik' : 'Aviation' },
-  { name: 'Dogus', image: '/images/references/dogus_187.jpg', sector: lang === 'tr' ? 'Otomotiv' : 'Automotive' },
-  { name: 'Elimsan', image: '/images/references/elimsan_188.jpg', sector: lang === 'tr' ? 'Endustri' : 'Industrial' },
-  { name: 'Mikrosan', image: '/images/references/mikrosan_192.jpg', sector: lang === 'tr' ? 'Endustri' : 'Industrial' },
-  { name: 'Demka Dovme Celik', image: '/images/references/demka-dovme-celik-sanayi_186.jpg', sector: lang === 'tr' ? 'Celik' : 'Steel' },
-  { name: 'Neutec Ilac', image: '/images/references/neutec-ilac-sanayi_193.jpg', sector: lang === 'tr' ? 'Ilac' : 'Pharma' },
-  { name: 'Rad-Tek Radyator', image: '/images/references/rad-tek-radyator-metal_195.jpg', sector: lang === 'tr' ? 'Metal' : 'Metal' },
-  { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg', sector: lang === 'tr' ? 'Filtre' : 'Filter' },
+  { name: 'Toyota Boshoku', image: '/images/references/toyota-boshoku_197.jpg' },
+  { name: 'TSI', image: '/images/references/tsi_198.jpg' },
+  { name: 'Dogus', image: '/images/references/dogus_187.jpg' },
+  { name: 'Elimsan', image: '/images/references/elimsan_188.jpg' },
+  { name: 'Mikrosan', image: '/images/references/mikrosan_192.jpg' },
+  { name: 'Demka Dovme Celik', image: '/images/references/demka-dovme-celik-sanayi_186.jpg' },
+  { name: 'Neutec Ilac', image: '/images/references/neutec-ilac-sanayi_193.jpg' },
+  { name: 'Rad-Tek Radyator', image: '/images/references/rad-tek-radyator-metal_195.jpg' },
+  { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg' },
 ];
 ---
 
@@ -31,37 +31,30 @@ const references = [
       <p class="text-text-light text-base leading-relaxed">{t(lang, 'references.subtitle')}</p>
     </div>
 
-    <!-- Logo Cards — hover reveals name + sector badge -->
-    <div class="grid grid-cols-3 lg:grid-cols-3 gap-5 lg:gap-6 max-w-4xl mx-auto">
-      {references.map((ref, i) => (
-        <div
-          class="ref-card group relative bg-white rounded-2xl border border-border p-6 lg:p-8 flex flex-col items-center justify-center text-center hover:border-accent/40 hover:shadow-xl transition-all duration-500"
-          data-animate="fade-up"
-          data-delay={String(((i % 3) + 1) * 100)}
-        >
-          <!-- Logo -->
+    <!-- Logo Grid — sadece logo, isim/sektor yok -->
+    <div class="grid grid-cols-3 sm:grid-cols-5 gap-px bg-border rounded-xl overflow-hidden max-w-4xl mx-auto" data-animate="fade-up" data-delay="200">
+      {references.map((ref) => (
+        <div class="flex items-center justify-center bg-white p-6 sm:p-8 lg:p-10 hover:bg-surface transition-colors duration-300">
           <img
             src={ref.image}
             alt={ref.name}
-            class="max-h-12 sm:max-h-14 lg:max-h-16 max-w-[80%] object-contain ref-logo transition-all duration-500 group-hover:filter-none group-hover:opacity-100"
+            class="max-h-8 sm:max-h-10 lg:max-h-12 max-w-full object-contain ref-logo"
             loading="lazy"
+            title={ref.name}
           />
-          <!-- Name + Sector — fade in on hover -->
-          <div class="mt-4 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
-            <div class="font-heading text-sm font-semibold text-primary">{ref.name}</div>
-            <span class="inline-block mt-1 px-2.5 py-0.5 bg-accent/10 text-accent text-[10px] font-mono uppercase tracking-wider rounded-full">
-              {ref.sector}
-            </span>
-          </div>
         </div>
       ))}
+      <!-- 9 logo var, 5 sutunlu grid'de son satir 4 logo. Bos hucre ekle -->
+      <div class="hidden sm:flex items-center justify-center bg-white p-6 sm:p-8 lg:p-10">
+        <span class="text-text-muted text-xs font-mono">+</span>
+      </div>
     </div>
 
     <!-- CTA -->
-    <div class="text-center mt-12" data-animate="fade-up">
+    <div class="text-center mt-10" data-animate="fade-up">
       <a
         href={getLocalePath(lang, lang === 'tr' ? '/referanslar' : '/references')}
-        class="btn-outline-dark"
+        class="inline-flex items-center gap-2 text-text-light text-sm font-medium hover:text-accent hover:gap-3 transition-all"
       >
         {t(lang, 'references.all')}
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>

@@ -74,7 +74,7 @@ const photos = [
         </div>
 
         <div data-animate="fade-up" data-delay="600">
-          <a href={getLocalePath(lang, lang === 'tr' ? '/kurumsal' : '/about')} class="btn-primary">
+          <a href={getLocalePath(lang, lang === 'tr' ? '/kurumsal' : '/about')} class="inline-flex items-center gap-2 text-accent text-sm font-semibold uppercase tracking-wider hover:gap-3 transition-all">
             {t(lang, 'about.more')}
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
