@@ -1,5 +1,5 @@
 ---
-import { t, type Lang } from '../i18n/translations';
+import { type Lang } from '../i18n/translations';
 
 interface Props {
   lang?: Lang;
@@ -7,38 +7,17 @@ interface Props {
 
 const { lang = 'tr' } = Astro.props;
 
-const stats = [
-  { value: 2007, label: lang === 'tr' ? 'Yılından Beri' : 'Since', suffix: '', display: '2007' },
-  { value: 0, label: 'AS9100', suffix: '', display: 'AS9100' },
-  { value: 20, label: lang === 'tr' ? 'Tezgah' : 'Machines', suffix: '+' },
-  { value: 5, label: lang === 'tr' ? 'Eksen CNC' : 'Axis CNC', suffix: '' },
-  { value: 9, label: lang === 'tr' ? 'Referans' : 'References', suffix: '+' },
-];
+const brands = ['DMG MORI', 'HAAS', 'GF Machining', 'FANUC', 'LS Mtron', 'Toyota Boshoku', 'TSI Aviation', 'Mikrosan', 'Elimsan'];
 ---
 
-<!-- Parallax Stats Band (Gage-style dark band between sections) -->
-<section class="parallax-section relative py-16 lg:py-20">
-  <div class="parallax-bg" style="background-image: url('/images/slide2.jpg');"></div>
-  <div class="parallax-overlay"></div>
-
-  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-4">
-      {stats.map((stat, i) => (
-        <div
-          class="text-center lg:text-left group"
-          data-animate="fade-up"
-          data-delay={String((i + 1) * 100)}
-        >
-          <div class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-accent-500 mb-2">
-            {stat.value > 0 ? (
-              <span class="counter-value" data-counter data-target={String(stat.value)} data-suffix={stat.suffix}>0</span>
-            ) : (
-              <span>{stat.display}</span>
-            )}
-          </div>
-          <div class="text-white/40 text-xs sm:text-sm uppercase tracking-[0.15em] font-medium">{stat.label}</div>
-          <div class="w-8 h-[2px] bg-accent-500/30 mt-3 mx-auto lg:mx-0 group-hover:w-12 group-hover:bg-accent-500 transition-all duration-500"></div>
-        </div>
+<!-- Light brand ticker — clean separator between hero and about -->
+<section class="border-y border-border bg-surface overflow-hidden">
+  <div class="py-5">
+    <div class="ticker-track">
+      {[...brands, ...brands, ...brands].map((brand) => (
+        <span class="ticker-item text-text-muted text-sm font-mono uppercase tracking-[0.15em] whitespace-nowrap px-8 hover:text-accent transition-colors">
+          {brand}
+        </span>
       ))}
     </div>
   </div>

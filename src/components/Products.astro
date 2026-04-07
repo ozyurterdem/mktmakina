@@ -8,81 +8,55 @@ interface Props {
 const { lang = 'tr' } = Astro.props;
 
 const products = [
-  { key: 'products.apparatus', image: '/images/categories/aparatlar_7.jpg', slug: 'aparatlar', desc: lang === 'tr' ? 'Üretim süreçleri için özel tasarım aparatlar' : 'Custom apparatus for production processes' },
-  { key: 'products.fixtures', image: '/images/categories/fikstur_8.jpg', slug: 'fikstur', desc: lang === 'tr' ? 'CNC ve montaj hatları için hassas fikstür' : 'Precision fixtures for CNC and assembly' },
-  { key: 'products.molds', image: '/images/categories/kaliplar_12.jpg', slug: 'kaliplar', desc: lang === 'tr' ? 'Plastik enjeksiyon ve özel kalıp çözümleri' : 'Injection molds and custom solutions' },
-  { key: 'products.applications', image: '/images/categories/parcalar_13.jpg', slug: 'uygulamalar', desc: lang === 'tr' ? 'Talaşlı imalat parçaları ve montaj grupları' : 'Machined parts and sub-assemblies' },
-  { key: 'products.gauges', image: '/images/categories/mastarlar_14.jpg', slug: 'kalite-kontrol-mastarlari', desc: lang === 'tr' ? 'Hassas ölçüm ve kontrol mastarları' : 'Precision measurement gauges' },
-  { key: 'products.injection', image: '/images/categories/parcalar_13.jpg', slug: 'plastik-enjeksiyon', desc: lang === 'tr' ? 'Seri üretim plastik enjeksiyon baskı' : 'Serial plastic injection molding' },
+  { key: 'products.apparatus', image: '/images/categories/aparatlar_7.jpg', slug: 'aparatlar' },
+  { key: 'products.fixtures', image: '/images/categories/fikstur_8.jpg', slug: 'fikstur' },
+  { key: 'products.molds', image: '/images/categories/kaliplar_12.jpg', slug: 'kaliplar' },
+  { key: 'products.applications', image: '/images/categories/parcalar_13.jpg', slug: 'uygulamalar' },
+  { key: 'products.gauges', image: '/images/categories/mastarlar_14.jpg', slug: 'kalite-kontrol-mastarlari' },
+  { key: 'products.injection', image: '/images/categories/parcalar_13.jpg', slug: 'plastik-enjeksiyon' },
 ];
 ---
 
-<section class="section-padding bg-white" id="products">
-  <div class="max-w-7xl mx-auto px-6 lg:px-10">
-    <!-- Section Header (centered - Gage style) -->
-    <div class="text-center max-w-2xl mx-auto mb-16" data-animate="fade-up">
-      <div class="section-label justify-center">{lang === 'tr' ? 'Faaliyet Alanları' : 'Business Areas'}</div>
-      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-navy-800 mb-4">
+<!-- Clean white grid — no dark background -->
+<section class="section-padding bg-surface" id="products">
+  <div class="container-custom">
+    <!-- Header -->
+    <div class="max-w-2xl mb-14" data-animate="fade-up">
+      <div class="section-label">{lang === 'tr' ? 'Faaliyet Alanlari' : 'Business Areas'}</div>
+      <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-heading font-bold text-primary mb-4">
         {t(lang, 'products.title')}
       </h2>
-      <p class="text-steel-500 text-base leading-relaxed">
-        {t(lang, 'products.subtitle')}
-      </p>
+      <p class="text-text-light text-base leading-relaxed">{t(lang, 'products.subtitle')}</p>
     </div>
 
-    <!-- Product Cards (V2 - spacious, hover effects) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+    <!-- Product Grid — light cards with rounded corners -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {products.map((product, i) => (
         <a
           href={lang === 'tr' ? `/urunler/${product.slug}` : `/en/products/${product.slug}`}
-          class="card-v2 group"
+          class="card group"
           data-animate="fade-up"
           data-delay={String(((i % 3) + 1) * 100)}
         >
-          <!-- Image with overlay -->
-          <div class="relative aspect-[16/11] overflow-hidden">
+          <div class="relative aspect-[4/3] overflow-hidden">
             <img
               src={product.image}
               alt={t(lang, product.key)}
-              class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />
-            <!-- Dark gradient -->
-            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <!-- Accent corner -->
-            <div class="absolute top-0 left-0 w-0 h-1 bg-accent-500 group-hover:w-full transition-all duration-500"></div>
           </div>
-
-          <!-- Text -->
-          <div class="p-6 lg:p-7">
-            <h3 class="font-heading text-lg font-semibold text-navy-800 tracking-wide mb-2 group-hover:text-accent-600 transition-colors">
+          <div class="p-6">
+            <h3 class="font-heading text-lg font-semibold text-primary tracking-wide mb-3 group-hover:text-accent transition-colors">
               {t(lang, product.key)}
             </h3>
-            <p class="text-steel-500 text-sm leading-relaxed mb-4">{product.desc}</p>
-            <!-- Arrow link -->
-            <div class="flex items-center gap-2 text-accent-500 text-xs font-semibold uppercase tracking-wider">
+            <div class="flex items-center gap-2 text-accent text-xs font-semibold uppercase tracking-wider">
               {lang === 'tr' ? 'Detaylar' : 'Details'}
-              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </div>
           </div>
         </a>
       ))}
     </div>
-
-    <!-- View all -->
-    <div class="text-center mt-14" data-animate="fade-up">
-      <a
-        href={getLocalePath(lang, '/urunler')}
-        class="inline-flex items-center gap-2 text-navy-800 text-sm font-semibold uppercase tracking-wider hover:text-accent-500 transition-colors"
-      >
-        {lang === 'tr' ? 'Tüm Ürünleri Görüntüle' : 'View All Products'}
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-      </a>
-    </div>
   </div>
 </section>
-
-<!-- Section Divider -->
-<div class="section-divider"></div>

@@ -23,7 +23,7 @@ const categories = [
   {
     title: lang === 'tr' ? 'Tel Erozyon' : 'Wire EDM',
     count: 3,
-    machines: ['CUT 30P', 'CUT 20P', 'FANUC α-C400iA'],
+    machines: ['CUT 30P', 'CUT 20P', 'FANUC a-C400iA'],
     brand: 'GF / FANUC',
   },
   {
@@ -33,73 +33,49 @@ const categories = [
     brand: 'LS Mtron',
   },
 ];
-
-const summaryStats = [
-  { val: '4', label: '5-Axis' },
-  { val: '3', label: '3-Axis' },
-  { val: '3', label: 'EDM' },
-  { val: '20+', label: 'Total' },
-];
 ---
 
-<section class="section-padding bg-navy-950 relative overflow-hidden" id="machines">
-  <!-- Background pattern -->
-  <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 40px 40px;"></div>
-
-  <div class="relative max-w-7xl mx-auto px-6 lg:px-10">
+<!-- Light Machines section — clean white bg -->
+<section class="section-padding bg-white" id="machines">
+  <div class="container-custom">
     <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto mb-16" data-animate="fade-up">
-      <div class="section-label justify-center">{lang === 'tr' ? 'Üretim Altyapısı' : 'Production Infrastructure'}</div>
-      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+    <div class="max-w-2xl mb-14" data-animate="fade-up">
+      <div class="section-label">{lang === 'tr' ? 'Uretim Altyapisi' : 'Production Infrastructure'}</div>
+      <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-heading font-bold text-primary mb-4">
         {t(lang, 'machines.title')}
       </h2>
-      <p class="text-white/40 text-base leading-relaxed">
+      <p class="text-text-light text-base leading-relaxed">
         {lang === 'tr'
-          ? 'İleri teknoloji tezgahlarımız ile hassas üretim kapasitemiz.'
+          ? 'Ileri teknoloji tezgahlarimiz ile hassas uretim kapasitemiz.'
           : 'Our precision manufacturing capacity with advanced technology machines.'}
       </p>
     </div>
 
-    <!-- Summary Stats Row -->
-    <div class="flex justify-center gap-10 lg:gap-16 mb-14" data-animate="fade-up" data-delay="200">
-      {summaryStats.map((s) => (
-        <div class="text-center">
-          <div class="font-heading text-3xl sm:text-4xl font-bold text-accent-500">{s.val}</div>
-          <div class="text-white/30 text-xs uppercase tracking-[0.15em] mt-1">{s.label}</div>
-        </div>
-      ))}
-    </div>
-
-    <!-- Machine Categories (Accordion-style cards) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Machine Cards — light bordered -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {categories.map((cat, i) => (
         <div
-          class="group bg-navy-900/60 border border-white/[0.06] p-6 lg:p-8 hover:border-accent-500/30 hover:bg-navy-900 transition-all duration-500"
+          class="group p-6 lg:p-8 border border-border rounded-xl hover:border-accent/40 hover:shadow-lg transition-all duration-400 bg-white"
           data-animate="fade-up"
-          data-delay={String((i + 1) * 150)}
+          data-delay={String((i + 1) * 100)}
         >
-          <!-- Category header -->
           <div class="flex items-center justify-between mb-5">
-            <h3 class="font-heading text-xl lg:text-2xl font-bold text-white group-hover:text-accent-400 transition-colors">
+            <h3 class="font-heading text-xl lg:text-2xl font-bold text-primary group-hover:text-accent transition-colors">
               {cat.title}
             </h3>
-            <span class="font-heading text-3xl font-bold text-accent-500/30 group-hover:text-accent-500 transition-colors">
+            <span class="font-mono text-2xl font-bold text-accent/20 group-hover:text-accent transition-colors">
               {String(cat.count).padStart(2, '0')}
             </span>
           </div>
-
-          <!-- Machine list -->
           <ul class="space-y-2.5 mb-5">
             {cat.machines.map((m) => (
-              <li class="flex items-center gap-3 text-white/50 text-sm">
-                <span class="w-1.5 h-1.5 bg-accent-500/50 shrink-0"></span>
+              <li class="flex items-center gap-3 text-text-light text-sm">
+                <span class="w-1.5 h-1.5 bg-accent/40 rounded-full shrink-0"></span>
                 {m}
               </li>
             ))}
           </ul>
-
-          <!-- Brand tag -->
-          <div class="text-white/20 text-[10px] uppercase tracking-[0.2em] pt-4 border-t border-white/[0.06]">
+          <div class="text-text-muted text-[10px] uppercase tracking-[0.2em] pt-4 border-t border-border-light">
             {cat.brand}
           </div>
         </div>
@@ -107,13 +83,13 @@ const summaryStats = [
     </div>
 
     <!-- CTA -->
-    <div class="text-center mt-14" data-animate="fade-up">
+    <div class="text-center mt-12" data-animate="fade-up">
       <a
-        href={getLocalePath(lang, '/makina-parkimiz')}
-        class="inline-flex items-center gap-2 px-7 py-3.5 border border-accent-500/50 text-accent-400 text-sm font-semibold uppercase tracking-wider hover:bg-accent-500 hover:text-white hover:border-accent-500 transition-all duration-300"
+        href={getLocalePath(lang, lang === 'tr' ? '/makina-parkimiz' : '/machines')}
+        class="btn-outline-dark"
       >
         {t(lang, 'about.more')}
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
   </div>

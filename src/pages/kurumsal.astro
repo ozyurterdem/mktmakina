@@ -4,27 +4,27 @@ import PageHero from '../components/PageHero.astro';
 import CTA from '../components/CTA.astro';
 
 const tabs = [
-  { id: 'about', label: 'Hakkımızda' },
+  { id: 'about', label: 'Hakkimizda' },
   { id: 'mission', label: 'Misyon & Vizyon' },
-  { id: 'quality', label: 'Kalite Politikamız' },
+  { id: 'quality', label: 'Kalite Politikamiz' },
 ];
 ---
 
-<BaseLayout title="Kurumsal — MKT Makina Kalıp Takım" description="MKT Makina hakkında, misyon, vizyon ve kalite politikamız. AS9100 sertifikalı havacılık ve otomotiv parça üreticisi." lang="tr">
-  <PageHero title="Kurumsal" subtitle="2007'den bu yana havacılık hassasiyetinde üretim" />
+<BaseLayout title="Kurumsal — MKT Makina Kalip Takim" description="MKT Makina hakkinda, misyon, vizyon ve kalite politikamiz. AS9100 sertifikali havacilik ve otomotiv parca ureticisi." lang="tr" hasHero={false}>
+  <PageHero title="Kurumsal" subtitle="2007'den bu yana havacilik hassasiyetinde uretim" />
 
   <section class="section-padding bg-white">
-    <div class="max-w-5xl mx-auto px-6">
+    <div class="container-custom">
       <!-- Tab Navigation -->
-      <div class="flex flex-wrap gap-2 mb-14 border-b border-steel-200 pb-4" id="corp-tabs">
+      <div class="flex flex-wrap gap-2 mb-14 border-b border-border pb-4" id="corp-tabs">
         {tabs.map((tab, i) => (
           <button
             data-tab={tab.id}
             class:list={[
               'px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300',
               i === 0
-                ? 'bg-navy-800 text-white'
-                : 'text-navy-700 border border-steel-200 hover:border-accent-500 hover:text-accent-600',
+                ? 'bg-primary-dark text-white'
+                : 'text-primary border border-border hover:border-accent hover:text-accent',
             ]}
           >
             {tab.label}
@@ -32,55 +32,55 @@ const tabs = [
         ))}
       </div>
 
-      <!-- Hakkımızda -->
+      <!-- Hakkimizda -->
       <div id="tab-about" class="tab-content">
         <div class="grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <h2 class="font-heading text-2xl font-bold text-navy-800 mb-6">Hakkımızda</h2>
-            <div class="space-y-4 text-steel-600 leading-relaxed text-[15px]">
-              <p>MKT Makina, havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ve plastik enjeksiyon parçalar üretmektedir. 2007 yılında kurulan şirket, iş hayatının ilk yıllarından bu yana kalıp, fikstür, aparat ve kalite kontrol mastarı imalatı da yapmaktadır.</p>
-              <p>Makina parkurunu büyüterek 2012 yılından itibaren TSI Uçak Koltuk firmasına talaşlı imalat parçalarının üretimine başlamıştır.</p>
-              <p>AS9100 sertifikasına sahip olup, kalite yönetim sistemini havacılık ve otomotiv sanayi gerekliliklerine uygun olarak yapılandırmıştır.</p>
+          <div data-animate="fade-up">
+            <h2 class="font-heading text-2xl font-bold text-primary mb-6">Hakkimizda</h2>
+            <div class="space-y-4 text-text-light leading-relaxed text-[15px]">
+              <p>MKT Makina, havacilik ve otomotiv sanayii icin yuksek kaliteli hassas isleme parcalar ve plastik enjeksiyon parcalar uretmektedir. 2007 yilinda kurulan sirket, is hayatinin ilk yillarindan bu yana kalip, fikstur, aparat ve kalite kontrol mastari imalati da yapmaktadir.</p>
+              <p>Makina parkurunu buyuterek 2012 yilindan itibaren TSI Ucak Koltuk firmasina talasli imalat parcalarinin uretimine baslamistir.</p>
+              <p>AS9100 sertifikasina sahip olup, kalite yonetim sistemini havacilik ve otomotiv sanayi gerekliliklerine uygun olarak yapilandirmistir.</p>
             </div>
 
-            <h3 class="font-heading text-base font-semibold text-navy-800 mt-8 mb-4">Ürün Yelpazemiz</h3>
+            <h3 class="font-heading text-base font-semibold text-primary mt-8 mb-4">Urun Yelpazemiz</h3>
             <ul class="space-y-2.5">
               {[
-                'Talaşlı imalat parçaları ve montaj grupları',
-                'Fikstürler',
+                'Talasli imalat parcalari ve montaj gruplari',
+                'Fiksturler',
                 'Aparatlar',
-                'Kalite kontrol mastarları',
-                'Plastik enjeksiyon kalıpları',
-                'Plastik enjeksiyon baskı',
+                'Kalite kontrol mastarlari',
+                'Plastik enjeksiyon kaliplari',
+                'Plastik enjeksiyon baski',
               ].map((item) => (
-                <li class="flex items-start gap-3 text-steel-700 text-sm">
-                  <span class="w-1.5 h-1.5 bg-accent-500 rounded-full mt-2 shrink-0"></span>
+                <li class="flex items-start gap-3 text-text-light text-sm">
+                  <span class="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0"></span>
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-          <div class="relative">
-            <img src="/images/slide1.jpg" alt="MKT Makina Üretim" class="w-full aspect-[4/3] object-cover" />
-            <div class="absolute bottom-0 left-0 w-24 h-1 bg-accent-500"></div>
-            <div class="absolute -bottom-4 -left-4 bg-navy-800 text-white px-5 py-4">
-              <div class="font-heading text-2xl font-bold text-accent-500">2007</div>
-              <div class="text-white/40 text-[10px] uppercase tracking-wider mt-0.5">Kuruluş</div>
+          <div class="relative" data-animate="fade-up">
+            <img src="/images/slide1.jpg" alt="MKT Makina Uretim" class="w-full aspect-[4/3] object-cover" />
+            <div class="absolute bottom-0 left-0 w-24 h-1 bg-accent"></div>
+            <div class="absolute -bottom-4 -left-4 bg-primary-dark text-white px-5 py-4">
+              <div class="font-heading text-2xl font-bold text-accent">2007</div>
+              <div class="text-white/60 text-[10px] uppercase tracking-wider mt-0.5">Kurulus</div>
             </div>
           </div>
         </div>
 
-        <h3 class="font-heading text-base font-semibold text-navy-800 mt-12 mb-4">Temel Prensiplerimiz</h3>
+        <h3 class="font-heading text-base font-semibold text-primary mt-12 mb-4">Temel Prensiplerimiz</h3>
         <div class="grid sm:grid-cols-2 gap-3">
           {[
-            'Müşteri gereksinimlerini karşılayan yüksek kalite ürünler üretmek',
-            'Son teknoloji ekipman, alet ve yazılım programlarını kullanmak',
-            'Müşteriye özgü çözümler sunmak',
-            'İleri endüstriyel standartlara uygun kalite yönetim sistemini sürdürmek',
+            'Musteri gereksinimlerini karsilayan yuksek kalite urunler uretmek',
+            'Son teknoloji ekipman, alet ve yazilim programlarini kullanmak',
+            'Musteriye ozgu cozumler sunmak',
+            'Ileri endustriyel standartlara uygun kalite yonetim sistemini surdurmek',
           ].map((item) => (
-            <div class="flex items-start gap-3 p-4 bg-steel-50 border border-steel-100">
-              <svg class="w-4 h-4 text-accent-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-              <span class="text-steel-700 text-sm">{item}</span>
+            <div class="flex items-start gap-3 p-4 bg-surface border border-border" data-animate="fade-up">
+              <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+              <span class="text-text-light text-sm">{item}</span>
             </div>
           ))}
         </div>
@@ -89,51 +89,51 @@ const tabs = [
       <!-- Misyon & Vizyon -->
       <div id="tab-mission" class="tab-content hidden">
         <div class="grid lg:grid-cols-2 gap-6">
-          <div class="p-8 bg-navy-800">
-            <span class="text-accent-500 text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Misyon</span>
+          <div class="p-8 bg-primary-dark" data-animate="fade-up">
+            <span class="section-label text-accent">Misyon</span>
             <h2 class="font-heading text-xl font-bold text-white mb-4">Misyon</h2>
             <div class="space-y-4 text-white/60 leading-relaxed text-sm">
-              <p>Müşterilerimizin beklentilerini istikrarlı kalite anlayışı ile karşılayarak değer yaratmayı esas alan kurumsal yapımız, müşteri odaklı çalışma stratejimiz ve rekabetçi büyüme potansiyelimiz ile "en iyi" şekilde değerleri yönetmek.</p>
-              <p>Mühendislik ve yönetim bilimlerindeki en son teknolojik olanakları kullanarak daima yüksek kalite standartlarında gelişen imalat teknolojileriyle, müşteri memnuniyetini ön planda tutmak ve mükemmelleşme anlayışını esas alarak, insana, doğaya, çevreye ve topluma saygılı ürünler üretmektedir.</p>
+              <p>Musterilerimizin beklentilerini istikrarli kalite anlayisi ile karsilayarak deger yaratmayi esas alan kurumsal yapimiz, musteri odakli calisma stratejimiz ve rekabetci buyume potansiyelimiz ile "en iyi" sekilde degerleri yonetmek.</p>
+              <p>Muhendislik ve yonetim bilimlerindeki en son teknolojik olanaklari kullanarak daima yuksek kalite standartlarinda gelisen imalat teknolojileriyle, musteri memnuniyetini on planda tutmak ve mukemmellasme anlayisini esas alarak, insana, dogaya, cevreye ve topluma saygili urunler uretmektedir.</p>
             </div>
           </div>
-          <div class="p-8 bg-accent-500">
+          <div class="p-8 bg-accent" data-animate="fade-up">
             <span class="text-white/60 text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Vizyon</span>
             <h2 class="font-heading text-xl font-bold text-white mb-4">Vizyon</h2>
             <div class="space-y-4 text-white/80 leading-relaxed text-sm">
-              <p>İmalat sanayisinde kolay, güvenli, ekonomik ve kaliteli bir hizmet sunabilmek, müşteri memnuniyeti öncelikli, toplam hizmet kalitesi felsefesi ile çalışarak, %100 kalite performansı ve kusursuz hizmet anlayışı ile hızlı, doğru, güvenilir çözümler üretmek ve sürekli gelişmek MKT Makina'nın en önemli vizyonudur.</p>
+              <p>Imalat sanayisinde kolay, guvenli, ekonomik ve kaliteli bir hizmet sunabilmek, musteri memnuniyeti oncelikli, toplam hizmet kalitesi felsefesi ile calisarak, %100 kalite performansi ve kusursuz hizmet anlayisi ile hizli, dogru, guvenilir cozumler uretmek ve surekli gelismek MKT Makina'nin en onemli vizyonudur.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Kalite Politikası -->
+      <!-- Kalite Politikasi -->
       <div id="tab-quality" class="tab-content hidden">
         <div class="max-w-3xl">
-          <div class="flex items-center gap-4 mb-8">
-            <div class="w-12 h-12 bg-accent-500 flex items-center justify-center">
+          <div class="flex items-center gap-4 mb-8" data-animate="fade-up">
+            <div class="w-12 h-12 bg-accent flex items-center justify-center">
               <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
             </div>
             <div>
-              <h2 class="font-heading text-xl font-bold text-navy-800">Kalite Politikamız</h2>
-              <p class="text-steel-500 text-sm">AS9100 Sertifikalı Kalite Yönetim Sistemi</p>
+              <h2 class="font-heading text-xl font-bold text-primary">Kalite Politikamiz</h2>
+              <p class="text-text-light text-sm">AS9100 Sertifikali Kalite Yonetim Sistemi</p>
             </div>
           </div>
 
-          <p class="text-steel-600 leading-relaxed mb-8 text-[15px]">Havacılık ve otomotiv sanayii için metal ve metal olmayan parçalar ile montaj gruplarının imalatını yapan firmamız, kuruluşun bağlamı ve stratejik planıyla uyumlu olarak kalite politikasını aşağıdaki gibi belirlemiştir:</p>
+          <p class="text-text-light leading-relaxed mb-8 text-[15px]">Havacilik ve otomotiv sanayii icin metal ve metal olmayan parcalar ile montaj gruplarinin imalatini yapan firmamiz, kurulusun baglami ve stratejik planiyla uyumlu olarak kalite politikasini asagidaki gibi belirlemistir:</p>
 
           <div class="space-y-3">
             {[
-              'İlgili tarafların şartları ve AS9100 standardı şartlarını karşılayan bir Kalite Yönetim Sistemi kurmak ve bu kapsamda istenen şartlara uygun ürünler üretmek',
-              'Kalite Yönetim Sistemini sürekli iyileştirmek, bu amaçla kalite hedeflerini oluşturmak ve takibini sağlamak',
-              'Müşteri memnuniyetini sağlamak, yenilikçi ve güvenilir yaklaşımlarla beklentilerin önüne geçmek',
-              'Tüm çalışanlarımızın kalite politikası bilincine sahip olması ve bu doğrultuda çalışmasını sağlamak',
-              'Ürettiğimiz her ürünün sorumluluğunu taşımak ve müşteriye gerekli bilgi ve teknik desteği sağlamak',
-              'İstenen kalite hammadde, son teknoloji makine parkuru ve uzman işgücünü birleştirmek',
+              'Ilgili taraflarin sartlari ve AS9100 standardi sartlarini karsilayan bir Kalite Yonetim Sistemi kurmak ve bu kapsamda istenen sartlara uygun urunler uretmek',
+              'Kalite Yonetim Sistemini surekli iyilestirmek, bu amacla kalite hedeflerini olusturmak ve takibini saglamak',
+              'Musteri memnuniyetini saglamak, yenilikci ve guvenilir yaklasimlarla beklentilerin onune gecmek',
+              'Tum calisanlarimizin kalite politikasi bilincine sahip olmasi ve bu dogrultuda calismasini saglamak',
+              'Urettigimiz her urunun sorumlulugunu tasimak ve musteriye gerekli bilgi ve teknik destegi saglamak',
+              'Istenen kalite hammadde, son teknoloji makine parkuru ve uzman isgucunu birlestirmek',
             ].map((item, i) => (
-              <div class="flex items-start gap-4 p-4 bg-steel-50 border border-steel-100">
-                <span class="w-7 h-7 bg-navy-800 text-white flex items-center justify-center shrink-0 text-xs font-heading font-bold">{i + 1}</span>
-                <span class="text-steel-700 text-sm leading-relaxed">{item}</span>
+              <div class="flex items-start gap-4 p-4 bg-surface border border-border" data-animate="fade-up">
+                <span class="w-7 h-7 bg-primary-dark text-white flex items-center justify-center shrink-0 text-xs font-heading font-bold">{i + 1}</span>
+                <span class="text-text-light text-sm leading-relaxed">{item}</span>
               </div>
             ))}
           </div>
@@ -153,11 +153,11 @@ const tabs = [
     tab.addEventListener('click', () => {
       const target = tab.getAttribute('data-tab');
       tabs.forEach((t) => {
-        t.classList.remove('bg-navy-800', 'text-white');
-        t.classList.add('text-navy-700', 'border', 'border-steel-200');
+        t.classList.remove('bg-primary-dark', 'text-white');
+        t.classList.add('text-primary', 'border', 'border-border');
       });
-      tab.classList.add('bg-navy-800', 'text-white');
-      tab.classList.remove('text-navy-700', 'border', 'border-steel-200');
+      tab.classList.add('bg-primary-dark', 'text-white');
+      tab.classList.remove('text-primary', 'border', 'border-border');
       contents.forEach((c) => c.classList.add('hidden'));
       document.getElementById(`tab-${target}`)?.classList.remove('hidden');
     });

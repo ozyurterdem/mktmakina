@@ -8,62 +8,63 @@ interface Props {
 const { lang = 'tr' } = Astro.props;
 
 const references = [
-  { name: 'Toyota Boshoku', image: '/images/references/toyota-boshoku_197.jpg' },
-  { name: 'TSI', image: '/images/references/tsi_198.jpg' },
-  { name: 'Doğuş', image: '/images/references/dogus_187.jpg' },
-  { name: 'Elimsan', image: '/images/references/elimsan_188.jpg' },
-  { name: 'Mikrosan', image: '/images/references/mikrosan_192.jpg' },
-  { name: 'Demka Dövme Çelik', image: '/images/references/demka-dovme-celik-sanayi_186.jpg' },
-  { name: 'Neutec İlaç', image: '/images/references/neutec-ilac-sanayi_193.jpg' },
-  { name: 'Rad-Tek Radyatör', image: '/images/references/rad-tek-radyator-metal_195.jpg' },
-  { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg' },
+  { name: 'Toyota Boshoku', image: '/images/references/toyota-boshoku_197.jpg', sector: lang === 'tr' ? 'Otomotiv' : 'Automotive' },
+  { name: 'TSI', image: '/images/references/tsi_198.jpg', sector: lang === 'tr' ? 'Havacilik' : 'Aviation' },
+  { name: 'Dogus', image: '/images/references/dogus_187.jpg', sector: lang === 'tr' ? 'Otomotiv' : 'Automotive' },
+  { name: 'Elimsan', image: '/images/references/elimsan_188.jpg', sector: lang === 'tr' ? 'Endustri' : 'Industrial' },
+  { name: 'Mikrosan', image: '/images/references/mikrosan_192.jpg', sector: lang === 'tr' ? 'Endustri' : 'Industrial' },
+  { name: 'Demka Dovme Celik', image: '/images/references/demka-dovme-celik-sanayi_186.jpg', sector: lang === 'tr' ? 'Celik' : 'Steel' },
+  { name: 'Neutec Ilac', image: '/images/references/neutec-ilac-sanayi_193.jpg', sector: lang === 'tr' ? 'Ilac' : 'Pharma' },
+  { name: 'Rad-Tek Radyator', image: '/images/references/rad-tek-radyator-metal_195.jpg', sector: lang === 'tr' ? 'Metal' : 'Metal' },
+  { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg', sector: lang === 'tr' ? 'Filtre' : 'Filter' },
 ];
 ---
 
-<!-- Parallax Band with References -->
-<section class="parallax-section relative py-20 lg:py-28" id="references">
-  <div class="parallax-bg" style="background-image: url('/images/slide1.jpg');"></div>
-  <div class="parallax-overlay" style="background: linear-gradient(180deg, rgba(5,11,20,0.92) 0%, rgba(15,29,54,0.88) 100%);"></div>
-
-  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
+<section class="section-padding bg-surface" id="references">
+  <div class="container-custom">
     <!-- Header -->
-    <div class="text-center max-w-2xl mx-auto mb-16" data-animate="fade-up">
-      <div class="section-label justify-center">{lang === 'tr' ? 'İş Ortaklarımız' : 'Our Partners'}</div>
-      <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+    <div class="text-center max-w-2xl mx-auto mb-14" data-animate="fade-up">
+      <div class="section-label justify-center">{lang === 'tr' ? 'Is Ortaklarimiz' : 'Our Partners'}</div>
+      <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-heading font-bold text-primary mb-4">
         {t(lang, 'references.title')}
       </h2>
-      <p class="text-white/40 text-base leading-relaxed">
-        {t(lang, 'references.subtitle')}
-      </p>
+      <p class="text-text-light text-base leading-relaxed">{t(lang, 'references.subtitle')}</p>
     </div>
 
-    <!-- Logo Grid (grayscale → color hover, Volo style) -->
-    <div class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
+    <!-- Logo Cards — hover reveals name + sector badge -->
+    <div class="grid grid-cols-3 lg:grid-cols-3 gap-5 lg:gap-6 max-w-4xl mx-auto">
       {references.map((ref, i) => (
         <div
-          class="flex items-center justify-center p-6 lg:p-8 bg-white/[0.04] border border-white/[0.06] backdrop-blur-sm hover:bg-white/[0.08] hover:border-accent-500/20 transition-all duration-500"
-          data-animate="zoom-in"
-          data-delay={String(((i % 5) + 1) * 80)}
+          class="ref-card group relative bg-white rounded-2xl border border-border p-6 lg:p-8 flex flex-col items-center justify-center text-center hover:border-accent/40 hover:shadow-xl transition-all duration-500"
+          data-animate="fade-up"
+          data-delay={String(((i % 3) + 1) * 100)}
         >
+          <!-- Logo -->
           <img
             src={ref.image}
             alt={ref.name}
-            class="max-h-10 sm:max-h-12 lg:max-h-14 max-w-full object-contain ref-logo"
+            class="max-h-12 sm:max-h-14 lg:max-h-16 max-w-[80%] object-contain ref-logo transition-all duration-500 group-hover:filter-none group-hover:opacity-100"
             loading="lazy"
-            title={ref.name}
           />
+          <!-- Name + Sector — fade in on hover -->
+          <div class="mt-4 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400">
+            <div class="font-heading text-sm font-semibold text-primary">{ref.name}</div>
+            <span class="inline-block mt-1 px-2.5 py-0.5 bg-accent/10 text-accent text-[10px] font-mono uppercase tracking-wider rounded-full">
+              {ref.sector}
+            </span>
+          </div>
         </div>
       ))}
     </div>
 
     <!-- CTA -->
-    <div class="text-center mt-14" data-animate="fade-up">
+    <div class="text-center mt-12" data-animate="fade-up">
       <a
-        href={getLocalePath(lang, '/referanslar')}
-        class="inline-flex items-center gap-2 text-white/50 text-sm font-semibold uppercase tracking-wider hover:text-accent-400 transition-colors"
+        href={getLocalePath(lang, lang === 'tr' ? '/referanslar' : '/references')}
+        class="btn-outline-dark"
       >
         {t(lang, 'references.all')}
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
       </a>
     </div>
   </div>

@@ -9,9 +9,16 @@ interface Props {
   title: string;
   description?: string;
   lang?: Lang;
+  hasHero?: boolean;
 }
 
-const { title, description = 'MKT Makina Kalıp Takım — Havacılık ve otomotiv sanayii için hassas işleme ve plastik enjeksiyon çözümleri.', lang = 'tr' } = Astro.props;
+const {
+  title,
+  description = 'MKT Makina Kalıp Takım — Havacılık ve otomotiv sanayii için hassas işleme ve plastik enjeksiyon çözümleri.',
+  lang = 'tr',
+  hasHero = false,
+} = Astro.props;
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const alternateLang = lang === 'tr' ? 'en' : 'tr';
 const alternatePath = lang === 'tr' ? `/en${Astro.url.pathname}` : Astro.url.pathname.replace(/^\/en/, '') || '/';
@@ -41,34 +48,31 @@ const alternatePath = lang === 'tr' ? `/en${Astro.url.pathname}` : Astro.url.pat
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <Font cssVariable="--font-sans" />
     <Font cssVariable="--font-heading" />
+    <Font cssVariable="--font-mono" />
   </head>
   <body class="min-h-screen flex flex-col antialiased">
-    <Header lang={lang} />
+    <Header lang={lang} hasHero={hasHero} />
     <main class="flex-1">
       <slot />
     </main>
     <Footer lang={lang} />
 
-    <!-- Scroll-to-Top Button (Volo style) -->
     <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
       </svg>
     </button>
 
-    <!-- Mark JS as ready for animation -->
     <script is:inline>
       document.documentElement.classList.add('js-ready');
     </script>
 
-    <!-- Waypoint Animation Observer + Performance-optimized scroll -->
     <script>
-      // Single IntersectionObserver for all [data-animate] and [data-counter]
       const io = new IntersectionObserver(
         (entries) => {
-          for (let i = 0; i < entries.length; i++) {
-            if (!entries[i].isIntersecting) continue;
-            const el = entries[i].target as HTMLElement;
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const el = entry.target as HTMLElement;
 
             if (el.hasAttribute('data-animate')) {
               el.classList.add('is-visible');
@@ -94,7 +98,7 @@ const alternatePath = lang === 'tr' ? `/en${Astro.url.pathname}` : Astro.url.pat
       );
       document.querySelectorAll('[data-animate],[data-counter]').forEach((el) => io.observe(el));
 
-      // Parallax backgrounds — rAF-throttled scroll
+      // Parallax
       const parallaxEls = document.querySelectorAll<HTMLElement>('.parallax-bg');
       const sttBtn = document.getElementById('scrollToTop');
       let ticking = false;
@@ -104,15 +108,13 @@ const alternatePath = lang === 'tr' ? `/en${Astro.url.pathname}` : Astro.url.pat
         ticking = true;
         requestAnimationFrame(() => {
           const sy = window.scrollY;
-          // Parallax backgrounds
-          for (let i = 0; i < parallaxEls.length; i++) {
-            const rect = parallaxEls[i].parentElement!.getBoundingClientRect();
+          for (const el of parallaxEls) {
+            const rect = el.parentElement!.getBoundingClientRect();
             if (rect.bottom > 0 && rect.top < window.innerHeight) {
               const offset = (rect.top / window.innerHeight) * 40;
-              parallaxEls[i].style.transform = `translate3d(0,${offset}px,0)`;
+              el.style.transform = `translateY(${offset}px)`;
             }
           }
-          // Scroll-to-top
           sttBtn?.classList.toggle('is-visible', sy > 500);
           ticking = false;
         });
@@ -123,7 +125,6 @@ const alternatePath = lang === 'tr' ? `/en${Astro.url.pathname}` : Astro.url.pat
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      // Reduce motion preference
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.querySelectorAll('[data-animate]').forEach((el) => {
           el.classList.add('is-visible');

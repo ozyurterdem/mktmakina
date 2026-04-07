@@ -10,18 +10,18 @@ const tabs = [
 ];
 ---
 
-<BaseLayout title="About — MKT Makina" description="About MKT Makina, mission, vision and quality policy. AS9100 certified aviation and automotive parts manufacturer." lang="en">
+<BaseLayout title="About — MKT Makina" description="About MKT Makina, mission, vision and quality policy. AS9100 certified aviation and automotive parts manufacturer." lang="en" hasHero={false}>
   <PageHero title="About" subtitle="Aviation-grade precision manufacturing since 2007" />
 
   <section class="section-padding bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="flex flex-wrap gap-2 mb-14 border-b border-steel-200 pb-4" id="corp-tabs">
+    <div class="container-custom">
+      <div class="flex flex-wrap gap-2 mb-14 border-b border-border pb-4" id="corp-tabs">
         {tabs.map((tab, i) => (
           <button
             data-tab={tab.id}
             class:list={[
               'px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300',
-              i === 0 ? 'bg-navy-800 text-white' : 'text-navy-700 border border-steel-200 hover:border-accent-500 hover:text-accent-600',
+              i === 0 ? 'bg-primary-dark text-white' : 'text-primary border border-border hover:border-accent hover:text-accent',
             ]}
           >{tab.label}</button>
         ))}
@@ -29,29 +29,29 @@ const tabs = [
 
       <div id="tab-about" class="tab-content">
         <div class="grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <h2 class="font-heading text-2xl font-bold text-navy-800 mb-6">About Us</h2>
-            <div class="space-y-4 text-steel-600 leading-relaxed text-[15px]">
+          <div data-animate="fade-up">
+            <h2 class="font-heading text-2xl font-bold text-primary mb-6">About Us</h2>
+            <div class="space-y-4 text-text-light leading-relaxed text-[15px]">
               <p>MKT Makina manufactures high quality precision machined parts and plastic injection parts for aviation and automotive industry. Founded in 2007, the company has been manufacturing molds, fixtures, apparatus and quality control gauges since its early years.</p>
               <p>Expanding its machine park, the company started manufacturing machined parts for TSI Aircraft Seats from 2012.</p>
               <p>Certified to AS9100, our quality management system has been structured according to the requirements of aviation and automotive industry.</p>
             </div>
           </div>
-          <div class="relative">
+          <div class="relative" data-animate="fade-up">
             <img src="/images/slide1.jpg" alt="MKT Makina" class="w-full aspect-[4/3] object-cover" />
-            <div class="absolute bottom-0 left-0 w-24 h-1 bg-accent-500"></div>
+            <div class="absolute bottom-0 left-0 w-24 h-1 bg-accent"></div>
           </div>
         </div>
       </div>
 
       <div id="tab-mission" class="tab-content hidden">
         <div class="grid lg:grid-cols-2 gap-6">
-          <div class="p-8 bg-navy-800">
-            <span class="text-accent-500 text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Mission</span>
+          <div class="p-8 bg-primary-dark" data-animate="fade-up">
+            <span class="section-label text-accent">Mission</span>
             <h2 class="font-heading text-xl font-bold text-white mb-4">Mission</h2>
             <p class="text-white/60 text-sm leading-relaxed">Using the latest technological opportunities in engineering and management sciences, we maintain the highest quality standards with developing manufacturing technologies, prioritizing customer satisfaction and striving for excellence.</p>
           </div>
-          <div class="p-8 bg-accent-500">
+          <div class="p-8 bg-accent" data-animate="fade-up">
             <span class="text-white/60 text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Vision</span>
             <h2 class="font-heading text-xl font-bold text-white mb-4">Vision</h2>
             <p class="text-white/80 text-sm leading-relaxed">To provide easy, safe, economical and quality service in manufacturing industry with 100% quality performance and flawless service approach, producing fast, accurate and reliable solutions.</p>
@@ -61,8 +61,8 @@ const tabs = [
 
       <div id="tab-quality" class="tab-content hidden">
         <div class="max-w-3xl">
-          <h2 class="font-heading text-xl font-bold text-navy-800 mb-6">Quality Policy</h2>
-          <p class="text-steel-600 leading-relaxed mb-6 text-[15px]">Our quality policy is built on AS9100 standards:</p>
+          <h2 class="font-heading text-xl font-bold text-primary mb-6" data-animate="fade-up">Quality Policy</h2>
+          <p class="text-text-light leading-relaxed mb-6 text-[15px]">Our quality policy is built on AS9100 standards:</p>
           <div class="space-y-3">
             {[
               'Establishing a Quality Management System meeting AS9100 requirements',
@@ -72,9 +72,9 @@ const tabs = [
               'Taking responsibility for every product we manufacture',
               'Combining quality raw materials, state-of-the-art machines and expert workforce',
             ].map((item, i) => (
-              <div class="flex items-start gap-4 p-4 bg-steel-50 border border-steel-100">
-                <span class="w-7 h-7 bg-navy-800 text-white flex items-center justify-center shrink-0 text-xs font-heading font-bold">{i + 1}</span>
-                <span class="text-steel-700 text-sm leading-relaxed">{item}</span>
+              <div class="flex items-start gap-4 p-4 bg-surface border border-border" data-animate="fade-up">
+                <span class="w-7 h-7 bg-primary-dark text-white flex items-center justify-center shrink-0 text-xs font-heading font-bold">{i + 1}</span>
+                <span class="text-text-light text-sm leading-relaxed">{item}</span>
               </div>
             ))}
           </div>
@@ -92,8 +92,8 @@ const tabs = [
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       const target = tab.getAttribute('data-tab');
-      tabs.forEach((t) => { t.classList.remove('bg-navy-800', 'text-white'); t.classList.add('text-navy-700', 'border', 'border-steel-200'); });
-      tab.classList.add('bg-navy-800', 'text-white'); tab.classList.remove('text-navy-700', 'border', 'border-steel-200');
+      tabs.forEach((t) => { t.classList.remove('bg-primary-dark', 'text-white'); t.classList.add('text-primary', 'border', 'border-border'); });
+      tab.classList.add('bg-primary-dark', 'text-white'); tab.classList.remove('text-primary', 'border', 'border-border');
       contents.forEach((c) => c.classList.add('hidden'));
       document.getElementById(`tab-${target}`)?.classList.remove('hidden');
     });

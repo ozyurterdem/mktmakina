@@ -5,22 +5,22 @@ import CTA from '../../components/CTA.astro';
 import { products } from '../../data/products';
 ---
 
-<BaseLayout title="Products — MKT Makina" description="MKT Makina products: Apparatus, fixtures, molds, quality control gauges, plastic injection and machined parts." lang="en">
+<BaseLayout title="Products — MKT Makina" description="MKT Makina products: Apparatus, fixtures, molds, quality control gauges, plastic injection and machined parts." lang="en" hasHero={false}>
   <PageHero title="Our Products" subtitle="Precision engineering solutions for aviation and automotive industry" />
 
   <section class="section-padding bg-white">
-    <div class="max-w-[1400px] mx-auto px-6">
+    <div class="container-custom">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
-          <a href={`/en/products/${product.slug}`} class="group bg-white border border-steel-200 overflow-hidden card-hover reveal">
+          <a href={`/en/products/${product.slug}`} class="group card overflow-hidden" data-animate="fade-up">
             <div class="relative aspect-[16/10] overflow-hidden">
               <img src={product.image} alt={product.name.en} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-navy-950/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             <div class="p-5">
-              <h3 class="font-heading text-base font-semibold text-navy-800 mb-2 group-hover:text-accent-600 transition-colors tracking-wide">{product.name.en}</h3>
-              <p class="text-steel-500 text-sm leading-relaxed mb-3">{product.description.en}</p>
-              <div class="w-6 h-[2px] bg-accent-500 transition-all duration-500 group-hover:w-12"></div>
+              <h3 class="font-heading text-base font-semibold text-primary mb-2 group-hover:text-accent transition-colors tracking-wide">{product.name.en}</h3>
+              <p class="text-text-light text-sm leading-relaxed mb-3">{product.description.en}</p>
+              <div class="accent-bar transition-all duration-500 group-hover:w-12"></div>
             </div>
           </a>
         ))}
