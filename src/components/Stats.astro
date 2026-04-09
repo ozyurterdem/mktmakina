@@ -10,12 +10,11 @@ const { lang = 'tr' } = Astro.props;
 const brands = ['DMG MORI', 'HAAS', 'GF Machining', 'FANUC', 'LS Mtron', 'Toyota Boshoku', 'TSI Aviation', 'Mikrosan', 'Elimsan'];
 ---
 
-<!-- Light brand ticker — clean separator between hero and about -->
-<section class="border-y border-border bg-surface overflow-hidden">
-  <div class="py-5">
+<section class="relative bg-primary border-y border-white/[0.04] overflow-hidden">
+  <div class="py-4">
     <div class="ticker-track">
       {[...brands, ...brands, ...brands].map((brand) => (
-        <span class="ticker-item text-text-muted text-sm font-mono uppercase tracking-[0.15em] whitespace-nowrap px-8 hover:text-accent transition-colors">
+        <span class="text-white/20 text-sm font-mono uppercase tracking-[0.2em] whitespace-nowrap px-8 hover:text-accent/60 transition-colors duration-300">
           {brand}
         </span>
       ))}

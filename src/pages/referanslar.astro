@@ -17,11 +17,11 @@ const references = [
 ---
 
 <BaseLayout title="Referanslar — MKT Makina Kalip Takim" description="MKT Makina referanslari: Toyota Boshoku, TSI Havacilik, Dogus, Elimsan ve daha fazlasi." lang="tr" hasHero={false}>
-  <PageHero title="Referanslar" subtitle="Guvenilir is ortaklarimiz" />
+  <PageHero title="Referanslar" subtitle="Güvenilir iş ortaklarımız" />
 
   <section class="ref-page-section">
     <div class="container-custom max-w-[1000px]">
-      <p class="text-center text-white/50 text-base mb-14 max-w-2xl mx-auto" data-animate="fade-up">
+      <p class="text-center text-white/40 text-base mb-14 max-w-2xl mx-auto" data-animate="fade-up">
         Havacilik, otomotiv, ilac ve agir sanayi sektorlerinden guclu referanslarimizla uzun vadeli is birlikleri surduruyoruz.
       </p>
 
@@ -45,25 +45,11 @@ const references = [
     position: relative;
   }
 
-  .ref-page-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-  }
-
-  .ref-page-section > * {
-    position: relative;
-    z-index: 1;
-  }
-
   .ref-page-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
-
   @media (min-width: 640px) {
     .ref-page-grid {
       grid-template-columns: repeat(3, 1fr);
@@ -76,19 +62,17 @@ const references = [
     align-items: center;
     justify-content: center;
     aspect-ratio: 16 / 9;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     padding: 2rem;
     backdrop-filter: blur(8px);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-
   .ref-page-card:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(200, 162, 60, 0.2);
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
   }
 
   .ref-page-logo {
@@ -96,11 +80,10 @@ const references = [
     max-width: 80%;
     object-fit: contain;
     filter: brightness(0) invert(1);
-    opacity: 0.5;
+    opacity: 0.7;
     transition: all 0.4s ease;
   }
-
   .ref-page-card:hover .ref-page-logo {
-    opacity: 0.85;
+    opacity: 1;
   }
 </style>

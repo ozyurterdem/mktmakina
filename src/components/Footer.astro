@@ -43,7 +43,7 @@ const productLinks = ['products.apparatus', 'products.fixtures', 'products.molds
             <span class="block text-white/25 text-[10px] tracking-[0.2em] uppercase">Kalip Takim</span>
           </div>
         </a>
-        <p class="text-white/55 text-sm leading-relaxed mb-6 max-w-xs">
+        <p class="text-white/40 text-sm leading-relaxed mb-6 max-w-xs">
           {lang === 'tr'
             ? 'Havacilik ve otomotiv sanayii icin yuksek kaliteli hassas isleme parcalar ve plastik enjeksiyon cozumleri.'
             : 'High quality precision machined parts and plastic injection solutions for aviation and automotive industry.'}
@@ -60,7 +60,7 @@ const productLinks = ['products.apparatus', 'products.fixtures', 'products.molds
         <ul class="space-y-2.5">
           {quickLinks.map((item) => (
             <li>
-              <a href={item.href} class="text-white/55 text-sm hover:text-accent transition-colors">{t(lang, item.key)}</a>
+              <a href={item.href} class="text-white/40 text-sm hover:text-accent transition-colors">{t(lang, item.key)}</a>
             </li>
           ))}
         </ul>
@@ -72,7 +72,7 @@ const productLinks = ['products.apparatus', 'products.fixtures', 'products.molds
         <ul class="space-y-2.5">
           {productLinks.map((key) => (
             <li>
-              <a href={getLocalePath(lang, lang === 'tr' ? '/urunler' : '/products')} class="text-white/55 text-sm hover:text-accent transition-colors">{t(lang, key)}</a>
+              <a href={getLocalePath(lang, lang === 'tr' ? '/urunler' : '/products')} class="text-white/40 text-sm hover:text-accent transition-colors">{t(lang, key)}</a>
             </li>
           ))}
         </ul>
@@ -81,7 +81,7 @@ const productLinks = ['products.apparatus', 'products.fixtures', 'products.molds
       <!-- Contact -->
       <div class="lg:col-span-4">
         <h3 class="text-xs font-semibold uppercase tracking-[0.2em] text-white/60 mb-5">{t(lang, 'footer.contact')}</h3>
-        <address class="not-italic space-y-4 text-sm text-white/55">
+        <address class="not-italic space-y-4 text-sm text-white/40">
           <div class="flex gap-3">
             <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             <span>{t(lang, 'footer.address')}</span>
