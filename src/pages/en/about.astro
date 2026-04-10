@@ -15,13 +15,13 @@ const tabs = [
 
   <section class="section-padding">
     <div class="container-custom">
-      <div class="flex flex-wrap gap-2 mb-14 border-b border-border pb-4" id="corp-tabs">
+      <div class="flex flex-wrap gap-2 mb-14 border-b border-white/[0.06] pb-4" id="corp-tabs">
         {tabs.map((tab, i) => (
           <button
             data-tab={tab.id}
             class:list={[
               'px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300',
-              i === 0 ? 'bg-primary-dark text-white' : 'text-primary border border-white/[0.06] hover:border-accent hover:text-accent',
+              i === 0 ? 'bg-accent/20 text-accent border border-accent/30' : 'text-white/50 border border-white/[0.08] hover:border-accent hover:text-accent',
             ]}
           >{tab.label}</button>
         ))}
@@ -92,8 +92,8 @@ const tabs = [
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       const target = tab.getAttribute('data-tab');
-      tabs.forEach((t) => { t.classList.remove('bg-primary-dark', 'text-white'); t.classList.add('text-primary', 'border', 'border-border'); });
-      tab.classList.add('bg-primary-dark', 'text-white'); tab.classList.remove('text-primary', 'border', 'border-border');
+      tabs.forEach((t) => { t.classList.remove('bg-accent/20', 'text-accent', 'border-accent/30'); t.classList.add('text-white/50', 'border-white/[0.08]'); });
+      tab.classList.add('bg-accent/20', 'text-accent', 'border-accent/30'); tab.classList.remove('text-white/50', 'border-white/[0.08]');
       contents.forEach((c) => c.classList.add('hidden'));
       document.getElementById(`tab-${target}`)?.classList.remove('hidden');
     });
