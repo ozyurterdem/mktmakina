@@ -3,10 +3,10 @@ import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://mkt3.siberkale.com',
+  site: 'https://mktmakina.com',
   i18n: {
     defaultLocale: 'tr',
-    locales: ['tr', 'en'],
+    locales: ['tr', 'en', 'de', 'ar'],
     routing: {
       prefixDefaultLocale: false,
     },
