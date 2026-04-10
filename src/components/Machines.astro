@@ -1,5 +1,5 @@
 ---
-import { t, getLocalePath, type Lang } from '../i18n/translations';
+import { t, type Lang } from '../i18n/translations';
 
 interface Props {
   lang?: Lang;
@@ -9,25 +9,25 @@ const { lang = 'tr' } = Astro.props;
 
 const categories = [
   {
-    title: lang === 'tr' ? '5 Eksen CNC' : '5-Axis CNC',
+    title: ({tr:'5 Eksen CNC', en:'5-Axis CNC', de:'5-Achs-CNC', ar:'ماكينات 5 محاور'} as Record<string,string>)[lang],
     count: 4,
     machines: ['DMU 85 monoBLOCK', 'DMU 75 monoBLOCK', 'HAAS UMC VF3', 'HAAS UMC 750'],
     brand: 'DMG MORI / HAAS',
   },
   {
-    title: lang === 'tr' ? '3 Eksen CNC' : '3-Axis CNC',
+    title: ({tr:'3 Eksen CNC', en:'3-Axis CNC', de:'3-Achs-CNC', ar:'ماكينات 3 محاور'} as Record<string,string>)[lang],
     count: 3,
     machines: ['DMC 1035 V', 'DMC 635 V', 'HAAS VF2'],
     brand: 'DMG MORI / HAAS',
   },
   {
-    title: lang === 'tr' ? 'Tel Erozyon' : 'Wire EDM',
+    title: ({tr:'Tel Erozyon', en:'Wire EDM', de:'Drahterodieren', ar:'التآكل السلكي'} as Record<string,string>)[lang],
     count: 3,
     machines: ['CUT 30P', 'CUT 20P', 'FANUC a-C400iA'],
     brand: 'GF / FANUC',
   },
   {
-    title: lang === 'tr' ? 'Plastik Enjeksiyon' : 'Plastic Injection',
+    title: ({tr:'Plastik Enjeksiyon', en:'Plastic Injection', de:'Kunststoffspritzguss', ar:'حقن البلاستيك'} as Record<string,string>)[lang],
     count: 2,
     machines: ['LS LST 280', 'LS LST 150'],
     brand: 'LS Mtron',
@@ -40,14 +40,12 @@ const categories = [
 
   <div class="relative z-10 container-custom">
     <div class="max-w-2xl mb-14" data-animate="fade-up">
-      <div class="section-label">{lang === 'tr' ? 'Üretim Altyapısı' : 'Production Infrastructure'}</div>
+      <div class="section-label">{({tr:'Üretim Altyapısı', en:'Production Infrastructure', de:'Produktionsinfrastruktur', ar:'البنية التحتية للإنتاج'} as Record<string,string>)[lang]}</div>
       <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-heading font-bold text-white mb-4">
         {t(lang, 'machines.title')}
       </h2>
       <p class="text-text-light text-base leading-relaxed">
-        {lang === 'tr'
-          ? 'İleri teknoloji tezgahlarımız ile mikron seviyesinde hassasiyet.'
-          : 'Micron-level precision with our advanced technology machines.'}
+        {({tr:'İleri teknoloji tezgahlarımız ile mikron seviyesinde hassasiyet.', en:'Micron-level precision with our advanced technology machines.', de:'Mikrogenaue Präzision mit unseren hochmodernen Maschinen.', ar:'دقة على مستوى الميكرون مع آلاتنا التكنولوجية المتقدمة.'} as Record<string,string>)[lang]}
       </p>
     </div>
 
@@ -83,7 +81,7 @@ const categories = [
 
     <div class="text-center mt-12" data-animate="fade-up">
       <a
-        href={getLocalePath(lang, lang === 'tr' ? '/makina-parkimiz' : '/machines')}
+        href={({tr:'/makina-parkimiz', en:'/en/machines', de:'/de/machines', ar:'/ar/machines'} as Record<string,string>)[lang]}
         class="inline-flex items-center gap-2 text-accent/60 text-sm font-mono uppercase tracking-wider hover:text-accent hover:gap-3 transition-all"
       >
         {t(lang, 'about.more')}
