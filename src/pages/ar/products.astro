@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+import { products } from '../../data/products';
+---
+
+<BaseLayout title="المنتجات — MKT ماكينا" description="منتجات MKT ماكينا: أجهزة، تجهيزات، قوالب، مقاييس ضبط الجودة، قطع حقن بلاستيكية ومشغولة." lang="ar" hasHero={false}>
+  <PageHero title="منتجاتنا" subtitle="حلول هندسية دقيقة لصناعتَي الطيران والسيارات" />
+
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((product) => (
+          <a href={`/ar/products/${product.slug}`} class="group card overflow-hidden" data-animate="fade-up">
+            <div class="relative aspect-[16/10] overflow-hidden">
+              <img src={product.image} alt={product.name.ar} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            <div class="p-5">
+              <h3 class="font-heading text-base font-semibold text-white mb-2 group-hover:text-accent transition-colors tracking-wide">{product.name.ar}</h3>
+              <p class="text-text-light text-sm leading-relaxed mb-3">{product.description.ar}</p>
+              <div class="accent-bar transition-all duration-500 group-hover:w-12"></div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA lang="ar" />
+</BaseLayout>

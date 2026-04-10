@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+
+const tabs = [
+  { id: 'about', label: 'من نحن' },
+  { id: 'mission', label: 'المهمة والرؤية' },
+  { id: 'quality', label: 'سياسة الجودة' },
+];
+---
+
+<BaseLayout title="من نحن — MKT ماكينا" description="تعرف على MKT ماكينا، مهمتنا، رؤيتنا وسياسة الجودة. مصنّع قطع طيران وسيارات معتمد بمعيار AS9100." lang="ar" hasHero={false}>
+  <PageHero title="من نحن" subtitle="تصنيع دقيق بمعايير الطيران منذ عام 2007" />
+
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="flex flex-wrap gap-2 mb-14 border-b border-white/[0.06] pb-4" id="corp-tabs">
+        {tabs.map((tab, i) => (
+          <button
+            data-tab={tab.id}
+            class:list={[
+              'px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300',
+              i === 0 ? 'bg-accent/20 text-accent border border-accent/30' : 'text-white/50 border border-white/[0.08] hover:border-accent hover:text-accent',
+            ]}
+          >{tab.label}</button>
+        ))}
+      </div>
+
+      <div id="tab-about" class="tab-content">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div data-animate="fade-up">
+            <h2 class="font-heading text-2xl font-bold text-white mb-6">من نحن</h2>
+            <div class="space-y-4 text-text-light leading-relaxed text-[15px]">
+              <p>تُصنّع MKT ماكينا قطعًا مشغولة بدقة عالية وقطع حقن بلاستيكية لصناعتَي الطيران والسيارات. تأسست الشركة عام 2007، وهي تصنع القوالب والتجهيزات والأجهزة ومقاييس ضبط الجودة منذ سنواتها الأولى.</p>
+              <p>مع توسّع حظيرة آلاتها، بدأت الشركة عام 2012 في تصنيع القطع المشغولة لمقاعد طائرات TSI.</p>
+              <p>بفضل الحصول على شهادة AS9100، تم هيكلة نظام إدارة الجودة لدينا وفقًا لمتطلبات صناعتَي الطيران والسيارات.</p>
+            </div>
+          </div>
+          <div class="relative" data-animate="fade-up">
+            <img src="/images/slide1.jpg" alt="MKT ماكينا" class="w-full aspect-[4/3] object-cover" />
+            <div class="absolute bottom-0 left-0 w-24 h-1 bg-accent"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-mission" class="tab-content hidden">
+        <div class="grid lg:grid-cols-2 gap-6">
+          <div class="p-8 bg-primary-dark" data-animate="fade-up">
+            <span class="section-label text-accent">المهمة</span>
+            <h2 class="font-heading text-xl font-bold text-white mb-4">المهمة</h2>
+            <p class="text-white/60 text-sm leading-relaxed">باستخدام أحدث الفرص التقنية في علوم الهندسة والإدارة، نحافظ على أعلى معايير الجودة بتقنيات تصنيع متطورة، مع إيلاء الأولوية لرضا العملاء والسعي نحو التميز.</p>
+          </div>
+          <div class="p-8 bg-accent" data-animate="fade-up">
+            <span class="text-white/60 text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">الرؤية</span>
+            <h2 class="font-heading text-xl font-bold text-white mb-4">الرؤية</h2>
+            <p class="text-white/80 text-sm leading-relaxed">تقديم خدمة سهلة وآمنة واقتصادية وعالية الجودة في صناعة التصنيع بأداء جودة 100% ونهج خدمة لا تشوبه شائبة، من خلال إنتاج حلول سريعة ودقيقة وموثوقة.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-quality" class="tab-content hidden">
+        <div class="max-w-3xl">
+          <h2 class="font-heading text-xl font-bold text-white mb-6" data-animate="fade-up">سياسة الجودة</h2>
+          <p class="text-text-light leading-relaxed mb-6 text-[15px]">تقوم سياسة الجودة لدينا على معايير AS9100:</p>
+          <div class="space-y-3">
+            {[
+              'إنشاء نظام إدارة جودة يستوفي متطلبات AS9100',
+              'التحسين المستمر لنظام إدارة الجودة',
+              'ضمان رضا العملاء بأساليب مبتكرة',
+              'ترسيخ ثقافة الجودة لدى جميع الموظفين',
+              'تحمّل المسؤولية عن كل منتج نصنعه',
+              'الجمع بين المواد الخام عالية الجودة والآلات الحديثة والكوادر المتخصصة',
+            ].map((item, i) => (
+              <div class="flex items-start gap-4 p-4 bg-primary-light border border-white/[0.06]" data-animate="fade-up">
+                <span class="w-7 h-7 bg-primary-dark text-white flex items-center justify-center shrink-0 text-xs font-heading font-bold">{i + 1}</span>
+                <span class="text-text-light text-sm leading-relaxed">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA lang="ar" />
+</BaseLayout>
+
+<script>
+  const tabs = document.querySelectorAll('#corp-tabs button');
+  const contents = document.querySelectorAll('.tab-content');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab');
+      tabs.forEach((t) => { t.classList.remove('bg-accent/20', 'text-accent', 'border-accent/30'); t.classList.add('text-white/50', 'border-white/[0.08]'); });
+      tab.classList.add('bg-accent/20', 'text-accent', 'border-accent/30'); tab.classList.remove('text-white/50', 'border-white/[0.08]');
+      contents.forEach((c) => c.classList.add('hidden'));
+      document.getElementById(`tab-${target}`)?.classList.remove('hidden');
+    });
+  });
+</script>

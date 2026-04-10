@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHero from '../../../components/PageHero.astro';
+import CTA from '../../../components/CTA.astro';
+import { products } from '../../../data/products';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+
+const { product } = Astro.props;
+const otherProducts = products.filter((p) => p.slug !== product.slug);
+---
+
+<BaseLayout title={`${product.name.ar} — MKT ماكينا`} description={product.description.ar} lang="ar" hasHero={false}>
+  <PageHero title={product.name.ar} subtitle="منتجاتنا" image={product.image} />
+
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div data-animate="fade-up">
+          <div class="relative overflow-hidden">
+            <img src={product.image} alt={product.name.ar} class="w-full aspect-[4/3] object-cover" />
+            <div class="absolute bottom-0 left-0 w-24 h-1 bg-accent"></div>
+          </div>
+        </div>
+
+        <div data-animate="fade-up">
+          <span class="section-label text-accent">تفاصيل المنتج</span>
+          <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white mb-3">{product.name.ar}</h2>
+          <div class="accent-bar mb-6"></div>
+          <p class="text-text-light text-[15px] leading-relaxed mb-8">{product.description.ar}</p>
+
+          <h3 class="font-heading text-base font-semibold text-white mb-4">النطاق</h3>
+          <ul class="space-y-2.5 mb-8">
+            {product.details.ar.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-text-light">
+                <span class="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <a href="/ar/contact" class="btn-primary inline-flex items-center gap-2">
+            اتصل بنا
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-20">
+        <h3 class="font-heading text-xl font-bold text-white mb-6" data-animate="fade-up">منتجات أخرى</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-[1px] bg-border">
+          {otherProducts.map((p) => (
+            <a href={`/ar/products/${p.slug}`} class="group block bg-primary-light overflow-hidden" data-animate="fade-up">
+              <div class="relative aspect-[4/3] overflow-hidden">
+                <img src={p.image} alt={p.name.ar} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/70 to-transparent"></div>
+              </div>
+              <div class="p-3">
+                <h4 class="font-heading text-xs font-semibold text-white group-hover:text-accent transition-colors tracking-wide">{p.name.ar}</h4>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA lang="ar" />
+</BaseLayout>

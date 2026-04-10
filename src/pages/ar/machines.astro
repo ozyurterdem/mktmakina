@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+
+const machineGroups = [
+  { category: 'مراكز تشغيل CNC خماسية المحاور', machines: [
+    { name: 'DMU 85', specs: 'DMG MORI — 5 محاور متزامنة' },
+    { name: 'DMU 75', specs: 'DMG MORI — 5 محاور متزامنة' },
+    { name: 'HAAS UMC VF3', specs: 'مركز تشغيل CNC خماسي المحاور' },
+    { name: 'HAAS UMC 750', specs: 'مركز تشغيل CNC خماسي المحاور' },
+  ]},
+  { category: 'مراكز تشغيل CNC ثلاثية المحاور', machines: [
+    { name: 'DMC 1035 V', specs: 'DMG MORI — 3 محاور' },
+    { name: 'DMC 1035 V', specs: 'DMG MORI — 3 محاور (الوحدة الثانية)' },
+    { name: 'DMC 835 V', specs: 'DMG MORI — 3 محاور' },
+  ]},
+  { category: 'قطع الأسلاك بالتفريغ الكهربائي (Wire EDM)', machines: [
+    { name: 'CUT 30P', specs: 'GF Machining (الوحدة الأولى)' },
+    { name: 'CUT 30P', specs: 'GF Machining (الوحدة الثانية)' },
+    { name: 'CUT 20P', specs: 'GF Machining' },
+  ]},
+  { category: 'مخرطة والتفريغ الكهربائي بالغاطس', machines: [
+    { name: 'مخرطة CNC', specs: 'آلة خراطة CNC' },
+    { name: 'تفريغ كهربائي بالغاطس', specs: 'آلة تفريغ كهربائي بالغاطس' },
+  ]},
+  { category: 'الطحن والصقل', machines: [
+    { name: 'طحن سطحي', specs: 'آلة طحن سطحي' },
+    { name: 'طحن أسطواني', specs: 'طحن أسطواني وداخلي' },
+    { name: 'طحن الأدوات', specs: 'آلة طحن الأدوات' },
+  ]},
+  { category: 'الحقن البلاستيكي والوسم', machines: [
+    { name: 'LS LST 280', specs: 'LS — آلة حقن بلاستيكي' },
+    { name: 'وسم بالليزر', specs: 'نظام وسم بالليزر' },
+  ]},
+];
+---
+
+<BaseLayout title="حظيرة الآلات — MKT ماكينا" description="حظيرة آلات MKT ماكينا: CNC خماسي المحاور DMG MORI، HAAS، قطع أسلاك GF Machining والمزيد." lang="ar" hasHero={false}>
+  <PageHero title="حظيرة الآلات" subtitle="بنية تحتية إنتاجية بأحدث التقنيات" image="/images/slide3.jpg" />
+
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-border mb-14" data-animate="fade-up">
+        {[
+          { value: '4', label: 'CNC خماسي' },
+          { value: '3', label: 'CNC ثلاثي' },
+          { value: '3', label: 'Wire EDM' },
+          { value: '+20', label: 'إجمالي الآلات' },
+        ].map((stat) => (
+          <div class="text-center p-5 bg-primary-dark">
+            <div class="font-heading text-2xl sm:text-3xl font-bold text-accent">{stat.value}</div>
+            <div class="text-white/60 text-xs mt-1 uppercase tracking-wider">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="space-y-10">
+        {machineGroups.map((group) => (
+          <div data-animate="fade-up">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="accent-bar"></div>
+              <h2 class="font-heading text-lg font-bold text-white tracking-wide">{group.category}</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1px] bg-border">
+              {group.machines.map((machine) => (
+                <div class="p-5 bg-primary-light hover:bg-primary-light transition-colors">
+                  <h3 class="font-heading text-sm font-semibold text-white mb-1 tracking-wide">{machine.name}</h3>
+                  <p class="text-text-light text-xs">{machine.specs}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA lang="ar" />
+</BaseLayout>
