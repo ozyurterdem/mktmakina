@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://mktmakina.com',
@@ -34,6 +35,7 @@ export default defineConfig({
       subsets: ['latin', 'latin-ext'],
     },
   ],
+  integrations: [sitemap({ i18n: { defaultLocale: 'tr', locales: { tr: 'tr-TR', en: 'en-US', de: 'de-DE', ar: 'ar-SA' } } })],
   vite: {
     plugins: [tailwindcss()],
   },

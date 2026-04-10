@@ -105,6 +105,31 @@ const trHref = new URL(getPathForLang('tr'), Astro.site).toString();
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="MKT Makina Kalıp Takım" />
     <meta property="og:locale" content={ogLocaleMap[lang]} />
+    <meta property="og:image" content="https://mktmakina.com/images/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://mktmakina.com/images/og-image.jpg" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="geo.region" content="TR-54" />
+    <meta name="geo.placename" content="Arifiye, Sakarya" />
+    <meta name="geo.position" content="40.7114;30.3953" />
+    <meta name="ICBM" content="40.7114, 30.3953" />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'MKT Makina Kalıp Takım',
+      url: 'https://mktmakina.com',
+      logo: 'https://mktmakina.com/images/logo.png',
+      description: 'Havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ve plastik enjeksiyon çözümleri.',
+      address: { '@type': 'PostalAddress', streetAddress: 'Hanlıköy Mah. Akgün Cad. No:1', addressLocality: 'Arifiye', addressRegion: 'Sakarya', postalCode: '54580', addressCountry: 'TR' },
+      geo: { '@type': 'GeoCoordinates', latitude: 40.7114, longitude: 30.3953 },
+      telephone: '+902642761880',
+      email: 'info@mktmakina.com',
+      sameAs: [],
+      contactPoint: { '@type': 'ContactPoint', telephone: '+902642761880', contactType: 'sales', availableLanguage: ['Turkish','English','German','Arabic'] }
+    })} />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <Font cssVariable="--font-sans" />
