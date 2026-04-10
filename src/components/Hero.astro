@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { lang = 'tr' } = Astro.props;
+const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden" id="hero">
@@ -27,9 +28,9 @@ const { lang = 'tr' } = Astro.props;
 
       <!-- Title -->
       <h1 data-animate="fade-up" data-delay="100" class="text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] font-heading font-bold text-white leading-[1.05] mb-8 tracking-tight">
-        {({tr:'Havacılık', en:'Aviation-Grade', de:'Luftfahrt-Qualität', ar:'جودة الطيران'} as Record<string,string>)[lang]}<br />
-        <span class="text-accent">{({tr:'Hassasiyetinde', en:'Precision', de:'Präzision', ar:'الدقة'} as Record<string,string>)[lang]}</span><br />
-        {({tr:'Üretim', en:'Manufacturing', de:'Fertigung', ar:'التصنيع'} as Record<string,string>)[lang]}
+        {l({tr:'Havacılık', en:'Aviation-Grade', de:'Luftfahrt-Qualität', ar:'جودة الطيران'})}<br />
+        <span class="text-accent">{l({tr:'Hassasiyetinde', en:'Precision', de:'Präzision', ar:'الدقة'})}</span><br />
+        {l({tr:'Üretim', en:'Manufacturing', de:'Fertigung', ar:'التصنيع'})}
       </h1>
 
       <!-- Subtitle -->
@@ -39,11 +40,11 @@ const { lang = 'tr' } = Astro.props;
 
       <!-- CTAs -->
       <div data-animate="fade-up" data-delay="300" class="flex flex-wrap gap-4">
-        <a href={({tr:'/iletisim', en:'/en/contact', de:'/de/contact', ar:'/ar/contact'} as Record<string,string>)[lang]} class="btn-primary">
+        <a href={l({tr:'/iletisim', en:'/en/contact', de:'/de/contact', ar:'/ar/contact'})} class="btn-primary">
           {t(lang, 'hero.cta')}
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
-        <a href={({tr:'/urunler', en:'/en/products', de:'/de/products', ar:'/ar/products'} as Record<string,string>)[lang]} class="btn-outline">{t(lang, 'hero.explore')}</a>
+        <a href={l({tr:'/urunler', en:'/en/products', de:'/de/products', ar:'/ar/products'})} class="btn-outline">{t(lang, 'hero.explore')}</a>
       </div>
     </div>
   </div>
@@ -54,7 +55,7 @@ const { lang = 'tr' } = Astro.props;
       <div class="grid grid-cols-3 divide-x divide-white/[0.06]">
         <div class="py-6 lg:py-8 px-4 lg:px-8" data-animate="fade-up" data-delay="400">
           <div class="font-mono text-2xl lg:text-3xl font-bold text-accent">2007</div>
-          <div class="text-white/30 text-xs uppercase tracking-widest mt-1">{({tr:'Kuruluş', en:'Since', de:'Seit', ar:'منذ'} as Record<string,string>)[lang]}</div>
+          <div class="text-white/30 text-xs uppercase tracking-widest mt-1">{l({tr:'Kuruluş', en:'Since', de:'Seit', ar:'منذ'})}</div>
         </div>
         <div class="py-6 lg:py-8 px-4 lg:px-8" data-animate="fade-up" data-delay="480">
           <div class="font-mono text-2xl lg:text-3xl font-bold text-white">20<span class="text-accent">+</span></div>
@@ -62,7 +63,7 @@ const { lang = 'tr' } = Astro.props;
         </div>
         <div class="py-6 lg:py-8 px-4 lg:px-8" data-animate="fade-up" data-delay="560">
           <div class="font-mono text-2xl lg:text-3xl font-bold text-accent">AS9100</div>
-          <div class="text-white/30 text-xs uppercase tracking-widest mt-1">{({tr:'Sertifikalı', en:'Certified', de:'Zertifiziert', ar:'معتمد'} as Record<string,string>)[lang]}</div>
+          <div class="text-white/30 text-xs uppercase tracking-widest mt-1">{l({tr:'Sertifikalı', en:'Certified', de:'Zertifiziert', ar:'معتمد'})}</div>
         </div>
       </div>
     </div>

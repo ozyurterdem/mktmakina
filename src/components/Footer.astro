@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { lang = 'tr' } = Astro.props;
+const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
 const year = new Date().getFullYear();
 
 const quickLinksMap: Record<string, { key: string; href: string }[]> = {
@@ -64,12 +65,12 @@ const productLinks = ['products.apparatus', 'products.fixtures', 'products.molds
           </div>
         </a>
         <p class="text-white/40 text-sm leading-relaxed mb-6 max-w-xs">
-          {({
+          {l({
             tr: 'Havacilik ve otomotiv sanayii icin yuksek kaliteli hassas isleme parcalar ve plastik enjeksiyon cozumleri.',
             en: 'High quality precision machined parts and plastic injection solutions for aviation and automotive industry.',
             de: 'Hochwertige Präzisionsteile und Kunststoffspritzgusslösungen für die Luft- und Automobilindustrie.',
             ar: 'قطع دقيقة عالية الجودة وحلول حقن البلاستيك لصناعة الطيران والسيارات.',
-          } as Record<string, string>)[lang]}
+          })}
         </p>
         <div class="flex flex-wrap gap-2">
           <div class="inline-flex items-center gap-2 px-3 py-2 bg-white/[0.04] border border-white/[0.06] text-xs text-white/60">

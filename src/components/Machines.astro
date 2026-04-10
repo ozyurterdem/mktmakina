@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { lang = 'tr' } = Astro.props;
+const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
 
 const categories = [
   {
@@ -40,12 +41,12 @@ const categories = [
 
   <div class="relative z-10 container-custom">
     <div class="max-w-2xl mb-14" data-animate="fade-up">
-      <div class="section-label">{({tr:'Üretim Altyapısı', en:'Production Infrastructure', de:'Produktionsinfrastruktur', ar:'البنية التحتية للإنتاج'} as Record<string,string>)[lang]}</div>
+      <div class="section-label">{l({tr:'Üretim Altyapısı', en:'Production Infrastructure', de:'Produktionsinfrastruktur', ar:'البنية التحتية للإنتاج'})}</div>
       <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-heading font-bold text-white mb-4">
         {t(lang, 'machines.title')}
       </h2>
       <p class="text-text-light text-base leading-relaxed">
-        {({tr:'İleri teknoloji tezgahlarımız ile mikron seviyesinde hassasiyet.', en:'Micron-level precision with our advanced technology machines.', de:'Mikrogenaue Präzision mit unseren hochmodernen Maschinen.', ar:'دقة على مستوى الميكرون مع آلاتنا التكنولوجية المتقدمة.'} as Record<string,string>)[lang]}
+        {l({tr:'İleri teknoloji tezgahlarımız ile mikron seviyesinde hassasiyet.', en:'Micron-level precision with our advanced technology machines.', de:'Mikrogenaue Präzision mit unseren hochmodernen Maschinen.', ar:'دقة على مستوى الميكرون مع آلاتنا التكنولوجية المتقدمة.'})}
       </p>
     </div>
 
@@ -81,7 +82,7 @@ const categories = [
 
     <div class="text-center mt-12" data-animate="fade-up">
       <a
-        href={({tr:'/makina-parkimiz', en:'/en/machines', de:'/de/machines', ar:'/ar/machines'} as Record<string,string>)[lang]}
+        href={l({tr:'/makina-parkimiz', en:'/en/machines', de:'/de/machines', ar:'/ar/machines'})}
         class="inline-flex items-center gap-2 text-accent/60 text-sm font-mono uppercase tracking-wider hover:text-accent hover:gap-3 transition-all"
       >
         {t(lang, 'about.more')}
