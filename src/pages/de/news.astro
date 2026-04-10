@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+
+const news = [
+  {
+    title: 'Starke Partner steigern den Wert unserer Produkte noch weiter',
+    image: '/images/news/guclu-partnerler.jpg',
+    summary: 'Bei MKT Makina produzieren wir nicht nur hochwertige Fertigungstechnologien mit modernsten technologischen Möglichkeiten im Ingenieurwesen, sondern bieten auch langfristige Partnerschaften durch unsere After-Sales-Beratung und unsere Supportleistungen.',
+    date: '2024',
+  },
+];
+---
+
+<BaseLayout title="Neuigkeiten — MKT Makina" description="MKT Makina Neuigkeiten und Ankündigungen." lang="de" hasHero={false}>
+  <PageHero title="Neuigkeiten" subtitle="Aktuelle Meldungen und Ankündigungen" />
+
+  <section class="section-padding">
+    <div class="container-custom max-w-[1000px]">
+      <div class="space-y-6">
+        {news.map((item) => (
+          <article class="card grid md:grid-cols-[200px_1fr] gap-6 p-5" data-animate="fade-up">
+            <div class="aspect-square overflow-hidden bg-surface">
+              <img src={item.image} alt={item.title} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="flex flex-col justify-center">
+              <span class="text-accent text-xs font-semibold uppercase tracking-wider mb-2">{item.date}</span>
+              <h2 class="font-heading text-lg font-bold text-white mb-2">{item.title}</h2>
+              <p class="text-text-light text-sm leading-relaxed">{item.summary}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA lang="de" />
+</BaseLayout>

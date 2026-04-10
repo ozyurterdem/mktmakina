@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+
+const tabs = [
+  { id: 'about', label: 'Über Uns' },
+  { id: 'mission', label: 'Mission & Vision' },
+  { id: 'quality', label: 'Qualitätspolitik' },
+];
+---
+
+<BaseLayout title="Über Uns — MKT Makina" description="Über MKT Makina, Mission, Vision und Qualitätspolitik. AS9100-zertifizierter Hersteller von Luft- und Kraftfahrzeugteilen." lang="de" hasHero={false}>
+  <PageHero title="Über Uns" subtitle="Präzisionsfertigung in Luftfahrtqualität seit 2007" />
+
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="flex flex-wrap gap-2 mb-14 border-b border-white/[0.06] pb-4" id="corp-tabs">
+        {tabs.map((tab, i) => (
+          <button
+            data-tab={tab.id}
+            class:list={[
+              'px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300',
+              i === 0 ? 'bg-accent/20 text-accent border border-accent/30' : 'text-white/50 border border-white/[0.08] hover:border-accent hover:text-accent',
+            ]}
+          >{tab.label}</button>
+        ))}
+      </div>
+
+      <div id="tab-about" class="tab-content">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div data-animate="fade-up">
+            <h2 class="font-heading text-2xl font-bold text-white mb-6">Über Uns</h2>
+            <div class="space-y-4 text-text-light leading-relaxed text-[15px]">
+              <p>MKT Makina stellt hochwertige Präzisionsbauteile und Kunststoffspritzgussteile für die Luft- und Kraftfahrtindustrie her. Das 2007 gegründete Unternehmen fertigt seit seinen Anfängen Formen, Vorrichtungen, Apparate und Qualitätskontrollmessmittel.</p>
+              <p>Durch die Erweiterung seines Maschinenparks begann das Unternehmen ab 2012 mit der Herstellung von Bearbeitungsteilen für TSI-Flugzeugsitze.</p>
+              <p>Zertifiziert nach AS9100, ist unser Qualitätsmanagementsystem entsprechend den Anforderungen der Luft- und Kraftfahrtindustrie strukturiert.</p>
+            </div>
+          </div>
+          <div class="relative" data-animate="fade-up">
+            <img src="/images/slide1.jpg" alt="MKT Makina" class="w-full aspect-[4/3] object-cover" />
+            <div class="absolute bottom-0 left-0 w-24 h-1 bg-accent"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-mission" class="tab-content hidden">
+        <div class="grid lg:grid-cols-2 gap-6">
+          <div class="p-8 bg-primary-dark" data-animate="fade-up">
+            <span class="section-label text-accent">Mission</span>
+            <h2 class="font-heading text-xl font-bold text-white mb-4">Mission</h2>
+            <p class="text-white/60 text-sm leading-relaxed">Durch den Einsatz modernster technologischer Möglichkeiten in den Ingenieur- und Managementwissenschaften halten wir die höchsten Qualitätsstandards aufrecht, entwickeln Fertigungstechnologien, priorisieren die Kundenzufriedenheit und streben nach Exzellenz.</p>
+          </div>
+          <div class="p-8 bg-accent" data-animate="fade-up">
+            <span class="text-white/60 text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Vision</span>
+            <h2 class="font-heading text-xl font-bold text-white mb-4">Vision</h2>
+            <p class="text-white/80 text-sm leading-relaxed">Einfache, sichere, wirtschaftliche und qualitativ hochwertige Dienstleistungen in der Fertigungsindustrie mit 100 % Qualitätsleistung und einem fehlerfreien Serviceansatz anzubieten, der schnelle, genaue und zuverlässige Lösungen liefert.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-quality" class="tab-content hidden">
+        <div class="max-w-3xl">
+          <h2 class="font-heading text-xl font-bold text-white mb-6" data-animate="fade-up">Qualitätspolitik</h2>
+          <p class="text-text-light leading-relaxed mb-6 text-[15px]">Unsere Qualitätspolitik basiert auf AS9100-Standards:</p>
+          <div class="space-y-3">
+            {[
+              'Aufbau eines Qualitätsmanagementsystems nach AS9100-Anforderungen',
+              'Kontinuierliche Verbesserung des Qualitätsmanagementsystems',
+              'Sicherstellung der Kundenzufriedenheit durch innovative Ansätze',
+              'Sicherstellung des Qualitätsbewusstseins aller Mitarbeiter',
+              'Übernahme von Verantwortung für jedes gefertigte Produkt',
+              'Kombination von hochwertigen Rohmaterialien, modernsten Maschinen und erfahrenem Fachpersonal',
+            ].map((item, i) => (
+              <div class="flex items-start gap-4 p-4 bg-primary-light border border-white/[0.06]" data-animate="fade-up">
+                <span class="w-7 h-7 bg-primary-dark text-white flex items-center justify-center shrink-0 text-xs font-heading font-bold">{i + 1}</span>
+                <span class="text-text-light text-sm leading-relaxed">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTA lang="de" />
+</BaseLayout>
+
+<script>
+  const tabs = document.querySelectorAll('#corp-tabs button');
+  const contents = document.querySelectorAll('.tab-content');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab');
+      tabs.forEach((t) => { t.classList.remove('bg-accent/20', 'text-accent', 'border-accent/30'); t.classList.add('text-white/50', 'border-white/[0.08]'); });
+      tab.classList.add('bg-accent/20', 'text-accent', 'border-accent/30'); tab.classList.remove('text-white/50', 'border-white/[0.08]');
+      contents.forEach((c) => c.classList.add('hidden'));
+      document.getElementById(`tab-${target}`)?.classList.remove('hidden');
+    });
+  });
+</script>

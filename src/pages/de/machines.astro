@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import CTA from '../../components/CTA.astro';
+
+const machineGroups = [
+  { category: '5-Achsen CNC-Bearbeitungszentren', machines: [
+    { name: 'DMU 85', specs: 'DMG MORI — 5-Achsen simultan' },
+    { name: 'DMU 75', specs: 'DMG MORI — 5-Achsen simultan' },
+    { name: 'HAAS UMC VF3', specs: '5-Achsen CNC-Bearbeitungszentrum' },
+    { name: 'HAAS UMC 750', specs: '5-Achsen CNC-Bearbeitungszentrum' },
+  ]},
+  { category: '3-Achsen CNC-Bearbeitungszentren', machines: [
+    { name: 'DMC 1035 V', specs: 'DMG MORI — 3-Achsen' },
+    { name: 'DMC 1035 V', specs: 'DMG MORI — 3-Achsen (2. Einheit)' },
+    { name: 'DMC 835 V', specs: 'DMG MORI — 3-Achsen' },
+  ]},
+  { category: 'Drahterodieren (Wire EDM)', machines: [
+    { name: 'CUT 30P', specs: 'GF Machining (1. Einheit)' },
+    { name: 'CUT 30P', specs: 'GF Machining (2. Einheit)' },
+    { name: 'CUT 20P', specs: 'GF Machining' },
+  ]},
+  { category: 'Drehmaschine & Senkerodieren', machines: [
+    { name: 'CNC-Drehmaschine', specs: 'CNC-Drehmaschine' },
+    { name: 'Senkerodiermaschine', specs: 'Senkerodiermaschine' },
+  ]},
+  { category: 'Schleifen', machines: [
+    { name: 'Flachschleifmaschine', specs: 'Flachschleifmaschine' },
+    { name: 'Rundschleifmaschine', specs: 'Rund- & Innenschleifen' },
+    { name: 'Werkzeugschleifmaschine', specs: 'Werkzeugschleifmaschine' },
+  ]},
+  { category: 'Kunststoffspritzguss & Kennzeichnung', machines: [
+    { name: 'LS LST 280', specs: 'LS — Kunststoffspritzgussmaschine' },
+    { name: 'Laserkennzeichnung', specs: 'Laserkennzeichnungssystem' },
+  ]},
+];
+---
+
+<BaseLayout title="Maschinenpark — MKT Makina" description="MKT Makina Maschinenpark: DMG MORI 5-Achsen CNC, HAAS, GF Machining Drahterodieren und mehr." lang="de" hasHero={false}>
+  <PageHero title="Maschinenpark" subtitle="Moderne Technologie-Fertigungsinfrastruktur" image="/images/slide3.jpg" />
+
+  <section class="section-padding">
+    <div class="container-custom">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-border mb-14" data-animate="fade-up">
+        {[
+          { value: '4', label: '5-Achsen CNC' },
+          { value: '3', label: '3-Achsen CNC' },
+          { value: '3', label: 'Drahterodieren' },
+          { value: '20+', label: 'Maschinen gesamt' },
+        ].map((stat) => (
+          <div class="text-center p-5 bg-primary-dark">
+            <div class="font-heading text-2xl sm:text-3xl font-bold text-accent">{stat.value}</div>
+            <div class="text-white/60 text-xs mt-1 uppercase tracking-wider">{stat.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="space-y-10">
+        {machineGroups.map((group) => (
+          <div data-animate="fade-up">
+            <div class="flex items-center gap-3 mb-5">
+              <div class="accent-bar"></div>
+              <h2 class="font-heading text-lg font-bold text-white tracking-wide">{group.category}</h2>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1px] bg-border">
+              {group.machines.map((machine) => (
+                <div class="p-5 bg-primary-light hover:bg-primary-light transition-colors">
+                  <h3 class="font-heading text-sm font-semibold text-white mb-1 tracking-wide">{machine.name}</h3>
+                  <p class="text-text-light text-xs">{machine.specs}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA lang="de" />
+</BaseLayout>
