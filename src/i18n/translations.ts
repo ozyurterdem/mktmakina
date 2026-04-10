@@ -1,6 +1,8 @@
 export const languages = {
   tr: 'Türkçe',
   en: 'English',
+  de: 'Deutsch',
+  ar: 'العربية',
 } as const;
 
 export type Lang = keyof typeof languages;
@@ -171,6 +173,170 @@ export const translations = {
     'contact.form.subject': 'Subject',
     'contact.form.message': 'Message',
     'contact.form.send': 'Send',
+  },
+  de: {
+    // Nav
+    'nav.home': 'Startseite',
+    'nav.about': 'Über Uns',
+    'nav.products': 'Produkte',
+    'nav.machines': 'Maschinenpark',
+    'nav.references': 'Referenzen',
+    'nav.certificates': 'Zertifikate',
+    'nav.news': 'Neuigkeiten',
+    'nav.contact': 'Kontakt',
+    'nav.quote': 'Angebot Anfordern',
+    'nav.hr': 'Karriere',
+
+    // Hero
+    'hero.title': 'Fertigung mit Luftfahrtpräzision',
+    'hero.subtitle': 'Hochwertige Präzisionsbearbeitungsteile und Kunststoffspritzgusslösungen für die Luft- und Raumfahrt- sowie Automobilindustrie.',
+    'hero.cta': 'Kontakt Aufnehmen',
+    'hero.explore': 'Unsere Produkte',
+    'hero.slide1.subtitle': 'AS9100 ZERTIFIZIERT',
+    'hero.slide2.subtitle': 'FORTSCHRITTLICHE TECHNOLOGIE',
+    'hero.slide3.subtitle': 'IHR LÖSUNGSPARTNER',
+    'hero.slide2.desc': 'Mikronpräzision mit DMG MORI und HAAS Technologie.',
+    'hero.slide3.desc': 'Ihr zuverlässiger Partner für Kunststoffspritzguss und individuelle Werkzeugkonstruktion.',
+
+    // Stats
+    'stats.since': 'Seit',
+    'stats.certification': 'AS9100 Zertifiziert',
+    'stats.axis': '5-Achsen CNC',
+    'stats.references': 'Starke Referenzen',
+
+    // Gallery
+    'gallery.title': 'Produktionsgalerie',
+    'gallery.subtitle': 'Aufnahmen aus unserem Fertigungsbetrieb',
+
+    // Products
+    'products.title': 'Unsere Produkte',
+    'products.subtitle': 'Präzisionstechnische Lösungen für die Luft- und Raumfahrt- sowie Automobilindustrie',
+    'products.apparatus': 'Vorrichtungen',
+    'products.fixtures': 'Spannvorrichtungen',
+    'products.molds': 'Werkzeuge',
+    'products.applications': 'Anwendungen',
+    'products.gauges': 'Qualitätskontrolllehren',
+    'products.injection': 'Kunststoffspritzguss',
+    'products.detail': 'Details',
+
+    // About
+    'about.title': 'Über Uns',
+    'about.text': 'MKT Makina fertigt seit 2007 hochwertige Präzisionsbearbeitungsteile und Kunststoffspritzgussteile für die Luft- und Raumfahrt- sowie Automobilindustrie. Als AS9100-zertifiziertes Unternehmen haben wir unser Qualitätsmanagementsystem entsprechend den Anforderungen der Luft- und Raumfahrt- sowie Automobilindustrie aufgebaut.',
+    'about.more': 'Mehr Erfahren',
+
+    // Machines
+    'machines.title': 'Maschinenpark',
+    'machines.subtitle': 'Unsere hochmoderne Fertigungsinfrastruktur',
+
+    // References
+    'references.title': 'Referenzen',
+    'references.subtitle': 'Unsere vertrauenswürdigen Partner',
+    'references.all': 'Alle Anzeigen',
+
+    // CTA
+    'cta.title': 'Nehmen Sie Kontakt Für Ihr Projekt Auf',
+    'cta.subtitle': 'Kontaktieren Sie uns für Präzisionslösungen in der Luft- und Raumfahrt- sowie Automobilindustrie.',
+    'cta.button': 'Kontaktformular',
+    'cta.call': 'Rufen Sie Uns An',
+
+    // Footer
+    'footer.corporate': 'Unternehmen',
+    'footer.quicklinks': 'Schnellzugriff',
+    'footer.contact': 'Kontakt',
+    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:1 Arifiye / Sakarya, Türkei',
+    'footer.rights': 'Alle Rechte vorbehalten.',
+    'footer.follow': 'Folgen Sie Uns',
+
+    // Contact
+    'contact.title': 'Kontakt',
+    'contact.form.name': 'Vor- und Nachname',
+    'contact.form.email': 'E-Mail',
+    'contact.form.phone': 'Telefon',
+    'contact.form.subject': 'Betreff',
+    'contact.form.message': 'Nachricht',
+    'contact.form.send': 'Senden',
+  },
+  ar: {
+    // Nav
+    'nav.home': 'الرئيسية',
+    'nav.about': 'من نحن',
+    'nav.products': 'المنتجات',
+    'nav.machines': 'أسطول الآلات',
+    'nav.references': 'المراجع',
+    'nav.certificates': 'الشهادات',
+    'nav.news': 'الأخبار',
+    'nav.contact': 'اتصل بنا',
+    'nav.quote': 'طلب عرض سعر',
+    'nav.hr': 'الوظائف',
+
+    // Hero
+    'hero.title': 'تصنيع بدقة الطيران',
+    'hero.subtitle': 'قطع مُشغَّلة بدقة عالية وحلول حقن بلاستيكي لصناعتَي الطيران والسيارات.',
+    'hero.cta': 'تواصل معنا',
+    'hero.explore': 'منتجاتنا',
+    'hero.slide1.subtitle': 'معتمد وفق AS9100',
+    'hero.slide2.subtitle': 'تكنولوجيا متقدمة',
+    'hero.slide3.subtitle': 'شريكك في الحلول',
+    'hero.slide2.desc': 'دقة على مستوى الميكرون بتقنيات DMG MORI وHAAS.',
+    'hero.slide3.desc': 'شريكك الموثوق في حقن البلاستيك وتصميم القوالب المخصصة.',
+
+    // Stats
+    'stats.since': 'منذ عام',
+    'stats.certification': 'معتمد وفق AS9100',
+    'stats.axis': 'CNC خماسي المحاور',
+    'stats.references': 'مراجع قوية',
+
+    // Gallery
+    'gallery.title': 'معرض الإنتاج',
+    'gallery.subtitle': 'لقطات من منشأتنا الإنتاجية',
+
+    // Products
+    'products.title': 'منتجاتنا',
+    'products.subtitle': 'حلول هندسية دقيقة لصناعتَي الطيران والسيارات',
+    'products.apparatus': 'الأجهزة والمعدات',
+    'products.fixtures': 'أدوات التثبيت',
+    'products.molds': 'القوالب',
+    'products.applications': 'التطبيقات',
+    'products.gauges': 'مقاييس مراقبة الجودة',
+    'products.injection': 'حقن البلاستيك',
+    'products.detail': 'التفاصيل',
+
+    // About
+    'about.title': 'من نحن',
+    'about.text': 'تقوم شركة MKT Makina منذ عام 2007 بتصنيع قطع مُشغَّلة بدقة عالية وقطع حقن بلاستيكية لصناعتَي الطيران والسيارات. وبحصولنا على شهادة AS9100، بنينا نظام إدارة الجودة لدينا وفق متطلبات صناعتَي الطيران والسيارات.',
+    'about.more': 'اقرأ المزيد',
+
+    // Machines
+    'machines.title': 'أسطول الآلات',
+    'machines.subtitle': 'بنيتنا التحتية الإنتاجية المتطورة',
+
+    // References
+    'references.title': 'المراجع',
+    'references.subtitle': 'شركاؤنا الموثوقون',
+    'references.all': 'عرض الكل',
+
+    // CTA
+    'cta.title': 'تواصل معنا لمشروعك',
+    'cta.subtitle': 'اتصل بنا للحصول على حلول دقيقة في صناعتَي الطيران والسيارات.',
+    'cta.button': 'نموذج الاتصال',
+    'cta.call': 'اتصل بنا',
+
+    // Footer
+    'footer.corporate': 'الشركة',
+    'footer.quicklinks': 'روابط سريعة',
+    'footer.contact': 'اتصل بنا',
+    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:1 Arifiye / Sakarya، تركيا',
+    'footer.rights': 'جميع الحقوق محفوظة.',
+    'footer.follow': 'تابعنا',
+
+    // Contact
+    'contact.title': 'اتصل بنا',
+    'contact.form.name': 'الاسم الكامل',
+    'contact.form.email': 'البريد الإلكتروني',
+    'contact.form.phone': 'الهاتف',
+    'contact.form.subject': 'الموضوع',
+    'contact.form.message': 'الرسالة',
+    'contact.form.send': 'إرسال',
   },
 } as const;
 
