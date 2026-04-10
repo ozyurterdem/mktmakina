@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { Font } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { languages } from '../i18n/translations';
 import type { Lang } from '../i18n/translations';
 
 interface Props {
@@ -20,12 +21,70 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const alternateLang = lang === 'tr' ? 'en' : 'tr';
-const alternatePath = lang === 'tr' ? `/en${Astro.url.pathname}` : Astro.url.pathname.replace(/^\/en/, '') || '/';
+
+// Route slug maps: TR path segment → localized segment
+const trToLocalized: Record<string, string> = {
+  'kurumsal': 'about',
+  'urunler': 'products',
+  'belgeler': 'certificates',
+  'makina-parkimiz': 'machines',
+  'referanslar': 'references',
+  'iletisim': 'contact',
+  'haberler': 'news',
+  'insan-kaynaklari': 'careers',
+};
+const localizedToTr: Record<string, string> = Object.fromEntries(
+  Object.entries(trToLocalized).map(([tr, loc]) => [loc, tr])
+);
+
+const ogLocaleMap: Record<Lang, string> = {
+  tr: 'tr_TR',
+  en: 'en_US',
+  de: 'de_DE',
+  ar: 'ar_SA',
+};
+
+function getPathForLang(targetLang: Lang): string {
+  const currentPath = Astro.url.pathname;
+  const langPrefixes = ['en', 'de', 'ar'] as const;
+  let sourceLang: Lang = 'tr';
+  let rest = currentPath;
+
+  for (const prefix of langPrefixes) {
+    if (currentPath === `/${prefix}` || currentPath.startsWith(`/${prefix}/`)) {
+      sourceLang = prefix;
+      rest = currentPath.slice(prefix.length + 1) || '/';
+      break;
+    }
+  }
+
+  // Normalize rest to TR slug form
+  let trPath: string;
+  if (rest === '/') {
+    trPath = '/';
+  } else {
+    const parts = rest.replace(/^\//, '').split('/');
+    const firstSegment = sourceLang === 'tr' ? parts[0] : (localizedToTr[parts[0]] ?? parts[0]);
+    trPath = '/' + [firstSegment, ...parts.slice(1)].join('/');
+  }
+
+  if (targetLang === 'tr') return trPath;
+  if (trPath === '/') return `/${targetLang}`;
+
+  const parts = trPath.replace(/^\//, '').split('/');
+  const localizedSegment = trToLocalized[parts[0]] ?? parts[0];
+  return `/${targetLang}/` + [localizedSegment, ...parts.slice(1)].join('/');
+}
+
+const hreflangLinks = (Object.keys(languages) as Lang[]).map((l) => ({
+  lang: l,
+  href: new URL(getPathForLang(l), Astro.site).toString(),
+}));
+const trHref = new URL(getPathForLang('tr'), Astro.site).toString();
 ---
 
 <!doctype html>
-<html lang={lang} class="scroll-smooth js-ready">
+<html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'} class="scroll-smooth js-ready">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,15 +94,17 @@ const alternatePath = lang === 'tr' ? `/en${Astro.url.pathname}` : Astro.url.pat
     <meta name="description" content={description} />
 
     <link rel="canonical" href={canonicalURL} />
-    <link rel="alternate" hreflang={lang} href={canonicalURL} />
-    <link rel="alternate" hreflang={alternateLang} href={new URL(alternatePath, Astro.site)} />
+    {hreflangLinks.map(({ lang: l, href }) => (
+      <link rel="alternate" hreflang={l} href={href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={trHref} />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="MKT Makina Kalıp Takım" />
-    <meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_US'} />
+    <meta property="og:locale" content={ogLocaleMap[lang]} />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <Font cssVariable="--font-sans" />
