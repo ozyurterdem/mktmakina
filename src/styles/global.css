@@ -491,7 +491,12 @@ html.js-ready [data-animate].is-visible,
    ══════════════════════════════════════ */
 
 .top-bar {
-  background: rgba(255, 255, 255, 0.02);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  background: rgba(10, 12, 18, 0.95);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.75rem;

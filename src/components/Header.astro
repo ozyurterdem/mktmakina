@@ -141,7 +141,7 @@ const allLangs = Object.keys(languages) as Lang[];
 
 <!-- Main Header -->
 <header
-  class:list={['header-main fixed w-full z-50', hasHero ? 'is-top' : 'no-hero']}
+  class:list={['header-main fixed w-full z-50 md:top-[32px] top-0', hasHero ? 'is-top' : 'no-hero']}
   id="mainHeader"
   data-has-hero={String(hasHero)}
 >
@@ -258,7 +258,8 @@ const allLangs = Object.keys(languages) as Lang[];
 </div>
 
 <!-- Spacer for non-hero pages -->
-{!hasHero && <div class="h-[72px] md:mt-[32px]"></div>}
+{!hasHero && <div class="h-[72px] md:h-[104px]"></div>}
+{hasHero && <div class="hidden md:block h-[32px]"></div>}
 
 <script>
   const header = document.getElementById('mainHeader');
