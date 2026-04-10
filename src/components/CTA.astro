@@ -6,6 +6,11 @@ interface Props {
 }
 
 const { lang = 'tr' } = Astro.props;
+
+const ctaLabel = ({tr:'İletişim', en:'Contact', de:'Kontakt', ar:'اتصل بنا'} as Record<string,string>)[lang];
+const ctaTitle = ({tr:'Projeniz İçin Teklif Alın', en:'Get a Quote for Your Project', de:'Angebot für Ihr Projekt anfordern', ar:'احصل على عرض سعر لمشروعك'} as Record<string,string>)[lang];
+const ctaSubtitle = ({tr:'Havacılık, otomotiv ve savunma sanayii için hassas parça üretiminde çözüm ortağınız.', en:'Your solution partner in precision parts manufacturing for aviation, automotive and defense industries.', de:'Ihr Lösungspartner für die Präzisionsteileherstellung in Luft- und Raumfahrt, Automotive und Verteidigung.', ar:'شريكك في تصنيع القطع الدقيقة لصناعات الطيران والسيارات والدفاع.'} as Record<string,string>)[lang];
+const ctaHref = ({tr:'/iletisim', en:'/en/contact', de:'/de/contact', ar:'/ar/contact'} as Record<string,string>)[lang];
 ---
 
 <section class="relative py-24 lg:py-32 overflow-hidden">
@@ -18,19 +23,17 @@ const { lang = 'tr' } = Astro.props;
   <div class="relative z-10 container-custom">
     <div class="max-w-3xl mx-auto text-center">
       <div data-animate="fade-up">
-        <div class="section-label justify-center">{lang === 'tr' ? 'İletişim' : 'Contact'}</div>
+        <div class="section-label justify-center">{ctaLabel}</div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white mb-6">
-          {lang === 'tr' ? 'Projeniz İçin Teklif Alın' : 'Get a Quote for Your Project'}
+          {ctaTitle}
         </h2>
         <p class="text-white/40 text-base sm:text-lg leading-relaxed mb-12 max-w-xl mx-auto">
-          {lang === 'tr'
-            ? 'Havacılık, otomotiv ve savunma sanayii için hassas parça üretiminde çözüm ortağınız.'
-            : 'Your solution partner in precision parts manufacturing for aviation, automotive and defense industries.'}
+          {ctaSubtitle}
         </p>
       </div>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center" data-animate="fade-up" data-delay="200">
-        <a href={lang === 'tr' ? '/iletisim' : '/en/contact'} class="btn-primary">
+        <a href={ctaHref} class="btn-primary">
           {t(lang, 'hero.cta')}
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>

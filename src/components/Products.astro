@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { lang = 'tr' } = Astro.props;
+const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
 
 const products = [
   { key: 'products.apparatus', image: '/images/categories/aparatlar_7.jpg', slug: 'aparatlar' },
@@ -22,7 +23,7 @@ const products = [
 
   <div class="relative z-10 container-custom">
     <div class="max-w-2xl mb-14" data-animate="fade-up">
-      <div class="section-label">{({tr:'Faaliyet Alanları', en:'Business Areas', de:'Geschäftsbereiche', ar:'مجالات الأعمال'} as Record<string,string>)[lang]}</div>
+      <div class="section-label">{l({tr:'Faaliyet Alanları', en:'Business Areas', de:'Geschäftsbereiche', ar:'مجالات الأعمال'})}</div>
       <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-heading font-bold text-white mb-4">
         {t(lang, 'products.title')}
       </h2>
@@ -32,7 +33,7 @@ const products = [
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {products.map((product, i) => (
         <a
-          href={`${({tr:'/urunler', en:'/en/products', de:'/de/products', ar:'/ar/products'} as Record<string,string>)[lang]}/${product.slug}`}
+          href={`${l({tr:'/urunler', en:'/en/products', de:'/de/products', ar:'/ar/products'})}/${product.slug}`}
           class="group glass-card overflow-hidden"
           data-animate="fade-up"
           data-delay={String(((i % 3) + 1) * 100)}
@@ -51,7 +52,7 @@ const products = [
               {t(lang, product.key)}
             </h3>
             <div class="flex items-center gap-2 text-accent/70 text-xs font-mono uppercase tracking-wider group-hover:text-accent transition-colors">
-              {({tr:'Detaylar', en:'Details', de:'Details', ar:'التفاصيل'} as Record<string,string>)[lang]}
+              {l({tr:'Detaylar', en:'Details', de:'Details', ar:'التفاصيل'})}
               <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
             </div>
           </div>

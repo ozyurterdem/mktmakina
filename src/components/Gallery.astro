@@ -7,13 +7,15 @@ interface Props {
 
 const { lang = 'tr' } = Astro.props;
 
+const galleryLabel = ({tr:'Galeri', en:'Gallery', de:'Galerie', ar:'معرض'} as Record<string,string>)[lang];
+
 const items = [
-  { image: '/images/categories/aparatlar_7.jpg', title: lang === 'tr' ? 'Aparatlar' : 'Apparatus', span: false },
-  { image: '/images/categories/fikstur_8.jpg', title: lang === 'tr' ? 'Fikstür' : 'Fixtures', span: true },
-  { image: '/images/categories/kaliplar_12.jpg', title: lang === 'tr' ? 'Kalıplar' : 'Molds', span: false },
-  { image: '/images/slide2.jpg', title: lang === 'tr' ? 'CNC İşleme' : 'CNC Machining', span: true },
-  { image: '/images/categories/parcalar_13.jpg', title: lang === 'tr' ? 'Parçalar' : 'Parts', span: false },
-  { image: '/images/categories/mastarlar_14.jpg', title: lang === 'tr' ? 'Mastarlar' : 'Gauges', span: false },
+  { image: '/images/categories/aparatlar_7.jpg', title: ({tr:'Aparatlar', en:'Apparatus', de:'Vorrichtungen', ar:'أجهزة'} as Record<string,string>)[lang] ?? 'Apparatus', span: false },
+  { image: '/images/categories/fikstur_8.jpg', title: ({tr:'Fikstür', en:'Fixtures', de:'Spannvorrichtungen', ar:'تركيبات'} as Record<string,string>)[lang] ?? 'Fixtures', span: true },
+  { image: '/images/categories/kaliplar_12.jpg', title: ({tr:'Kalıplar', en:'Molds', de:'Formen', ar:'قوالب'} as Record<string,string>)[lang] ?? 'Molds', span: false },
+  { image: '/images/slide2.jpg', title: ({tr:'CNC İşleme', en:'CNC Machining', de:'CNC-Bearbeitung', ar:'التصنيع باستخدام الحاسب'} as Record<string,string>)[lang] ?? 'CNC Machining', span: true },
+  { image: '/images/categories/parcalar_13.jpg', title: ({tr:'Parçalar', en:'Parts', de:'Teile', ar:'قطع'} as Record<string,string>)[lang] ?? 'Parts', span: false },
+  { image: '/images/categories/mastarlar_14.jpg', title: ({tr:'Mastarlar', en:'Gauges', de:'Lehren', ar:'مقاييس'} as Record<string,string>)[lang] ?? 'Gauges', span: false },
 ];
 ---
 
@@ -21,7 +23,7 @@ const items = [
   <div class="max-w-7xl mx-auto px-6 lg:px-10">
     <!-- Section Header -->
     <div class="text-center max-w-2xl mx-auto mb-14" data-animate="fade-up">
-      <div class="section-label justify-center">{lang === 'tr' ? 'Galeri' : 'Gallery'}</div>
+      <div class="section-label justify-center">{galleryLabel}</div>
       <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-navy-800 mb-4">
         {t(lang, 'gallery.title')}
       </h2>
