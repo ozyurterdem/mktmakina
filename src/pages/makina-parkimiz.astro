@@ -64,7 +64,7 @@ const machineGroups = [
 <BaseLayout title="Makina Parkimiz — MKT Makina Kalip Takim" description="MKT Makina makina parki: DMG MORI 5 eksen CNC, HAAS isleme merkezleri, GF Machining tel erozyon, plastik enjeksiyon ve daha fazlasi." lang="tr" hasHero={false}>
   <PageHero title="Makina Parkimiz" subtitle="Ileri teknoloji uretim altyapimiz" image="/images/slide3.jpg" />
 
-  <section class="section-padding bg-white">
+  <section class="section-padding">
     <div class="container-custom">
       <!-- Summary Stats -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-border mb-14" data-animate="fade-up">
@@ -87,12 +87,12 @@ const machineGroups = [
           <div data-animate="fade-up">
             <div class="flex items-center gap-3 mb-5">
               <div class="accent-bar"></div>
-              <h2 class="font-heading text-lg font-bold text-primary tracking-wide">{group.category}</h2>
+              <h2 class="font-heading text-lg font-bold text-white tracking-wide">{group.category}</h2>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[1px] bg-border">
               {group.machines.map((machine) => (
-                <div class="p-5 bg-white hover:bg-surface transition-colors">
-                  <h3 class="font-heading text-sm font-semibold text-primary mb-1 tracking-wide">{machine.name}</h3>
+                <div class="p-5 bg-primary-light hover:bg-primary-light transition-colors">
+                  <h3 class="font-heading text-sm font-semibold text-white mb-1 tracking-wide">{machine.name}</h3>
                   <p class="text-text-light text-xs">{machine.specs}</p>
                 </div>
               ))}

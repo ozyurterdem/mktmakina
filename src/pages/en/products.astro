@@ -8,7 +8,7 @@ import { products } from '../../data/products';
 <BaseLayout title="Products — MKT Makina" description="MKT Makina products: Apparatus, fixtures, molds, quality control gauges, plastic injection and machined parts." lang="en" hasHero={false}>
   <PageHero title="Our Products" subtitle="Precision engineering solutions for aviation and automotive industry" />
 
-  <section class="section-padding bg-white">
+  <section class="section-padding">
     <div class="container-custom">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
@@ -18,7 +18,7 @@ import { products } from '../../data/products';
               <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
             <div class="p-5">
-              <h3 class="font-heading text-base font-semibold text-primary mb-2 group-hover:text-accent transition-colors tracking-wide">{product.name.en}</h3>
+              <h3 class="font-heading text-base font-semibold text-white mb-2 group-hover:text-accent transition-colors tracking-wide">{product.name.en}</h3>
               <p class="text-text-light text-sm leading-relaxed mb-3">{product.description.en}</p>
               <div class="accent-bar transition-all duration-500 group-hover:w-12"></div>
             </div>

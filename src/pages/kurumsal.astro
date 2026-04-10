@@ -13,7 +13,7 @@ const tabs = [
 <BaseLayout title="Kurumsal — MKT Makina Kalip Takim" description="MKT Makina hakkinda, misyon, vizyon ve kalite politikamiz. AS9100 sertifikali havacilik ve otomotiv parca ureticisi." lang="tr" hasHero={false}>
   <PageHero title="Kurumsal" subtitle="2007'den bu yana havacilik hassasiyetinde uretim" />
 
-  <section class="section-padding bg-white">
+  <section class="section-padding">
     <div class="container-custom">
       <!-- Tab Navigation -->
       <div class="flex flex-wrap gap-2 mb-14 border-b border-border pb-4" id="corp-tabs">
@@ -24,7 +24,7 @@ const tabs = [
               'px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300',
               i === 0
                 ? 'bg-primary-dark text-white'
-                : 'text-primary border border-border hover:border-accent hover:text-accent',
+                : 'text-primary border border-white/[0.06] hover:border-accent hover:text-accent',
             ]}
           >
             {tab.label}
@@ -36,14 +36,14 @@ const tabs = [
       <div id="tab-about" class="tab-content">
         <div class="grid lg:grid-cols-2 gap-12 items-start">
           <div data-animate="fade-up">
-            <h2 class="font-heading text-2xl font-bold text-primary mb-6">Hakkimizda</h2>
+            <h2 class="font-heading text-2xl font-bold text-white mb-6">Hakkimizda</h2>
             <div class="space-y-4 text-text-light leading-relaxed text-[15px]">
               <p>MKT Makina, havacilik ve otomotiv sanayii icin yuksek kaliteli hassas isleme parcalar ve plastik enjeksiyon parcalar uretmektedir. 2007 yilinda kurulan sirket, is hayatinin ilk yillarindan bu yana kalip, fikstur, aparat ve kalite kontrol mastari imalati da yapmaktadir.</p>
               <p>Makina parkurunu buyuterek 2012 yilindan itibaren TSI Ucak Koltuk firmasina talasli imalat parcalarinin uretimine baslamistir.</p>
               <p>AS9100 sertifikasina sahip olup, kalite yonetim sistemini havacilik ve otomotiv sanayi gerekliliklerine uygun olarak yapilandirmistir.</p>
             </div>
 
-            <h3 class="font-heading text-base font-semibold text-primary mt-8 mb-4">Urun Yelpazemiz</h3>
+            <h3 class="font-heading text-base font-semibold text-white mt-8 mb-4">Urun Yelpazemiz</h3>
             <ul class="space-y-2.5">
               {[
                 'Talasli imalat parcalari ve montaj gruplari',
@@ -70,7 +70,7 @@ const tabs = [
           </div>
         </div>
 
-        <h3 class="font-heading text-base font-semibold text-primary mt-12 mb-4">Temel Prensiplerimiz</h3>
+        <h3 class="font-heading text-base font-semibold text-white mt-12 mb-4">Temel Prensiplerimiz</h3>
         <div class="grid sm:grid-cols-2 gap-3">
           {[
             'Musteri gereksinimlerini karsilayan yuksek kalite urunler uretmek',
@@ -78,7 +78,7 @@ const tabs = [
             'Musteriye ozgu cozumler sunmak',
             'Ileri endustriyel standartlara uygun kalite yonetim sistemini surdurmek',
           ].map((item) => (
-            <div class="flex items-start gap-3 p-4 bg-surface border border-border" data-animate="fade-up">
+            <div class="flex items-start gap-3 p-4 bg-primary-light border border-white/[0.06]" data-animate="fade-up">
               <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
               <span class="text-text-light text-sm">{item}</span>
             </div>
@@ -115,7 +115,7 @@ const tabs = [
               <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
             </div>
             <div>
-              <h2 class="font-heading text-xl font-bold text-primary">Kalite Politikamiz</h2>
+              <h2 class="font-heading text-xl font-bold text-white">Kalite Politikamiz</h2>
               <p class="text-text-light text-sm">AS9100 Sertifikali Kalite Yonetim Sistemi</p>
             </div>
           </div>
@@ -131,7 +131,7 @@ const tabs = [
               'Urettigimiz her urunun sorumlulugunu tasimak ve musteriye gerekli bilgi ve teknik destegi saglamak',
               'Istenen kalite hammadde, son teknoloji makine parkuru ve uzman isgucunu birlestirmek',
             ].map((item, i) => (
-              <div class="flex items-start gap-4 p-4 bg-surface border border-border" data-animate="fade-up">
+              <div class="flex items-start gap-4 p-4 bg-primary-light border border-white/[0.06]" data-animate="fade-up">
                 <span class="w-7 h-7 bg-primary-dark text-white flex items-center justify-center shrink-0 text-xs font-heading font-bold">{i + 1}</span>
                 <span class="text-text-light text-sm leading-relaxed">{item}</span>
               </div>
@@ -154,10 +154,10 @@ const tabs = [
       const target = tab.getAttribute('data-tab');
       tabs.forEach((t) => {
         t.classList.remove('bg-primary-dark', 'text-white');
-        t.classList.add('text-primary', 'border', 'border-border');
+        t.classList.add('text-white/50', 'border', 'border-white/[0.06]');
       });
       tab.classList.add('bg-primary-dark', 'text-white');
-      tab.classList.remove('text-primary', 'border', 'border-border');
+      tab.classList.remove('text-white/50', 'border', 'border-white/[0.06]');
       contents.forEach((c) => c.classList.add('hidden'));
       document.getElementById(`tab-${target}`)?.classList.remove('hidden');
     });

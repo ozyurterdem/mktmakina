@@ -16,7 +16,7 @@ const news = [
 <BaseLayout title="Haberler — MKT Makina Kalip Takim" description="MKT Makina haberleri ve duyurulari." lang="tr" hasHero={false}>
   <PageHero title="Haberler" subtitle="Guncel gelismeler ve duyurular" />
 
-  <section class="section-padding bg-white">
+  <section class="section-padding">
     <div class="container-custom max-w-[1000px]">
       <div class="space-y-6">
         {news.map((item) => (
@@ -26,7 +26,7 @@ const news = [
             </div>
             <div class="flex flex-col justify-center">
               <span class="text-accent text-xs font-semibold uppercase tracking-wider mb-2">{item.date}</span>
-              <h2 class="font-heading text-lg font-bold text-primary mb-2">{item.title}</h2>
+              <h2 class="font-heading text-lg font-bold text-white mb-2">{item.title}</h2>
               <p class="text-text-light text-sm leading-relaxed">{item.summary}</p>
             </div>
           </article>
