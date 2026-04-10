@@ -622,3 +622,22 @@ html.js-ready [data-animate].is-visible,
     linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 80px 80px;
 }
+
+/* RTL Support */
+[dir='rtl'] {
+  direction: rtl;
+  text-align: right;
+}
+[dir='rtl'] .flex { flex-direction: row-reverse; }
+[dir='rtl'] .flex-col { flex-direction: column; }
+[dir='rtl'] .text-left { text-align: right; }
+[dir='rtl'] .text-right { text-align: left; }
+[dir='rtl'] .ml-auto { margin-left: 0; margin-right: auto; }
+[dir='rtl'] .mr-auto { margin-right: 0; margin-left: auto; }
+[dir='rtl'] .space-x-2 > :not([hidden]) ~ :not([hidden]) { margin-left: 0; margin-right: 0.5rem; }
+[dir='rtl'] .gap-2, [dir='rtl'] .gap-3, [dir='rtl'] .gap-4, [dir='rtl'] .gap-6 { direction: rtl; }
+[dir='rtl'] .accent-bar { margin-left: auto; margin-right: 0; }
+[dir='rtl'] .section-label { justify-content: flex-end; }
+/* RTL Grid - keep LTR for grid layouts */
+[dir='rtl'] .grid { direction: ltr; }
+[dir='rtl'] .grid > * { direction: rtl; text-align: right; }
