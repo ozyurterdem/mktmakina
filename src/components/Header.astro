@@ -1,5 +1,5 @@
 ---
-import { t, getLocalePath, type Lang } from '../i18n/translations';
+import { t, languages, getLocalePath, type Lang } from '../i18n/translations';
 
 interface Props {
   lang?: Lang;
@@ -8,27 +8,98 @@ interface Props {
 
 const { lang = 'tr', hasHero = false } = Astro.props;
 const currentPath = Astro.url.pathname;
-const altLangPath = lang === 'tr' ? `/en${currentPath}` : currentPath.replace(/^\/en/, '') || '/';
 
-const navItems = lang === 'en'
-  ? [
-      { label: t(lang, 'nav.home'), href: '/en' },
-      { label: t(lang, 'nav.about'), href: '/en/about' },
-      { label: t(lang, 'nav.products'), href: '/en/products' },
-      { label: t(lang, 'nav.machines'), href: '/en/machines' },
-      { label: t(lang, 'nav.references'), href: '/en/references' },
-      { label: t(lang, 'nav.certificates'), href: '/en/certificates' },
-      { label: t(lang, 'nav.contact'), href: '/en/contact' },
-    ]
-  : [
-      { label: t(lang, 'nav.home'), href: '/' },
-      { label: t(lang, 'nav.about'), href: '/kurumsal' },
-      { label: t(lang, 'nav.products'), href: '/urunler' },
-      { label: t(lang, 'nav.machines'), href: '/makina-parkimiz' },
-      { label: t(lang, 'nav.references'), href: '/referanslar' },
-      { label: t(lang, 'nav.certificates'), href: '/belgeler' },
-      { label: t(lang, 'nav.contact'), href: '/iletisim' },
-    ];
+// Route map: all 4 languages
+const routes: Record<Lang, { label: string; href: string }[]> = {
+  tr: [
+    { label: t('tr', 'nav.home'),         href: '/' },
+    { label: t('tr', 'nav.about'),        href: '/kurumsal' },
+    { label: t('tr', 'nav.products'),     href: '/urunler' },
+    { label: t('tr', 'nav.machines'),     href: '/makina-parkimiz' },
+    { label: t('tr', 'nav.references'),   href: '/referanslar' },
+    { label: t('tr', 'nav.certificates'), href: '/belgeler' },
+    { label: t('tr', 'nav.contact'),      href: '/iletisim' },
+  ],
+  en: [
+    { label: t('en', 'nav.home'),         href: '/en' },
+    { label: t('en', 'nav.about'),        href: '/en/about' },
+    { label: t('en', 'nav.products'),     href: '/en/products' },
+    { label: t('en', 'nav.machines'),     href: '/en/machines' },
+    { label: t('en', 'nav.references'),   href: '/en/references' },
+    { label: t('en', 'nav.certificates'), href: '/en/certificates' },
+    { label: t('en', 'nav.contact'),      href: '/en/contact' },
+  ],
+  de: [
+    { label: t('de', 'nav.home'),         href: '/de' },
+    { label: t('de', 'nav.about'),        href: '/de/about' },
+    { label: t('de', 'nav.products'),     href: '/de/products' },
+    { label: t('de', 'nav.machines'),     href: '/de/machines' },
+    { label: t('de', 'nav.references'),   href: '/de/references' },
+    { label: t('de', 'nav.certificates'), href: '/de/certificates' },
+    { label: t('de', 'nav.contact'),      href: '/de/contact' },
+  ],
+  ar: [
+    { label: t('ar', 'nav.home'),         href: '/ar' },
+    { label: t('ar', 'nav.about'),        href: '/ar/about' },
+    { label: t('ar', 'nav.products'),     href: '/ar/products' },
+    { label: t('ar', 'nav.machines'),     href: '/ar/machines' },
+    { label: t('ar', 'nav.references'),   href: '/ar/references' },
+    { label: t('ar', 'nav.certificates'), href: '/ar/certificates' },
+    { label: t('ar', 'nav.contact'),      href: '/ar/contact' },
+  ],
+};
+
+const navItems = routes[lang];
+
+// Slug mapping: TR slugs ↔ shared slugs for EN/DE/AR
+const trToShared: Record<string, string> = {
+  'kurumsal': 'about',
+  'urunler': 'products',
+  'makina-parkimiz': 'machines',
+  'belgeler': 'certificates',
+  'referanslar': 'references',
+  'iletisim': 'contact',
+  'haberler': 'news',
+  'insan-kaynaklari': 'careers',
+};
+const sharedToTr: Record<string, string> = Object.fromEntries(
+  Object.entries(trToShared).map(([tr, sh]) => [sh, tr])
+);
+
+// Given current path, return equivalent path for target language
+function pathForLang(from: Lang, to: Lang, path: string): string {
+  if (from === to) return path;
+
+  // Strip the source lang prefix to get the slug
+  let slug = path;
+  if (from === 'tr') {
+    slug = path.replace(/^\//, '') || ''; // e.g. "kurumsal"
+  } else {
+    slug = path.replace(new RegExp(`^\\/${from}\\/?`), ''); // e.g. "about"
+  }
+
+  // Normalise slug (TR → shared, shared → shared)
+  const sharedSlug = from === 'tr' ? (trToShared[slug] ?? slug) : slug;
+  // shared → target
+  const targetSlug = to === 'tr' ? (sharedToTr[sharedSlug] ?? sharedSlug) : sharedSlug;
+
+  if (to === 'tr') {
+    return targetSlug ? `/${targetSlug}` : '/';
+  }
+  return targetSlug ? `/${to}/${targetSlug}` : `/${to}`;
+}
+
+const langLabels: Record<Lang, string> = { tr: 'TR', en: 'EN', de: 'DE', ar: 'AR' };
+const langFlags: Record<Lang, string>  = { tr: '🇹🇷', en: '🇬🇧', de: '🇩🇪', ar: '🇸🇦' };
+
+const quoteHref: Record<Lang, string> = {
+  tr: '/iletisim',
+  en: '/en/contact',
+  de: '/de/contact',
+  ar: '/ar/contact',
+};
+
+const allLangs = Object.keys(languages) as Lang[];
 ---
 
 <!-- Top Bar -->
@@ -42,10 +113,28 @@ const navItems = lang === 'en'
       <span class="w-px h-3 bg-white/20"></span>
       <a href="mailto:info@mktmakina.com" class="hover:text-accent transition-colors">info@mktmakina.com</a>
     </div>
-    <div class="flex items-center gap-3">
-      <a href={altLangPath} class="font-semibold text-white/90 hover:text-accent uppercase text-xs tracking-wider transition-colors">
-        {lang === 'tr' ? 'EN' : 'TR'}
-      </a>
+    <!-- Desktop language dropdown -->
+    <div class="lang-switcher group relative">
+      <button class="flex items-center gap-1 font-semibold text-white/90 hover:text-accent uppercase text-xs tracking-wider transition-colors py-1" aria-haspopup="true">
+        {langFlags[lang]}&nbsp;{langLabels[lang]}
+        <svg class="w-3 h-3 opacity-60 transition-transform group-focus-within:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </button>
+      <div class="lang-dropdown absolute right-0 top-full mt-1 min-w-[120px] rounded border border-white/10 bg-primary-dark shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-150 z-[200]">
+        {allLangs.map((l) => (
+          <a
+            href={pathForLang(lang, l, currentPath)}
+            class:list={[
+              'flex items-center gap-2 px-3 py-2 text-xs tracking-wider uppercase transition-colors',
+              l === lang
+                ? 'text-accent font-semibold'
+                : 'text-white/70 hover:text-accent hover:bg-white/5',
+            ]}
+          >
+            <span>{langFlags[l]}</span>
+            <span>{languages[l]}</span>
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </div>
@@ -80,7 +169,7 @@ const navItems = lang === 'en'
         </a>
       ))}
       <a
-        href={lang === 'tr' ? '/iletisim' : '/en/contact'}
+        href={quoteHref[lang]}
         class="ml-3 btn-primary !py-2 !px-5 !text-[0.7rem]"
       >
         {t(lang, 'nav.quote')}
@@ -89,7 +178,29 @@ const navItems = lang === 'en'
 
     <!-- Mobile: Lang + Hamburger -->
     <div class="flex items-center gap-3 lg:hidden">
-      <a href={altLangPath} class="nav-link text-xs font-semibold uppercase tracking-wider md:hidden">{lang === 'tr' ? 'EN' : 'TR'}</a>
+      <!-- Compact lang dropdown for mobile header -->
+      <div class="lang-switcher group relative md:hidden">
+        <button class="flex items-center gap-0.5 nav-link text-xs font-semibold uppercase tracking-wider py-1" aria-haspopup="true">
+          {langLabels[lang]}
+          <svg class="w-3 h-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+        <div class="lang-dropdown absolute right-0 top-full mt-1 min-w-[110px] rounded border border-white/10 bg-primary-dark shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-150 z-[200]">
+          {allLangs.map((l) => (
+            <a
+              href={pathForLang(lang, l, currentPath)}
+              class:list={[
+                'flex items-center gap-2 px-3 py-2 text-xs tracking-wider uppercase transition-colors',
+                l === lang
+                  ? 'text-accent font-semibold'
+                  : 'text-white/70 hover:text-accent hover:bg-white/5',
+              ]}
+            >
+              <span>{langFlags[l]}</span>
+              <span>{langLabels[l]}</span>
+            </a>
+          ))}
+        </div>
+      </div>
       <button class="hamburger p-2 relative z-[110]" id="menuToggle" aria-label="Menu">
         <span class="flex flex-col gap-1.5">
           <span class="hamburger-line"></span>
@@ -123,7 +234,24 @@ const navItems = lang === 'en'
     ))}
   </nav>
 
-  <div class="absolute bottom-10 text-center space-y-2">
+  <!-- Mobile language row -->
+  <div class="absolute bottom-20 flex items-center gap-3 justify-center w-full px-6">
+    {allLangs.map((l) => (
+      <a
+        href={pathForLang(lang, l, currentPath)}
+        class:list={[
+          'flex items-center gap-1.5 px-3 py-1.5 rounded border text-xs font-semibold uppercase tracking-wider transition-colors',
+          l === lang
+            ? 'border-accent text-accent'
+            : 'border-white/15 text-white/50 hover:text-accent hover:border-accent',
+        ]}
+      >
+        {langFlags[l]}&nbsp;{langLabels[l]}
+      </a>
+    ))}
+  </div>
+
+  <div class="absolute bottom-8 text-center space-y-2">
     <a href="tel:+902642761880" class="block text-white/50 text-sm hover:text-accent transition-colors">+90 264 276 18 80</a>
     <a href="mailto:info@mktmakina.com" class="block text-white/50 text-sm hover:text-accent transition-colors">info@mktmakina.com</a>
   </div>
@@ -134,7 +262,6 @@ const navItems = lang === 'en'
 
 <script>
   const header = document.getElementById('mainHeader');
-  const headerInner = document.getElementById('headerInner');
   const hamburger = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   const closeBtn = document.getElementById('closeMenu');
