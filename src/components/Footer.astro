@@ -8,25 +8,45 @@ interface Props {
 const { lang = 'tr' } = Astro.props;
 const year = new Date().getFullYear();
 
-const quickLinks = lang === 'tr'
-  ? [
-      { key: 'nav.about', href: '/kurumsal' },
-      { key: 'nav.products', href: '/urunler' },
-      { key: 'nav.machines', href: '/makina-parkimiz' },
-      { key: 'nav.references', href: '/referanslar' },
-      { key: 'nav.certificates', href: '/belgeler' },
-      { key: 'nav.contact', href: '/iletisim' },
-      { key: 'nav.hr', href: '/insan-kaynaklari' },
-    ]
-  : [
-      { key: 'nav.about', href: '/en/about' },
-      { key: 'nav.products', href: '/en/products' },
-      { key: 'nav.machines', href: '/en/machines' },
-      { key: 'nav.references', href: '/en/references' },
-      { key: 'nav.certificates', href: '/en/certificates' },
-      { key: 'nav.contact', href: '/en/contact' },
-      { key: 'nav.hr', href: '/en/careers' },
-    ];
+const quickLinksMap: Record<string, { key: string; href: string }[]> = {
+  tr: [
+    { key: 'nav.about', href: '/kurumsal' },
+    { key: 'nav.products', href: '/urunler' },
+    { key: 'nav.machines', href: '/makina-parkimiz' },
+    { key: 'nav.references', href: '/referanslar' },
+    { key: 'nav.certificates', href: '/belgeler' },
+    { key: 'nav.contact', href: '/iletisim' },
+    { key: 'nav.hr', href: '/insan-kaynaklari' },
+  ],
+  en: [
+    { key: 'nav.about', href: '/en/about' },
+    { key: 'nav.products', href: '/en/products' },
+    { key: 'nav.machines', href: '/en/machines' },
+    { key: 'nav.references', href: '/en/references' },
+    { key: 'nav.certificates', href: '/en/certificates' },
+    { key: 'nav.contact', href: '/en/contact' },
+    { key: 'nav.hr', href: '/en/careers' },
+  ],
+  de: [
+    { key: 'nav.about', href: '/de/about' },
+    { key: 'nav.products', href: '/de/products' },
+    { key: 'nav.machines', href: '/de/machines' },
+    { key: 'nav.references', href: '/de/references' },
+    { key: 'nav.certificates', href: '/de/certificates' },
+    { key: 'nav.contact', href: '/de/contact' },
+    { key: 'nav.hr', href: '/de/careers' },
+  ],
+  ar: [
+    { key: 'nav.about', href: '/ar/about' },
+    { key: 'nav.products', href: '/ar/products' },
+    { key: 'nav.machines', href: '/ar/machines' },
+    { key: 'nav.references', href: '/ar/references' },
+    { key: 'nav.certificates', href: '/ar/certificates' },
+    { key: 'nav.contact', href: '/ar/contact' },
+    { key: 'nav.hr', href: '/ar/careers' },
+  ],
+};
+const quickLinks = quickLinksMap[lang] ?? quickLinksMap['en'];
 
 const productLinks = ['products.apparatus', 'products.fixtures', 'products.molds', 'products.gauges', 'products.injection'];
 ---
@@ -44,9 +64,12 @@ const productLinks = ['products.apparatus', 'products.fixtures', 'products.molds
           </div>
         </a>
         <p class="text-white/40 text-sm leading-relaxed mb-6 max-w-xs">
-          {lang === 'tr'
-            ? 'Havacilik ve otomotiv sanayii icin yuksek kaliteli hassas isleme parcalar ve plastik enjeksiyon cozumleri.'
-            : 'High quality precision machined parts and plastic injection solutions for aviation and automotive industry.'}
+          {({
+            tr: 'Havacilik ve otomotiv sanayii icin yuksek kaliteli hassas isleme parcalar ve plastik enjeksiyon cozumleri.',
+            en: 'High quality precision machined parts and plastic injection solutions for aviation and automotive industry.',
+            de: 'Hochwertige Präzisionsteile und Kunststoffspritzgusslösungen für die Luft- und Automobilindustrie.',
+            ar: 'قطع دقيقة عالية الجودة وحلول حقن البلاستيك لصناعة الطيران والسيارات.',
+          } as Record<string, string>)[lang]}
         </p>
         <div class="flex flex-wrap gap-2">
           <div class="inline-flex items-center gap-2 px-3 py-2 bg-white/[0.04] border border-white/[0.06] text-xs text-white/60">
@@ -86,7 +109,7 @@ const productLinks = ['products.apparatus', 'products.fixtures', 'products.molds
         <ul class="space-y-2.5">
           {productLinks.map((key) => (
             <li>
-              <a href={getLocalePath(lang, lang === 'tr' ? '/urunler' : '/products')} class="text-white/40 text-sm hover:text-accent transition-colors">{t(lang, key)}</a>
+              <a href={lang === 'tr' ? '/urunler' : `/${lang}/products`} class="text-white/40 text-sm hover:text-accent transition-colors">{t(lang, key)}</a>
             </li>
           ))}
         </ul>
