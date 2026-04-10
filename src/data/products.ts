@@ -1,19 +1,21 @@
 export interface Product {
   slug: string;
-  name: { tr: string; en: string };
+  name: { tr: string; en: string; de: string; ar: string };
   image: string;
-  description: { tr: string; en: string };
-  details: { tr: string[]; en: string[] };
+  description: { tr: string; en: string; de: string; ar: string };
+  details: { tr: string[]; en: string[]; de: string[]; ar: string[] };
 }
 
 export const products: Product[] = [
   {
     slug: 'aparatlar',
-    name: { tr: 'Aparatlar', en: 'Apparatus' },
+    name: { tr: 'Aparatlar', en: 'Apparatus', de: 'Vorrichtungen', ar: 'أجهزة' },
     image: '/images/categories/aparatlar_7.jpg',
     description: {
       tr: 'Üretim süreçlerinde kullanılan özel tasarım aparatlar. Her müşterinin ihtiyacına göre hassas mühendislik ile üretilir.',
       en: 'Custom designed apparatus for production processes. Precision engineered for each customer\'s needs.',
+      de: 'Individuell konstruierte Vorrichtungen für Fertigungsprozesse. Präzisionsgefertigt nach den Anforderungen jedes Kunden.',
+      ar: 'أجهزة مصممة خصيصًا لعمليات الإنتاج. مُصنَّعة بدقة عالية وفقًا لمتطلبات كل عميل.',
     },
     details: {
       tr: [
@@ -32,15 +34,33 @@ export const products: Product[] = [
         'Press apparatus',
         'Custom design and manufacturing',
       ],
+      de: [
+        'Montagevorrichtungen',
+        'Schweißvorrichtungen',
+        'Prüfvorrichtungen',
+        'Biegevorrichtungen',
+        'Pressvorrichtungen',
+        'Kundenspezifische Konstruktion und Fertigung',
+      ],
+      ar: [
+        'أجهزة التجميع',
+        'أجهزة اللحام',
+        'أجهزة الفحص والتحقق',
+        'أجهزة الثني',
+        'أجهزة الكبس',
+        'تصميم وتصنيع مخصص للعميل',
+      ],
     },
   },
   {
     slug: 'fikstur',
-    name: { tr: 'Fikstür', en: 'Fixtures' },
+    name: { tr: 'Fikstür', en: 'Fixtures', de: 'Spannvorrichtungen', ar: 'تركيبات التثبيت' },
     image: '/images/categories/fikstur_8.jpg',
     description: {
       tr: 'CNC tezgahları ve montaj hatları için yüksek hassasiyetli fikstür sistemleri. Tekrarlanabilir doğruluk sağlar.',
       en: 'High precision fixture systems for CNC machines and assembly lines. Ensures repeatable accuracy.',
+      de: 'Hochpräzise Spannvorrichtungssysteme für CNC-Maschinen und Montagelinien. Gewährleistet reproduzierbare Genauigkeit.',
+      ar: 'أنظمة تثبيت عالية الدقة لآلات CNC وخطوط التجميع. تضمن دقة متكررة وموثوقة.',
     },
     details: {
       tr: [
@@ -59,15 +79,33 @@ export const products: Product[] = [
         'Vacuum clamping systems',
         '5-axis CNC compatible designs',
       ],
+      de: [
+        'CNC-Bearbeitungsspannvorrichtungen',
+        'Montagespannvorrichtungen',
+        'Schweißspannvorrichtungen',
+        'Hydraulische und pneumatische Spannvorrichtungen',
+        'Vakuum-Spannsysteme',
+        '5-Achs-CNC-kompatible Konstruktionen',
+      ],
+      ar: [
+        'تركيبات تثبيت لآلات CNC',
+        'تركيبات تثبيت للتجميع',
+        'تركيبات تثبيت للحام',
+        'تركيبات تثبيت هيدروليكية وهوائية',
+        'أنظمة التثبيت بالشفط الفراغي',
+        'تصاميم متوافقة مع CNC خماسي المحاور',
+      ],
     },
   },
   {
     slug: 'kaliplar',
-    name: { tr: 'Kalıplar', en: 'Molds' },
+    name: { tr: 'Kalıplar', en: 'Molds', de: 'Formen', ar: 'قوالب' },
     image: '/images/categories/kaliplar_12.jpg',
     description: {
       tr: 'Plastik enjeksiyon kalıpları ve özel üretim kalıp çözümleri. Havacılık ve otomotiv sektörü standartlarında.',
       en: 'Plastic injection molds and custom mold solutions. Aviation and automotive industry standards.',
+      de: 'Kunststoffspritzgussformen und individuelle Formlösungen. Nach Luft- und Raumfahrt- sowie Automobilindustriestandards.',
+      ar: 'قوالب حقن البلاستيك وحلول القوالب المخصصة. وفق معايير صناعات الطيران والسيارات.',
     },
     details: {
       tr: [
@@ -86,15 +124,33 @@ export const products: Product[] = [
         'Mold maintenance and revision',
         'CAD/CAM supported mold design',
       ],
+      de: [
+        'Kunststoffspritzgussformen',
+        'Heißkanalformen',
+        'Mehrfachkavitätsformen',
+        'Prototypenformen',
+        'Formenwartung und -überarbeitung',
+        'CAD/CAM-gestützter Formenbau',
+      ],
+      ar: [
+        'قوالب حقن البلاستيك',
+        'قوالب القنوات الساخنة',
+        'قوالب متعددة التجاويف',
+        'قوالب النماذج الأولية',
+        'صيانة وإصلاح القوالب',
+        'تصميم القوالب بدعم CAD/CAM',
+      ],
     },
   },
   {
     slug: 'uygulamalar',
-    name: { tr: 'Uygulamalar', en: 'Applications' },
+    name: { tr: 'Uygulamalar', en: 'Applications', de: 'Anwendungen', ar: 'تطبيقات' },
     image: '/images/categories/parcalar_13.jpg',
     description: {
       tr: 'Talaşlı imalat parçaları ve montaj grupları. 5 eksen CNC işleme merkezlerinde hassas üretim.',
       en: 'Machined parts and sub-assemblies. Precision manufacturing on 5-axis CNC machining centers.',
+      de: 'Zerspanungsteile und Baugruppen. Präzisionsfertigung auf 5-Achs-CNC-Bearbeitungszentren.',
+      ar: 'قطع مشغولة بالآلات ومجموعات تجميع فرعية. تصنيع دقيق على مراكز تشغيل CNC خماسية المحاور.',
     },
     details: {
       tr: [
@@ -113,15 +169,38 @@ export const products: Product[] = [
         'Aluminum, steel, titanium machining',
         'Surface treatments (anodizing, coating)',
       ],
+      de: [
+        'Zerspanungsteile',
+        'Baugruppen und Unterbaugruppen',
+        'Strukturbauteile für die Luft- und Raumfahrt',
+        'Automobilkomponenten',
+        'Aluminium-, Stahl- und Titanbearbeitung',
+        'Oberflächenbehandlungen (Eloxieren, Beschichten)',
+      ],
+      ar: [
+        'قطع مشغولة بالآلات',
+        'تجميعات ووحدات تجميع فرعية',
+        'قطع هيكلية للفضاء والطيران',
+        'مكونات السيارات',
+        'تشغيل الألومنيوم والصلب والتيتانيوم',
+        'المعالجات السطحية (الأنودة، الطلاء)',
+      ],
     },
   },
   {
     slug: 'kalite-kontrol-mastarlari',
-    name: { tr: 'Kalite Kontrol Mastarları', en: 'Quality Control Gauges' },
+    name: {
+      tr: 'Kalite Kontrol Mastarları',
+      en: 'Quality Control Gauges',
+      de: 'Qualitätskontroll-Lehren',
+      ar: 'مقاييس مراقبة الجودة',
+    },
     image: '/images/categories/mastarlar_14.jpg',
     description: {
       tr: 'Üretim kalitesini doğrulayan hassas ölçüm mastarları. AS9100 standartlarına uygun tasarım ve üretim.',
       en: 'Precision measurement gauges that verify production quality. Designed to AS9100 standards.',
+      de: 'Präzisionsmesslehren zur Verifikation der Fertigungsqualität. Konstruiert nach AS9100-Normen.',
+      ar: 'مقاييس قياس دقيقة للتحقق من جودة الإنتاج. مصممة وفق معايير AS9100.',
     },
     details: {
       tr: [
@@ -140,15 +219,38 @@ export const products: Product[] = [
         'Certified calibration',
         'AS9100 compliant documentation',
       ],
+      de: [
+        'Gut/Schlecht-Lehren',
+        'Profillehren',
+        'Montagekontrolllehren',
+        'Sondertoleranzlehren',
+        'Zertifizierte Kalibrierung',
+        'AS9100-konforme Dokumentation',
+      ],
+      ar: [
+        'مقاييس القبول والرفض (Go/No-Go)',
+        'مقاييس الملف الشخصي',
+        'مقاييس فحص التجميع',
+        'مقاييس التفاوتات المخصصة',
+        'معايرة معتمدة',
+        'توثيق متوافق مع معيار AS9100',
+      ],
     },
   },
   {
     slug: 'plastik-enjeksiyon',
-    name: { tr: 'Plastik Enjeksiyon', en: 'Plastic Injection' },
+    name: {
+      tr: 'Plastik Enjeksiyon',
+      en: 'Plastic Injection',
+      de: 'Kunststoffspritzguss',
+      ar: 'حقن البلاستيك',
+    },
     image: '/images/categories/parcalar_13.jpg',
     description: {
       tr: 'LS LST 280 plastik enjeksiyon makinası ile seri üretim. Otomotiv ve havacılık parçaları.',
       en: 'Serial production with LS LST 280 plastic injection machine. Automotive and aviation parts.',
+      de: 'Serienproduktion mit der LS LST 280 Kunststoffspritzgussmaschine. Automobil- und Luftfahrtteile.',
+      ar: 'إنتاج تسلسلي بواسطة ماكينة حقن البلاستيك LS LST 280. قطع غيار للسيارات والطيران.',
     },
     details: {
       tr: [
@@ -166,6 +268,22 @@ export const products: Product[] = [
         'Automotive plastic components',
         'Complete solution from mold design to production',
         'Quality control and measurement reports',
+      ],
+      de: [
+        'Kunststoffspritzgussproduktion',
+        'Klein- und Mittelserienproduktion',
+        'Technische Kunststoffteile',
+        'Kunststoffkomponenten für die Automobilindustrie',
+        'Komplettlösung vom Formenbau bis zur Produktion',
+        'Qualitätskontroll- und Messprotokolle',
+      ],
+      ar: [
+        'إنتاج قطع بحقن البلاستيك',
+        'إنتاج دفعات صغيرة ومتوسطة',
+        'قطع بلاستيكية تقنية',
+        'مكونات بلاستيكية للسيارات',
+        'حل متكامل من تصميم القالب إلى الإنتاج',
+        'تقارير مراقبة الجودة والقياس',
       ],
     },
   },
