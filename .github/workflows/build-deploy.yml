@@ -1,7 +1,7 @@
 name: Build & Deploy
 on:
   push:
-    branches: [main]
+    branches: [main, v3-aerospace-precision]
   workflow_dispatch:
 
 env:
