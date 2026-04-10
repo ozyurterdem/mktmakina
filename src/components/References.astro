@@ -95,12 +95,13 @@ const references = [
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 110px;
+    width: 220px;
+    height: 100px;
     background: rgba(255, 255, 255, 0.92);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 4px;
-    padding: 1.5rem 2rem;
+    padding: 0.75rem 1rem;
+    overflow: hidden;
     transition: all 0.4s ease;
   }
   .ref-item:hover {
@@ -110,11 +111,12 @@ const references = [
   }
 
   .ref-logo {
-    max-height: 48px;
+    max-height: 100%;
     max-width: 100%;
     width: auto;
+    height: auto;
     object-fit: contain;
-    opacity: 0.75;
+    opacity: 0.85;
     transition: all 0.4s ease;
   }
   .ref-item:hover .ref-logo {
@@ -128,10 +130,10 @@ const references = [
   }
   .ref-grid .ref-item {
     width: auto;
-    height: 80px;
-    padding: 1rem;
+    height: 72px;
+    padding: 0.5rem;
   }
   .ref-grid .ref-logo {
-    max-height: 32px;
+    max-height: 100%;
   }
 </style>
