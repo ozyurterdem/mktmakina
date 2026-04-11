@@ -245,12 +245,12 @@ export const products: Product[] = [
       de: 'Kunststoffspritzguss',
       ar: 'حقن البلاستيك',
     },
-    image: '/images/categories/parcalar_13.jpg',
+    image: '/images/categories/plastik-enjeksiyon_143.jpg',
     description: {
-      tr: 'LS LST 280 plastik enjeksiyon makinası ile seri üretim. Otomotiv ve havacılık parçaları.',
-      en: 'Serial production with LS LST 280 plastic injection machine. Automotive and aviation parts.',
-      de: 'Serienproduktion mit der LS LST 280 Kunststoffspritzgussmaschine. Automobil- und Luftfahrtteile.',
-      ar: 'إنتاج تسلسلي بواسطة ماكينة حقن البلاستيك LS LST 280. قطع غيار للسيارات والطيران.',
+      tr: 'Plastik enjeksiyon kalıp tasarımı ve imalatı. Otomotiv ve havacılık sektörü standartlarında.',
+      en: 'Plastic injection mold design and manufacturing. Aviation and automotive industry standards.',
+      de: 'Konstruktion und Herstellung von Kunststoffspritzgussformen. Luft- und Automobilindustriestandards.',
+      ar: 'تصميم وتصنيع قوالب حقن البلاستيك. معايير صناعة الطيران والسيارات.',
     },
     details: {
       tr: [
