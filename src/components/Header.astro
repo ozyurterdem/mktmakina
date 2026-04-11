@@ -70,13 +70,14 @@ const sharedToTr: Record<string, string> = Object.fromEntries(
 function pathForLang(from: Lang, to: Lang, path: string): string {
   if (from === to) return path;
 
-  // Strip the source lang prefix to get the slug
-  let slug = path;
+  // Strip trailing slash + source lang prefix to get the slug
+  let slug = path.replace(/\/$/, '');
   if (from === 'tr') {
-    slug = path.replace(/^\//, '') || ''; // e.g. "kurumsal"
+    slug = slug.replace(/^\//, '') || ''; // e.g. "kurumsal"
   } else {
-    slug = path.replace(new RegExp(`^\\/${from}\\/?`), ''); // e.g. "about"
+    slug = slug.replace(new RegExp(`^\\/${from}\\/?`), ''); // e.g. "about"
   }
+  slug = slug.replace(/\/$/, ''); // clean any remaining trailing slash
 
   // Normalise slug (TR → shared, shared → shared)
   const sharedSlug = from === 'tr' ? (trToShared[slug] ?? slug) : slug;
