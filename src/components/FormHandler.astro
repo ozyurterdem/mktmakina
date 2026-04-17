@@ -2,48 +2,97 @@
 interface Props {
   formId: string;
   successMessage?: string;
-  email?: string;
+  errorMessage?: string;
+  /** Forms-relay site key */
+  siteKey?: string;
 }
 
-const { formId, successMessage = 'Mesajınız gönderildi. En kısa sürede dönüş yapacağız.', email = 'info@mktmakina.com' } = Astro.props;
+const {
+  formId,
+  successMessage = 'Mesajınız iletildi. En kısa sürede dönüş yapacağız.',
+  errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin veya bizi telefonla arayın.',
+  siteKey = 'mktmakina',
+} = Astro.props;
 ---
 
-<script define:vars={{ formId, successMessage, email }}>
+<script define:vars={{ formId, successMessage, errorMessage, siteKey }}>
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById(formId);
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    // Honeypot field ekle (yoksa) — bot trap
+    if (!form.querySelector('input[name="honeypot"]')) {
+      const hp = document.createElement('input');
+      hp.type = 'text';
+      hp.name = 'honeypot';
+      hp.tabIndex = -1;
+      hp.autocomplete = 'off';
+      hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;';
+      hp.setAttribute('aria-hidden', 'true');
+      form.appendChild(hp);
+    }
+
+    // Status div
+    let statusEl = form.querySelector('.form-status');
+    if (!statusEl) {
+      statusEl = document.createElement('div');
+      statusEl.className = 'form-status';
+      statusEl.style.cssText = 'margin-top:1rem;padding:0.75rem 1rem;border-radius:6px;font-size:0.85rem;display:none;';
+      form.appendChild(statusEl);
+    }
+
+    const setStatus = (text, kind) => {
+      statusEl.textContent = text;
+      statusEl.style.display = 'block';
+      const colors = {
+        success: { bg: 'rgba(16,185,129,0.12)', color: '#10b981', border: 'rgba(16,185,129,0.3)' },
+        error:   { bg: 'rgba(239,68,68,0.12)',  color: '#ef4444', border: 'rgba(239,68,68,0.3)' },
+        info:    { bg: 'rgba(255,255,255,0.06)', color: '#aaa',    border: 'rgba(255,255,255,0.1)' },
+      };
+      const c = colors[kind] || colors.info;
+      statusEl.style.background = c.bg;
+      statusEl.style.color = c.color;
+      statusEl.style.border = `1px solid ${c.border}`;
+    };
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const fd = new FormData(form);
-      const data = Object.fromEntries(fd.entries());
-
-      // Build mailto body
-      let subject = data.subject || data.product || 'Web Sitesi Formu';
-      let body = '';
-      for (const [key, val] of Object.entries(data)) {
-        if (val && typeof val === 'string' && val.trim()) {
-          body += `${key}: ${val}\n`;
-        }
-      }
-
-      const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-      // Try opening mailto
-      window.location.href = mailto;
-
-      // Show success feedback
       const btn = form.querySelector('button[type="submit"]');
+      const origText = btn?.textContent;
       if (btn) {
-        const origText = btn.textContent;
-        btn.textContent = '✓ ' + successMessage;
         btn.disabled = true;
-        btn.classList.add('opacity-70');
-        setTimeout(() => {
-          btn.textContent = origText;
+        btn.style.opacity = '0.6';
+        btn.textContent = 'Gönderiliyor...';
+      }
+      setStatus('Gönderiliyor...', 'info');
+
+      try {
+        const data = Object.fromEntries(new FormData(form));
+        data.site = siteKey;
+        delete data.kvkk;
+        delete data.consent;
+
+        const res = await fetch('https://forms.siberkale.com/relay', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+
+        if (res.ok && json.success) {
+          form.reset();
+          setStatus(json.message || successMessage, 'success');
+        } else {
+          setStatus(json.message || errorMessage, 'error');
+        }
+      } catch (err) {
+        setStatus(errorMessage, 'error');
+      } finally {
+        if (btn) {
           btn.disabled = false;
-          btn.classList.remove('opacity-70');
-        }, 4000);
+          btn.style.opacity = '';
+          if (origText) btn.textContent = origText;
+        }
       }
     });
   });
