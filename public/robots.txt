@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /_p/
 
 Sitemap: https://mktmakina.com/sitemap-index.xml
