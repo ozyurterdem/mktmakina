@@ -79,6 +79,16 @@
   .cover-grid{
     display:grid;grid-template-columns:1fr;gap:22px;margin-top:16px;
   }
+  .copy-row{margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .copy-btn{
+    font:600 12px/1 Inter,Helvetica,Arial,sans-serif;
+    background:#1E2A6B;color:#fff;border:0;border-radius:6px;
+    padding:10px 16px;cursor:pointer;letter-spacing:0.02em;
+  }
+  .copy-btn:hover{background:#2a3a8f}
+  .copy-btn.ok{background:#14904a}
+  .copy-hint{font:500 11px/1.4 Inter,Helvetica,Arial,sans-serif;color:#6b7390}
+  @media print{.copy-row{display:none}}
 </style>
 </head>
 <body>
@@ -93,6 +103,7 @@
   <div class="variant-title">Varyant A · Ayraç hat (varsayılan)<span class="size">640 × 190</span></div>
   <p class="caption">Logo solda · dikey çizgi · turuncu alt vurgu</p>
   <div class="sig-frame"><div id="varA"></div></div>
+  <div class="copy-row"><button class="copy-btn" data-copy="varA">HTML Kodu Kopyala (Varyant A)</button><span class="copy-hint">Outlook / Gmail imza kutusuna yapıştırın</span></div>
 
   <dl class="kv">
     <dt>Ad Soyad</dt><dd>Yunus Emre MADAK</dd>
@@ -114,6 +125,7 @@
   <div class="variant-title">Varyant B · Sol kenar aksanı<span class="size">640 × 190</span></div>
   <p class="caption">Logo solda · turuncu dikey kenar · vurgu olarak</p>
   <div class="sig-frame"><div id="varB"></div></div>
+  <div class="copy-row"><button class="copy-btn" data-copy="varB">HTML Kodu Kopyala (Varyant B)</button><span class="copy-hint">Outlook / Gmail imza kutusuna yapıştırın</span></div>
 </section>
 
 <!-- ================ PAGE 3 · VARIANT C ================ -->
@@ -125,6 +137,7 @@
   <div class="variant-title">Varyant C · Lacivert panel<span class="size">640 × 190</span></div>
   <p class="caption">Logo negatif zeminde · kurumsal/ciddi ton</p>
   <div class="sig-frame"><div id="varC"></div></div>
+  <div class="copy-row"><button class="copy-btn" data-copy="varC">HTML Kodu Kopyala (Varyant C)</button><span class="copy-hint">Outlook / Gmail imza kutusuna yapıştırın</span></div>
 </section>
 
 <!-- ================ PAGE 4 · VARIANT D ================ -->
@@ -136,6 +149,7 @@
   <div class="variant-title">Varyant D · Kompakt<span class="size">640 × 190</span></div>
   <p class="caption">İnce ayraç · sade ton</p>
   <div class="sig-frame"><div id="varD"></div></div>
+  <div class="copy-row"><button class="copy-btn" data-copy="varD">HTML Kodu Kopyala (Varyant D)</button><span class="copy-hint">Outlook / Gmail imza kutusuna yapıştırın</span></div>
 
   <p class="notes">
     Kullanım: Seçilen varyantın HTML tablo kodunu Outlook/Gmail imza kutusuna yapıştırın.
@@ -235,22 +249,33 @@
   document.getElementById('varC').innerHTML = renderSig('c');
   document.getElementById('varD').innerHTML = renderSig('d');
 
-  // Auto-print after fonts + logo load
-  async function readyToPrint(){
-    try{ if(document.fonts && document.fonts.ready) await document.fonts.ready; }catch(e){}
-    // wait for all imgs
-    const imgs = Array.from(document.images);
-    await Promise.all(imgs.map(img=>{
-      if(img.complete && img.naturalWidth>0) return Promise.resolve();
-      return new Promise(res=>{
-        img.addEventListener('load',res,{once:true});
-        img.addEventListener('error',res,{once:true});
-      });
-    }));
-    await new Promise(r=>setTimeout(r,500));
-    window.print();
-  }
-  window.addEventListener('load', readyToPrint);
+  document.querySelectorAll('.copy-btn').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const id = btn.getAttribute('data-copy');
+      const html = document.getElementById(id).innerHTML.trim();
+      const original = btn.textContent;
+      try {
+        if (navigator.clipboard && window.ClipboardItem) {
+          const blob = new Blob([html], {type:'text/html'});
+          const textBlob = new Blob([html], {type:'text/plain'});
+          await navigator.clipboard.write([new ClipboardItem({'text/html':blob,'text/plain':textBlob})]);
+        } else {
+          await navigator.clipboard.writeText(html);
+        }
+        btn.textContent = '✓ Kopyalandı';
+        btn.classList.add('ok');
+      } catch(e) {
+        const ta = document.createElement('textarea');
+        ta.value = html;
+        document.body.appendChild(ta);
+        ta.select();
+        try{document.execCommand('copy');btn.textContent='✓ Kopyalandı';btn.classList.add('ok');}
+        catch(err){btn.textContent='Kopyalanamadı';}
+        document.body.removeChild(ta);
+      }
+      setTimeout(()=>{btn.textContent=original;btn.classList.remove('ok');}, 2200);
+    });
+  });
 })();
 </script>
 </body>
