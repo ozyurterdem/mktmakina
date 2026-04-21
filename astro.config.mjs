@@ -1,9 +1,21 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://mkt3.siberkale.com',
+  site: 'https://mktmakina.com',
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'tr',
+        locales: {
+          tr: 'tr-TR',
+          en: 'en-US',
+        },
+      },
+    }),
+  ],
   i18n: {
     defaultLocale: 'tr',
     locales: ['tr', 'en'],
