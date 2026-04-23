@@ -7,44 +7,110 @@ interface Props {
 
 const { lang = 'tr' } = Astro.props;
 const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
+
+type Slide = {
+  overline: string;
+  title: [string, string, string]; // [line1, accent-line, line3]
+  desc: string;
+};
+
+const slides: Slide[] = [
+  {
+    overline: t(lang, 'hero.slide1.subtitle'),
+    title: [
+      l({ tr: 'Havacılık',     en: 'Aviation-Grade',   de: 'Luftfahrt-',     ar: 'جودة' }),
+      l({ tr: 'Hassasiyetinde', en: 'Precision',        de: 'Präzision',      ar: 'الطيران' }),
+      l({ tr: 'Üretim',         en: 'Manufacturing',    de: 'Fertigung',      ar: 'التصنيع' }),
+    ],
+    desc: t(lang, 'hero.subtitle'),
+  },
+  {
+    overline: t(lang, 'hero.slide2.subtitle'),
+    title: [
+      l({ tr: 'Mikron',      en: 'Micron-Level',  de: 'Mikrometer',    ar: 'دقة' }),
+      l({ tr: 'Seviyesinde', en: 'DMG MORI',      de: 'mit DMG MORI',  ar: 'بمستوى' }),
+      l({ tr: 'Hassasiyet',  en: '& HAAS',        de: '& HAAS',        ar: 'الميكرون' }),
+    ],
+    desc: t(lang, 'hero.slide2.desc'),
+  },
+  {
+    overline: t(lang, 'hero.slide3.subtitle'),
+    title: [
+      l({ tr: 'Montaj Grubu', en: 'Sub-Assembly',  de: 'Baugruppen-',          ar: 'قطع' }),
+      l({ tr: 'Parçalar &',   en: 'Parts &',       de: 'teile &',              ar: 'مجموعات التجميع' }),
+      l({ tr: 'Fikstürler',   en: 'Fixtures',      de: 'Spannvorrichtungen',   ar: 'وتركيبات التثبيت' }),
+    ],
+    desc: l({
+      tr: 'Havacılık yapısal parçaları ve montaj grupları üretiminde güvenilir çözüm ortağınız.',
+      en: 'Your trusted partner in aerospace structural parts and sub-assembly production.',
+      de: 'Ihr vertrauenswürdiger Partner für Strukturbauteile und Baugruppen in der Luftfahrt.',
+      ar: 'شريكك الموثوق في إنتاج القطع الهيكلية ومجموعات التجميع في مجال الطيران.',
+    }),
+  },
+];
+
+const ctaContactHref = l({ tr: '/iletisim', en: '/en/contact', de: '/de/contact', ar: '/ar/contact' });
+const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/products', ar: '/ar/products' });
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden" id="hero">
-  <!-- Background Image -->
+  <!-- Static Background (slide1.jpg) -->
   <div class="absolute inset-0">
-    <img src="/images/slide1.jpg" alt="MKT Makina" class="w-full h-full object-cover scale-105" loading="eager" />
+    <img src="/images/slide1.jpg" alt="MKT Makina" class="w-full h-full object-cover hero-bg-kb" loading="eager" />
     <div class="absolute inset-0 bg-gradient-to-b from-[#060a12]/70 via-[#060a12]/50 to-[#060a12]/90"></div>
     <div class="absolute inset-0 grid-overlay"></div>
   </div>
 
-  <!-- Content -->
-  <div class="relative z-10 container-custom py-32 lg:py-40">
-    <div class="max-w-3xl">
-      <!-- Overline -->
-      <div data-animate="fade-up" class="flex items-center gap-4 mb-8">
-        <span class="w-12 h-px bg-accent"></span>
-        <span class="text-accent text-xs font-mono uppercase tracking-[0.3em] font-medium">{t(lang, 'hero.slide1.subtitle')}</span>
-      </div>
+  <!-- Content carousel -->
+  <div class="relative z-10 container-custom py-32 lg:py-40 w-full">
+    <div class="max-w-3xl relative hero-slides">
+      {slides.map((slide, i) => (
+        <div
+          class:list={[
+            'hero-slide',
+            i === 0 ? 'is-active' : '',
+          ]}
+          data-slide-index={i}
+        >
+          <!-- Overline -->
+          <div class="flex items-center gap-4 mb-8 hero-anim" style="--d:0ms">
+            <span class="w-12 h-px bg-accent"></span>
+            <span class="text-accent text-xs font-mono uppercase tracking-[0.3em] font-medium">{slide.overline}</span>
+          </div>
 
-      <!-- Title -->
-      <h1 data-animate="fade-up" data-delay="100" class="text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] font-heading font-bold text-white leading-[1.05] mb-8 tracking-tight">
-        {l({tr:'Havacılık', en:'Aviation-Grade', de:'Luftfahrt-Qualität', ar:'جودة الطيران'})}<br />
-        <span class="text-accent">{l({tr:'Hassasiyetinde', en:'Precision', de:'Präzision', ar:'الدقة'})}</span><br />
-        {l({tr:'Üretim', en:'Manufacturing', de:'Fertigung', ar:'التصنيع'})}
-      </h1>
+          <!-- Title -->
+          <h1 class="text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] font-heading font-bold text-white leading-[1.05] mb-8 tracking-tight hero-anim" style="--d:100ms">
+            {slide.title[0]}<br />
+            <span class="text-accent">{slide.title[1]}</span><br />
+            {slide.title[2]}
+          </h1>
 
-      <!-- Subtitle -->
-      <p data-animate="fade-up" data-delay="200" class="text-base lg:text-lg text-white/50 leading-relaxed mb-12 max-w-xl">
-        {t(lang, 'hero.subtitle')}
-      </p>
+          <!-- Subtitle -->
+          <p class="text-base lg:text-lg text-white/50 leading-relaxed mb-12 max-w-xl hero-anim" style="--d:200ms">
+            {slide.desc}
+          </p>
 
-      <!-- CTAs -->
-      <div data-animate="fade-up" data-delay="300" class="flex flex-wrap gap-4">
-        <a href={l({tr:'/iletisim', en:'/en/contact', de:'/de/contact', ar:'/ar/contact'})} class="btn-primary">
-          {t(lang, 'hero.cta')}
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-        <a href={l({tr:'/urunler', en:'/en/products', de:'/de/products', ar:'/ar/products'})} class="btn-outline">{t(lang, 'hero.explore')}</a>
+          <!-- CTAs -->
+          <div class="flex flex-wrap gap-4 hero-anim" style="--d:300ms">
+            <a href={ctaContactHref} class="btn-primary">
+              {t(lang, 'hero.cta')}
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+            <a href={ctaProductsHref} class="btn-outline">{t(lang, 'hero.explore')}</a>
+          </div>
+        </div>
+      ))}
+
+      <!-- Slide indicators (dots) -->
+      <div class="hero-dots flex gap-2 mt-10">
+        {slides.map((_, i) => (
+          <button
+            type="button"
+            data-dot={i}
+            aria-label={`Slide ${i + 1}`}
+            class:list={['hero-dot', i === 0 ? 'is-active' : '']}
+          ></button>
+        ))}
       </div>
     </div>
   </div>
@@ -78,3 +144,118 @@ const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
     </div>
   </div>
 </section>
+
+<style>
+  /* Ken Burns (yavaş zoom) — arka görsel statik ama dinamik his */
+  .hero-bg-kb {
+    transform: scale(1.05);
+    animation: heroBgKB 22s ease-in-out infinite alternate;
+    transform-origin: center center;
+  }
+  @keyframes heroBgKB {
+    from { transform: scale(1.05) translate(0, 0); }
+    to   { transform: scale(1.15) translate(-1%, 1%); }
+  }
+
+  /* Carousel stacking: tüm slide'lar absolute, aktif olan görünür */
+  .hero-slides {
+    min-height: 460px;
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 700ms ease;
+  }
+  .hero-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Aktif slide içi mikro animasyon (girişte fade-up) */
+  .hero-slide .hero-anim {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 700ms ease var(--d), transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--d);
+  }
+  .hero-slide.is-active .hero-anim {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Dot navigation */
+  .hero-dots {
+    position: relative;
+    z-index: 5;
+    padding-top: 460px;
+  }
+  .hero-dot {
+    width: 44px;
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    transition: background-color 300ms ease;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+  }
+  .hero-dot:hover {
+    background: rgba(255,255,255,0.35);
+  }
+  .hero-dot.is-active {
+    background: var(--color-accent, #c8a23c);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-bg-kb { animation: none; }
+    .hero-slide, .hero-slide .hero-anim { transition: none; }
+  }
+</style>
+
+<script>
+  (() => {
+    const root = document.getElementById('hero');
+    if (!root) return;
+
+    const slides = root.querySelectorAll<HTMLElement>('.hero-slide');
+    const dots = root.querySelectorAll<HTMLButtonElement>('.hero-dot');
+    if (slides.length < 2) return;
+
+    let index = 0;
+    let timer: number | undefined;
+    const INTERVAL = 5500;
+
+    const show = (n: number) => {
+      index = ((n % slides.length) + slides.length) % slides.length;
+      slides.forEach((s, i) => s.classList.toggle('is-active', i === index));
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+    };
+
+    const next = () => show(index + 1);
+
+    const start = () => {
+      stop();
+      timer = window.setInterval(next, INTERVAL);
+    };
+    const stop = () => {
+      if (timer !== undefined) window.clearInterval(timer);
+      timer = undefined;
+    };
+
+    dots.forEach((dot, i) =>
+      dot.addEventListener('click', () => {
+        show(i);
+        start(); // kullanıcı etkileşimi sonrası yeniden sıfırdan 5.5sn
+      })
+    );
+
+    // Tab görünür değilse timer'ı durdur
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else start();
+    });
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      start();
+    }
+  })();
+</script>
