@@ -86,7 +86,7 @@ export const translations = {
     'footer.corporate': 'Kurumsal',
     'footer.quicklinks': 'Hızlı Bağlantılar',
     'footer.contact': 'İletişim',
-    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:1 Arifiye / Sakarya',
+    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:12 İç Kapı No:Z1 Arifiye / Sakarya',
     'footer.rights': 'Tüm hakları saklıdır.',
     'footer.follow': 'Bizi Takip Edin',
 
@@ -175,7 +175,7 @@ export const translations = {
     'footer.corporate': 'Corporate',
     'footer.quicklinks': 'Quick Links',
     'footer.contact': 'Contact',
-    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:1 Arifiye / Sakarya, Turkey',
+    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:12 İç Kapı No:Z1 Arifiye / Sakarya, Turkey',
     'footer.rights': 'All rights reserved.',
     'footer.follow': 'Follow Us',
 
@@ -264,7 +264,7 @@ export const translations = {
     'footer.corporate': 'Unternehmen',
     'footer.quicklinks': 'Schnellzugriff',
     'footer.contact': 'Kontakt',
-    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:1 Arifiye / Sakarya, Türkei',
+    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:12 İç Kapı No:Z1 Arifiye / Sakarya, Türkei',
     'footer.rights': 'Alle Rechte vorbehalten.',
     'footer.follow': 'Folgen Sie Uns',
 
@@ -353,7 +353,7 @@ export const translations = {
     'footer.corporate': 'الشركة',
     'footer.quicklinks': 'روابط سريعة',
     'footer.contact': 'اتصل بنا',
-    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:1 Arifiye / Sakarya، تركيا',
+    'footer.address': 'Hanlıköy Mah. Akgün Cad. No:12 İç Kapı No:Z1 Arifiye / Sakarya، تركيا',
     'footer.rights': 'جميع الحقوق محفوظة.',
     'footer.follow': 'تابعنا',
 
