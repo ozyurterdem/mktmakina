@@ -10,7 +10,7 @@ const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
 
 type Slide = {
   overline: string;
-  title: [string, string, string]; // [line1, accent-line, line3]
+  title: [string, string, string];
   desc: string;
 };
 
@@ -49,16 +49,49 @@ const slides: Slide[] = [
   },
 ];
 
-const ctaContactHref = l({ tr: '/iletisim', en: '/en/contact', de: '/de/contact', ar: '/ar/contact' });
+const ctaContactHref  = l({ tr: '/iletisim', en: '/en/contact',  de: '/de/contact',  ar: '/ar/contact' });
 const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/products', ar: '/ar/products' });
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden" id="hero">
-  <!-- Static Background (slide1.jpg) -->
+  <!-- Static Background (slide1.jpg) + Ken Burns -->
   <div class="absolute inset-0">
     <img src="/images/slide1.jpg" alt="MKT Makina" class="w-full h-full object-cover hero-bg-kb" loading="eager" />
     <div class="absolute inset-0 bg-gradient-to-b from-[#060a12]/70 via-[#060a12]/50 to-[#060a12]/90"></div>
     <div class="absolute inset-0 grid-overlay"></div>
+  </div>
+
+  <!-- Corner Calibration Markers (CNC L-brackets) -->
+  <div class="corner-markers pointer-events-none absolute inset-0 z-[2]" aria-hidden="true">
+    <span class="corner corner-tl"></span>
+    <span class="corner corner-tr"></span>
+    <span class="corner corner-bl"></span>
+    <span class="corner corner-br"></span>
+  </div>
+
+  <!-- CNC Probe / Coordinate Crosshair -->
+  <div class="cnc-probe pointer-events-none absolute z-[2] hidden md:block" id="cncProbe" aria-hidden="true">
+    <svg class="w-8 h-8 text-accent/60" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1">
+      <circle cx="16" cy="16" r="6" />
+      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+      <line x1="16" y1="0"  x2="16" y2="10" />
+      <line x1="16" y1="22" x2="16" y2="32" />
+      <line x1="0"  y1="16" x2="10" y2="16" />
+      <line x1="22" y1="16" x2="32" y2="16" />
+    </svg>
+  </div>
+
+  <!-- Coordinate Readout -->
+  <div class="cnc-readout pointer-events-none absolute bottom-24 right-6 lg:right-8 z-[3] hidden md:flex flex-col items-end gap-0.5 font-mono text-[10px] tracking-[0.15em] text-white/35" aria-hidden="true">
+    <span class="flex items-center gap-2">
+      <span class="w-1.5 h-1.5 bg-accent/70 rounded-full animate-pulse"></span>
+      <span>NHC 5000 · LIVE</span>
+    </span>
+    <span>X <span id="probeX" class="text-white/60">000.000</span> mm</span>
+    <span>Y <span id="probeY" class="text-white/60">000.000</span> mm</span>
+    <span>Z <span id="probeZ" class="text-white/60">000.000</span> mm</span>
+    <span>A <span id="probeA" class="text-white/60">+00.00</span>°</span>
+    <span>B <span id="probeB" class="text-white/60">+00.00</span>°</span>
   </div>
 
   <!-- Content carousel -->
@@ -72,25 +105,21 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
           ]}
           data-slide-index={i}
         >
-          <!-- Overline -->
           <div class="flex items-center gap-4 mb-8 hero-anim" style="--d:0ms">
             <span class="w-12 h-px bg-accent"></span>
             <span class="text-accent text-xs font-mono uppercase tracking-[0.3em] font-medium">{slide.overline}</span>
           </div>
 
-          <!-- Title -->
           <h1 class="text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] font-heading font-bold text-white leading-[1.05] mb-8 tracking-tight hero-anim" style="--d:100ms">
             {slide.title[0]}<br />
             <span class="text-accent">{slide.title[1]}</span><br />
             {slide.title[2]}
           </h1>
 
-          <!-- Subtitle -->
           <p class="text-base lg:text-lg text-white/50 leading-relaxed mb-12 max-w-xl hero-anim" style="--d:200ms">
             {slide.desc}
           </p>
 
-          <!-- CTAs -->
           <div class="flex flex-wrap gap-4 hero-anim" style="--d:300ms">
             <a href={ctaContactHref} class="btn-primary">
               {t(lang, 'hero.cta')}
@@ -101,7 +130,6 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
         </div>
       ))}
 
-      <!-- Slide indicators (dots) -->
       <div class="hero-dots flex gap-2 mt-10">
         {slides.map((_, i) => (
           <button
@@ -113,6 +141,11 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
         ))}
       </div>
     </div>
+  </div>
+
+  <!-- Laser-cut slide transition sweeper -->
+  <div class="laser-sweep pointer-events-none absolute inset-0 z-[4]" id="laserSweep" aria-hidden="true">
+    <span class="laser-line"></span>
   </div>
 
   <!-- Bottom Stats Bar -->
@@ -135,7 +168,6 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
     </div>
   </div>
 
-  <!-- Scroll Indicator -->
   <div class="absolute bottom-28 left-1/2 -translate-x-1/2 z-10 hidden lg:block">
     <div class="scroll-bounce">
       <svg class="w-5 h-5 text-white/20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -146,7 +178,7 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
 </section>
 
 <style>
-  /* Ken Burns (yavaş zoom) — arka görsel statik ama dinamik his */
+  /* Ken Burns yavaş zoom */
   .hero-bg-kb {
     transform: scale(1.05);
     animation: heroBgKB 22s ease-in-out infinite alternate;
@@ -157,57 +189,109 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
     to   { transform: scale(1.15) translate(-1%, 1%); }
   }
 
-  /* Carousel stacking: tüm slide'lar absolute, aktif olan görünür */
-  .hero-slides {
-    min-height: 460px;
-  }
+  /* Carousel */
+  .hero-slides { min-height: 460px; }
   .hero-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
+    position: absolute; inset: 0;
+    opacity: 0; pointer-events: none;
     transition: opacity 700ms ease;
   }
-  .hero-slide.is-active {
-    opacity: 1;
-    pointer-events: auto;
-  }
+  .hero-slide.is-active { opacity: 1; pointer-events: auto; }
 
-  /* Aktif slide içi mikro animasyon (girişte fade-up) */
   .hero-slide .hero-anim {
-    opacity: 0;
-    transform: translateY(18px);
+    opacity: 0; transform: translateY(18px);
     transition: opacity 700ms ease var(--d), transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--d);
   }
-  .hero-slide.is-active .hero-anim {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .hero-slide.is-active .hero-anim { opacity: 1; transform: translateY(0); }
 
-  /* Dot navigation */
-  .hero-dots {
-    position: relative;
-    z-index: 5;
-    padding-top: 460px;
-  }
+  /* Dots */
+  .hero-dots { position: relative; z-index: 5; padding-top: 460px; }
   .hero-dot {
-    width: 44px;
-    height: 3px;
+    width: 44px; height: 3px;
     background: rgba(255,255,255,0.15);
     transition: background-color 300ms ease;
-    cursor: pointer;
-    border: 0;
-    padding: 0;
+    cursor: pointer; border: 0; padding: 0;
   }
-  .hero-dot:hover {
-    background: rgba(255,255,255,0.35);
+  .hero-dot:hover      { background: rgba(255,255,255,0.35); }
+  .hero-dot.is-active  { background: var(--color-accent, #c8a23c); }
+
+  /* Corner markers — CNC calibration L-brackets */
+  .corner {
+    position: absolute;
+    width: 28px; height: 28px;
+    opacity: 0.28;
+    transition: opacity 400ms ease;
   }
-  .hero-dot.is-active {
+  .corner::before,
+  .corner::after {
+    content: '';
+    position: absolute;
     background: var(--color-accent, #c8a23c);
   }
+  .corner::before { /* yatay çubuk */
+    left: 0; width: 14px; height: 1px;
+  }
+  .corner::after { /* dikey çubuk */
+    top: 0; width: 1px; height: 14px;
+  }
+  .corner-tl { top: 20px; left: 20px; }
+  .corner-tr { top: 20px; right: 20px; transform: scaleX(-1); }
+  .corner-bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
+  .corner-br { bottom: 20px; right: 20px; transform: scale(-1, -1); }
 
+  /* Slide geçişinde köşeleri flash'la (pulse) */
+  #hero.slide-changing .corner { opacity: 0.85; }
+
+  /* CNC Probe (crosshair) */
+  .cnc-probe {
+    top: 20%; left: 55%;
+    transform: translate(-50%, -50%);
+    transition: top 6s cubic-bezier(0.22, 0.61, 0.36, 1),
+                left 6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    filter: drop-shadow(0 0 6px rgba(200, 162, 60, 0.3));
+    opacity: 0.6;
+  }
+
+  /* Laser-cut sweep */
+  .laser-sweep {
+    overflow: hidden;
+    mix-blend-mode: screen;
+  }
+  .laser-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: -4px;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(200, 162, 60, 0.08) 10%,
+      rgba(200, 162, 60, 0.9)  50%,
+      rgba(200, 162, 60, 0.08) 90%,
+      transparent 100%
+    );
+    box-shadow:
+      0 0 18px rgba(200, 162, 60, 0.9),
+      0 0 40px rgba(200, 162, 60, 0.4);
+    opacity: 0;
+    pointer-events: none;
+  }
+  #hero.slide-changing .laser-line {
+    animation: laserSweep 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+  @keyframes laserSweep {
+    0%   { left: -4px;    opacity: 0; }
+    12%  { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { left: calc(100% + 4px); opacity: 0; }
+  }
+
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .hero-bg-kb { animation: none; }
+    .hero-bg-kb,
+    .laser-line,
+    .cnc-probe,
+    .corner { animation: none; transition: none; }
     .hero-slide, .hero-slide .hero-anim { transition: none; }
   }
 </style>
@@ -218,9 +302,17 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
     if (!root) return;
 
     const slides = root.querySelectorAll<HTMLElement>('.hero-slide');
-    const dots = root.querySelectorAll<HTMLButtonElement>('.hero-dot');
-    if (slides.length < 2) return;
+    const dots   = root.querySelectorAll<HTMLButtonElement>('.hero-dot');
+    const probe  = document.getElementById('cncProbe') as HTMLElement | null;
+    const xEl = document.getElementById('probeX');
+    const yEl = document.getElementById('probeY');
+    const zEl = document.getElementById('probeZ');
+    const aEl = document.getElementById('probeA');
+    const bEl = document.getElementById('probeB');
 
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ---------- Slide carousel ---------- */
     let index = 0;
     let timer: number | undefined;
     const INTERVAL = 5500;
@@ -229,33 +321,66 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
       index = ((n % slides.length) + slides.length) % slides.length;
       slides.forEach((s, i) => s.classList.toggle('is-active', i === index));
       dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
+
+      // Laser-cut + corner pulse tetikle
+      root.classList.add('slide-changing');
+      window.setTimeout(() => root.classList.remove('slide-changing'), 720);
+
+      // Probe'u yeni bir rastgele konuma taşı
+      moveProbe();
     };
 
-    const next = () => show(index + 1);
+    const start = () => { stop(); timer = window.setInterval(() => show(index + 1), INTERVAL); };
+    const stop  = () => { if (timer !== undefined) window.clearInterval(timer); timer = undefined; };
 
-    const start = () => {
-      stop();
-      timer = window.setInterval(next, INTERVAL);
-    };
-    const stop = () => {
-      if (timer !== undefined) window.clearInterval(timer);
-      timer = undefined;
-    };
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); start(); }));
 
-    dots.forEach((dot, i) =>
-      dot.addEventListener('click', () => {
-        show(i);
-        start(); // kullanıcı etkileşimi sonrası yeniden sıfırdan 5.5sn
-      })
-    );
-
-    // Tab görünür değilse timer'ı durdur
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) stop(); else start();
     });
 
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    /* ---------- CNC Probe hareketi ---------- */
+    const probePositions: Array<[string, string]> = [
+      ['20%', '62%'],
+      ['35%', '22%'],
+      ['68%', '40%'],
+      ['82%', '72%'],
+      ['48%', '55%'],
+    ];
+    let probePosIdx = 0;
+    const moveProbe = () => {
+      if (!probe || reducedMotion) return;
+      probePosIdx = (probePosIdx + 1) % probePositions.length;
+      const [left, top] = probePositions[probePosIdx];
+      probe.style.left = left;
+      probe.style.top = top;
+    };
+
+    /* ---------- Koordinat readout (sahte canlı değerler) ---------- */
+    const pad = (n: number, w: number, dp: number) =>
+      n.toFixed(dp).padStart(w, '0');
+
+    let phase = 0;
+    const tickReadout = () => {
+      if (!xEl || !yEl || !zEl || !aEl || !bEl || reducedMotion) return;
+      phase += 0.03;
+      // plausible micro-mm oscillations
+      const x = 234.567 + Math.sin(phase * 0.7) * 8.321;
+      const y = 189.024 + Math.cos(phase * 0.5) * 6.102;
+      const z =  12.000 + Math.sin(phase * 1.3) * 0.085;
+      const a =  15.40 + Math.sin(phase * 0.9) * 3.15;
+      const b = -22.85 + Math.cos(phase * 0.6) * 4.40;
+      xEl.textContent = pad(x, 7, 3);
+      yEl.textContent = pad(y, 7, 3);
+      zEl.textContent = pad(z, 7, 3);
+      aEl.textContent = (a >= 0 ? '+' : '') + a.toFixed(2).padStart(5, '0');
+      bEl.textContent = (b >= 0 ? '+' : '') + b.toFixed(2).padStart(5, '0');
+    };
+
+    if (!reducedMotion) {
+      moveProbe();
       start();
+      window.setInterval(tickReadout, 120);
     }
   })();
 </script>
