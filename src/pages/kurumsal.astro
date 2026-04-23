@@ -4,14 +4,14 @@ import PageHero from '../components/PageHero.astro';
 import CTA from '../components/CTA.astro';
 
 const tabs = [
-  { id: 'about', label: 'Hakkimizda' },
+  { id: 'about', label: 'Hakkımızda' },
   { id: 'mission', label: 'Misyon & Vizyon' },
-  { id: 'quality', label: 'Kalite Politikamiz' },
+  { id: 'quality', label: 'Kalite Politikamız' },
 ];
 ---
 
-<BaseLayout title="Kurumsal — MKT Makina Kalip Takim" description="MKT Makina hakkinda, misyon, vizyon ve kalite politikamiz. AS9100 sertifikali havacilik ve otomotiv parca ureticisi." lang="tr" hasHero={false}>
-  <PageHero title="Kurumsal" subtitle="2007'den bu yana havacilik hassasiyetinde uretim" />
+<BaseLayout title="Kurumsal — MKT Makina A.Ş." description="MKT Makina A.Ş. hakkında, misyon, vizyon ve kalite politikamız. AS9100 sertifikalı havacılık ve otomotiv parça üreticisi." lang="tr" hasHero={false}>
+  <PageHero title="Kurumsal" subtitle="2007'den bu yana havacılık hassasiyetinde üretim" />
 
   <section class="section-padding">
     <div class="container-custom">
@@ -32,26 +32,26 @@ const tabs = [
         ))}
       </div>
 
-      <!-- Hakkimizda -->
+      <!-- Hakkımızda -->
       <div id="tab-about" class="tab-content">
         <div class="grid lg:grid-cols-2 gap-12 items-start">
           <div data-animate="fade-up">
-            <h2 class="font-heading text-2xl font-bold text-white mb-6">Hakkimizda</h2>
+            <h2 class="font-heading text-2xl font-bold text-white mb-6">Hakkımızda</h2>
             <div class="space-y-4 text-text-light leading-relaxed text-[15px]">
-              <p>MKT Makina, havacilik ve otomotiv sanayii icin yuksek kaliteli hassas isleme parcalar ve plastik enjeksiyon parcalar uretmektedir. 2007 yilinda kurulan sirket, is hayatinin ilk yillarindan bu yana kalip, fikstur, aparat ve kalite kontrol mastari imalati da yapmaktadir.</p>
-              <p>Makina parkurunu buyuterek 2012 yilindan itibaren TSI Ucak Koltuk firmasina talasli imalat parcalarinin uretimine baslamistir.</p>
-              <p>AS9100 sertifikasina sahip olup, kalite yonetim sistemini havacilik ve otomotiv sanayi gerekliliklerine uygun olarak yapilandirmistir.</p>
+              <p>MKT Makina, havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ile montaj grubu parçalar üretmektedir. 2007 yılında kurulan şirket, iş hayatının ilk yıllarından bu yana fikstür, aparat, kalıp ve kalite kontrol mastarı imalatı da yapmaktadır.</p>
+              <p>2012 yılından itibaren Türk Kabin İçi Sistemleri'ne (TCI) yapısal parça üretiminde etkili bir rol oynamaktadır.</p>
+              <p>AS9100 sertifikasına sahip olup, kalite yönetim sistemini havacılık ve otomotiv sanayi gerekliliklerine uygun olarak yapılandırmıştır.</p>
             </div>
 
-            <h3 class="font-heading text-base font-semibold text-white mt-8 mb-4">Urun Yelpazemiz</h3>
+            <h3 class="font-heading text-base font-semibold text-white mt-8 mb-4">Kabiliyetler</h3>
             <ul class="space-y-2.5">
               {[
-                'Talasli imalat parcalari ve montaj gruplari',
-                'Fiksturler',
+                'Montaj grubu parçalar',
+                'Fikstürler',
                 'Aparatlar',
-                'Kalite kontrol mastarlari',
-                'Plastik enjeksiyon kaliplari',
-                'Plastik enjeksiyon baski',
+                'Kalıplar',
+                'Kalite kontrol mastarları',
+                'Plastik enjeksiyon',
               ].map((item) => (
                 <li class="flex items-start gap-3 text-text-light text-sm">
                   <span class="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0"></span>
@@ -61,11 +61,11 @@ const tabs = [
             </ul>
           </div>
           <div class="relative" data-animate="fade-up">
-            <img src="/images/slide1.jpg" alt="MKT Makina Uretim" class="w-full aspect-[4/3] object-cover" />
+            <img src="/images/slide1.jpg" alt="MKT Makina Üretim" class="w-full aspect-[4/3] object-cover" />
             <div class="absolute bottom-0 left-0 w-24 h-1 bg-accent"></div>
             <div class="absolute -bottom-4 -left-4 bg-primary-dark text-white px-5 py-4">
               <div class="font-heading text-2xl font-bold text-accent">2007</div>
-              <div class="text-white/60 text-[10px] uppercase tracking-wider mt-0.5">Kurulus</div>
+              <div class="text-white/60 text-[10px] uppercase tracking-wider mt-0.5">Kuruluş</div>
             </div>
           </div>
         </div>
@@ -73,10 +73,11 @@ const tabs = [
         <h3 class="font-heading text-base font-semibold text-white mt-12 mb-4">Temel Prensiplerimiz</h3>
         <div class="grid sm:grid-cols-2 gap-3">
           {[
-            'Musteri gereksinimlerini karsilayan yuksek kalite urunler uretmek',
-            'Son teknoloji ekipman, alet ve yazilim programlarini kullanmak',
-            'Musteriye ozgu cozumler sunmak',
-            'Ileri endustriyel standartlara uygun kalite yonetim sistemini surdurmek',
+            'Müşteri bir partner olarak görülür; yapılan iş birlikleri uzun vadeli iş ortaklığı olarak değerlendirilir',
+            'Müşteri gereksinimlerini karşılayan yüksek kalite ürünler üretmek',
+            'Son teknoloji ekipman, alet ve yazılım programlarını kullanmak',
+            'Müşteriye özgü çözümler sunmak',
+            'İleri endüstriyel standartlara uygun kalite yönetim sistemini sürdürmek',
           ].map((item) => (
             <div class="flex items-start gap-3 p-4 bg-primary-light border border-white/[0.06]" data-animate="fade-up">
               <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>

@@ -3,7 +3,7 @@ import '../styles/global.css';
 import { Font } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { languages } from '../i18n/translations';
+import { languages, t } from '../i18n/translations';
 import type { Lang } from '../i18n/translations';
 
 interface Props {
@@ -13,12 +13,15 @@ interface Props {
   hasHero?: boolean;
 }
 
-const {
-  title,
-  description = 'MKT Makina Kalıp Takım — Havacılık ve otomotiv sanayii için hassas işleme ve plastik enjeksiyon çözümleri.',
-  lang = 'tr',
-  hasHero = false,
-} = Astro.props;
+const { title, lang = 'tr', hasHero = false } = Astro.props;
+
+const defaultDesc: Record<Lang, string> = {
+  tr: 'MKT Makina A.Ş. — Havacılık ve otomotiv sanayii için hassas işleme, montaj grubu parçalar, fikstür ve kalite kontrol çözümleri.',
+  en: 'MKT Makina Inc. — Precision machining, sub-assembly parts, fixtures and quality control solutions for aviation and automotive industry.',
+  de: 'MKT Makina AG — Präzisionsbearbeitung, Baugruppenteile, Spannvorrichtungen und Qualitätskontrolllösungen für die Luft- und Kraftfahrtindustrie.',
+  ar: 'MKT Makina ش.م. — قطع مُشغَّلة دقيقة، قطع مجموعات التجميع، تركيبات تثبيت وحلول مراقبة الجودة لصناعتَي الطيران والسيارات.',
+};
+const description = Astro.props.description ?? defaultDesc[lang];
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -103,7 +106,7 @@ const trHref = new URL(getPathForLang('tr'), Astro.site).toString();
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:site_name" content="MKT Makina Kalıp Takım" />
+    <meta property="og:site_name" content={t(lang, 'company.full')} />
     <meta property="og:locale" content={ogLocaleMap[lang]} />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />

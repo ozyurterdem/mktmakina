@@ -15,6 +15,11 @@ const machineGroups = [
     { name: 'DMC 1035 V', specs: 'DMG MORI — 3-Axis (2nd unit)' },
     { name: 'DMC 835 V', specs: 'DMG MORI — 3-Axis' },
   ]},
+  { category: 'Horizontal CNC Machining Centers', machines: [
+    { name: 'NHC 5000 (1)', specs: 'Horizontal CNC Machining Center' },
+    { name: 'NHC 5000 (2)', specs: 'Horizontal CNC Machining Center' },
+    { name: 'NHC 5000 (3)', specs: 'Horizontal CNC Machining Center' },
+  ]},
   { category: 'Wire EDM', machines: [
     { name: 'CUT 30P', specs: 'GF Machining (1st unit)' },
     { name: 'CUT 30P', specs: 'GF Machining (2nd unit)' },
@@ -29,9 +34,11 @@ const machineGroups = [
     { name: 'Cylindrical Grinding', specs: 'Cylindrical & Internal Grinding' },
     { name: 'Tool Grinding', specs: 'Tool Grinding Machine' },
   ]},
-  { category: 'Plastic Injection & Marking', machines: [
-    { name: 'LS LST 280', specs: 'LS — Plastic Injection Machine' },
+  { category: 'Laser Marking', machines: [
     { name: 'Laser Marking', specs: 'Laser Marking System' },
+  ]},
+  { category: 'Plastic Injection', machines: [
+    { name: 'LS LST 280', specs: 'LS — Plastic Injection Machine' },
   ]},
 ];
 ---
@@ -45,7 +52,7 @@ const machineGroups = [
         {[
           { value: '4', label: '5-Axis CNC' },
           { value: '3', label: '3-Axis CNC' },
-          { value: '3', label: 'Wire EDM' },
+          { value: '3', label: 'Horizontal CNC (NHC 5000)' },
           { value: '20+', label: 'Total Machines' },
         ].map((stat) => (
           <div class="text-center p-5 bg-primary-dark">

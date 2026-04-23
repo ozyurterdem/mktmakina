@@ -14,14 +14,19 @@ export const translations = {
     // Nav
     'nav.home': 'Anasayfa',
     'nav.about': 'Kurumsal',
-    'nav.products': 'Ürünler',
-    'nav.machines': 'Makina Parkımız',
+    'nav.products': 'Kabiliyetler',
+    'nav.machines': 'Makina Parkuru',
     'nav.references': 'Referanslar',
     'nav.certificates': 'Belgeler',
     'nav.news': 'Haberler',
     'nav.contact': 'İletişim',
     'nav.quote': 'Teklif Al',
     'nav.hr': 'İnsan Kaynakları',
+
+    // Şirket adı (dil bazlı suffix)
+    'company.name': 'MKT Makina',
+    'company.suffix': 'A.Ş.',
+    'company.full': 'MKT Makina A.Ş.',
 
     // Hero
     'hero.title': 'Havacılık Hassasiyetinde Üretim',
@@ -44,24 +49,24 @@ export const translations = {
     'gallery.title': 'Üretim Galerisi',
     'gallery.subtitle': 'Tesisimizden üretim kareleri',
 
-    // Products
-    'products.title': 'Ürünlerimiz',
+    // Products / Kabiliyetler
+    'products.title': 'Kabiliyetler',
     'products.subtitle': 'Havacılık ve otomotiv sanayii için hassas mühendislik çözümleri',
-    'products.apparatus': 'Aparatlar',
+    'products.assemblies': 'Montaj Grubu Parçalar',
     'products.fixtures': 'Fikstür',
+    'products.apparatus': 'Aparatlar',
     'products.molds': 'Kalıplar',
-    'products.applications': 'Uygulamalar',
     'products.gauges': 'Kalite Kontrol Mastarları',
     'products.injection': 'Plastik Enjeksiyon',
     'products.detail': 'Detay',
 
     // About
     'about.title': 'Hakkımızda',
-    'about.text': 'MKT Makina, 2007 yılından bu yana havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ve plastik enjeksiyon parçalar üretmektedir. AS9100 sertifikasına sahip şirketimiz, kalite yönetim sistemini havacılık ve otomotiv sanayi gerekliliklerine uygun olarak yapılandırmıştır.',
+    'about.text': 'MKT Makina, 2007 yılından bu yana havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ile montaj grubu parçalar üretmektedir. AS9100 sertifikasına sahip şirketimiz, kalite yönetim sistemini havacılık ve otomotiv sanayi gerekliliklerine uygun olarak yapılandırmıştır.',
     'about.more': 'Devamı',
 
     // Machines
-    'machines.title': 'Makina Parkımız',
+    'machines.title': 'Makina Parkuru',
     'machines.subtitle': 'İleri teknoloji üretim altyapımız',
 
     // References
@@ -96,7 +101,7 @@ export const translations = {
     // Nav
     'nav.home': 'Home',
     'nav.about': 'About',
-    'nav.products': 'Products',
+    'nav.products': 'Capabilities',
     'nav.machines': 'Machine Park',
     'nav.references': 'References',
     'nav.certificates': 'Certificates',
@@ -104,6 +109,11 @@ export const translations = {
     'nav.contact': 'Contact',
     'nav.quote': 'Get Quote',
     'nav.hr': 'Careers',
+
+    // Company name (lang-based suffix)
+    'company.name': 'MKT Makina',
+    'company.suffix': 'Inc.',
+    'company.full': 'MKT Makina Inc.',
 
     // Hero
     'hero.title': 'Aviation-Grade Precision Manufacturing',
@@ -126,20 +136,20 @@ export const translations = {
     'gallery.title': 'Production Gallery',
     'gallery.subtitle': 'Production shots from our facility',
 
-    // Products
-    'products.title': 'Our Products',
+    // Products / Capabilities
+    'products.title': 'Capabilities',
     'products.subtitle': 'Precision engineering solutions for aviation and automotive industry',
-    'products.apparatus': 'Apparatus',
+    'products.assemblies': 'Sub-Assembly Parts',
     'products.fixtures': 'Fixtures',
+    'products.apparatus': 'Apparatus',
     'products.molds': 'Molds',
-    'products.applications': 'Applications',
     'products.gauges': 'Quality Control Gauges',
     'products.injection': 'Plastic Injection',
     'products.detail': 'Detail',
 
     // About
     'about.title': 'About Us',
-    'about.text': 'MKT Makina has been manufacturing high quality precision machined parts and plastic injection parts for aviation and automotive industry since 2007. Certified to AS9100, our quality management system has been structured according to the requirements of aviation and automotive industry.',
+    'about.text': 'MKT Makina has been manufacturing high quality precision machined parts and sub-assembly parts for aviation and automotive industry since 2007. Certified to AS9100, our quality management system has been structured according to the requirements of aviation and automotive industry.',
     'about.more': 'Read More',
 
     // Machines
@@ -178,7 +188,7 @@ export const translations = {
     // Nav
     'nav.home': 'Startseite',
     'nav.about': 'Über Uns',
-    'nav.products': 'Produkte',
+    'nav.products': 'Fähigkeiten',
     'nav.machines': 'Maschinenpark',
     'nav.references': 'Referenzen',
     'nav.certificates': 'Zertifikate',
@@ -186,6 +196,11 @@ export const translations = {
     'nav.contact': 'Kontakt',
     'nav.quote': 'Angebot Anfordern',
     'nav.hr': 'Karriere',
+
+    // Firmenname (sprachabhängiges Suffix)
+    'company.name': 'MKT Makina',
+    'company.suffix': 'AG',
+    'company.full': 'MKT Makina AG',
 
     // Hero
     'hero.title': 'Fertigung mit Luftfahrtpräzision',
@@ -208,20 +223,20 @@ export const translations = {
     'gallery.title': 'Produktionsgalerie',
     'gallery.subtitle': 'Aufnahmen aus unserem Fertigungsbetrieb',
 
-    // Products
-    'products.title': 'Unsere Produkte',
+    // Products / Fähigkeiten
+    'products.title': 'Fähigkeiten',
     'products.subtitle': 'Präzisionstechnische Lösungen für die Luft- und Raumfahrt- sowie Automobilindustrie',
-    'products.apparatus': 'Vorrichtungen',
+    'products.assemblies': 'Baugruppenteile',
     'products.fixtures': 'Spannvorrichtungen',
+    'products.apparatus': 'Vorrichtungen',
     'products.molds': 'Werkzeuge',
-    'products.applications': 'Anwendungen',
     'products.gauges': 'Qualitätskontrolllehren',
     'products.injection': 'Kunststoffspritzguss',
     'products.detail': 'Details',
 
     // About
     'about.title': 'Über Uns',
-    'about.text': 'MKT Makina fertigt seit 2007 hochwertige Präzisionsbearbeitungsteile und Kunststoffspritzgussteile für die Luft- und Raumfahrt- sowie Automobilindustrie. Als AS9100-zertifiziertes Unternehmen haben wir unser Qualitätsmanagementsystem entsprechend den Anforderungen der Luft- und Raumfahrt- sowie Automobilindustrie aufgebaut.',
+    'about.text': 'MKT Makina fertigt seit 2007 hochwertige Präzisionsbearbeitungsteile und Baugruppenteile für die Luft- und Raumfahrt- sowie Automobilindustrie. Als AS9100-zertifiziertes Unternehmen haben wir unser Qualitätsmanagementsystem entsprechend den Anforderungen der Luft- und Raumfahrt- sowie Automobilindustrie aufgebaut.',
     'about.more': 'Mehr Erfahren',
 
     // Machines
@@ -260,7 +275,7 @@ export const translations = {
     // Nav
     'nav.home': 'الرئيسية',
     'nav.about': 'من نحن',
-    'nav.products': 'المنتجات',
+    'nav.products': 'القدرات',
     'nav.machines': 'أسطول الآلات',
     'nav.references': 'المراجع',
     'nav.certificates': 'الشهادات',
@@ -268,6 +283,11 @@ export const translations = {
     'nav.contact': 'اتصل بنا',
     'nav.quote': 'طلب عرض سعر',
     'nav.hr': 'الوظائف',
+
+    // اسم الشركة (لاحقة حسب اللغة)
+    'company.name': 'MKT Makina',
+    'company.suffix': 'ش.م.',
+    'company.full': 'MKT Makina ش.م.',
 
     // Hero
     'hero.title': 'تصنيع بدقة الطيران',
@@ -290,20 +310,20 @@ export const translations = {
     'gallery.title': 'معرض الإنتاج',
     'gallery.subtitle': 'لقطات من منشأتنا الإنتاجية',
 
-    // Products
-    'products.title': 'منتجاتنا',
+    // Products / القدرات
+    'products.title': 'القدرات',
     'products.subtitle': 'حلول هندسية دقيقة لصناعتَي الطيران والسيارات',
-    'products.apparatus': 'الأجهزة والمعدات',
+    'products.assemblies': 'قطع مجموعات التجميع',
     'products.fixtures': 'أدوات التثبيت',
+    'products.apparatus': 'الأجهزة والمعدات',
     'products.molds': 'القوالب',
-    'products.applications': 'التطبيقات',
     'products.gauges': 'مقاييس مراقبة الجودة',
     'products.injection': 'حقن البلاستيك',
     'products.detail': 'التفاصيل',
 
     // About
     'about.title': 'من نحن',
-    'about.text': 'تقوم شركة MKT Makina منذ عام 2007 بتصنيع قطع مُشغَّلة بدقة عالية وقطع حقن بلاستيكية لصناعتَي الطيران والسيارات. وبحصولنا على شهادة AS9100، بنينا نظام إدارة الجودة لدينا وفق متطلبات صناعتَي الطيران والسيارات.',
+    'about.text': 'تقوم شركة MKT Makina منذ عام 2007 بتصنيع قطع مُشغَّلة بدقة عالية وقطع مجموعات التجميع لصناعتَي الطيران والسيارات. وبحصولنا على شهادة AS9100، بنينا نظام إدارة الجودة لدينا وفق متطلبات صناعتَي الطيران والسيارات.',
     'about.more': 'اقرأ المزيد',
 
     // Machines

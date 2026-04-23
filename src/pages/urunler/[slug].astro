@@ -12,7 +12,7 @@ const { product } = Astro.props;
 const otherProducts = products.filter((p) => p.slug !== product.slug);
 ---
 
-<BaseLayout title={`${product.name.tr} — MKT Makina Kalip Takim`} description={product.description.tr} lang="tr" hasHero={false}>
+<BaseLayout title={`${product.name.tr} — MKT Makina A.Ş.`} description={product.description.tr} lang="tr" hasHero={false}>
   <PageHero title={product.name.tr} subtitle="Urunlerimiz" image={product.image} />
 
   <section class="section-padding">

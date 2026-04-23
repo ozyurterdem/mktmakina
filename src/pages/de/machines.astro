@@ -15,6 +15,11 @@ const machineGroups = [
     { name: 'DMC 1035 V', specs: 'DMG MORI — 3-Achsen (2. Einheit)' },
     { name: 'DMC 835 V', specs: 'DMG MORI — 3-Achsen' },
   ]},
+  { category: 'Horizontale CNC-Bearbeitungszentren', machines: [
+    { name: 'NHC 5000 (1)', specs: 'Horizontales CNC-Bearbeitungszentrum' },
+    { name: 'NHC 5000 (2)', specs: 'Horizontales CNC-Bearbeitungszentrum' },
+    { name: 'NHC 5000 (3)', specs: 'Horizontales CNC-Bearbeitungszentrum' },
+  ]},
   { category: 'Drahterodieren (Wire EDM)', machines: [
     { name: 'CUT 30P', specs: 'GF Machining (1. Einheit)' },
     { name: 'CUT 30P', specs: 'GF Machining (2. Einheit)' },
@@ -29,9 +34,11 @@ const machineGroups = [
     { name: 'Rundschleifmaschine', specs: 'Rund- & Innenschleifen' },
     { name: 'Werkzeugschleifmaschine', specs: 'Werkzeugschleifmaschine' },
   ]},
-  { category: 'Kunststoffspritzguss & Kennzeichnung', machines: [
-    { name: 'LS LST 280', specs: 'LS — Kunststoffspritzgussmaschine' },
+  { category: 'Laserkennzeichnung', machines: [
     { name: 'Laserkennzeichnung', specs: 'Laserkennzeichnungssystem' },
+  ]},
+  { category: 'Kunststoffspritzguss', machines: [
+    { name: 'LS LST 280', specs: 'LS — Kunststoffspritzgussmaschine' },
   ]},
 ];
 ---
@@ -45,7 +52,7 @@ const machineGroups = [
         {[
           { value: '4', label: '5-Achsen CNC' },
           { value: '3', label: '3-Achsen CNC' },
-          { value: '3', label: 'Drahterodieren' },
+          { value: '3', label: 'Horizontal CNC (NHC 5000)' },
           { value: '20+', label: 'Maschinen gesamt' },
         ].map((stat) => (
           <div class="text-center p-5 bg-primary-dark">
