@@ -23,10 +23,11 @@ export const translations = {
     'nav.quote': 'Teklif Al',
     'nav.hr': 'İnsan Kaynakları',
 
-    // Şirket adı (dil bazlı suffix)
+    // Şirket adı (dil bazlı suffix) + marka sloganı (İngilizce, tüm dillerde aynı)
     'company.name': 'MKT Makina',
     'company.suffix': 'A.Ş.',
     'company.full': 'MKT Makina A.Ş.',
+    'company.tagline': 'Precision, Tracibility, Reliability, Innovation',
 
     // Hero
     'hero.title': 'Havacılık Hassasiyetinde Üretim',
@@ -110,10 +111,11 @@ export const translations = {
     'nav.quote': 'Get Quote',
     'nav.hr': 'Careers',
 
-    // Company name (lang-based suffix)
+    // Company name (lang-based suffix) + brand tagline (global, same across languages)
     'company.name': 'MKT Makina',
     'company.suffix': 'Inc.',
     'company.full': 'MKT Makina Inc.',
+    'company.tagline': 'Precision, Tracibility, Reliability, Innovation',
 
     // Hero
     'hero.title': 'Aviation-Grade Precision Manufacturing',
@@ -197,10 +199,11 @@ export const translations = {
     'nav.quote': 'Angebot Anfordern',
     'nav.hr': 'Karriere',
 
-    // Firmenname (sprachabhängiges Suffix)
+    // Firmenname (sprachabhängiges Suffix) + globaler Markenclaim
     'company.name': 'MKT Makina',
     'company.suffix': 'AG',
     'company.full': 'MKT Makina AG',
+    'company.tagline': 'Precision, Tracibility, Reliability, Innovation',
 
     // Hero
     'hero.title': 'Fertigung mit Luftfahrtpräzision',
@@ -284,10 +287,11 @@ export const translations = {
     'nav.quote': 'طلب عرض سعر',
     'nav.hr': 'الوظائف',
 
-    // اسم الشركة (لاحقة حسب اللغة)
+    // اسم الشركة (لاحقة حسب اللغة) + شعار العلامة التجارية
     'company.name': 'MKT Makina',
     'company.suffix': 'ش.م.',
     'company.full': 'MKT Makina ش.م.',
+    'company.tagline': 'Precision, Tracibility, Reliability, Innovation',
 
     // Hero
     'hero.title': 'تصنيع بدقة الطيران',
