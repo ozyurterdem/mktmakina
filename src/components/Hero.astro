@@ -143,11 +143,6 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
     </div>
   </div>
 
-  <!-- Laser-cut slide transition sweeper -->
-  <div class="laser-sweep pointer-events-none absolute inset-0 z-[4]" id="laserSweep" aria-hidden="true">
-    <span class="laser-line"></span>
-  </div>
-
   <!-- Bottom Stats Bar -->
   <div class="absolute bottom-0 left-0 right-0 z-10 border-t border-white/[0.06]">
     <div class="container-custom">
@@ -178,29 +173,34 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
 </section>
 
 <style>
-  /* Ken Burns yavaş zoom */
+  /* Ken Burns çok yavaş zoom (daha yumuşak) */
   .hero-bg-kb {
     transform: scale(1.05);
-    animation: heroBgKB 22s ease-in-out infinite alternate;
+    animation: heroBgKB 36s ease-in-out infinite alternate;
     transform-origin: center center;
+    will-change: transform;
   }
   @keyframes heroBgKB {
     from { transform: scale(1.05) translate(0, 0); }
-    to   { transform: scale(1.15) translate(-1%, 1%); }
+    to   { transform: scale(1.14) translate(-0.8%, 0.8%); }
   }
 
-  /* Carousel */
+  /* Carousel — daha yumuşak crossfade */
   .hero-slides { min-height: 460px; }
   .hero-slide {
     position: absolute; inset: 0;
     opacity: 0; pointer-events: none;
-    transition: opacity 700ms ease;
+    transition: opacity 1100ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
   }
   .hero-slide.is-active { opacity: 1; pointer-events: auto; }
 
   .hero-slide .hero-anim {
-    opacity: 0; transform: translateY(18px);
-    transition: opacity 700ms ease var(--d), transform 700ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--d);
+    opacity: 0; transform: translateY(14px);
+    transition:
+      opacity 950ms cubic-bezier(0.4, 0, 0.2, 1) var(--d),
+      transform 950ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--d);
+    will-change: opacity, transform;
   }
   .hero-slide.is-active .hero-anim { opacity: 1; transform: translateY(0); }
 
@@ -215,12 +215,12 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
   .hero-dot:hover      { background: rgba(255,255,255,0.35); }
   .hero-dot.is-active  { background: var(--color-accent, #c8a23c); }
 
-  /* Corner markers — CNC calibration L-brackets */
+  /* Corner markers — CNC calibration L-brackets (daha yumuşak pulse) */
   .corner {
     position: absolute;
     width: 28px; height: 28px;
     opacity: 0.28;
-    transition: opacity 400ms ease;
+    transition: opacity 900ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   .corner::before,
   .corner::after {
@@ -240,56 +240,23 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
   .corner-br { bottom: 20px; right: 20px; transform: scale(-1, -1); }
 
   /* Slide geçişinde köşeleri flash'la (pulse) */
-  #hero.slide-changing .corner { opacity: 0.85; }
+  #hero.slide-changing .corner { opacity: 0.7; }
 
-  /* CNC Probe (crosshair) */
+  /* CNC Probe (crosshair) — daha uzun ve yumuşak */
   .cnc-probe {
     top: 20%; left: 55%;
     transform: translate(-50%, -50%);
-    transition: top 6s cubic-bezier(0.22, 0.61, 0.36, 1),
-                left 6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition: top 9s cubic-bezier(0.4, 0, 0.2, 1),
+                left 9s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 1200ms ease;
     filter: drop-shadow(0 0 6px rgba(200, 162, 60, 0.3));
-    opacity: 0.6;
-  }
-
-  /* Laser-cut sweep */
-  .laser-sweep {
-    overflow: hidden;
-    mix-blend-mode: screen;
-  }
-  .laser-line {
-    position: absolute;
-    top: 0; bottom: 0;
-    left: -4px;
-    width: 2px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(200, 162, 60, 0.08) 10%,
-      rgba(200, 162, 60, 0.9)  50%,
-      rgba(200, 162, 60, 0.08) 90%,
-      transparent 100%
-    );
-    box-shadow:
-      0 0 18px rgba(200, 162, 60, 0.9),
-      0 0 40px rgba(200, 162, 60, 0.4);
-    opacity: 0;
-    pointer-events: none;
-  }
-  #hero.slide-changing .laser-line {
-    animation: laserSweep 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
-  }
-  @keyframes laserSweep {
-    0%   { left: -4px;    opacity: 0; }
-    12%  { opacity: 1; }
-    92%  { opacity: 1; }
-    100% { left: calc(100% + 4px); opacity: 0; }
+    opacity: 0.55;
+    will-change: top, left;
   }
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .hero-bg-kb,
-    .laser-line,
     .cnc-probe,
     .corner { animation: none; transition: none; }
     .hero-slide, .hero-slide .hero-anim { transition: none; }
@@ -312,21 +279,21 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ---------- Slide carousel ---------- */
+    /* ---------- Slide carousel (daha uzun aralık) ---------- */
     let index = 0;
     let timer: number | undefined;
-    const INTERVAL = 5500;
+    const INTERVAL = 7000;
 
     const show = (n: number) => {
       index = ((n % slides.length) + slides.length) % slides.length;
       slides.forEach((s, i) => s.classList.toggle('is-active', i === index));
       dots.forEach((d, i) => d.classList.toggle('is-active', i === index));
 
-      // Laser-cut + corner pulse tetikle
+      // Corner markers kısa pulse (yumuşak)
       root.classList.add('slide-changing');
-      window.setTimeout(() => root.classList.remove('slide-changing'), 720);
+      window.setTimeout(() => root.classList.remove('slide-changing'), 1200);
 
-      // Probe'u yeni bir rastgele konuma taşı
+      // Probe'u yeni bir konuma yumuşak taşı
       moveProbe();
     };
 
@@ -380,7 +347,7 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
     if (!reducedMotion) {
       moveProbe();
       start();
-      window.setInterval(tickReadout, 120);
+      window.setInterval(tickReadout, 200);
     }
   })();
 </script>
