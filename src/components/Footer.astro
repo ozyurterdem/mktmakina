@@ -142,15 +142,17 @@ const productLinks = ['products.assemblies', 'products.fixtures', 'products.appa
     </div>
   </div>
 
-  <!-- Bottom Bar -->
-  <div class="border-t border-white/[0.04]">
-    <div class="container-custom py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-      <p class="text-white/15 text-xs">&copy; {year} {t(lang, 'company.full')}. {t(lang, 'footer.rights')}</p>
-      <p class="text-white/10 text-xs">
-        <a href="https://siberkale.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">SiberKale</a>
-        <span class="mx-1.5 text-white/5" aria-hidden="true">·</span>
-        <a href="https://erdemozyurt.com" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">Erdem Özyurt</a>
-      </p>
+  <!-- Bottom Bar (MTO stili: gradient ayırıcı + Design by) -->
+  <div class="container-custom pb-6">
+    <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mt-4 mb-6"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/35">
+      <span>&copy; {year} {t(lang, 'company.full')} — {t(lang, 'footer.rights')}</span>
+      <div class="flex items-center gap-1.5">
+        <span>{l({ tr: 'Design by', en: 'Design by', de: 'Design von', ar: 'تصميم' })}</span>
+        <a href="https://erdemozyurt.com" target="_blank" rel="noopener noreferrer" class="text-white/35 hover:text-accent transition-colors duration-300">Erdem Özyurt</a>
+        <span class="text-white/15" aria-hidden="true">·</span>
+        <a href="https://siberkale.com" target="_blank" rel="noopener noreferrer" class="text-white/35 hover:text-accent transition-colors duration-300">SiberKale</a>
+      </div>
     </div>
   </div>
 </footer>
