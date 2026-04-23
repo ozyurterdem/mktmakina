@@ -16,9 +16,11 @@ const machineGroups = [
     { name: 'DMC 835 V', specs: 'DMG MORI — 3-Axis' },
   ]},
   { category: 'Horizontal CNC Machining Centers', machines: [
-    { name: 'NHC 5000 (1)', specs: 'Horizontal CNC Machining Center' },
-    { name: 'NHC 5000 (2)', specs: 'Horizontal CNC Machining Center' },
-    { name: 'NHC 5000 (3)', specs: 'Horizontal CNC Machining Center' },
+    { name: 'NHC 5000', specs: 'Horizontal CNC Machining Center' },
+    { name: 'NHC 5000', specs: 'Horizontal CNC Machining Center' },
+    { name: 'NHC 5000', specs: 'Horizontal CNC Machining Center' },
+    { name: 'NHC 5000', specs: 'Horizontal CNC Machining Center' },
+    { name: 'NHC 5000', specs: 'Horizontal CNC Machining Center' },
   ]},
   { category: 'Wire EDM', machines: [
     { name: 'CUT 30P', specs: 'GF Machining (1st unit)' },
@@ -52,8 +54,8 @@ const machineGroups = [
         {[
           { value: '4', label: '5-Axis CNC' },
           { value: '3', label: '3-Axis CNC' },
-          { value: '3', label: 'Horizontal CNC (NHC 5000)' },
-          { value: '20+', label: 'Total Machines' },
+          { value: '5', label: 'Horizontal CNC (NHC 5000)' },
+          { value: '22+', label: 'Total Machines' },
         ].map((stat) => (
           <div class="text-center p-5 bg-primary-dark">
             <div class="font-heading text-2xl sm:text-3xl font-bold text-accent">{stat.value}</div>
