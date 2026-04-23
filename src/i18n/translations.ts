@@ -27,7 +27,8 @@ export const translations = {
     'company.name': 'MKT Makina',
     'company.suffix': 'A.Ş.',
     'company.full': 'MKT Makina A.Ş.',
-    'company.tagline': 'Precision, Tracibility, Reliability, Innovation',
+    'company.tagline.l1': 'Precision, Traceability',
+    'company.tagline.l2': 'Reliability, Innovation',
 
     // Hero
     'hero.title': 'Havacılık Hassasiyetinde Üretim',
@@ -115,7 +116,8 @@ export const translations = {
     'company.name': 'MKT Makina',
     'company.suffix': 'Inc.',
     'company.full': 'MKT Makina Inc.',
-    'company.tagline': 'Precision, Tracibility, Reliability, Innovation',
+    'company.tagline.l1': 'Precision, Traceability',
+    'company.tagline.l2': 'Reliability, Innovation',
 
     // Hero
     'hero.title': 'Aviation-Grade Precision Manufacturing',
@@ -203,7 +205,8 @@ export const translations = {
     'company.name': 'MKT Makina',
     'company.suffix': 'AG',
     'company.full': 'MKT Makina AG',
-    'company.tagline': 'Precision, Tracibility, Reliability, Innovation',
+    'company.tagline.l1': 'Precision, Traceability',
+    'company.tagline.l2': 'Reliability, Innovation',
 
     // Hero
     'hero.title': 'Fertigung mit Luftfahrtpräzision',
@@ -291,7 +294,8 @@ export const translations = {
     'company.name': 'MKT Makina',
     'company.suffix': 'ش.م.',
     'company.full': 'MKT Makina ش.م.',
-    'company.tagline': 'Precision, Tracibility, Reliability, Innovation',
+    'company.tagline.l1': 'Precision, Traceability',
+    'company.tagline.l2': 'Reliability, Innovation',
 
     // Hero
     'hero.title': 'تصنيع بدقة الطيران',
