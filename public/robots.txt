@@ -1,5 +1,6 @@
-User-agent: *
-Allow: /
-Disallow: /_p/
+# main branch = savunma sanayili versiyon — UNLISTED.
+# Canlı site v3-aerospace-precision branch'inden deploy ediliyor.
+# Bu dosya main branch kazara deploy edilse bile tüm tarayıcıları durdurur.
 
-Sitemap: https://mktmakina.com/sitemap-index.xml
+User-agent: *
+Disallow: /

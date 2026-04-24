@@ -35,7 +35,8 @@ export default defineConfig({
       subsets: ['latin', 'latin-ext'],
     },
   ],
-  integrations: [sitemap({ i18n: { defaultLocale: 'tr', locales: { tr: 'tr-TR', en: 'en-US', de: 'de-DE', ar: 'ar-SA' } } })],
+  // main branch UNLISTED — sitemap üretme, Google indekslemesin
+  integrations: [],
   vite: {
     plugins: [tailwindcss()],
   },
