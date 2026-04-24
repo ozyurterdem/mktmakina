@@ -6,7 +6,6 @@ dist
 .DS_Store
 .astro
 screenshots
-package-lock.json
 *.md
 .vscode
 .idea
