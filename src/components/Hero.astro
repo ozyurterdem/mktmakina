@@ -110,11 +110,19 @@ const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/produc
             <span class="text-accent text-xs font-mono uppercase tracking-[0.3em] font-medium">{slide.overline}</span>
           </div>
 
-          <h1 class="text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] font-heading font-bold text-white leading-[1.05] mb-8 tracking-tight hero-anim" style="--d:100ms">
-            {slide.title[0]}<br />
-            <span class="text-accent">{slide.title[1]}</span><br />
-            {slide.title[2]}
-          </h1>
+          {i === 0 ? (
+            <h1 class="text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] font-heading font-bold text-white leading-[1.05] mb-8 tracking-tight hero-anim" style="--d:100ms">
+              {slide.title[0]}<br />
+              <span class="text-accent">{slide.title[1]}</span><br />
+              {slide.title[2]}
+            </h1>
+          ) : (
+            <h2 class="text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] font-heading font-bold text-white leading-[1.05] mb-8 tracking-tight hero-anim" style="--d:100ms">
+              {slide.title[0]}<br />
+              <span class="text-accent">{slide.title[1]}</span><br />
+              {slide.title[2]}
+            </h2>
+          )}
 
           <p class="text-base lg:text-lg text-white/50 leading-relaxed mb-12 max-w-xl hero-anim" style="--d:200ms">
             {slide.desc}

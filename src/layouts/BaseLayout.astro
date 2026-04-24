@@ -11,9 +11,10 @@ interface Props {
   description?: string;
   lang?: Lang;
   hasHero?: boolean;
+  image?: string;
 }
 
-const { title, lang = 'tr', hasHero = false } = Astro.props;
+const { title, lang = 'tr', hasHero = false, image = '/images/slide1.jpg' } = Astro.props;
 
 const defaultDesc: Record<Lang, string> = {
   tr: 'MKT Makina A.Ş. — Havacılık ve otomotiv sanayii için hassas işleme, montaj grubu parçalar, fikstür ve kalite kontrol çözümleri.',
@@ -84,6 +85,101 @@ const hreflangLinks = (Object.keys(languages) as Lang[]).map((l) => ({
   href: new URL(getPathForLang(l), Astro.site).toString(),
 }));
 const trHref = new URL(getPathForLang('tr'), Astro.site).toString();
+
+// --- SEO: OG image + JSON-LD Organization/WebSite/WebPage/BreadcrumbList ---
+const ogImageURL = new URL(image, Astro.site).toString();
+const siteOrigin = new URL('/', Astro.site).toString().replace(/\/$/, '');
+
+const homeNames: Record<Lang, string> = {
+  tr: 'Ana Sayfa',
+  en: 'Home',
+  de: 'Startseite',
+  ar: 'الصفحة الرئيسية',
+};
+
+const pathSegments = Astro.url.pathname.replace(/^\/+|\/+$/g, '').split('/').filter(Boolean);
+const isHomePage = pathSegments.length === 0 || (pathSegments.length === 1 && ['en', 'de', 'ar'].includes(pathSegments[0]));
+
+const orgLd = {
+  '@type': 'Organization',
+  '@id': `${siteOrigin}/#organization`,
+  name: 'MKT Makina A.Ş.',
+  legalName: 'MKT Makina Kalıp Takım Sanayi ve Ticaret A.Ş.',
+  url: siteOrigin,
+  logo: { '@type': 'ImageObject', url: `${siteOrigin}/images/logo.png` },
+  image: ogImageURL,
+  description: 'Havacılık ve otomotiv sanayii için hassas işleme ve montaj grubu parçalar, fikstür ve kalite kontrol çözümleri. AS9100 sertifikalı üretim.',
+  foundingDate: '2007',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Hanlıköy Mah. Akgün Cad. No:1',
+    addressLocality: 'Arifiye',
+    addressRegion: 'Sakarya',
+    postalCode: '54580',
+    addressCountry: 'TR',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 40.7114, longitude: 30.3953 },
+  telephone: '+902642761880',
+  email: 'info@mktmakina.com',
+  sameAs: [],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+902642761880',
+    contactType: 'sales',
+    availableLanguage: ['Turkish', 'English', 'German', 'Arabic'],
+  },
+};
+
+const webSiteLd = {
+  '@type': 'WebSite',
+  '@id': `${siteOrigin}/#website`,
+  name: 'MKT Makina A.Ş.',
+  url: siteOrigin,
+  inLanguage: lang,
+  publisher: { '@id': `${siteOrigin}/#organization` },
+};
+
+const webPageLd = {
+  '@type': 'WebPage',
+  '@id': canonicalURL.toString() + '#webpage',
+  name: title,
+  description,
+  url: canonicalURL.toString(),
+  inLanguage: lang,
+  isPartOf: { '@id': `${siteOrigin}/#website` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: ogImageURL },
+};
+
+const crumbs: Array<{ name: string; url: string }> = [];
+crumbs.push({
+  name: homeNames[lang],
+  url: lang === 'tr' ? `${siteOrigin}/` : `${siteOrigin}/${lang}/`,
+});
+if (!isHomePage) {
+  const hasLangPrefix = ['en', 'de', 'ar'].includes(pathSegments[0]);
+  const start = hasLangPrefix ? 1 : 0;
+  let acc = hasLangPrefix ? `/${pathSegments[0]}` : '';
+  for (let i = start; i < pathSegments.length; i++) {
+    acc += '/' + pathSegments[i];
+    const raw = pathSegments[i].replace(/-/g, ' ');
+    const name = raw.charAt(0).toLocaleUpperCase(lang) + raw.slice(1);
+    crumbs.push({ name, url: `${siteOrigin}${acc}/` });
+  }
+}
+const breadcrumbLd = {
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: c.name,
+    item: c.url,
+  })),
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': isHomePage ? [orgLd, webSiteLd, webPageLd] : [webPageLd, breadcrumbLd, orgLd],
+};
 ---
 
 <!doctype html>
@@ -108,6 +204,20 @@ const trHref = new URL(getPathForLang('tr'), Astro.site).toString();
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content={t(lang, 'company.full')} />
     <meta property="og:locale" content={ogLocaleMap[lang]} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:secure_url" content={ogImageURL} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <Font cssVariable="--font-sans" />
