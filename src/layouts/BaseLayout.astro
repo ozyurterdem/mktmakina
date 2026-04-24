@@ -11,6 +11,7 @@ interface Props {
   description?: string;
   lang?: Lang;
   hasHero?: boolean;
+  image?: string;
 }
 
 const {
@@ -18,9 +19,11 @@ const {
   description = 'MKT Makina Kalıp Takım — Havacılık ve otomotiv sanayii için hassas işleme ve plastik enjeksiyon çözümleri.',
   lang = 'tr',
   hasHero = false,
+  image = '/images/og-image.jpg',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site).toString();
 
 // Route slug maps: TR path segment → localized segment
 const trToLocalized: Record<string, string> = {
@@ -81,6 +84,97 @@ const hreflangLinks = (Object.keys(languages) as Lang[]).map((l) => ({
   href: new URL(getPathForLang(l), Astro.site).toString(),
 }));
 const trHref = new URL(getPathForLang('tr'), Astro.site).toString();
+
+// --- JSON-LD graph (Organization + WebSite + WebPage on home, WebPage + BreadcrumbList on inner pages) ---
+const pathSegments = Astro.url.pathname.replace(/^\/|\/$/g, '').split('/').filter(Boolean);
+const isHomePage = pathSegments.length === 0 || (pathSegments.length === 1 && ['en', 'de', 'ar'].includes(pathSegments[0]));
+const homeNames: Record<Lang, string> = { tr: 'Ana Sayfa', en: 'Home', de: 'Startseite', ar: 'الصفحة الرئيسية' };
+const siteName = 'MKT Makina Kalıp Takım';
+
+const orgLd = {
+  '@type': 'Organization',
+  '@id': 'https://mktmakina.com/#organization',
+  name: siteName,
+  url: 'https://mktmakina.com',
+  logo: { '@type': 'ImageObject', url: 'https://mktmakina.com/images/logo.png' },
+  image: ogImageURL,
+  description: 'Havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ve plastik enjeksiyon çözümleri.',
+  foundingDate: '2007',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Hanlıköy Mah. Akgün Cad. No:1',
+    addressLocality: 'Arifiye',
+    addressRegion: 'Sakarya',
+    postalCode: '54580',
+    addressCountry: 'TR',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 40.7114, longitude: 30.3953 },
+  telephone: '+902642761880',
+  email: 'info@mktmakina.com',
+  sameAs: [],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+902642761880',
+    contactType: 'sales',
+    availableLanguage: ['Turkish', 'English', 'German', 'Arabic'],
+  },
+};
+
+const webSiteLd = {
+  '@type': 'WebSite',
+  '@id': 'https://mktmakina.com/#website',
+  name: siteName,
+  url: 'https://mktmakina.com',
+  inLanguage: lang,
+  publisher: { '@id': 'https://mktmakina.com/#organization' },
+};
+
+const webPageLd = {
+  '@type': 'WebPage',
+  '@id': canonicalURL.toString() + '#webpage',
+  name: title,
+  description,
+  url: canonicalURL.toString(),
+  inLanguage: lang,
+  isPartOf: { '@id': 'https://mktmakina.com/#website' },
+  primaryImageOfPage: { '@type': 'ImageObject', url: ogImageURL },
+};
+
+// Breadcrumb
+const crumbs: Array<{ name: string; url: string }> = [];
+crumbs.push({
+  name: homeNames[lang],
+  url: lang === 'tr' ? 'https://mktmakina.com/' : `https://mktmakina.com/${lang}/`,
+});
+if (!isHomePage) {
+  const hasLangPrefix = ['en', 'de', 'ar'].includes(pathSegments[0]);
+  const start = hasLangPrefix ? 1 : 0;
+  let acc = hasLangPrefix ? `/${pathSegments[0]}` : '';
+  for (let i = start; i < pathSegments.length; i++) {
+    acc += '/' + pathSegments[i];
+    const raw = pathSegments[i].replace(/-/g, ' ');
+    const name = raw.charAt(0).toLocaleUpperCase(lang) + raw.slice(1);
+    crumbs.push({ name, url: `https://mktmakina.com${acc}/` });
+  }
+}
+const breadcrumbLd = {
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, idx) => ({
+    '@type': 'ListItem',
+    position: idx + 1,
+    name: c.name,
+    item: c.url,
+  })),
+};
+
+const jsonLdGraph = isHomePage
+  ? [orgLd, webSiteLd, webPageLd]
+  : [webPageLd, breadcrumbLd, orgLd];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': jsonLdGraph,
+};
 ---
 
 <!doctype html>
@@ -105,31 +199,25 @@ const trHref = new URL(getPathForLang('tr'), Astro.site).toString();
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="MKT Makina Kalıp Takım" />
     <meta property="og:locale" content={ogLocaleMap[lang]} />
-    <meta property="og:image" content="https://mktmakina.com/images/og-image.jpg" />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:secure_url" content={ogImageURL} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://mktmakina.com/images/og-image.jpg" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={title} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="geo.region" content="TR-54" />
     <meta name="geo.placename" content="Arifiye, Sakarya" />
     <meta name="geo.position" content="40.7114;30.3953" />
     <meta name="ICBM" content="40.7114, 30.3953" />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'MKT Makina Kalıp Takım',
-      url: 'https://mktmakina.com',
-      logo: 'https://mktmakina.com/images/logo.png',
-      description: 'Havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ve plastik enjeksiyon çözümleri.',
-      address: { '@type': 'PostalAddress', streetAddress: 'Hanlıköy Mah. Akgün Cad. No:1', addressLocality: 'Arifiye', addressRegion: 'Sakarya', postalCode: '54580', addressCountry: 'TR' },
-      geo: { '@type': 'GeoCoordinates', latitude: 40.7114, longitude: 30.3953 },
-      telephone: '+902642761880',
-      email: 'info@mktmakina.com',
-      sameAs: [],
-      contactPoint: { '@type': 'ContactPoint', telephone: '+902642761880', contactType: 'sales', availableLanguage: ['Turkish','English','German','Arabic'] }
-    })} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <Font cssVariable="--font-sans" />
