@@ -1,7 +1,5 @@
 User-agent: *
-<<<<<<< Updated upstream
 Disallow: /_p/
-=======
 Allow: /
 
 User-agent: GPTBot
@@ -16,4 +14,3 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: https://mktmakina.com/sitemap-index.xml
->>>>>>> Stashed changes

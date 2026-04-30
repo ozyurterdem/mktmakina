@@ -5,6 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://mktmakina.com',
+  trailingSlash: 'always',
   integrations: [
     sitemap({
       i18n: {
@@ -12,13 +13,19 @@ export default defineConfig({
         locales: {
           tr: 'tr-TR',
           en: 'en-US',
+          de: 'de-DE',
+          ar: 'ar-SA',
         },
+      },
+      serialize(item) {
+        item.lastmod = new Date().toISOString();
+        return item;
       },
     }),
   ],
   i18n: {
     defaultLocale: 'tr',
-    locales: ['tr', 'en'],
+    locales: ['tr', 'en', 'de', 'ar'],
     routing: {
       prefixDefaultLocale: false,
     },

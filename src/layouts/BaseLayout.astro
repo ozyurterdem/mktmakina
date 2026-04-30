@@ -48,6 +48,11 @@ const ogLocaleMap: Record<Lang, string> = {
   ar: 'ar_SA',
 };
 
+function normalizePath(path: string): string {
+  const segments = path.split('/').filter(Boolean);
+  return segments.length === 0 ? '/' : '/' + segments.join('/') + '/';
+}
+
 function getPathForLang(targetLang: Lang): string {
   const currentPath = Astro.url.pathname;
   const langPrefixes = ['en', 'de', 'ar'] as const;
@@ -62,22 +67,22 @@ function getPathForLang(targetLang: Lang): string {
     }
   }
 
-  // Normalize rest to TR slug form
-  let trPath: string;
-  if (rest === '/') {
-    trPath = '/';
-  } else {
-    const parts = rest.replace(/^\//, '').split('/');
-    const firstSegment = sourceLang === 'tr' ? parts[0] : (localizedToTr[parts[0]] ?? parts[0]);
-    trPath = '/' + [firstSegment, ...parts.slice(1)].join('/');
+  const restSegments = rest.split('/').filter(Boolean);
+  const trSegments = restSegments.length === 0
+    ? []
+    : [
+        sourceLang === 'tr' ? restSegments[0] : (localizedToTr[restSegments[0]] ?? restSegments[0]),
+        ...restSegments.slice(1),
+      ];
+
+  if (targetLang === 'tr') {
+    return trSegments.length === 0 ? '/' : normalizePath('/' + trSegments.join('/'));
   }
 
-  if (targetLang === 'tr') return trPath;
-  if (trPath === '/') return `/${targetLang}`;
+  if (trSegments.length === 0) return `/${targetLang}/`;
 
-  const parts = trPath.replace(/^\//, '').split('/');
-  const localizedSegment = trToLocalized[parts[0]] ?? parts[0];
-  return `/${targetLang}/` + [localizedSegment, ...parts.slice(1)].join('/');
+  const localizedSegment = trToLocalized[trSegments[0]] ?? trSegments[0];
+  return normalizePath('/' + targetLang + '/' + [localizedSegment, ...trSegments.slice(1)].join('/'));
 }
 
 const hreflangLinks = (Object.keys(languages) as Lang[]).map((l) => ({
