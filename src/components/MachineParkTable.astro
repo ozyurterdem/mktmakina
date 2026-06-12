@@ -1,0 +1,97 @@
+---
+import type { Lang } from '../i18n/translations';
+import { machineParkGroups, machineParkStats } from '../data/machinePark';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'tr' } = Astro.props;
+
+const labels: Record<Lang, { description: string; diameter: string; speed: string }> = {
+  tr: {
+    description: 'Açıklama',
+    diameter: 'Çap',
+    speed: 'Devir',
+  },
+  en: {
+    description: 'Description',
+    diameter: 'Diameter',
+    speed: 'Speed',
+  },
+  de: {
+    description: 'Beschreibung',
+    diameter: 'Durchmesser',
+    speed: 'Drehzahl',
+  },
+  ar: {
+    description: 'الوصف',
+    diameter: 'القطر',
+    speed: 'السرعة',
+  },
+};
+
+const l = labels[lang] ?? labels.en;
+const value = (text?: string) => text || '—';
+const descriptionFor = (machine: { description: { tr: string; en: string } }) =>
+  lang === 'tr' ? machine.description.tr : machine.description.en;
+---
+
+<section class="section-padding">
+  <div class="container-custom">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-[1px] bg-border mb-14" data-animate="fade-up">
+      {machineParkStats.map((stat) => (
+        <div class="text-center p-5 bg-primary-dark">
+          <div class="font-heading text-2xl sm:text-3xl font-bold text-accent">{stat.value}</div>
+          <div class="text-white/60 text-xs mt-1 uppercase tracking-wider">{stat.label[lang] ?? stat.label.en}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="space-y-10">
+      {machineParkGroups.map((group) => (
+        <div data-animate="fade-up">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+            <div class="flex items-center gap-3">
+              <div class="accent-bar"></div>
+              <h2 class="font-heading text-lg font-bold text-white tracking-wide">{group.category[lang] ?? group.category.en}</h2>
+            </div>
+            <div class="text-text-muted text-[10px] font-mono uppercase tracking-[0.22em]">
+              {String(group.machines.length).padStart(2, '0')} · {group.brand}
+            </div>
+          </div>
+
+          <div class="overflow-x-auto border border-white/[0.06] bg-border">
+            <table class="w-full min-w-[780px] border-separate border-spacing-0">
+              <thead>
+                <tr class="bg-primary-dark">
+                  <th class="text-left px-4 py-3 text-[10px] font-mono uppercase tracking-[0.18em] text-white/50 w-[42%]">{l.description}</th>
+                  <th class="text-center px-3 py-3 text-[10px] font-mono uppercase tracking-[0.18em] text-white/50">{l.diameter}<br /><span class="normal-case tracking-normal text-white/30">(mm)</span></th>
+                  <th class="text-center px-3 py-3 text-[10px] font-mono uppercase tracking-[0.18em] text-white/50">X<br /><span class="normal-case tracking-normal text-white/30">(mm)</span></th>
+                  <th class="text-center px-3 py-3 text-[10px] font-mono uppercase tracking-[0.18em] text-white/50">Y<br /><span class="normal-case tracking-normal text-white/30">(mm)</span></th>
+                  <th class="text-center px-3 py-3 text-[10px] font-mono uppercase tracking-[0.18em] text-white/50">Z<br /><span class="normal-case tracking-normal text-white/30">(mm)</span></th>
+                  <th class="text-center px-3 py-3 text-[10px] font-mono uppercase tracking-[0.18em] text-white/50">{l.speed}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {group.machines.map((machine, index) => (
+                  <tr class:list={['border-t border-white/[0.04]', index % 2 === 0 ? 'bg-primary-light' : 'bg-primary']}>
+                    <td class="px-4 py-3 align-middle">
+                      <div class="font-heading text-sm font-semibold text-white leading-snug">{machine.name}</div>
+                      <div class="text-text-light text-xs leading-relaxed mt-1">{descriptionFor(machine)}</div>
+                    </td>
+                    <td class="px-3 py-3 text-center text-sm text-text-light font-mono">{value(machine.diameter)}</td>
+                    <td class="px-3 py-3 text-center text-sm text-text-light font-mono">{value(machine.x)}</td>
+                    <td class="px-3 py-3 text-center text-sm text-text-light font-mono">{value(machine.y)}</td>
+                    <td class="px-3 py-3 text-center text-sm text-text-light font-mono">{value(machine.z)}</td>
+                    <td class="px-3 py-3 text-center text-sm text-text-light font-mono">{value(machine.speed)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

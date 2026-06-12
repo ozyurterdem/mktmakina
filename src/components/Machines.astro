@@ -1,5 +1,6 @@
 ---
 import { t, type Lang } from '../i18n/translations';
+import { machineParkGroups } from '../data/machinePark';
 
 interface Props {
   lang?: Lang;
@@ -8,38 +9,12 @@ interface Props {
 const { lang = 'tr' } = Astro.props;
 const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
 
-const categories = [
-  {
-    title: ({tr:'5 Eksen CNC', en:'5-Axis CNC', de:'5-Achs-CNC', ar:'ماكينات 5 محاور'} as Record<string,string>)[lang],
-    count: 4,
-    machines: ['DMU 85 monoBLOCK', 'DMU 75 monoBLOCK', 'HAAS UMC VF3', 'HAAS UMC 750'],
-    brand: 'DMG MORI / HAAS',
-  },
-  {
-    title: ({tr:'3 Eksen CNC', en:'3-Axis CNC', de:'3-Achs-CNC', ar:'ماكينات 3 محاور'} as Record<string,string>)[lang],
-    count: 3,
-    machines: ['DMC 1035 V', 'DMC 635 V', 'HAAS VF2'],
-    brand: 'DMG MORI / HAAS',
-  },
-  {
-    title: ({tr:'Yatay CNC İşleme Merkezleri', en:'Horizontal CNC Machining Centers', de:'Horizontale CNC-Bearbeitungszentren', ar:'مراكز التشغيل الأفقية CNC'} as Record<string,string>)[lang],
-    count: 5,
-    machines: ['NHC 5000', 'NHC 5000', 'NHC 5000', 'NHC 5000', 'NHC 5000'],
-    brand: 'Horizontal Machining',
-  },
-  {
-    title: ({tr:'Tel Erozyon', en:'Wire EDM', de:'Drahterodieren', ar:'التآكل السلكي'} as Record<string,string>)[lang],
-    count: 3,
-    machines: ['CUT 30P', 'CUT 20P', 'FANUC a-C400iA'],
-    brand: 'GF / FANUC',
-  },
-  {
-    title: ({tr:'Plastik Enjeksiyon', en:'Plastic Injection', de:'Kunststoffspritzguss', ar:'حقن البلاستيك'} as Record<string,string>)[lang],
-    count: 2,
-    machines: ['LS LST 280', 'LS LST 150'],
-    brand: 'LS Mtron',
-  },
-];
+const categories = machineParkGroups.slice(0, 5).map((group) => ({
+  title: group.category[lang] ?? group.category.en,
+  count: group.machines.length,
+  machines: group.machines.slice(0, 5).map((machine) => machine.name),
+  brand: group.brand,
+}));
 ---
 
 <section class="relative section-padding noise-overlay" id="machines">
