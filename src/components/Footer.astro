@@ -1,5 +1,6 @@
 ---
 import { t, getLocalePath, type Lang } from '../i18n/translations';
+import { products } from '../data/products';
 
 interface Props {
   lang?: Lang;
@@ -49,7 +50,11 @@ const quickLinksMap: Record<string, { key: string; href: string }[]> = {
 };
 const quickLinks = quickLinksMap[lang] ?? quickLinksMap['en'];
 
-const productLinks = ['products.assemblies', 'products.fixtures', 'products.apparatus', 'products.molds', 'products.gauges', 'products.injection'];
+const productBasePath = l({ tr: '/urunler', en: '/en/products', de: '/de/products', ar: '/ar/products' });
+const productLinks = products.map((product) => ({
+  href: `${productBasePath}/${product.slug}`,
+  label: product.name[lang] ?? product.name.en,
+}));
 ---
 
 <footer class="bg-primary-dark">
@@ -107,9 +112,9 @@ const productLinks = ['products.assemblies', 'products.fixtures', 'products.appa
       <!-- Products (başlıksız) -->
       <div class="lg:col-span-2">
         <ul class="space-y-2.5 lg:pt-2">
-          {productLinks.map((key) => (
+          {productLinks.map((item) => (
             <li>
-              <a href={lang === 'tr' ? '/urunler' : `/${lang}/products`} class="text-white/50 text-sm hover:text-accent transition-colors">{t(lang, key)}</a>
+              <a href={item.href} class="text-white/50 text-sm hover:text-accent transition-colors">{item.label}</a>
             </li>
           ))}
         </ul>

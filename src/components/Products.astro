@@ -1,5 +1,6 @@
 ---
-import { t, getLocalePath, type Lang } from '../i18n/translations';
+import { t, type Lang } from '../i18n/translations';
+import { products } from '../data/products';
 
 interface Props {
   lang?: Lang;
@@ -7,15 +8,6 @@ interface Props {
 
 const { lang = 'tr' } = Astro.props;
 const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
-
-const products = [
-  { key: 'products.assemblies', image: '/images/categories/parcalar_13.jpg', slug: 'montaj-grubu-parcalar' },
-  { key: 'products.fixtures', image: '/images/categories/fikstur_8.jpg', slug: 'fikstur' },
-  { key: 'products.apparatus', image: '/images/categories/aparatlar_7.jpg', slug: 'aparatlar' },
-  { key: 'products.molds', image: '/images/categories/kaliplar_12.jpg', slug: 'kaliplar' },
-  { key: 'products.gauges', image: '/images/categories/mastarlar_14.jpg', slug: 'kalite-kontrol-mastarlari' },
-  { key: 'products.injection', image: '/images/categories/parcalar_13.jpg', slug: 'plastik-enjeksiyon' },
-];
 ---
 
 <section class="relative section-padding noise-overlay" id="products">
@@ -41,7 +33,7 @@ const products = [
           <div class="relative aspect-[4/3] overflow-hidden">
             <img
               src={product.image}
-              alt={t(lang, product.key)}
+              alt={product.name[lang] ?? product.name.en}
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               loading="lazy"
             />
@@ -49,7 +41,7 @@ const products = [
           </div>
           <div class="p-5">
             <h3 class="font-heading text-base font-semibold text-white tracking-wide mb-3 group-hover:text-accent transition-colors">
-              {t(lang, product.key)}
+              {product.name[lang] ?? product.name.en}
             </h3>
             <div class="flex items-center gap-2 text-accent/70 text-xs font-mono uppercase tracking-wider group-hover:text-accent transition-colors">
               {l({tr:'Detaylar', en:'Details', de:'Details', ar:'التفاصيل'})}

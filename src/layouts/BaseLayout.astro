@@ -17,10 +17,10 @@ interface Props {
 const { title, lang = 'tr', hasHero = false, image = '/images/slide1.jpg' } = Astro.props;
 
 const defaultDesc: Record<Lang, string> = {
-  tr: 'MKT Makina A.Ş. — Havacılık ve otomotiv sanayii için hassas işleme, montaj grubu parçalar, fikstür ve kalite kontrol çözümleri.',
-  en: 'MKT Makina Inc. — Precision machining, sub-assembly parts, fixtures and quality control solutions for aviation and automotive industry.',
-  de: 'MKT Makina AG — Präzisionsbearbeitung, Baugruppenteile, Spannvorrichtungen und Qualitätskontrolllösungen für die Luft- und Kraftfahrtindustrie.',
-  ar: 'MKT Makina ش.م. — قطع مُشغَّلة دقيقة، قطع مجموعات التجميع، تركيبات تثبيت وحلول مراقبة الجودة لصناعتَي الطيران والسيارات.',
+  tr: 'MKT Makina A.Ş. — Havacılık ve otomotiv sanayii için hassas talaşlı imalat, fikstür ve kalite kontrol çözümleri.',
+  en: 'MKT Makina Inc. — Precision machining, fixtures and quality control solutions for aviation and automotive industry.',
+  de: 'MKT Makina AG — Präzisionszerspanung, Spannvorrichtungen und Qualitätskontrolllösungen für die Luft- und Kraftfahrtindustrie.',
+  ar: 'MKT Makina ش.م. — تشغيل آلي دقيق، تركيبات تثبيت وحلول مراقبة الجودة لصناعتَي الطيران والسيارات.',
 };
 const description = Astro.props.description ?? defaultDesc[lang];
 
