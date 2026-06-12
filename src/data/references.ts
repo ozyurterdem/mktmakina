@@ -1,5 +1,5 @@
 export const references = [
-  { name: 'TCI', image: '/images/references/tci_198_white.png' },
+  { name: 'TCI', image: '/images/references/tci_198.png' },
   { name: 'HAVELSAN', image: '/images/references/havelsan.png' },
   { name: 'HAVELSAN Technology Radar (HTR)', image: '/images/references/htr-teknoloji-radar.jpg' },
   { name: 'TUSAS / Turkish Aerospace', image: '/images/references/tusas.svg' },
