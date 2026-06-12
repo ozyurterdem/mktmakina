@@ -31,15 +31,15 @@ export const translations = {
     'company.tagline.l2': 'Reliability, Innovation',
 
     // Hero
-    'hero.title': 'Havacılık Hassasiyetinde Üretim',
-    'hero.subtitle': 'Havacılık ve otomotiv sanayii için yüksek kaliteli hassas işleme parçalar ve plastik enjeksiyon çözümleri.',
+    'hero.title': 'Havacılık, Savunma ve Otomotiv İçin Üretim',
+    'hero.subtitle': 'Havacılık, savunma ve otomotiv sektörleri için yüksek hassasiyetli işleme, ZEISS hassas ölçüm ve kontrol çözümleri.',
     'hero.cta': 'İletişime Geçin',
     'hero.explore': 'Ürünlerimiz',
     'hero.slide1.subtitle': 'AS9100 SERTİFİKALI',
     'hero.slide2.subtitle': 'İLERİ TEKNOLOJİ',
     'hero.slide3.subtitle': 'ÇÖZÜM ORTAĞINIZ',
-    'hero.slide2.desc': 'DMG MORI ve HAAS teknolojisi ile micron seviyesinde hassasiyet.',
-    'hero.slide3.desc': 'Plastik enjeksiyon ve özel kalıp tasarımında güvenilir çözüm ortağınız.',
+    'hero.slide2.desc': 'ZEISS hassas ölçüm ve kontrol altyapısı ile yüksek hassasiyetli işleme.',
+    'hero.slide3.desc': 'Alüminyum dövme ve ısıl işlem süreçlerinde güvenilir çözüm ortağınız.',
 
     // Stats
     'stats.since': 'Yılından Beri',
@@ -53,18 +53,18 @@ export const translations = {
 
     // Products / Kabiliyetler
     'products.title': 'Kabiliyetler',
-    'products.subtitle': 'Havacılık ve otomotiv sanayii için hassas mühendislik çözümleri',
+    'products.subtitle': 'Havacılık, savunma ve otomotiv sanayii için hassas mühendislik çözümleri',
     'products.assemblies': 'Talaşlı İmalat',
     'products.fixtures': 'Fikstür',
     'products.apparatus': 'Aparatlar',
     'products.molds': 'Kalıplar',
     'products.gauges': 'Kalite Kontrol Mastarları',
-    'products.injection': 'Plastik Enjeksiyon',
+    'products.injection': 'Enjeksiyon',
     'products.detail': 'Detay',
 
     // About
     'about.title': 'Hakkımızda',
-    'about.text': 'MKT Makina, 2007 yılından bu yana havacılık ve otomotiv sanayii için yüksek kaliteli hassas talaşlı imalat parçaları üretmektedir. AS9100 sertifikasına sahip şirketimiz, kalite yönetim sistemini havacılık ve otomotiv sanayi gerekliliklerine uygun olarak yapılandırmıştır.',
+    'about.text': 'MKT Makina, 2007 yılından bu yana havacılık, savunma ve otomotiv sanayii için yüksek kaliteli hassas talaşlı imalat parçaları üretmektedir. AS9100 sertifikasına sahip şirketimiz, kalite yönetim sistemini havacılık, savunma ve otomotiv sanayi gerekliliklerine uygun olarak yapılandırmıştır.',
     'about.more': 'Devamı',
 
     // Machines
@@ -78,7 +78,7 @@ export const translations = {
 
     // CTA
     'cta.title': 'Projeniz İçin Bize Ulaşın',
-    'cta.subtitle': 'Havacılık ve otomotiv sektöründe hassas çözümler için bizimle iletişime geçin.',
+    'cta.subtitle': 'Havacılık, savunma ve otomotiv sektörlerinde hassas çözümler için bizimle iletişime geçin.',
     'cta.button': 'İletişim Formu',
     'cta.call': 'Bizi Arayın',
 
@@ -120,15 +120,15 @@ export const translations = {
     'company.tagline.l2': 'Reliability, Innovation',
 
     // Hero
-    'hero.title': 'Aviation-Grade Precision Manufacturing',
-    'hero.subtitle': 'High quality precision machined parts and plastic injection solutions for aviation and automotive industry.',
+    'hero.title': 'Manufacturing for Aerospace, Defense and Automotive',
+    'hero.subtitle': 'High precision machining, ZEISS precision measurement and control solutions for aerospace, defense and automotive industries.',
     'hero.cta': 'Contact Us',
     'hero.explore': 'Our Products',
     'hero.slide1.subtitle': 'AS9100 CERTIFIED',
     'hero.slide2.subtitle': 'ADVANCED TECHNOLOGY',
     'hero.slide3.subtitle': 'YOUR PARTNER',
-    'hero.slide2.desc': 'Micron-level precision with DMG MORI and HAAS technology.',
-    'hero.slide3.desc': 'Your reliable partner in plastic injection and custom mold design.',
+    'hero.slide2.desc': 'High precision machining with ZEISS precision measurement and control infrastructure.',
+    'hero.slide3.desc': 'Your reliable partner in aluminum forging and heat treatment processes.',
 
     // Stats
     'stats.since': 'Since',
@@ -142,18 +142,18 @@ export const translations = {
 
     // Products / Capabilities
     'products.title': 'Capabilities',
-    'products.subtitle': 'Precision engineering solutions for aviation and automotive industry',
+    'products.subtitle': 'Precision engineering solutions for aerospace, defense and automotive industries',
     'products.assemblies': 'Machining',
     'products.fixtures': 'Fixtures',
     'products.apparatus': 'Apparatus',
     'products.molds': 'Molds',
     'products.gauges': 'Quality Control Gauges',
-    'products.injection': 'Plastic Injection',
+    'products.injection': 'Injection',
     'products.detail': 'Detail',
 
     // About
     'about.title': 'About Us',
-    'about.text': 'MKT Makina has been manufacturing high quality precision machined parts for the aviation and automotive industry since 2007. Certified to AS9100, our quality management system has been structured according to the requirements of aviation and automotive industry.',
+    'about.text': 'MKT Makina has been manufacturing high quality precision machined parts for aerospace, defense and automotive industries since 2007. Certified to AS9100, our quality management system has been structured according to aerospace, defense and automotive industry requirements.',
     'about.more': 'Read More',
 
     // Machines
@@ -167,7 +167,7 @@ export const translations = {
 
     // CTA
     'cta.title': 'Get in Touch for Your Project',
-    'cta.subtitle': 'Contact us for precision solutions in aviation and automotive industry.',
+    'cta.subtitle': 'Contact us for precision solutions in aerospace, defense and automotive industries.',
     'cta.button': 'Contact Form',
     'cta.call': 'Call Us',
 
@@ -209,15 +209,15 @@ export const translations = {
     'company.tagline.l2': 'Reliability, Innovation',
 
     // Hero
-    'hero.title': 'Fertigung mit Luftfahrtpräzision',
-    'hero.subtitle': 'Hochwertige Präzisionsbearbeitungsteile und Kunststoffspritzgusslösungen für die Luft- und Raumfahrt- sowie Automobilindustrie.',
+    'hero.title': 'Fertigung für Luftfahrt, Verteidigung und Automobilindustrie',
+    'hero.subtitle': 'Hochpräzise Bearbeitung, ZEISS-Präzisionsmessung und Kontrolllösungen für Luftfahrt, Verteidigung und Automobilindustrie.',
     'hero.cta': 'Kontakt Aufnehmen',
     'hero.explore': 'Unsere Produkte',
     'hero.slide1.subtitle': 'AS9100 ZERTIFIZIERT',
     'hero.slide2.subtitle': 'FORTSCHRITTLICHE TECHNOLOGIE',
     'hero.slide3.subtitle': 'IHR LÖSUNGSPARTNER',
-    'hero.slide2.desc': 'Mikronpräzision mit DMG MORI und HAAS Technologie.',
-    'hero.slide3.desc': 'Ihr zuverlässiger Partner für Kunststoffspritzguss und individuelle Werkzeugkonstruktion.',
+    'hero.slide2.desc': 'Hochpräzise Bearbeitung mit ZEISS-Präzisionsmess- und Kontrollinfrastruktur.',
+    'hero.slide3.desc': 'Ihr zuverlässiger Partner für Aluminiumschmieden und Wärmebehandlungsprozesse.',
 
     // Stats
     'stats.since': 'Seit',
@@ -231,18 +231,18 @@ export const translations = {
 
     // Products / Fähigkeiten
     'products.title': 'Fähigkeiten',
-    'products.subtitle': 'Präzisionstechnische Lösungen für die Luft- und Raumfahrt- sowie Automobilindustrie',
+    'products.subtitle': 'Präzisionstechnische Lösungen für Luftfahrt, Verteidigung und Automobilindustrie',
     'products.assemblies': 'Zerspanung',
     'products.fixtures': 'Spannvorrichtungen',
     'products.apparatus': 'Vorrichtungen',
     'products.molds': 'Werkzeuge',
     'products.gauges': 'Qualitätskontrolllehren',
-    'products.injection': 'Kunststoffspritzguss',
+    'products.injection': 'Spritzguss',
     'products.detail': 'Details',
 
     // About
     'about.title': 'Über Uns',
-    'about.text': 'MKT Makina fertigt seit 2007 hochwertige Präzisionszerspanungsteile für die Luft- und Raumfahrt- sowie Automobilindustrie. Als AS9100-zertifiziertes Unternehmen haben wir unser Qualitätsmanagementsystem entsprechend den Anforderungen der Luft- und Raumfahrt- sowie Automobilindustrie aufgebaut.',
+    'about.text': 'MKT Makina fertigt seit 2007 hochwertige Präzisionszerspanungsteile für Luftfahrt, Verteidigung und Automobilindustrie. Als AS9100-zertifiziertes Unternehmen haben wir unser Qualitätsmanagementsystem entsprechend den Anforderungen von Luftfahrt, Verteidigung und Automobilindustrie aufgebaut.',
     'about.more': 'Mehr Erfahren',
 
     // Machines
@@ -256,7 +256,7 @@ export const translations = {
 
     // CTA
     'cta.title': 'Nehmen Sie Kontakt Für Ihr Projekt Auf',
-    'cta.subtitle': 'Kontaktieren Sie uns für Präzisionslösungen in der Luft- und Raumfahrt- sowie Automobilindustrie.',
+    'cta.subtitle': 'Kontaktieren Sie uns für Präzisionslösungen in Luftfahrt, Verteidigung und Automobilindustrie.',
     'cta.button': 'Kontaktformular',
     'cta.call': 'Rufen Sie Uns An',
 
@@ -298,15 +298,15 @@ export const translations = {
     'company.tagline.l2': 'Reliability, Innovation',
 
     // Hero
-    'hero.title': 'تصنيع بدقة الطيران',
-    'hero.subtitle': 'قطع مُشغَّلة بدقة عالية وحلول حقن بلاستيكي لصناعتَي الطيران والسيارات.',
+    'hero.title': 'تصنيع لقطاعات الطيران والدفاع والسيارات',
+    'hero.subtitle': 'حلول تشغيل عالية الدقة وقياس وتحكم دقيق من ZEISS لقطاعات الطيران والدفاع والسيارات.',
     'hero.cta': 'تواصل معنا',
     'hero.explore': 'منتجاتنا',
     'hero.slide1.subtitle': 'معتمد وفق AS9100',
     'hero.slide2.subtitle': 'تكنولوجيا متقدمة',
     'hero.slide3.subtitle': 'شريكك في الحلول',
-    'hero.slide2.desc': 'دقة على مستوى الميكرون بتقنيات DMG MORI وHAAS.',
-    'hero.slide3.desc': 'شريكك الموثوق في حقن البلاستيك وتصميم القوالب المخصصة.',
+    'hero.slide2.desc': 'تشغيل عالي الدقة مع بنية قياس وتحكم دقيقة من ZEISS.',
+    'hero.slide3.desc': 'شريكك الموثوق في تشكيل الألومنيوم وعمليات المعالجة الحرارية.',
 
     // Stats
     'stats.since': 'منذ عام',
@@ -320,18 +320,18 @@ export const translations = {
 
     // Products / القدرات
     'products.title': 'القدرات',
-    'products.subtitle': 'حلول هندسية دقيقة لصناعتَي الطيران والسيارات',
+    'products.subtitle': 'حلول هندسية دقيقة لقطاعات الطيران والدفاع والسيارات',
     'products.assemblies': 'التشغيل الآلي',
     'products.fixtures': 'أدوات التثبيت',
     'products.apparatus': 'الأجهزة والمعدات',
     'products.molds': 'القوالب',
     'products.gauges': 'مقاييس مراقبة الجودة',
-    'products.injection': 'حقن البلاستيك',
+    'products.injection': 'الحقن',
     'products.detail': 'التفاصيل',
 
     // About
     'about.title': 'من نحن',
-    'about.text': 'تقوم شركة MKT Makina منذ عام 2007 بتصنيع قطع تشغيل آلي دقيقة وعالية الجودة لصناعتي الطيران والسيارات. وبحصولنا على شهادة AS9100، بنينا نظام إدارة الجودة لدينا وفق متطلبات صناعتَي الطيران والسيارات.',
+    'about.text': 'تقوم شركة MKT Makina منذ عام 2007 بتصنيع قطع تشغيل آلي دقيقة وعالية الجودة لقطاعات الطيران والدفاع والسيارات. وبحصولنا على شهادة AS9100، بنينا نظام إدارة الجودة لدينا وفق متطلبات قطاعات الطيران والدفاع والسيارات.',
     'about.more': 'اقرأ المزيد',
 
     // Machines
@@ -345,7 +345,7 @@ export const translations = {
 
     // CTA
     'cta.title': 'تواصل معنا لمشروعك',
-    'cta.subtitle': 'اتصل بنا للحصول على حلول دقيقة في صناعتَي الطيران والسيارات.',
+    'cta.subtitle': 'اتصل بنا للحصول على حلول دقيقة في قطاعات الطيران والدفاع والسيارات.',
     'cta.button': 'نموذج الاتصال',
     'cta.call': 'اتصل بنا',
 

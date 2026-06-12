@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/PageHero.astro';
 import CTA from '../components/CTA.astro';
+import { products } from '../data/products';
 
 const tabs = [
   { id: 'about', label: 'Hakkımızda' },
@@ -10,8 +11,8 @@ const tabs = [
 ];
 ---
 
-<BaseLayout title="Kurumsal — MKT Makina A.Ş." description="MKT Makina A.Ş. hakkında, misyon, vizyon ve kalite politikamız. AS9100 sertifikalı havacılık ve otomotiv parça üreticisi." lang="tr" hasHero={false}>
-  <PageHero title="Kurumsal" subtitle="2007'den bu yana havacılık hassasiyetinde üretim" />
+<BaseLayout title="Kurumsal — MKT Makina A.Ş." description="MKT Makina A.Ş. hakkında, misyon, vizyon ve kalite politikamız. AS9100 sertifikalı havacılık, savunma ve otomotiv parça üreticisi." lang="tr" hasHero={false}>
+  <PageHero title="Kurumsal" subtitle="2007'den bu yana havacılık, savunma ve otomotiv için hassas üretim" />
 
   <section class="section-padding">
     <div class="container-custom">
@@ -38,26 +39,17 @@ const tabs = [
           <div data-animate="fade-up">
             <h2 class="font-heading text-2xl font-bold text-white mb-6">Hakkımızda</h2>
             <div class="space-y-4 text-text-light leading-relaxed text-[15px]">
-              <p>MKT Makina, havacılık ve otomotiv sanayii için yüksek kaliteli hassas talaşlı imalat parçaları üretmektedir. 2007 yılında kurulan şirket, iş hayatının ilk yıllarından bu yana fikstür, aparat, kalıp ve kalite kontrol mastarı imalatı da yapmaktadır.</p>
+              <p>MKT Makina, havacılık, savunma ve otomotiv sanayii için yüksek kaliteli hassas talaşlı imalat parçaları üretmektedir. 2007 yılında kurulan şirket, iş hayatının ilk yıllarından bu yana fikstür, aparat, kalıp ve kalite kontrol mastarı imalatı da yapmaktadır.</p>
               <p>2012 yılından itibaren Türk Kabin İçi Sistemleri'ne (TCI) yapısal parça üretiminde etkili bir rol oynamaktadır.</p>
-              <p>AS9100 sertifikasına sahip olup, kalite yönetim sistemini havacılık ve otomotiv sanayi gerekliliklerine uygun olarak yapılandırmıştır.</p>
+              <p>AS9100 sertifikasına sahip olup, kalite yönetim sistemini havacılık, savunma ve otomotiv sanayi gerekliliklerine uygun olarak yapılandırmıştır.</p>
             </div>
 
             <h3 class="font-heading text-base font-semibold text-white mt-8 mb-4">Kabiliyetler</h3>
             <ul class="space-y-2.5">
-              {[
-                'Alüminyum dövme',
-                'Talaşlı imalat',
-                'Isıl işlem',
-                'Fikstürler',
-                'Aparatlar',
-                'Kalıplar',
-                'Kalite kontrol mastarları',
-                'Plastik enjeksiyon',
-              ].map((item) => (
+              {products.map((product) => (
                 <li class="flex items-start gap-3 text-text-light text-sm">
                   <span class="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0"></span>
-                  {item}
+                  {product.name.tr}
                 </li>
               ))}
             </ul>
@@ -123,7 +115,7 @@ const tabs = [
             </div>
           </div>
 
-          <p class="text-text-light leading-relaxed mb-8 text-[15px]">Havacılık ve otomotiv sanayii için metal ve metal olmayan parçalar ile montaj gruplarının imalatını yapan firmamız, kuruluşun bağlamı ve stratejik planıyla uyumlu olarak kalite politikasını aşağıdaki gibi belirlemiştir:</p>
+          <p class="text-text-light leading-relaxed mb-8 text-[15px]">Havacılık, savunma ve otomotiv sanayii için metal ve metal olmayan parçalar ile montaj gruplarının imalatını yapan firmamız, kuruluşun bağlamı ve stratejik planıyla uyumlu olarak kalite politikasını aşağıdaki gibi belirlemiştir:</p>
 
           <div class="space-y-3">
             {[

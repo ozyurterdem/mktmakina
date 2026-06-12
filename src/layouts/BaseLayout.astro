@@ -17,10 +17,10 @@ interface Props {
 const { title, lang = 'tr', hasHero = false, image = '/images/slide1.jpg' } = Astro.props;
 
 const defaultDesc: Record<Lang, string> = {
-  tr: 'MKT Makina A.Ş. — Havacılık ve otomotiv sanayii için hassas talaşlı imalat, fikstür ve kalite kontrol çözümleri.',
-  en: 'MKT Makina Inc. — Precision machining, fixtures and quality control solutions for aviation and automotive industry.',
-  de: 'MKT Makina AG — Präzisionszerspanung, Spannvorrichtungen und Qualitätskontrolllösungen für die Luft- und Kraftfahrtindustrie.',
-  ar: 'MKT Makina ش.م. — تشغيل آلي دقيق، تركيبات تثبيت وحلول مراقبة الجودة لصناعتَي الطيران والسيارات.',
+  tr: 'MKT Makina A.Ş. — Havacılık, savunma ve otomotiv sanayii için hassas talaşlı imalat, fikstür ve kalite kontrol çözümleri.',
+  en: 'MKT Makina Inc. — Precision machining, fixtures and quality control solutions for aerospace, defense and automotive industries.',
+  de: 'MKT Makina AG — Präzisionszerspanung, Spannvorrichtungen und Qualitätskontrolllösungen für Luftfahrt, Verteidigung und Automobilindustrie.',
+  ar: 'MKT Makina ش.م. — تشغيل آلي دقيق، تركيبات تثبيت وحلول مراقبة الجودة لقطاعات الطيران والدفاع والسيارات.',
 };
 const description = Astro.props.description ?? defaultDesc[lang];
 
@@ -113,7 +113,7 @@ const orgLd = {
   url: siteOrigin,
   logo: { '@type': 'ImageObject', url: `${siteOrigin}/images/logo.png` },
   image: ogImageURL,
-  description: 'Havacılık ve otomotiv sanayii için hassas işleme ve montaj grubu parçalar, fikstür ve kalite kontrol çözümleri. AS9100 sertifikalı üretim.',
+  description: 'Havacılık, savunma ve otomotiv sanayii için hassas işleme, enjeksiyon, fikstür ve kalite kontrol çözümleri. AS9100 sertifikalı üretim.',
   foundingDate: '2007',
   address: {
     '@type': 'PostalAddress',
