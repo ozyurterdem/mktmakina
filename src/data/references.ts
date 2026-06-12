@@ -1,0 +1,18 @@
+export const references = [
+  { name: 'TCI', image: '/images/references/tci_198_white.png' },
+  { name: 'HAVELSAN', image: '/images/references/havelsan.png' },
+  { name: 'HAVELSAN Technology Radar (HTR)', image: '/images/references/htr-teknoloji-radar.jpg' },
+  { name: 'TUSAS / Turkish Aerospace', image: '/images/references/tusas.svg' },
+  { name: 'TRMOTOR', image: '/images/references/trmotor.png' },
+  { name: 'ZIM Aircraft Seating', image: '/images/references/zim-aircraft-seating.svg' },
+  { name: 'TASECS', image: '/images/references/tasecs.svg' },
+  { name: 'Ingersoll Rand', image: '/images/references/ingersoll-rand.svg' },
+  { name: 'Gardner Denver', image: '/images/references/gardner-denver.svg' },
+  { name: 'Toyota Boshoku', image: '/images/references/toyota-boshoku_197.jpg' },
+  { name: 'Elimsan', image: '/images/references/elimsan_188.jpg' },
+  { name: 'Mikrosan', image: '/images/references/mikrosan_192.jpg' },
+  { name: 'Demka Dovme Celik', image: '/images/references/demka-dovme-celik-sanayi_186.jpg' },
+  { name: 'Neutec Ilac', image: '/images/references/neutec-ilac-sanayi_193.jpg' },
+  { name: 'Rad-Tek Radyator', image: '/images/references/rad-tek-radyator-metal_195.jpg' },
+  { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg' },
+];

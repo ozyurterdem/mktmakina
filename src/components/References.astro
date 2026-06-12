@@ -1,23 +1,12 @@
 ---
 import { t, getLocalePath, type Lang } from '../i18n/translations';
+import { references } from '../data/references';
 
 interface Props {
   lang?: Lang;
 }
 
 const { lang = 'tr' } = Astro.props;
-
-const references = [
-  { name: 'TCI', image: '/images/references/tci_198_white.png' },
-  { name: 'Toyota Boshoku', image: '/images/references/toyota-boshoku_197.jpg' },
-  { name: 'Dogus', image: '/images/references/dogus_187.jpg' },
-  { name: 'Elimsan', image: '/images/references/elimsan_188.jpg' },
-  { name: 'Mikrosan', image: '/images/references/mikrosan_192.jpg' },
-  { name: 'Demka Dovme Celik', image: '/images/references/demka-dovme-celik-sanayi_186.jpg' },
-  { name: 'Neutec Ilac', image: '/images/references/neutec-ilac-sanayi_193.jpg' },
-  { name: 'Rad-Tek Radyator', image: '/images/references/rad-tek-radyator-metal_195.jpg' },
-  { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg' },
-];
 ---
 
 <section class="relative section-padding overflow-hidden noise-overlay" id="references">
@@ -37,7 +26,7 @@ const references = [
       <div class="ref-marquee">
         {[...references, ...references].map((ref) => (
           <div class="ref-item">
-            <img src={ref.image} alt={ref.name} class="ref-logo" loading="lazy" />
+            <img src={ref.image} alt={ref.name} class="ref-logo" loading="eager" />
           </div>
         ))}
       </div>
@@ -47,7 +36,7 @@ const references = [
     <div class="ref-grid" data-animate="fade-up" data-delay="200">
       {references.map((ref) => (
         <div class="ref-item">
-          <img src={ref.image} alt={ref.name} class="ref-logo" loading="lazy" />
+          <img src={ref.image} alt={ref.name} class="ref-logo" loading="eager" />
         </div>
       ))}
     </div>
@@ -94,8 +83,10 @@ const references = [
     flex-shrink: 0;
     width: 220px;
     height: 100px;
+    background: #fff;
     border-radius: 4px;
     overflow: hidden;
+    padding: 1rem;
     transition: all 0.4s ease;
   }
   .ref-item:hover {
@@ -106,8 +97,8 @@ const references = [
   .ref-logo {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0.85;
+    object-fit: contain;
+    opacity: 0.9;
     transition: all 0.4s ease;
   }
   .ref-item:hover .ref-logo {
