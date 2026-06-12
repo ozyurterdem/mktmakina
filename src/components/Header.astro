@@ -67,27 +67,43 @@ const sharedToTr: Record<string, string> = Object.fromEntries(
   Object.entries(trToShared).map(([tr, sh]) => [sh, tr])
 );
 
-// Given current path, return equivalent path for target language
+// Untranslatable top-level slugs (no real route in other languages → switcher
+// gives the language home, not a dead /<lang>/<slug>/). Örn: 404.
+const NON_ROUTE_SLUGS = new Set(['404']);
+
+// Given current path, return equivalent path for target language.
+// Segment bazlı: yalnız İLK segment dile göre çevrilir (TR `urunler` ↔ shared
+// `products`), kalan segmentler (ör. ürün slug'ı) olduğu gibi taşınır.
 function pathForLang(from: Lang, to: Lang, path: string): string {
-  if (from === to) return path;
+  // NOT: from === to için kısa devre yok — aktif dil girişi de aynı normalize
+  // yolundan geçsin ki çevirisi olmayan path'ler (404 self-link) köke düşsün.
 
-  // Strip the source lang prefix to get the slug
-  let slug = path;
-  if (from === 'tr') {
-    slug = path.replace(/^\//, '') || ''; // e.g. "kurumsal"
-  } else {
-    slug = path.replace(new RegExp(`^\\/${from}\\/?`), ''); // e.g. "about"
+  // 1) Kaynak dilin prefix'ini sök, segmentlere ayır (trailing slash dahil temiz)
+  const stripped = from === 'tr'
+    ? path
+    : path.replace(new RegExp(`^\\/${from}(?=\\/|$)`), '');
+  const segments = stripped.split('/').filter(Boolean); // ["about"] / ["products","aluminyum-dovme"]
+
+  // Kök sayfa → hedef dilin kökü
+  if (segments.length === 0) {
+    return to === 'tr' ? '/' : withSlash(`/${to}`);
   }
 
-  // Normalise slug (TR → shared, shared → shared)
-  const sharedSlug = from === 'tr' ? (trToShared[slug] ?? slug) : slug;
-  // shared → target
-  const targetSlug = to === 'tr' ? (sharedToTr[sharedSlug] ?? sharedSlug) : sharedSlug;
+  // 2) İlk segmenti TR'ye normalize et, sonra hedefe çevir
+  const trFirst = from === 'tr' ? segments[0] : (sharedToTr[segments[0]] ?? segments[0]);
 
-  if (to === 'tr') {
-    return withSlash(targetSlug ? `/${targetSlug}` : '/');
+  // Çevirisi olmayan teknik slug (404 vb.) → o dile gerçek route yok, köke düş
+  if (NON_ROUTE_SLUGS.has(trFirst)) {
+    return to === 'tr' ? '/' : withSlash(`/${to}`);
   }
-  return withSlash(targetSlug ? `/${to}/${targetSlug}` : `/${to}`);
+
+  const targetFirst = to === 'tr' ? trFirst : (trToShared[trFirst] ?? trFirst);
+  const rest = segments.slice(1);
+  const targetSegs = [targetFirst, ...rest];
+
+  return to === 'tr'
+    ? withSlash('/' + targetSegs.join('/'))
+    : withSlash('/' + to + '/' + targetSegs.join('/'));
 }
 
 const langLabels: Record<Lang, string> = { tr: 'TR', en: 'EN', de: 'DE', ar: 'AR' };
