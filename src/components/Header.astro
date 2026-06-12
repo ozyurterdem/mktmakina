@@ -1,5 +1,5 @@
 ---
-import { t, languages, getLocalePath, type Lang } from '../i18n/translations';
+import { t, languages, getLocalePath, withSlash, type Lang } from '../i18n/translations';
 
 interface Props {
   lang?: Lang;
@@ -10,42 +10,43 @@ const { lang = 'tr', hasHero = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 
 // Route map: all 4 languages
+// NOT: tüm href'ler withSlash() üzerinden geçer — SEO_STANDARD `trailingSlash: 'always'`.
 const routes: Record<Lang, { label: string; href: string }[]> = {
   tr: [
-    { label: t('tr', 'nav.home'),         href: '/' },
-    { label: t('tr', 'nav.about'),        href: '/kurumsal' },
-    { label: t('tr', 'nav.products'),     href: '/urunler' },
-    { label: t('tr', 'nav.machines'),     href: '/makina-parkimiz' },
-    { label: t('tr', 'nav.references'),   href: '/referanslar' },
-    { label: t('tr', 'nav.certificates'), href: '/belgeler' },
-    { label: t('tr', 'nav.contact'),      href: '/iletisim' },
+    { label: t('tr', 'nav.home'),         href: withSlash('/') },
+    { label: t('tr', 'nav.about'),        href: withSlash('/kurumsal') },
+    { label: t('tr', 'nav.products'),     href: withSlash('/urunler') },
+    { label: t('tr', 'nav.machines'),     href: withSlash('/makina-parkimiz') },
+    { label: t('tr', 'nav.references'),   href: withSlash('/referanslar') },
+    { label: t('tr', 'nav.certificates'), href: withSlash('/belgeler') },
+    { label: t('tr', 'nav.contact'),      href: withSlash('/iletisim') },
   ],
   en: [
-    { label: t('en', 'nav.home'),         href: '/en' },
-    { label: t('en', 'nav.about'),        href: '/en/about' },
-    { label: t('en', 'nav.products'),     href: '/en/products' },
-    { label: t('en', 'nav.machines'),     href: '/en/machines' },
-    { label: t('en', 'nav.references'),   href: '/en/references' },
-    { label: t('en', 'nav.certificates'), href: '/en/certificates' },
-    { label: t('en', 'nav.contact'),      href: '/en/contact' },
+    { label: t('en', 'nav.home'),         href: withSlash('/en') },
+    { label: t('en', 'nav.about'),        href: withSlash('/en/about') },
+    { label: t('en', 'nav.products'),     href: withSlash('/en/products') },
+    { label: t('en', 'nav.machines'),     href: withSlash('/en/machines') },
+    { label: t('en', 'nav.references'),   href: withSlash('/en/references') },
+    { label: t('en', 'nav.certificates'), href: withSlash('/en/certificates') },
+    { label: t('en', 'nav.contact'),      href: withSlash('/en/contact') },
   ],
   de: [
-    { label: t('de', 'nav.home'),         href: '/de' },
-    { label: t('de', 'nav.about'),        href: '/de/about' },
-    { label: t('de', 'nav.products'),     href: '/de/products' },
-    { label: t('de', 'nav.machines'),     href: '/de/machines' },
-    { label: t('de', 'nav.references'),   href: '/de/references' },
-    { label: t('de', 'nav.certificates'), href: '/de/certificates' },
-    { label: t('de', 'nav.contact'),      href: '/de/contact' },
+    { label: t('de', 'nav.home'),         href: withSlash('/de') },
+    { label: t('de', 'nav.about'),        href: withSlash('/de/about') },
+    { label: t('de', 'nav.products'),     href: withSlash('/de/products') },
+    { label: t('de', 'nav.machines'),     href: withSlash('/de/machines') },
+    { label: t('de', 'nav.references'),   href: withSlash('/de/references') },
+    { label: t('de', 'nav.certificates'), href: withSlash('/de/certificates') },
+    { label: t('de', 'nav.contact'),      href: withSlash('/de/contact') },
   ],
   ar: [
-    { label: t('ar', 'nav.home'),         href: '/ar' },
-    { label: t('ar', 'nav.about'),        href: '/ar/about' },
-    { label: t('ar', 'nav.products'),     href: '/ar/products' },
-    { label: t('ar', 'nav.machines'),     href: '/ar/machines' },
-    { label: t('ar', 'nav.references'),   href: '/ar/references' },
-    { label: t('ar', 'nav.certificates'), href: '/ar/certificates' },
-    { label: t('ar', 'nav.contact'),      href: '/ar/contact' },
+    { label: t('ar', 'nav.home'),         href: withSlash('/ar') },
+    { label: t('ar', 'nav.about'),        href: withSlash('/ar/about') },
+    { label: t('ar', 'nav.products'),     href: withSlash('/ar/products') },
+    { label: t('ar', 'nav.machines'),     href: withSlash('/ar/machines') },
+    { label: t('ar', 'nav.references'),   href: withSlash('/ar/references') },
+    { label: t('ar', 'nav.certificates'), href: withSlash('/ar/certificates') },
+    { label: t('ar', 'nav.contact'),      href: withSlash('/ar/contact') },
   ],
 };
 
@@ -84,19 +85,19 @@ function pathForLang(from: Lang, to: Lang, path: string): string {
   const targetSlug = to === 'tr' ? (sharedToTr[sharedSlug] ?? sharedSlug) : sharedSlug;
 
   if (to === 'tr') {
-    return targetSlug ? `/${targetSlug}` : '/';
+    return withSlash(targetSlug ? `/${targetSlug}` : '/');
   }
-  return targetSlug ? `/${to}/${targetSlug}` : `/${to}`;
+  return withSlash(targetSlug ? `/${to}/${targetSlug}` : `/${to}`);
 }
 
 const langLabels: Record<Lang, string> = { tr: 'TR', en: 'EN', de: 'DE', ar: 'AR' };
 const langFlags: Record<Lang, string>  = { tr: '🇹🇷', en: '🇬🇧', de: '🇩🇪', ar: '🇸🇦' };
 
 const quoteHref: Record<Lang, string> = {
-  tr: '/iletisim',
-  en: '/en/contact',
-  de: '/de/contact',
-  ar: '/ar/contact',
+  tr: withSlash('/iletisim'),
+  en: withSlash('/en/contact'),
+  de: withSlash('/de/contact'),
+  ar: withSlash('/ar/contact'),
 };
 
 const allLangs = Object.keys(languages) as Lang[];

@@ -12,7 +12,7 @@ import { products } from '../../data/products';
     <div class="container-custom">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
-          <a href={`/de/products/${product.slug}`} class="group card overflow-hidden" data-animate="fade-up">
+          <a href={`/de/products/${product.slug}/`} class="group card overflow-hidden" data-animate="fade-up">
             <div class="relative aspect-[16/10] overflow-hidden">
               <img src={product.image} alt={product.name.de} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
               <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

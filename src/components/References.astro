@@ -1,5 +1,5 @@
 ---
-import { t, getLocalePath, type Lang } from '../i18n/translations';
+import { t, withSlash, type Lang } from '../i18n/translations';
 import { references } from '../data/references';
 
 interface Props {
@@ -43,7 +43,7 @@ const { lang = 'tr' } = Astro.props;
 
     <div class="text-center mt-12" data-animate="fade-up">
       <a
-        href={getLocalePath(lang, {tr:'/referanslar', en:'/en/references', de:'/de/references', ar:'/ar/references'}[lang])}
+        href={withSlash({tr:'/referanslar', en:'/en/references', de:'/de/references', ar:'/ar/references'}[lang])}
         class="inline-flex items-center gap-2 text-accent/60 text-sm font-mono uppercase tracking-wider hover:text-accent hover:gap-3 transition-all"
       >
         {t(lang, 'references.all')}

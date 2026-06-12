@@ -41,7 +41,7 @@ const otherProducts = products.filter((p) => p.slug !== product.slug);
             ))}
           </ul>
 
-          <a href="/ar/contact" class="btn-primary inline-flex items-center gap-2">
+          <a href="/ar/contact/" class="btn-primary inline-flex items-center gap-2">
             اتصل بنا
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
@@ -52,7 +52,7 @@ const otherProducts = products.filter((p) => p.slug !== product.slug);
         <h3 class="font-heading text-xl font-bold text-white mb-6" data-animate="fade-up">منتجات أخرى</h3>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-[1px] bg-border">
           {otherProducts.map((p) => (
-            <a href={`/ar/products/${p.slug}`} class="group block bg-primary-light overflow-hidden" data-animate="fade-up">
+            <a href={`/ar/products/${p.slug}/`} class="group block bg-primary-light overflow-hidden" data-animate="fade-up">
               <div class="relative aspect-[4/3] overflow-hidden">
                 <img src={p.image} alt={p.name.ar} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/70 to-transparent"></div>

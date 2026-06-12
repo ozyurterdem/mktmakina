@@ -1,5 +1,5 @@
 ---
-import { t, type Lang } from '../i18n/translations';
+import { t, withSlash, type Lang } from '../i18n/translations';
 import { products } from '../data/products';
 
 interface Props {
@@ -25,7 +25,7 @@ const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {products.map((product, i) => (
         <a
-          href={`${l({tr:'/urunler', en:'/en/products', de:'/de/products', ar:'/ar/products'})}/${product.slug}`}
+          href={withSlash(`${l({tr:'/urunler', en:'/en/products', de:'/de/products', ar:'/ar/products'})}/${product.slug}`)}
           class="group glass-card overflow-hidden"
           data-animate="fade-up"
           data-delay={String(((i % 3) + 1) * 100)}

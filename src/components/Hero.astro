@@ -1,5 +1,5 @@
 ---
-import { t, type Lang } from '../i18n/translations';
+import { t, withSlash, type Lang } from '../i18n/translations';
 
 interface Props {
   lang?: Lang;
@@ -49,8 +49,8 @@ const slides: Slide[] = [
   },
 ];
 
-const ctaContactHref  = l({ tr: '/iletisim', en: '/en/contact',  de: '/de/contact',  ar: '/ar/contact' });
-const ctaProductsHref = l({ tr: '/urunler',  en: '/en/products', de: '/de/products', ar: '/ar/products' });
+const ctaContactHref  = withSlash(l({ tr: '/iletisim', en: '/en/contact',  de: '/de/contact',  ar: '/ar/contact' }));
+const ctaProductsHref = withSlash(l({ tr: '/urunler',  en: '/en/products', de: '/de/products', ar: '/ar/products' }));
 ---
 
 <section class="relative min-h-screen flex items-center overflow-hidden" id="hero">

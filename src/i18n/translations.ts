@@ -372,7 +372,40 @@ export function t(lang: Lang, key: string): string {
   return (translations[lang] as Record<string, string>)[key] || key;
 }
 
+/**
+ * Trailing slash garantili iç bağlantı helper'ı.
+ * Kural (SEO_STANDARD): trailingSlash 'always'.
+ *  - Dosya uzantılı path slash ALMAZ (`/rss.xml`, `/belge.pdf`).
+ *  - `#` veya `?` öncesi slash garantili (`/giris/?tab=x`, `/ar/#hizmetler`).
+ *  - Protokol/absolute URL veya `mailto:`/`tel:` dokunulmaz.
+ *  - Boş veya `/` direkt root döner.
+ */
+export function withSlash(path: string): string {
+  if (!path) return '/';
+  // Site dışı veya özel şema: dokunma
+  if (/^[a-z][a-z0-9+.-]*:/i.test(path) || path.startsWith('//')) return path;
+  if (path === '/') return '/';
+
+  // # veya ? öncesi bölümü ayır
+  const hashIdx = path.indexOf('#');
+  const queryIdx = path.indexOf('?');
+  let cut = -1;
+  if (hashIdx >= 0 && queryIdx >= 0) cut = Math.min(hashIdx, queryIdx);
+  else if (hashIdx >= 0) cut = hashIdx;
+  else if (queryIdx >= 0) cut = queryIdx;
+
+  const base = cut >= 0 ? path.slice(0, cut) : path;
+  const tail = cut >= 0 ? path.slice(cut) : '';
+  if (!base) return '/' + tail;
+
+  // Dosya uzantılı path slash almaz (son segmentte nokta var mı?)
+  const lastSeg = base.split('/').filter(Boolean).pop() ?? '';
+  if (lastSeg.includes('.')) return base + tail;
+  if (base.endsWith('/')) return base + tail;
+  return base + '/' + tail;
+}
+
 export function getLocalePath(lang: Lang, path: string): string {
-  if (lang === defaultLang) return path;
-  return `/${lang}${path}`;
+  const raw = lang === defaultLang ? path : `/${lang}${path}`;
+  return withSlash(raw);
 }

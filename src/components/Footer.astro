@@ -1,5 +1,5 @@
 ---
-import { t, getLocalePath, type Lang } from '../i18n/translations';
+import { t, getLocalePath, withSlash, type Lang } from '../i18n/translations';
 import { products } from '../data/products';
 
 interface Props {
@@ -10,49 +10,50 @@ const { lang = 'tr' } = Astro.props;
 const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
 const year = new Date().getFullYear();
 
+// Tüm iç href'ler withSlash() üzerinden geçer — SEO_STANDARD trailing slash kuralı.
 const quickLinksMap: Record<string, { key: string; href: string }[]> = {
   tr: [
-    { key: 'nav.about', href: '/kurumsal' },
-    { key: 'nav.products', href: '/urunler' },
-    { key: 'nav.machines', href: '/makina-parkimiz' },
-    { key: 'nav.references', href: '/referanslar' },
-    { key: 'nav.certificates', href: '/belgeler' },
-    { key: 'nav.contact', href: '/iletisim' },
-    { key: 'nav.hr', href: '/insan-kaynaklari' },
+    { key: 'nav.about', href: withSlash('/kurumsal') },
+    { key: 'nav.products', href: withSlash('/urunler') },
+    { key: 'nav.machines', href: withSlash('/makina-parkimiz') },
+    { key: 'nav.references', href: withSlash('/referanslar') },
+    { key: 'nav.certificates', href: withSlash('/belgeler') },
+    { key: 'nav.contact', href: withSlash('/iletisim') },
+    { key: 'nav.hr', href: withSlash('/insan-kaynaklari') },
   ],
   en: [
-    { key: 'nav.about', href: '/en/about' },
-    { key: 'nav.products', href: '/en/products' },
-    { key: 'nav.machines', href: '/en/machines' },
-    { key: 'nav.references', href: '/en/references' },
-    { key: 'nav.certificates', href: '/en/certificates' },
-    { key: 'nav.contact', href: '/en/contact' },
-    { key: 'nav.hr', href: '/en/careers' },
+    { key: 'nav.about', href: withSlash('/en/about') },
+    { key: 'nav.products', href: withSlash('/en/products') },
+    { key: 'nav.machines', href: withSlash('/en/machines') },
+    { key: 'nav.references', href: withSlash('/en/references') },
+    { key: 'nav.certificates', href: withSlash('/en/certificates') },
+    { key: 'nav.contact', href: withSlash('/en/contact') },
+    { key: 'nav.hr', href: withSlash('/en/careers') },
   ],
   de: [
-    { key: 'nav.about', href: '/de/about' },
-    { key: 'nav.products', href: '/de/products' },
-    { key: 'nav.machines', href: '/de/machines' },
-    { key: 'nav.references', href: '/de/references' },
-    { key: 'nav.certificates', href: '/de/certificates' },
-    { key: 'nav.contact', href: '/de/contact' },
-    { key: 'nav.hr', href: '/de/careers' },
+    { key: 'nav.about', href: withSlash('/de/about') },
+    { key: 'nav.products', href: withSlash('/de/products') },
+    { key: 'nav.machines', href: withSlash('/de/machines') },
+    { key: 'nav.references', href: withSlash('/de/references') },
+    { key: 'nav.certificates', href: withSlash('/de/certificates') },
+    { key: 'nav.contact', href: withSlash('/de/contact') },
+    { key: 'nav.hr', href: withSlash('/de/careers') },
   ],
   ar: [
-    { key: 'nav.about', href: '/ar/about' },
-    { key: 'nav.products', href: '/ar/products' },
-    { key: 'nav.machines', href: '/ar/machines' },
-    { key: 'nav.references', href: '/ar/references' },
-    { key: 'nav.certificates', href: '/ar/certificates' },
-    { key: 'nav.contact', href: '/ar/contact' },
-    { key: 'nav.hr', href: '/ar/careers' },
+    { key: 'nav.about', href: withSlash('/ar/about') },
+    { key: 'nav.products', href: withSlash('/ar/products') },
+    { key: 'nav.machines', href: withSlash('/ar/machines') },
+    { key: 'nav.references', href: withSlash('/ar/references') },
+    { key: 'nav.certificates', href: withSlash('/ar/certificates') },
+    { key: 'nav.contact', href: withSlash('/ar/contact') },
+    { key: 'nav.hr', href: withSlash('/ar/careers') },
   ],
 };
 const quickLinks = quickLinksMap[lang] ?? quickLinksMap['en'];
 
 const productBasePath = l({ tr: '/urunler', en: '/en/products', de: '/de/products', ar: '/ar/products' });
 const productLinks = products.map((product) => ({
-  href: `${productBasePath}/${product.slug}`,
+  href: withSlash(`${productBasePath}/${product.slug}`),
   label: product.name[lang] ?? product.name.en,
 }));
 ---

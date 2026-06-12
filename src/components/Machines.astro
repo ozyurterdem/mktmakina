@@ -1,5 +1,5 @@
 ---
-import { t, type Lang } from '../i18n/translations';
+import { t, withSlash, type Lang } from '../i18n/translations';
 import { machineParkGroups } from '../data/machinePark';
 
 interface Props {
@@ -63,7 +63,7 @@ const categories = machineParkGroups.slice(0, 5).map((group) => ({
 
     <div class="text-center mt-12" data-animate="fade-up">
       <a
-        href={l({tr:'/makina-parkimiz', en:'/en/machines', de:'/de/machines', ar:'/ar/machines'})}
+        href={withSlash(l({tr:'/makina-parkimiz', en:'/en/machines', de:'/de/machines', ar:'/ar/machines'}))}
         class="inline-flex items-center gap-2 text-accent/60 text-sm font-mono uppercase tracking-wider hover:text-accent hover:gap-3 transition-all"
       >
         {t(lang, 'about.more')}
