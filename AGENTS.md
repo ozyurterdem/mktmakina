@@ -9,7 +9,7 @@
 - **Ad / amaç:** `MKT Makina — havacılık/savunma/otomotiv hassas işleme kurumsal sitesi`
 - **Stack:** `Astro 5 + Tailwind + Preact, `trailingSlash: 'always'`, 4 dil (TR/EN/DE/AR)`
 - **Canlı:** `https://mktmakina.com (Coolify-IST nginx, app uuid c10qwyws5mb7…)`
-- **Deploy:** `main'e push → Coolify deploy`
+- **Deploy:** `v3-aerospace-precision branch'ine push → Coolify (app mkt3, uuid c10qwyws5mb7…) deploy. (main → ayrı app "mktmakina", mkt.siberkale.com)`
 
 ## Kurallar (Genel)
 
