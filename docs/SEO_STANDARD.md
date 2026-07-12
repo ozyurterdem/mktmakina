@@ -9,7 +9,7 @@
 
 # SEO Standardı — Çekirdek (STANDARD)
 
-> **Sürüm:** 1.1.0 · **Kapsam:** Astro + `trailingSlash: 'always'` statik siteler
+> **Sürüm:** 1.1.1 · **Kapsam:** Astro + `trailingSlash: 'always'` statik siteler
 > Bu katman **tüm sitelerde birebir aynıdır** ve tek master'dan senkronlanır. Google Search Console'un herkese dayattığı rijit kurallardır. Dil/araç bağımsız — insan ve her AI kodlama ajanı için.
 >
 > Siteye özel değerler (domain, path helper adları, BANNED listesi, diller, OPSEC) → **`SEO_INDIVIDUAL.md`**.
@@ -65,7 +65,7 @@ Site `trailingSlash: 'always'` kullanır. Dört katman **aynı** stratejide olma
 - **Üç ihlal türü:**
   - **SLASH** — uzantısız + `/` ile bitmeyen iç href (301'e düşer → "Yönlendirmeli sayfa").
   - **YASAK** — BANNED regex listesindeki ölü/taşınmış path'e iç link.
-  - **DEAD** — hedefi `dist/`'te bulunmayan iç sayfa route'u (örn. çevirisi olmayan sayfaya link → 404). Guard build'de `dist/` route haritasını çıkarır; bir `<a>/<link>` hedefi haritada yoksa DEAD'dir. Yalnız **route**'lar denetlenir; dosya varlıkları (favicon, og.png, rss.xml) ve `/cdn-cgi/` (Cloudflare runtime) muaftır.
+  - **DEAD** — hedefi `dist/`'te bulunmayan iç sayfa route'u (örn. çevirisi olmayan sayfaya link → 404). Guard build'de `dist/` route haritasını çıkarır; bir `<a>/<link>` hedefi haritada yoksa DEAD'dir. Yalnız **route**'lar denetlenir; dosya varlıkları (favicon, og.png, rss.xml), `/cdn-cgi/` (Cloudflare runtime) ve `/404/` (Astro 404 self-link, indexlenmez) muaftır.
 - Çıkış kodu 0 = temiz, 1 = ihlal (build durur). İlk 30 ihlal raporlanır.
 - BANNED listesi repo-spesifiktir; her giriş `SEO_INDIVIDUAL.md`'de gerekçesiyle belgelenir.
 - **Neden DEAD kritik:** SLASH+YASAK kontrolü "olmayan sayfaya link" 404'lerini yakalayamaz; bunlar build'i geçip canlıda GSC "Bulunamadı (404)" üretir (mktmakina slug tutarsızlığı, yusufkaplan çevirisiz yazı listesi örnekleri). DEAD bunu build-time keser.
@@ -79,6 +79,9 @@ Site `trailingSlash: 'always'` kullanır. Dört katman **aynı** stratejide olma
 - [ ] Gerekiyorsa full crawl doğrulaması.
 
 ## Changelog (STANDARD katman)
+
+### 1.1.1 — 2026-06-12
+- Guard DEAD muafiyetine `/404/` eklendi (Astro 404 → `/404.html` üretir, `/404/` route'u yok; 404 sayfasının kendi self-link'i SEO-zararsız, indexlenmez). siberkale/tellal yayılımında ortaya çıktı.
 
 ### 1.1.0 — 2026-06-12
 - Build guard'a **DEAD** (dead-internal-link) kontrolü eklendi: hedefi `dist/`'te bulunmayan iç route'lar build-time yakalanır. Faz-2 yayılımında (anginyapi, mktmakina, ozkankalip, yusufkaplan, efendilergrup) "olmayan sayfaya link" 404'leri ortaya çıkınca eklendi (mktmakina slug tutarsızlığı, yusufkaplan çevirisiz yazı listesi). Yalnız route'lar; dosya varlıkları + `/cdn-cgi/` muaf.

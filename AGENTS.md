@@ -20,8 +20,9 @@
 
 ## SEO (Statik Site)
 
-Bu proje `trailingSlash: 'always'` bir statik sitedir. SEO kuralları **iki katman**, ikisi de bağlayıcı:
-- [`docs/SEO_STANDARD.md`](docs/SEO_STANDARD.md) — tüm sitelerde ortak çekirdek (master'dan senkron, elle düzenlenmez).
+Bu proje `trailingSlash: 'always'` bir statik sitedir. SEO/GEO kuralları **üç katman**, hepsi bağlayıcı:
+- [`docs/SEO_STANDARD.md`](docs/SEO_STANDARD.md) — teknik/GSC çekirdeği, tüm sitelerde ortak (master'dan senkron, elle düzenlenmez).
+- [`docs/GEO_STANDARD.md`](docs/GEO_STANDARD.md) — AI görünürlük + içerik standardı, tüm sitelerde ortak (master'dan senkron, elle düzenlenmez).
 - [`docs/SEO_INDIVIDUAL.md`](docs/SEO_INDIVIDUAL.md) — bu siteye özel (helper'lar, BANNED listesi, diller, OPSEC).
 
 Özet:
