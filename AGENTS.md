@@ -20,9 +20,10 @@
 
 ## SEO (Statik Site)
 
-Bu proje `trailingSlash: 'always'` bir statik sitedir. SEO/GEO kuralları **üç katman**, hepsi bağlayıcı:
+Bu proje `trailingSlash: 'always'` bir statik sitedir. SEO/GEO kuralları **dört katman**, hepsi bağlayıcı:
 - [`docs/SEO_STANDARD.md`](docs/SEO_STANDARD.md) — teknik/GSC çekirdeği, tüm sitelerde ortak (master'dan senkron, elle düzenlenmez).
 - [`docs/GEO_STANDARD.md`](docs/GEO_STANDARD.md) — AI görünürlük + içerik standardı, tüm sitelerde ortak (master'dan senkron, elle düzenlenmez).
+- [`docs/AEO_STANDARD.md`](docs/AEO_STANDARD.md) — makine okunabilirliği (answer-first blok, sorgu formunda başlık, entity `@id` grafiği), tüm sitelerde ortak (master'dan senkron, elle düzenlenmez).
 - [`docs/SEO_INDIVIDUAL.md`](docs/SEO_INDIVIDUAL.md) — bu siteye özel (helper'lar, BANNED listesi, diller, OPSEC).
 
 Özet:
@@ -40,3 +41,7 @@ npm run build    # astro build + scripts/seo-check.mjs guard
 ## Doğrulama
 
 `Buyuk degisiklik sonrasi seo-audit + full crawl. Memory: ozellikle 4 dilli hreflang'larda cifte-prefix kontrolu (siberkale'de yasanan bug).`
+
+## Kod kalitesi
+
+Kod yazarken, review ederken ve refactor ederken `clean-code` skill'i (Clean Code Structure) bağlayıcıdır.
