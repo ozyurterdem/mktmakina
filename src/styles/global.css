@@ -386,6 +386,16 @@ html.js-ready [data-animate].is-visible,
 :root[data-theme="light"] .header-main.is-scrolled .hamburger-line,
 :root[data-theme="light"] .header-main.no-hero .hamburger-line { background: var(--color-primary); }
 
+/* Telefon/faks numaraları — RTL'de bidi ters çevirmesini engelle.
+   Rakamlar Unicode'da "zayıf" tiptir: dir=rtl kapsayıcıda grup sırası tersine
+   döner ve +90 264 276 18 80 ekranda 80 18 276 264 90+ olarak okunur.
+   tel: linkleri seçiciyle kapsanır — yeni eklenenler de otomatik korunur. */
+a[href^="tel:"],
+.numara-ltr {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
 /* Logo varyantı — zemin rengine göre. Varsayılan beyaz (koyu zemin/hero). */
 .header-logo--black { display: none; }
 :root[data-theme="light"] .header-main.is-scrolled .header-logo--white,
