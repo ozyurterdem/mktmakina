@@ -50,8 +50,9 @@
 ## 📦 Production state
 
 - **Versiyon:** `package.json` → 0.0.1 (SemVer kullanılmıyor; CHANGELOG.md henüz yok)
-- **Deploy hash:** `25849e9` (v3-aerospace-precision)
-- **Deploy tarihi:** 2026-08-20 16:28 UTC
+- **Canlı commit:** depodan sorulur — `gh run list --limit 1` (son başarılı koşunun `headSha`'sı).
+  Bu satıra sabit hash yazma; her docs push'u da image'ı yeniden kurar ve yazılan hash bayatlar.
+- **Son içerik/kod deploy'u:** `25849e9` — 2026-08-20 16:28 UTC (marka kimliği yenileme)
 - **Deploy URL'leri:**
   - Public: https://mktmakina.com (+ www)
   - Preview: https://mkt3.siberkale.com
