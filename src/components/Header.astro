@@ -165,12 +165,8 @@ const allLangs = Object.keys(languages) as Lang[];
   <div class="container-custom flex items-center justify-between h-[72px] transition-all duration-300" id="headerInner">
     <!-- Logo -->
     <a href={getLocalePath(lang, '/')} class="flex items-center gap-3 shrink-0 relative z-[110]">
-      <img src="/images/logo.png" alt="MKT Makina" class="h-10 lg:h-11 header-logo transition-all duration-300" />
-      <div class="hidden sm:block leading-tight">
-        <span class="block font-heading text-sm font-semibold tracking-[0.12em] logo-text transition-colors whitespace-nowrap">MKT MAKINA {t(lang, 'company.suffix')}</span>
-        <span class="block text-[9px] font-medium tracking-[0.12em] logo-sub transition-colors whitespace-nowrap leading-[1.35]">{t(lang, 'company.tagline.l1')}</span>
-        <span class="block text-[9px] font-medium tracking-[0.12em] logo-sub transition-colors whitespace-nowrap leading-[1.35]">{t(lang, 'company.tagline.l2')}</span>
-      </div>
+      <img src="/images/logo-white.png" alt="MKT Makina — Precision to Flight" width="404" height="62" class="h-8 lg:h-7 xl:h-10 w-auto header-logo header-logo--white transition-all duration-300" />
+      <img src="/images/logo-black.png" alt="" aria-hidden="true" loading="lazy" width="404" height="62" class="h-8 lg:h-7 xl:h-10 w-auto header-logo header-logo--black transition-all duration-300" />
     </a>
 
     <!-- Desktop Nav -->

@@ -111,7 +111,7 @@ const orgLd = {
   name: 'MKT Makina A.Ş.',
   legalName: 'MKT Makina Kalıp Takım Sanayi ve Ticaret A.Ş.',
   url: siteOrigin,
-  logo: { '@type': 'ImageObject', url: `${siteOrigin}/images/logo.png` },
+  logo: { '@type': 'ImageObject', url: `${siteOrigin}/images/logo-stacked-black.png`, width: 404, height: 114 },
   image: ogImageURL,
   description: 'Havacılık, savunma ve otomotiv sanayii için hassas işleme, enjeksiyon, fikstür ve kalite kontrol çözümleri. AS9100 sertifikalı üretim.',
   foundingDate: '2007',
@@ -224,7 +224,9 @@ const jsonLd = {
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16 32x32" />
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <Font cssVariable="--font-sans" />
     <Font cssVariable="--font-heading" />
     <Font cssVariable="--font-mono" />

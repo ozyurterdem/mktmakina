@@ -360,14 +360,10 @@ html.js-ready [data-animate].is-visible,
 
 .header-main.is-top .nav-link { color: rgba(255, 255, 255, 0.7); }
 .header-main.is-top .nav-link:hover { color: var(--color-accent); }
-.header-main.is-top .logo-text { color: white; }
-.header-main.is-top .logo-sub { color: rgba(255, 255, 255, 0.3); }
 .header-main.is-top .hamburger-line { background: white; }
 
 .header-main.is-scrolled .nav-link { color: rgba(255, 255, 255, 0.7); }
 .header-main.is-scrolled .nav-link:hover { color: var(--color-accent); }
-.header-main.is-scrolled .logo-text { color: white; }
-.header-main.is-scrolled .logo-sub { color: rgba(255, 255, 255, 0.3); }
 .header-main.is-scrolled .hamburger-line { background: white; }
 
 .header-main.no-hero {
@@ -377,8 +373,6 @@ html.js-ready [data-animate].is-visible,
 }
 .header-main.no-hero .nav-link { color: rgba(255, 255, 255, 0.7); }
 .header-main.no-hero .nav-link:hover { color: var(--color-accent); }
-.header-main.no-hero .logo-text { color: white; }
-.header-main.no-hero .logo-sub { color: rgba(255, 255, 255, 0.3); }
 .header-main.no-hero .hamburger-line { background: white; }
 
 /* Light theme header overrides */
@@ -389,12 +383,15 @@ html.js-ready [data-animate].is-visible,
 }
 :root[data-theme="light"] .header-main.is-scrolled .nav-link,
 :root[data-theme="light"] .header-main.no-hero .nav-link { color: var(--color-text); }
-:root[data-theme="light"] .header-main.is-scrolled .logo-text,
-:root[data-theme="light"] .header-main.no-hero .logo-text { color: var(--color-primary); }
-:root[data-theme="light"] .header-main.is-scrolled .logo-sub,
-:root[data-theme="light"] .header-main.no-hero .logo-sub { color: var(--color-text-muted); }
 :root[data-theme="light"] .header-main.is-scrolled .hamburger-line,
 :root[data-theme="light"] .header-main.no-hero .hamburger-line { background: var(--color-primary); }
+
+/* Logo varyantı — zemin rengine göre. Varsayılan beyaz (koyu zemin/hero). */
+.header-logo--black { display: none; }
+:root[data-theme="light"] .header-main.is-scrolled .header-logo--white,
+:root[data-theme="light"] .header-main.no-hero .header-logo--white { display: none; }
+:root[data-theme="light"] .header-main.is-scrolled .header-logo--black,
+:root[data-theme="light"] .header-main.no-hero .header-logo--black { display: block; }
 
 /* Light theme scrollbar */
 :root[data-theme="light"] ::-webkit-scrollbar-track { background: #f8fafc; }
