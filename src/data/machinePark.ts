@@ -155,6 +155,17 @@ export const machineParkGroups: MachineParkGroup[] = [
         speed: '12000',
       },
       {
+        name: 'CMX 600',
+        description: {
+          tr: 'DMG MORI CMX 600 3 eksen işleme merkezi',
+          en: 'DMG MORI CMX 600 3 axis machining center',
+        },
+        x: '600',
+        y: '510',
+        z: '510',
+        speed: '12000',
+      },
+      {
         name: 'CMX 1100',
         description: {
           tr: 'DMG MORI CMX 1100 3 eksen işleme merkezi',
@@ -197,6 +208,28 @@ export const machineParkGroups: MachineParkGroup[] = [
         y: '560',
         z: '510',
         speed: '12000',
+      },
+      {
+        name: 'CMX 800',
+        description: {
+          tr: 'DMG MORI CMX 800 3 eksen işleme merkezi',
+          en: 'DMG MORI CMX 800 3 axis machining center',
+        },
+        x: '800',
+        y: '560',
+        z: '510',
+        speed: '12000',
+      },
+      {
+        name: 'DMC 1035 V',
+        description: {
+          tr: 'DMG DMC 1035 V 3 eksen işleme merkezi',
+          en: 'DMG DMC 1035 V 3 axis machining center',
+        },
+        x: '1035',
+        y: '560',
+        z: '510',
+        speed: '10000',
       },
       {
         name: 'DMC 1035 V',
