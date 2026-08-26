@@ -3,7 +3,7 @@
 > Anlık durum dosyası. **Her sprint başı/sonu** ve **her prod deploy** sonrası güncelle.
 > Geçmiş kayıt için [OPS_LOG.md](./OPS_LOG.md) ve `CHANGELOG.md`'ye bak.
 
-📝 **Last updated:** 2026-08-20 19:52 — Erdem
+📝 **Last updated:** 2026-08-26 08:57 — Erdem
 
 ---
 
@@ -22,8 +22,12 @@
 ## 🟢 Active sprint
 
 - **Ad:** Belirlenmedi — standart yeni kuruldu, ilk sprint'i tanımlayın
-- **Açık PR'lar:** Yok (2026-08-20 ölçümü, `gh pr list --state open` → 0)
-- **Son iş:** Marka kimliği yenileme (yeni MKT logosu + favicon seti), 2026-08-20 canlıda
+- **Açık PR'lar:** Yok (2026-08-26 ölçümü, `gh pr list --state open` → 0)
+- **Son iş (2026-08-25/26, üçü de canlıda):**
+  - #3 Hero butonları slayt göstergesiyle çakışıyordu (sabit 460px → grid stack); Elimsan referanslardan çıkarıldı, Roketsan/MKE/TEİ eklendi
+  - #4 Footer rozetlerine EYDEP B eklendi
+  - #6 Footer rozetleri `map` ile üretiliyor (çıktı birebir aynı, 70 sayfada doğrulandı)
+- **Önceki iş:** Marka kimliği yenileme (yeni MKT logosu + favicon seti), 2026-08-20 canlıda
 
 ---
 
@@ -52,7 +56,7 @@
 - **Versiyon:** `package.json` → 0.0.1 (SemVer kullanılmıyor; CHANGELOG.md henüz yok)
 - **Canlı commit:** depodan sorulur — `gh run list --limit 1` (son başarılı koşunun `headSha`'sı).
   Bu satıra sabit hash yazma; her docs push'u da image'ı yeniden kurar ve yazılan hash bayatlar.
-- **Son içerik/kod deploy'u:** `25849e9` — 2026-08-20 16:28 UTC (marka kimliği yenileme)
+- **Son içerik/kod deploy'u:** `3400443` — 2026-08-26 08:52 UTC (footer rozet refactor'ü)
 - **Deploy URL'leri:**
   - Public: https://mktmakina.com (+ www)
   - Preview: https://mkt3.siberkale.com
@@ -72,6 +76,11 @@ push → build-push (ghcr image, ~40 sn) → deploy (Coolify API) → verify (he
 🔴 **Push'tan sonra en az 2 dk bekle.** İlk 30 saniyede Coolify kuyruğu boş ve canlıda
 yeni varlıklar 404 görünür — bu "deploy tetiklenmedi" demek DEĞİL, image build sürüyor
 demektir. Durum sorulacaksa `gh run list` ile CI hattından sorulur, Coolify kuyruğundan değil.
+
+🔴 **Canlı HTML'i deploy öncesi/sonrası kıyaslarken Cloudflare e-posta gizlemesini maskele.**
+`/cdn-cgi/l/email-protection#<hex>` ve `data-cfemail="<hex>"` aynı adres için her istekte
+farklı üretilir; maskelenmezse içerik hiç değişmemişken bile "farklı" der (2026-08-26'da
+footer refactor doğrulamasında iki tur kaybettirdi). `dist/` yerel kıyasında bu sorun yoktur.
 
 ---
 
