@@ -110,6 +110,28 @@ export const machineParkGroups: MachineParkGroup[] = [
         z: '630',
         speed: '15000',
       },
+      {
+        name: 'NHC 5000',
+        description: {
+          tr: 'DMG MORI NHC 5000 yatay işleme merkezi',
+          en: 'DMG MORI NHC 5000 horizontal machining center',
+        },
+        x: '500',
+        y: '500',
+        z: '630',
+        speed: '15000',
+      },
+      {
+        name: 'NHC 5000',
+        description: {
+          tr: 'DMG MORI NHC 5000 yatay işleme merkezi',
+          en: 'DMG MORI NHC 5000 horizontal machining center',
+        },
+        x: '500',
+        y: '500',
+        z: '630',
+        speed: '15000',
+      },
     ],
   },
   {
