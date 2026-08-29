@@ -49,14 +49,6 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{"uuid":"${{ vars.COOLIFY_IST_UUID }}"}'
 
-      - name: Deploy to Sakarya
-        if: vars.COOLIFY_SAK_UUID != ''
-        run: |
-          curl -sf -X POST "https://coolify.siberkale.com/api/v1/deploy" \
-            -H "Authorization: Bearer ${{ secrets.COOLIFY_SAK_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{"uuid":"${{ vars.COOLIFY_SAK_UUID }}"}' || echo "Sakarya skipped"
-
   verify:
     needs: deploy
     runs-on: ubuntu-latest
