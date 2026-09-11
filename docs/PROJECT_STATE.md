@@ -3,7 +3,7 @@
 > Anlık durum dosyası. **Her sprint başı/sonu** ve **her prod deploy** sonrası güncelle.
 > Geçmiş kayıt için [OPS_LOG.md](./OPS_LOG.md) ve `CHANGELOG.md`'ye bak.
 
-📝 **Last updated:** 2026-08-26 08:57 — Erdem
+📝 **Last updated:** 2026-09-11 08:55 — Erdem
 
 ---
 
@@ -22,8 +22,10 @@
 ## 🟢 Active sprint
 
 - **Ad:** Belirlenmedi — standart yeni kuruldu, ilk sprint'i tanımlayın
-- **Açık PR'lar:** Yok (2026-08-26 ölçümü, `gh pr list --state open` → 0)
-- **Son iş (2026-08-25/26, üçü de canlıda):**
+- **Açık PR'lar:** Yok (2026-09-11 ölçümü, `gh pr list --state open` → 0)
+- **Son iş (2026-09-11, canlıda):**
+  - #9 Referanslar bölümü mobil dik ekranda taşıyordu: global CSS'teki `.ref-item { width: 240px !important }` ızgarayı 720px'e çözüyor, üçüncü sütun ekran dışında kalıyordu. Telefonda 2, 480px üstünde 3 sütun; canlıda 375px → 2×157px, taşma yok
+- **Önceki iş (2026-08-25/26):**
   - #3 Hero butonları slayt göstergesiyle çakışıyordu (sabit 460px → grid stack); Elimsan referanslardan çıkarıldı, Roketsan/MKE/TEİ eklendi
   - #4 Footer rozetlerine EYDEP B eklendi
   - #6 Footer rozetleri `map` ile üretiliyor (çıktı birebir aynı, 70 sayfada doğrulandı)
@@ -56,7 +58,7 @@
 - **Versiyon:** `package.json` → 0.0.1 (SemVer kullanılmıyor; CHANGELOG.md henüz yok)
 - **Canlı commit:** depodan sorulur — `gh run list --limit 1` (son başarılı koşunun `headSha`'sı).
   Bu satıra sabit hash yazma; her docs push'u da image'ı yeniden kurar ve yazılan hash bayatlar.
-- **Son içerik/kod deploy'u:** `3400443` — 2026-08-26 08:52 UTC (footer rozet refactor'ü)
+- **Son içerik/kod deploy'u:** `8b01daf` — 2026-09-11 08:50 UTC (referanslar mobil ızgara düzeltmesi)
 - **Deploy URL'leri:**
   - Public: https://mktmakina.com (+ www)
   - Preview: https://mkt3.siberkale.com
