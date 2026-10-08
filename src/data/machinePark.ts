@@ -80,6 +80,18 @@ export const machineParkGroups: MachineParkGroup[] = [
         speed: '18000',
       },
       {
+        name: 'HERMLE C20U',
+        description: {
+          tr: 'HERMLE C20U 5 eksen CNC işleme merkezi',
+          en: 'HERMLE C20U 5 axis CNC machining center',
+        },
+        diameter: '280',
+        x: '600',
+        y: '450',
+        z: '450',
+        speed: '16000',
+      },
+      {
         name: 'DVF 5000 (2nd Gen)',
         description: {
           tr: 'DVF 5000 (2nd Gen) 5 eksen CNC işleme merkezi',
