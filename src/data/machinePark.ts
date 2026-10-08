@@ -14,6 +14,7 @@ export interface MachineParkMachine {
 }
 
 export interface MachineParkGroup {
+  id: string;
   category: Record<Lang, string>;
   brand: string;
   machines: MachineParkMachine[];
@@ -21,13 +22,14 @@ export interface MachineParkGroup {
 
 export const machineParkGroups: MachineParkGroup[] = [
   {
+    id: '5-eksen',
     category: {
       tr: '5 Eksen CNC İşleme Merkezleri',
       en: '5-Axis CNC Machining Centers',
       de: '5-Achsen CNC-Bearbeitungszentren',
       ar: 'مراكز تشغيل CNC خماسية المحاور',
     },
-    brand: 'DMG MORI / HERMLE',
+    brand: 'DMG MORI / HERMLE / DN SOLUTIONS',
     machines: [
       {
         name: 'DMU 85 monoBLOCK',
@@ -66,6 +68,30 @@ export const machineParkGroups: MachineParkGroup[] = [
         speed: '28000',
       },
       {
+        name: 'HERMLE C40U',
+        description: {
+          tr: 'HERMLE C40U 5 eksen CNC işleme merkezi',
+          en: 'HERMLE C40U 5 axis CNC machining center',
+        },
+        diameter: '650',
+        x: '850',
+        y: '700',
+        z: '500',
+        speed: '18000',
+      },
+      {
+        name: 'DVF 5000 (2nd Gen)',
+        description: {
+          tr: 'DVF 5000 (2nd Gen) 5 eksen CNC işleme merkezi',
+          en: 'DVF 5000 (2nd Gen) 5 axis CNC machining center',
+        },
+        diameter: '630',
+        x: '650',
+        y: '520',
+        z: '480',
+        speed: '20000',
+      },
+      {
         name: 'ECOMILL 50',
         description: {
           tr: 'ECOMILL 50 5 eksen CNC işleme merkezi',
@@ -80,6 +106,7 @@ export const machineParkGroups: MachineParkGroup[] = [
     ],
   },
   {
+    id: 'yatay',
     category: {
       tr: 'Yatay CNC İşleme Merkezleri',
       en: 'Horizontal CNC Machining Centers',
@@ -135,13 +162,14 @@ export const machineParkGroups: MachineParkGroup[] = [
     ],
   },
   {
+    id: '3-eksen',
     category: {
       tr: '3 Eksen CNC İşleme Merkezleri',
       en: '3-Axis CNC Machining Centers',
       de: '3-Achsen CNC-Bearbeitungszentren',
       ar: 'مراكز تشغيل CNC ثلاثية المحاور',
     },
-    brand: 'DMG MORI',
+    brand: 'DMG MORI / DN SOLUTIONS',
     machines: [
       {
         name: 'CMX 600',
@@ -264,9 +292,32 @@ export const machineParkGroups: MachineParkGroup[] = [
         z: '510',
         speed: '8000',
       },
+      {
+        name: 'DNM 5700',
+        description: {
+          tr: 'DN Solutions DNM 5700 3 eksen işleme merkezi',
+          en: 'DN Solutions DNM 5700 3 axis machining center',
+        },
+        x: '1050',
+        y: '570',
+        z: '510',
+        speed: '12000',
+      },
+      {
+        name: 'DNM 5700',
+        description: {
+          tr: 'DN Solutions DNM 5700 3 eksen işleme merkezi',
+          en: 'DN Solutions DNM 5700 3 axis machining center',
+        },
+        x: '1050',
+        y: '570',
+        z: '510',
+        speed: '12000',
+      },
     ],
   },
   {
+    id: 'cnc-torna',
     category: {
       tr: 'CNC Torna',
       en: 'CNC Lathes',
@@ -299,6 +350,7 @@ export const machineParkGroups: MachineParkGroup[] = [
     ],
   },
   {
+    id: 'olcum',
     category: {
       tr: 'Ölçüm Sistemleri',
       en: 'Measurement Systems',
@@ -320,6 +372,7 @@ export const machineParkGroups: MachineParkGroup[] = [
     ],
   },
   {
+    id: 'erozyon',
     category: {
       tr: 'Erozyon Tezgahları',
       en: 'EDM Machines',
@@ -361,6 +414,7 @@ export const machineParkGroups: MachineParkGroup[] = [
     ],
   },
   {
+    id: 'konvansiyonel',
     category: {
       tr: 'Konvansiyonel Tezgahlar',
       en: 'Conventional Machines',
@@ -401,6 +455,7 @@ export const machineParkGroups: MachineParkGroup[] = [
     ],
   },
   {
+    id: 'lazer-markalama',
     category: {
       tr: 'Lazer Markalama',
       en: 'Laser Marking',
@@ -419,6 +474,7 @@ export const machineParkGroups: MachineParkGroup[] = [
     ],
   },
   {
+    id: 'taslama',
     category: {
       tr: 'Taşlama',
       en: 'Grinding',
@@ -458,6 +514,7 @@ export const machineParkGroups: MachineParkGroup[] = [
     ],
   },
   {
+    id: 'kumlama',
     category: {
       tr: 'Kumlama & Vibrasyon',
       en: 'Sandblasting & Vibration',
@@ -500,9 +557,16 @@ export const machineParkGroups: MachineParkGroup[] = [
 
 export const machineParkTotal = machineParkGroups.reduce((total, group) => total + group.machines.length, 0);
 
+// Sayaçlar elle yazılınca veriyle ayrışıyordu (3 eksen 8 / gerçek 11, yatay 2 / gerçek 4); gruptan sayılır.
+const countMachinesInGroup = (groupId: string): string => {
+  const group = machineParkGroups.find((candidate) => candidate.id === groupId);
+  if (!group) throw new Error(`machineParkStats: '${groupId}' kimlikli makina grubu yok`);
+  return String(group.machines.length);
+};
+
 export const machineParkStats = [
   {
-    value: '4',
+    value: countMachinesInGroup('5-eksen'),
     label: {
       tr: '5 Eksen CNC',
       en: '5-Axis CNC',
@@ -511,7 +575,7 @@ export const machineParkStats = [
     },
   },
   {
-    value: '8',
+    value: countMachinesInGroup('3-eksen'),
     label: {
       tr: '3 Eksen CNC',
       en: '3-Axis CNC',
@@ -520,7 +584,7 @@ export const machineParkStats = [
     },
   },
   {
-    value: '2',
+    value: countMachinesInGroup('yatay'),
     label: {
       tr: 'Yatay CNC',
       en: 'Horizontal CNC',

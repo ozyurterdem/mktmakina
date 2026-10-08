@@ -42,8 +42,6 @@ const photos = [
   { src: '/images/slide2.jpg?v=20260429', alt: 'Makina Parkı' },
   { src: '/images/slide3.jpg?v=20260429', alt: 'Kalıp Üretimi' },
   { src: '/images/hero/nlx-torna-yakin.jpg?v=20260429', alt: 'CNC Tornalama' },
-  { src: '/images/categories/fikstur_8.jpg', alt: 'Fikstür' },
-  { src: '/images/categories/kaliplar_12.jpg', alt: 'Kalıp' },
 ];
 ---
 
@@ -56,22 +54,11 @@ const photos = [
       <!-- Left: Photo Grid -->
       <div class="relative" data-animate="fade-right" data-delay="200">
         <div class="grid grid-cols-2 gap-3">
-          <div class="space-y-3">
-            <div class="aspect-[3/4] overflow-hidden">
-              <img src={photos[0].src} alt={photos[0].alt} class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+          {photos.map((photo) => (
+            <div class="aspect-[4/3] overflow-hidden">
+              <img src={photo.src} alt={photo.alt} class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
             </div>
-            <div class="aspect-square overflow-hidden">
-              <img src={photos[2].src} alt={photos[2].alt} class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
-            </div>
-          </div>
-          <div class="space-y-3 pt-8">
-            <div class="aspect-square overflow-hidden">
-              <img src={photos[1].src} alt={photos[1].alt} class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
-            </div>
-            <div class="aspect-[3/4] overflow-hidden">
-              <img src={photos[3].src} alt={photos[3].alt} class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
-            </div>
-          </div>
+          ))}
         </div>
 
       </div>

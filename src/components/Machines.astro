@@ -12,7 +12,7 @@ const l = (map: Record<string, string>) => map[lang] || map['en'] || '';
 const categories = machineParkGroups.slice(0, 5).map((group) => ({
   title: group.category[lang] ?? group.category.en,
   count: group.machines.length,
-  machines: group.machines.slice(0, 5).map((machine) => machine.name),
+  machines: group.machines.map((machine) => machine.name),
   brand: group.brand,
 }));
 ---

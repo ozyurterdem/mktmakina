@@ -3,7 +3,7 @@
 > Anlık durum dosyası. **Her sprint başı/sonu** ve **her prod deploy** sonrası güncelle.
 > Geçmiş kayıt için [OPS_LOG.md](./OPS_LOG.md) ve `CHANGELOG.md`'ye bak.
 
-📝 **Last updated:** 2026-09-11 08:55 — Erdem
+📝 **Last updated:** 2026-10-08 — Erdem
 
 ---
 
@@ -23,7 +23,13 @@
 
 - **Ad:** Belirlenmedi — standart yeni kuruldu, ilk sprint'i tanımlayın
 - **Açık PR'lar:** Yok (2026-09-11 ölçümü, `gh pr list --state open` → 0)
-- **Son iş (2026-09-11, canlıda):**
+- **Son iş (2026-10-08, PR):** makina parkı + referans sırası + foto ızgarası
+  - 5 eksene HERMLE C40U ve DVF 5000 (2nd Gen), 3 eksene DNM 5700 ×2 (teknik değerler üretici kataloğundan, devir şirketten teyit edilecek)
+  - Anasayfa makina kartındaki 5 satır sınırı kalktı; makina parkı sayaçları veriden sayılıyor (3 eksen 8→13, yatay 2→4 bayattı)
+  - Referans sırası: TCI, ZIM, TEI, MKE, Roketsan, Ingersoll Rand, Gardner Denver, kalanlar aynı
+  - Hakkımızda foto ızgarası 2×2 simetrik 4:3
+  - **Bekleyen:** ısıl işlem görseli (yanlış görsel `slide3.jpg`), ikinci HERMLE modeli (C40U ile DVF arasına)
+- **Önceki iş (2026-09-11, canlıda):**
   - #9 Referanslar bölümü mobil dik ekranda taşıyordu: global CSS'teki `.ref-item { width: 240px !important }` ızgarayı 720px'e çözüyor, üçüncü sütun ekran dışında kalıyordu. Telefonda 2, 480px üstünde 3 sütun; canlıda 375px → 2×157px, taşma yok
 - **Önceki iş (2026-08-25/26):**
   - #3 Hero butonları slayt göstergesiyle çakışıyordu (sabit 460px → grid stack); Elimsan referanslardan çıkarıldı, Roketsan/MKE/TEİ eklendi
