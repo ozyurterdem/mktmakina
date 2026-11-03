@@ -1,4 +1,9 @@
-export const references = [
+import { isSavunma } from '../config/variant';
+
+// Endüstri sürümünde gösterilmeyen savunma referansları (Stats marka şeridi de kullanır).
+export const savunmaReferanslari = ['MKE', 'Roketsan'];
+
+const allReferences = [
   { name: 'TCI', image: '/images/references/tci_198.png' },
   { name: 'ZIM Aircraft Seating', image: '/images/references/zim-aircraft-seating.svg' },
   { name: 'TEI', image: '/images/references/tei.svg' },
@@ -18,3 +23,5 @@ export const references = [
   { name: 'Rad-Tek Radyator', image: '/images/references/rad-tek-radyator-metal_195.jpg' },
   { name: 'Arma Filtre', image: '/images/references/arma-filtre-sistemleri_185.jpg' },
 ];
+
+export const references = allReferences.filter((ref) => isSavunma || !savunmaReferanslari.includes(ref.name));

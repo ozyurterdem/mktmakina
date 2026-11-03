@@ -1,3 +1,5 @@
+import { onlyInSavunma } from '../config/variant';
+
 export interface Product {
   slug: string;
   name: { tr: string; en: string; de: string; ar: string };
@@ -376,22 +378,22 @@ export const products: Product[] = [
     details: {
       tr: [
         'Havacılık plastik komponentleri',
-        'Savunma plastik komponentleri',
+        ...onlyInSavunma(['Savunma plastik komponentleri']),
         'Otomotiv plastik komponentleri',
       ],
       en: [
         'Aerospace plastic components',
-        'Defense plastic components',
+        ...onlyInSavunma(['Defense plastic components']),
         'Automotive plastic components',
       ],
       de: [
         'Kunststoffkomponenten für die Luftfahrt',
-        'Kunststoffkomponenten für die Verteidigungsindustrie',
+        ...onlyInSavunma(['Kunststoffkomponenten für die Verteidigungsindustrie']),
         'Kunststoffkomponenten für die Automobilindustrie',
       ],
       ar: [
         'مكونات بلاستيكية للطيران',
-        'مكونات بلاستيكية للدفاع',
+        ...onlyInSavunma(['مكونات بلاستيكية للدفاع']),
         'مكونات بلاستيكية للسيارات',
       ],
     },

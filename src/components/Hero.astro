@@ -1,4 +1,5 @@
 ---
+import { isSavunma } from '../config/variant';
 import { t, withSlash, type Lang } from '../i18n/translations';
 
 interface Props {
@@ -17,11 +18,17 @@ type Slide = {
 const slides: Slide[] = [
   {
     overline: t(lang, 'hero.slide1.subtitle'),
-    title: [
-      l({ tr: 'Havacılık', en: 'Aerospace',  de: 'Luftfahrt',   ar: 'الطيران' }),
-      l({ tr: 'Savunma &', en: 'Defense &',  de: 'Verteidigung &', ar: 'الدفاع و' }),
-      l({ tr: 'Otomotiv',  en: 'Automotive', de: 'Automobil',   ar: 'السيارات' }),
-    ],
+    title: isSavunma
+      ? [
+          l({ tr: 'Havacılık', en: 'Aerospace',  de: 'Luftfahrt',   ar: 'الطيران' }),
+          l({ tr: 'Savunma &', en: 'Defense &',  de: 'Verteidigung &', ar: 'الدفاع و' }),
+          l({ tr: 'Otomotiv',  en: 'Automotive', de: 'Automobil',   ar: 'السيارات' }),
+        ]
+      : [
+          l({ tr: 'Havacılık &', en: 'Aerospace &',   de: 'Luftfahrt &', ar: 'الطيران و' }),
+          l({ tr: 'Otomotiv',    en: 'Automotive',    de: 'Automobil',   ar: 'السيارات' }),
+          l({ tr: 'İçin Üretim', en: 'Manufacturing', de: 'Fertigung',   ar: 'تصنيع دقيق' }),
+        ],
     desc: t(lang, 'hero.subtitle'),
   },
   {
