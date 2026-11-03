@@ -3,7 +3,7 @@
 > Anlık durum dosyası. **Her sprint başı/sonu** ve **her prod deploy** sonrası güncelle.
 > Geçmiş kayıt için [OPS_LOG.md](./OPS_LOG.md) ve `CHANGELOG.md`'ye bak.
 
-📝 **Last updated:** 2026-10-08 — Erdem
+📝 **Last updated:** 2026-11-03 — Erdem
 
 ---
 
@@ -18,6 +18,15 @@
 (Not: "savunma" kelimesi **her iki branch'te de** geçer, ayraç olarak kullanılamaz.)
 
 ---
+
+## 🔀 İki sürüm: endüstri (varsayılan) / savunma — 2026-11-03
+
+- Tek dal, tek kaynak. `npm run build` → **endüstri** (varsayılan, değişken unutulursa savunma çıkmaz); `SITE_VARIANT=savunma npm run build` → **savunma**.
+- Savunma sürümünün dondurulmuş hali: etiket `surum/savunma-2026-11-03` (`0c4d183`).
+- Yapısal farklar `src/config/variant.ts` ile kaynakta (MKE/Roketsan, Hero satırı, plastik liste maddesi); "havacılık, savunma ve otomotiv" ifadesi `scripts/surum-donusumu.mjs` kural tablosuyla dist'te dönüşür. Bekçi endüstri çıktısında savunma izi kalırsa build'i kırar.
+- 🔴 `npm run dev` dönüşüm adımını KOŞMAZ: endüstri metnini görmek için `npm run build && npx astro preview`.
+- Sırada: yöneticilerin sürüm seçeceği panel (Cloudflare Access + bayrak), henüz yok.
+- 🔴 2026-11-03: GitHub runner Coolify API'sine ulaşamıyor (`deploy` adımı curl 28); #13 ve sonrası canlıya çıkmadı.
 
 ## 🟢 Active sprint
 

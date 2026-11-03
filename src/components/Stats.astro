@@ -1,4 +1,6 @@
 ---
+import { isSavunma } from '../config/variant';
+import { savunmaReferanslari } from '../data/references';
 import { type Lang } from '../i18n/translations';
 
 interface Props {
@@ -7,7 +9,8 @@ interface Props {
 
 const { lang = 'tr' } = Astro.props;
 
-const brands = ['DMG MORI', 'HAAS', 'GF Machining', 'FANUC', 'LS Mtron', 'TCI', 'Roketsan', 'MKE', 'TEI', 'Toyota Boshoku', 'Mikrosan'];
+const allBrands = ['DMG MORI', 'HAAS', 'GF Machining', 'FANUC', 'LS Mtron', 'TCI', 'Roketsan', 'MKE', 'TEI', 'Toyota Boshoku', 'Mikrosan'];
+const brands = allBrands.filter((brand) => isSavunma || !savunmaReferanslari.includes(brand));
 ---
 
 <section class="relative bg-primary border-y border-white/[0.04] overflow-hidden">
