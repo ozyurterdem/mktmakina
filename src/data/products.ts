@@ -111,7 +111,7 @@ export const products: Product[] = [
       de: 'Wärmebehandlung',
       ar: 'المعالجة الحرارية',
     },
-    image: '/images/slide3.jpg',
+    image: '/images/categories/isil-islem-firini.jpg',
     description: {
       tr: 'T4, T6 ve QUENCH ısıl işlem merkezinde havacılık, savunma ve otomotiv parçaları için kontrollü proses çözümleri sunulmaktadır.',
       en: 'Controlled process solutions for aerospace, defense and automotive parts in the T4, T6 and QUENCH heat treatment center.',

@@ -29,7 +29,7 @@
   - Referans sırası: TCI, ZIM, TEI, MKE, Roketsan, Ingersoll Rand, Gardner Denver, kalanlar aynı
   - Hakkımızda foto ızgarası 2×2 simetrik 4:3
   - HERMLE C20U eklendi (C40U ile DVF arasında; katalog değerleri, devir teyit edilecek)
-  - **Bekleyen:** ısıl işlem görseli (yanlış görsel `slide3.jpg`, NHC 5000 fotoğrafı)
+  - Isıl işlem görseli değişti (2026-11-03): `slide3.jpg` (NHC 5000) yerine ısıl işlem fırını `isil-islem-firini.jpg`
 - **Önceki iş (2026-09-11, canlıda):**
   - #9 Referanslar bölümü mobil dik ekranda taşıyordu: global CSS'teki `.ref-item { width: 240px !important }` ızgarayı 720px'e çözüyor, üçüncü sütun ekran dışında kalıyordu. Telefonda 2, 480px üstünde 3 sütun; canlıda 375px → 2×157px, taşma yok
 - **Önceki iş (2026-08-25/26):**
