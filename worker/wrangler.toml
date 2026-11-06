@@ -1,0 +1,7 @@
+# Route'lar bilerek burada YOK: canlı trafiği Worker'a yönlendirmek ayrı ve onaylı
+# bir adımdır (API ile eklenir, geri alma: route silinir). `wrangler deploy` yalnız
+# script'i yükler, mktmakina.com trafiğini değiştirmez.
+name = "mktmakina-surum"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = false
