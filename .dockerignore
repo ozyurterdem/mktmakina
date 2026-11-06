@@ -9,3 +9,5 @@ screenshots
 *.md
 .vscode
 .idea
+# Worker ayrı yayınlanır (wrangler), imaja girmez
+worker
