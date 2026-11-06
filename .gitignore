@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # AGENTS.md global Undercover ignore'undan muaf — takim + AI ortak okur
 !AGENTS.md
+
+# Worker yerel durumu
+.wrangler/
