@@ -1,57 +1,70 @@
-// mktmakina.com önündeki sürüm Worker'ı.
-// 3. aşama: KV'deki `aktif_surum` bayrağına göre endüstri (sunucu kökü) ya da
-// savunma (sunucuda /_surum/savunma/, gizli anahtarla açılan iç yol) sunulur.
-// Güvenli taraf daima endüstridir: bayrak okunamazsa, anahtar yoksa ya da
-// sunucu savunma isteğine 404 dönerse endüstri sayfası sunulur.
-const SURUM_KEY = "aktif_surum";
-const SAVUNMA = "savunma";
-const ENDUSTRI = "endustri";
+// mktmakina.com önündeki sürüm Worker'ı: ziyaretçi trafiğini KV bayrağına göre
+// endüstri ya da savunma sürümüne yönlendirir, /yonetim/ altında sürüm panelini sunar.
+import { serveSite } from "./surum.js";
+import { handlePanel, PANEL_PREFIX } from "./yonetim.js";
+import { verifyAccessJwt, fetchAccessKeys } from "./access.js";
+import { notify, notifyThrottled, drainQueue, sendToRelay } from "./bildirim.js";
+
 const INTERNAL_PREFIX = "/_surum/";
-const SAVUNMA_PREFIX = "/_surum/savunma";
-const KEY_HEADER = "X-Surum-Anahtar";
-const WORKER_HEADER = "x-mkt-worker";
+// Bayrak okunamıyorsa KV de sorunludur; bu uyarının sınırı bu yüzden bellektedir
+// (her Worker örneği için saatte bir) ve kuyruk yerine doğrudan relay'e gider.
+const FLAG_ALERT_INTERVAL_MS = 60 * 60 * 1000;
+let lastFlagAlertAt = 0;
 
-async function readActiveVariant(env) {
-  try {
-    const value = await env.SURUM_KV.get(SURUM_KEY, { cacheTtl: 60 });
-    return value === SAVUNMA && env.SURUM_ANAHTAR ? SAVUNMA : ENDUSTRI;
-  } catch {
-    return ENDUSTRI;
-  }
+function alertFlagFailure(env, ctx) {
+  const now = Date.now();
+  if (now - lastFlagAlertAt < FLAG_ALERT_INTERVAL_MS) return;
+  lastFlagAlertAt = now;
+  ctx.waitUntil(
+    sendToRelay(env, {
+      subject: "Sürüm bayrağı okunamadı",
+      message: "mktmakina.com Worker'ı KV'deki sürüm bayrağını okuyamadı; site güvenli tarafta (endüstri) sunuluyor.",
+    }),
+  );
 }
 
-function fetchSavunma(request, env) {
-  const url = new URL(request.url);
-  url.pathname = SAVUNMA_PREFIX + url.pathname;
-  const headers = new Headers(request.headers);
-  headers.set(KEY_HEADER, env.SURUM_ANAHTAR);
-  return fetch(new Request(url, { method: request.method, headers, redirect: "manual" }));
+// Bildirim kuyruğu ziyaretçi trafiğiyle boşaltılır: her Worker örneği en fazla
+// 5 dakikada bir, yanıtı geciktirmeden arka planda tek kayıt göndermeyi dener.
+const QUEUE_DRAIN_INTERVAL_MS = 5 * 60 * 1000;
+let lastQueueDrainAt = 0;
+
+function drainQueueOccasionally(env, ctx) {
+  const now = Date.now();
+  if (now - lastQueueDrainAt < QUEUE_DRAIN_INTERVAL_MS) return;
+  lastQueueDrainAt = now;
+  ctx.waitUntil(drainQueue(env).catch(() => {}));
 }
 
-function finalize(originResponse, variant) {
-  const response = new Response(originResponse.body, originResponse);
-  response.headers.set(WORKER_HEADER, variant);
-  // Sürüm değişince tarayıcıda eski sayfa kalmasın: HTML her seferinde doğrulanır.
-  if ((response.headers.get("content-type") || "").includes("text/html")) {
-    response.headers.set("Cache-Control", "no-cache");
-  }
-  return response;
+function panelDeps(env, ctx) {
+  return {
+    verify: (token) =>
+      verifyAccessJwt(token, {
+        teamDomain: env.ACCESS_TEAM_DOMAIN,
+        audience: env.ACCESS_AUD,
+        getKeys: () => fetchAccessKeys(env.ACCESS_TEAM_DOMAIN),
+        nowSeconds: Math.floor(Date.now() / 1000),
+      }),
+    notify,
+    notifyThrottled,
+    now: () => new Date(),
+    background: (promise) => ctx.waitUntil(promise.catch(() => {})),
+  };
 }
+
+const isPanelPath = (pathname) => pathname === PANEL_PREFIX || pathname.startsWith(`${PANEL_PREFIX}/`);
 
 export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
+  async fetch(request, env, ctx) {
+    const { pathname } = new URL(request.url);
     // İç yol dışarıdan açılamaz; Worker'ın kendi alt istekleri buraya uğramaz.
-    if (url.pathname.startsWith(INTERNAL_PREFIX)) {
-      return new Response("Not Found", { status: 404 });
-    }
+    if (pathname.startsWith(INTERNAL_PREFIX)) return new Response("Not Found", { status: 404 });
+    if (isPanelPath(pathname)) return handlePanel(request, env, panelDeps(env, ctx));
 
-    // Gövdeli istekler (POST vb.) sürüm ayrımı olmadan sunucuya olduğu gibi gider.
-    const isReadOnly = request.method === "GET" || request.method === "HEAD";
-    if (isReadOnly && (await readActiveVariant(env)) === SAVUNMA) {
-      const savunmaResponse = await fetchSavunma(request, env);
-      if (savunmaResponse.status !== 404) return finalize(savunmaResponse, SAVUNMA);
-    }
-    return finalize(await fetch(request), ENDUSTRI);
+    drainQueueOccasionally(env, ctx);
+    return serveSite(request, env, () => alertFlagFailure(env, ctx));
+  },
+
+  async scheduled(_event, env) {
+    await drainQueue(env);
   },
 };

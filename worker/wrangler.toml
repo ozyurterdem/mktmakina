@@ -1,7 +1,9 @@
 # Route'lar bilerek burada YOK: canlı trafiği Worker'a yönlendirmek ayrı ve onaylı
 # bir adımdır (cf.sh ile eklenir). `wrangler deploy` yalnız script'i yükler.
-# SURUM_ANAHTAR bir Worker secret'ıdır (cf.sh ile yüklenir, kasada
-# mktmakina_surum_anahtar); sunucudaki Coolify env'iyle aynı değerdir.
+# Secret'lar (cf.sh ile yüklenir, depoda yer almaz; depo herkese açık):
+#   SURUM_ANAHTAR  kasada mktmakina_surum_anahtar; sunucudaki Coolify env'iyle aynı
+#   ACCESS_AUD     /yonetim Access uygulamasının AUD etiketi
+#   YONETICILER    virgülle ayrılmış yönetici e-postaları (Access kuralıyla aynı liste)
 name = "mktmakina-surum"
 main = "src/index.js"
 compatibility_date = "2026-11-01"
@@ -11,3 +13,12 @@ keep_vars = true
 [[kv_namespaces]]
 binding = "SURUM_KV"
 id = "6639a19d78dd42959b860b9e2a5352e2"
+
+[vars]
+ACCESS_TEAM_DOMAIN = "https://siberkale.cloudflareaccess.com"
+RELAY_URL = "https://forms.siberkale.com/relay"
+RELAY_SITE = "mktmakina-panel"
+
+# Cron tetikleyicisi hesapta workers.dev alt alan adı ister (henüz yok). Bildirim
+# kuyruğu bu yüzden ziyaretçi trafiğiyle boşaltılır (src/index.js). Alt alan adı
+# açılırsa buraya `[triggers] crons = ["*/5 * * * *"]` eklenebilir; scheduled() hazır.
