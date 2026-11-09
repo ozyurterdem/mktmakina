@@ -1,7 +1,13 @@
 # Route'lar bilerek burada YOK: canlı trafiği Worker'a yönlendirmek ayrı ve onaylı
-# bir adımdır (API ile eklenir, geri alma: route silinir). `wrangler deploy` yalnız
-# script'i yükler, mktmakina.com trafiğini değiştirmez.
+# bir adımdır (cf.sh ile eklenir). `wrangler deploy` yalnız script'i yükler.
+# SURUM_ANAHTAR bir Worker secret'ıdır (cf.sh ile yüklenir, kasada
+# mktmakina_surum_anahtar); sunucudaki Coolify env'iyle aynı değerdir.
 name = "mktmakina-surum"
 main = "src/index.js"
 compatibility_date = "2026-11-01"
 workers_dev = false
+keep_vars = true
+
+[[kv_namespaces]]
+binding = "SURUM_KV"
+id = "6639a19d78dd42959b860b9e2a5352e2"
